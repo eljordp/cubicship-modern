@@ -151,9 +151,10 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 6px;
+      padding: 8px;
+      -webkit-tap-highlight-color: transparent;
     }
-    .nav-toggle svg { width: 22px; height: 22px; stroke: var(--text); }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--text); }
 
     /* === HERO === */
     .hero {
@@ -728,11 +729,19 @@
 
     /* === RESPONSIVE === */
     @media (max-width: 960px) {
-      .freight-layout { grid-template-columns: 1fr; }
-      .freight-item.featured { grid-column: span 1; grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .contact-layout { grid-template-columns: 1fr; }
       .footer-layout { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 3.5rem 1.25rem; }
+      .hero { min-height: auto; padding: 6rem 1.25rem 3rem; }
+      .hero h1 { letter-spacing: -2px; }
+      .freight-layout { grid-template-columns: 1fr; }
+      .freight-item.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .freight-item { padding: 1.75rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .metrics { gap: 1.5rem; }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -746,15 +755,39 @@
         right: 0;
         background: rgba(10,22,40,0.98);
         backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
         border-bottom: 1px solid var(--border);
-        padding: 0.5rem 1rem 1rem;
+        padding: 0.75rem 1.25rem 1.25rem;
       }
+      .nav-links.open a {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+      }
+      section { padding: 3rem 1rem; }
+      .hero { padding: 5.5rem 1rem 2.5rem; }
+      .hero h1 { letter-spacing: -1.5px; margin-bottom: 1.25rem; }
+      .hero-sub { margin-bottom: 2rem; }
+      .hero-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+      .hero-partner { margin-bottom: 1.75rem; }
+      .metrics { flex-wrap: wrap; gap: 1rem 2rem; margin-top: 3rem; }
+      .metric-value { font-size: 1.4rem; }
+      .section-heading { font-size: 1.8rem; letter-spacing: -1px; }
+      .section-desc { font-size: 0.95rem; }
       .services-grid { grid-template-columns: 1fr; }
-      .footer-layout { grid-template-columns: 1fr; }
-      .metrics { flex-wrap: wrap; gap: 1.5rem; }
+      .service-card { padding: 1.5rem; }
+      .footer-layout { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
       .form-row { grid-template-columns: 1fr; }
       .tracking-row { flex-direction: column; }
       .dhl-badge { flex-direction: column; text-align: center; }
+      .contact-form { padding: 1.5rem; }
+      .btn-lg { padding: 0.85rem 1.5rem; }
+    }
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 2.4rem; letter-spacing: -1px; }
+      .footer-layout { grid-template-columns: 1fr; }
+      .metrics { justify-content: space-around; }
     }
   </style>
 </head>

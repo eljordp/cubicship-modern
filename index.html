@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cubic Ship - Premier DHL Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --navy-mid: #132744;
+      --surface: #162a4a;
+      --surface-light: #1c3358;
+      --orange: #f47621;
+      --orange-light: #ff8f42;
+      --green: #4cba3c;
+      --green-light: #5fd44e;
+      --blue-accent: #3b82f6;
+      --blue-glow: #4a9eff;
+      --text: #e8ecf4;
+      --text-secondary: #8899b4;
+      --text-dim: #4a5f82;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --glow-orange: rgba(244,118,33,0.12);
+      --glow-green: rgba(76,186,60,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .display { font-family: 'Space Grotesk', sans-serif; }
+
+    /* grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px;
+    }
+
+    /* === NAVIGATION === */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo img { height: 40px; width: auto; border-radius: 6px; }
+    .nav-wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.3px;
+    }
+    .nav-wordmark .c-orange { color: var(--orange); }
+    .nav-wordmark .c-green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: -0.1px;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: -0.1px;
+      padding: 0.55rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn svg { width: 14px; height: 14px; }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--orange-light);
+      box-shadow: 0 0 24px var(--glow-orange);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--border-hover);
+    }
+    .btn-lg { padding: 0.75rem 1.75rem; font-size: 0.9rem; border-radius: 10px; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-toggle svg { width: 22px; height: 22px; stroke: var(--text); }
+
+    /* === HERO === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    /* atmospheric glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, rgba(74,158,255,0.03) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-globe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(600px, 80vw);
+      height: min(600px, 80vw);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-partner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.35rem 1rem 0.35rem 0.6rem;
+      background: rgba(255,204,0,0.06);
+      border: 1px solid rgba(255,204,0,0.12);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #ffcc00;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .hero-partner .dhl-mark {
+      background: #ffcc00;
+      color: #cc0000;
+      font-weight: 800;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 0.95;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 span.line2 {
+      display: block;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 50%, var(--green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+    /* animated route lines */
+    .hero-routes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-routes .route-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-accent), transparent);
+      opacity: 0.08;
+      animation: routeSlide 8s linear infinite;
+    }
+    .route-line:nth-child(1) { top: 30%; width: 100%; animation-delay: 0s; }
+    .route-line:nth-child(2) { top: 55%; width: 80%; left: 10%; animation-delay: -3s; }
+    .route-line:nth-child(3) { top: 75%; width: 60%; left: 20%; animation-delay: -5s; }
+    @keyframes routeSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* metrics strip */
+    .metrics {
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem, 5vw, 4rem);
+      margin-top: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .metric {
+      text-align: center;
+    }
+    .metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--text);
+    }
+    .metric-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+
+    /* === SECTIONS === */
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 3rem); }
+    .container { max-width: 1140px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1.5px;
+      background: var(--orange);
+      border-radius: 1px;
+    }
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .section-header { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+    /* === FREIGHT SECTION === */
+    .freight-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .freight-item {
+      position: relative;
+      padding: 2.25rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .freight-item:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .freight-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    }
+    .freight-item.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      border-color: rgba(244,118,33,0.15);
+    }
+    .freight-item.featured:hover {
+      border-color: rgba(244,118,33,0.3);
+    }
+    .freight-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .freight-icon svg { width: 22px; height: 22px; }
+    .freight-icon.air { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.12); }
+    .freight-icon.air svg { stroke: var(--blue-accent); }
+    .freight-icon.ocean { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.12); }
+    .freight-icon.ocean svg { stroke: #06b6d4; }
+    .freight-icon.ground { background: var(--glow-green); border: 1px solid rgba(76,186,60,0.12); }
+    .freight-icon.ground svg { stroke: var(--green); }
+    .freight-icon.pack { background: var(--glow-orange); border: 1px solid rgba(244,118,33,0.12); }
+    .freight-icon.pack svg { stroke: var(--orange); }
+    .freight-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.5rem;
+    }
+    .freight-item p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .freight-item .learn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--orange);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .freight-item:hover .learn-link { gap: 0.6rem; }
+    .freight-item .learn-link svg { width: 14px; height: 14px; stroke: currentColor; }
+
+    /* DHL partner banner inside featured */
+    .dhl-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      border-radius: 12px;
+      background: rgba(255,204,0,0.04);
+      border: 1px solid rgba(255,204,0,0.1);
+    }
+    .dhl-badge-logo {
+      width: 80px;
+      height: 48px;
+      background: #ffcc00;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dhl-badge-logo span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #cc0000;
+      letter-spacing: 2px;
+    }
+    .dhl-badge-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+    .dhl-badge-text p {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+
+    /* === SERVICES SECTION === */
+    .services-bg {
+      background: var(--navy-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .service-card {
+      padding: 2rem 1.75rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .service-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover::after { opacity: 1; }
+    .service-card:nth-child(1)::after { background: var(--blue-accent); }
+    .service-card:nth-child(2)::after { background: var(--green); }
+    .service-card:nth-child(3)::after { background: #a855f7; }
+    .service-card:nth-child(4)::after { background: var(--orange); }
+    .svc-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .svc-icon svg { width: 20px; height: 20px; }
+    .svc-icon.blue { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.12); }
+    .svc-icon.blue svg { stroke: var(--blue-accent); }
+    .svc-icon.green { background: var(--glow-green); border: 1px solid rgba(76,186,60,0.12); }
+    .svc-icon.green svg { stroke: var(--green); }
+    .svc-icon.purple { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.12); }
+    .svc-icon.purple svg { stroke: #a855f7; }
+    .svc-icon.orange { background: var(--glow-orange); border: 1px solid rgba(244,118,33,0.12); }
+    .svc-icon.orange svg { stroke: var(--orange); }
+    .service-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.5rem;
+    }
+    .service-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1.25rem;
+    }
+    .service-tag {
+      padding: 0.25rem 0.6rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+
+    /* === TRACKING === */
+    .tracking-strip {
+      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+    }
+    .tracking-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tracking-inner h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+    .tracking-inner > p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .tracking-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .tracking-row input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tracking-row input::placeholder { color: var(--text-dim); }
+    .tracking-row input:focus {
+      border-color: var(--blue-accent);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    /* === CONTACT === */
+    .contact-bg { background: var(--navy-light); border-top: 1px solid var(--border); }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+    .contact-details { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--navy);
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--border-hover); }
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--glow-orange);
+      border: 1px solid rgba(244,118,33,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 18px; height: 18px; stroke: var(--orange); }
+    .contact-item h4 { font-size: 0.85rem; font-weight: 600; }
+    .contact-item p { font-size: 0.82rem; color: var(--text-secondary); }
+
+    .contact-form {
+      padding: 2.25rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--navy);
+    }
+    .contact-form h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.35rem;
+    }
+    .contact-form > p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .field { margin-bottom: 0.75rem; }
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.3rem;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--glow-orange);
+    }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field select { cursor: pointer; }
+    .form-submit { width: 100%; margin-top: 0.25rem; }
+
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3rem) 2rem;
+    }
+    .footer-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .footer-brand-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.25rem 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom {
+      max-width: 1140px;
+      margin: 2.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* === ANIMATIONS === */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-reveal].in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.1s; }
+    .stagger-3 { transition-delay: 0.15s; }
+    .stagger-4 { transition-delay: 0.2s; }
+
+    /* hero entrance */
+    .hero [data-reveal] { transform: translateY(32px); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 960px) {
+      .freight-layout { grid-template-columns: 1fr; }
+      .freight-item.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .footer-layout { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(10,22,40,0.98);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 1rem 1rem;
+      }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-layout { grid-template-columns: 1fr; }
+      .metrics { flex-wrap: wrap; gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .tracking-row { flex-direction: column; }
+      .dhl-badge { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="Cubic Ship Logo">
+      <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#freight">Freight</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#tracking">Track</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-primary">
+        Get a Quote
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="overview">
+    <div class="hero-routes">
+      <div class="route-line"></div>
+      <div class="route-line"></div>
+      <div class="route-line"></div>
+    </div>
+    <!-- faint globe background -->
+    <svg class="hero-globe" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="195" stroke="currentColor" stroke-width="0.5"/>
+      <ellipse cx="200" cy="200" rx="130" ry="195" stroke="currentColor" stroke-width="0.4"/>
+      <ellipse cx="200" cy="200" rx="60" ry="195" stroke="currentColor" stroke-width="0.3"/>
+      <line x1="5" y1="140" x2="395" y2="140" stroke="currentColor" stroke-width="0.3"/>
+      <line x1="5" y1="200" x2="395" y2="200" stroke="currentColor" stroke-width="0.3"/>
+      <line x1="5" y1="260" x2="395" y2="260" stroke="currentColor" stroke-width="0.3"/>
+      <path d="M30 120 Q200 80 370 130" stroke="currentColor" stroke-width="0.6" stroke-dasharray="4 4"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-partner" data-reveal>
+        <span class="dhl-mark">DHL</span>
+        Premier Authorized Partner
+      </div>
+      <h1 data-reveal class="stagger-1">
+        Door to door,<br>
+        <span class="line2">across the world.</span>
+      </h1>
+      <p class="hero-sub" data-reveal class="stagger-2">Freight forwarding and logistics built on reliability. Air, ocean, and ground shipping from the US to every corner of the globe.</p>
+      <div class="hero-buttons" data-reveal class="stagger-3">
+        <a href="#contact" class="btn btn-primary btn-lg">
+          Request a Quote
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#freight" class="btn btn-secondary btn-lg">View Services</a>
+      </div>
+    </div>
+
+    <div class="metrics" data-reveal>
+      <div class="metric">
+        <div class="metric-value">200+</div>
+        <div class="metric-label">Destinations</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">15yrs</div>
+        <div class="metric-label">Experience</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">50K+</div>
+        <div class="metric-label">Shipments</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">4.9</div>
+        <div class="metric-label">Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREIGHT -->
+  <section id="freight">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Freight Services</div>
+        <h2 class="section-heading">Global shipping,<br>simplified.</h2>
+        <p class="section-desc">Whether across the country or across continents, we match every shipment to the right mode, route, and timeline.</p>
+      </div>
+      <div class="freight-layout">
+        <div class="freight-item" data-reveal>
+          <div class="freight-icon air">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 2L11 13"/>
+              <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+            </svg>
+          </div>
+          <h3>Air Freight</h3>
+          <p>The fastest route from any US state to virtually any airport worldwide. Ideal for time-critical cargo with full tracking end to end.</p>
+          <a href="#contact" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <div class="freight-item" data-reveal>
+          <div class="freight-icon ocean">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
+              <path d="M12 4v12"/>
+              <path d="M8 8l4-4 4 4"/>
+              <rect x="7" y="12" width="10" height="4" rx="1"/>
+            </svg>
+          </div>
+          <h3>Ocean Freight</h3>
+          <p>The most reliable method for international shipping. Furniture, equipment, vehicles, and high-volume cargo at competitive rates.</p>
+          <a href="#contact" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <div class="freight-item" data-reveal>
+          <div class="freight-icon ground">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="6" width="15" height="10" rx="1"/>
+              <path d="M16 10h4l3 3v3h-7V10z"/>
+              <circle cx="5.5" cy="18" r="2"/>
+              <circle cx="18.5" cy="18" r="2"/>
+            </svg>
+          </div>
+          <h3>Ground Freight</h3>
+          <p>Cost-efficient transport for large, non-time-sensitive items across the country. Full and partial load options available.</p>
+          <a href="#contact" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <!-- featured DHL card -->
+        <div class="freight-item featured" data-reveal>
+          <div>
+            <div class="freight-icon pack">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16Z"/>
+                <path d="M3.27 6.96L12 12.01l8.73-5.05"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3>Pack & Ship Center</h3>
+            <p>Professional packing and shipping services as a DHL Premier Authorized Partner. Expert handling for fragile, oversized, and high-value items with full insurance options.</p>
+            <a href="#contact" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+          <div class="dhl-badge">
+            <div class="dhl-badge-logo"><span>DHL</span></div>
+            <div class="dhl-badge-text">
+              <h4>Premier Authorized Partner</h4>
+              <p>Official DHL shipping &amp; drop-off center</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-bg" id="services">
+    <div class="container">
+      <div class="section-header" data-reveal style="text-align:center;">
+        <div class="section-eyebrow" style="justify-content:center;">More Than Shipping</div>
+        <h2 class="section-heading">Everything under<br>one roof.</h2>
+        <p class="section-desc" style="margin:0 auto;">Office, passport, DMV, and payment services alongside world-class logistics.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-reveal>
+          <div class="svc-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3>Office Services</h3>
+          <p>Professional printing, copying, faxing, scanning, document finishing, and notary public.</p>
+          <div class="service-tags">
+            <span class="service-tag">Printing</span>
+            <span class="service-tag">Notary</span>
+            <span class="service-tag">Scanning</span>
+          </div>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="svc-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+          </div>
+          <h3>Passport Services</h3>
+          <p>New applications and renewals. Expedited processing available in 1 business day. Quality photos ready in minutes.</p>
+          <div class="service-tags">
+            <span class="service-tag">New</span>
+            <span class="service-tag">Renewal</span>
+            <span class="service-tag">Photos</span>
+          </div>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="svc-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="5" width="22" height="14" rx="2"/>
+              <path d="M1 10h22"/>
+              <path d="M7 15h2"/>
+              <path d="M12 15h4"/>
+            </svg>
+          </div>
+          <h3>IL DMV Services</h3>
+          <p>Vehicle registration, license plates, title transfers. Instant metal plates on the spot.</p>
+          <div class="service-tags">
+            <span class="service-tag">Registration</span>
+            <span class="service-tag">Plates</span>
+            <span class="service-tag">Titles</span>
+          </div>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="svc-icon orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </div>
+          <h3>Payment Center</h3>
+          <p>Pay credit cards, rent, mortgage, utilities. Purchase money orders as a trusted check alternative.</p>
+          <div class="service-tags">
+            <span class="service-tag">Bills</span>
+            <span class="service-tag">Utilities</span>
+            <span class="service-tag">Money Orders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKING -->
+  <section class="tracking-strip" id="tracking">
+    <div class="tracking-inner" data-reveal>
+      <h2>Track Your Shipment</h2>
+      <p>Enter your tracking number for real-time status updates.</p>
+      <div class="tracking-row">
+        <input type="text" placeholder="Enter tracking number">
+        <button class="btn btn-primary">
+          Track
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-bg" id="contact">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Contact</div>
+        <h2 class="section-heading">Let's move<br>your cargo.</h2>
+        <p class="section-desc">Spectacular customer service and the willingness to go the extra mile&mdash;every single time.</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-details" data-reveal>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p>+1 (708) 432-5600</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Address</h4>
+              <p>7327 W 87th Street, Bridgeview, IL 60455</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>info@cubicship.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Hours</h4>
+              <p>Mon - Sat, 9:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form" data-reveal>
+          <h3>Request a Quote</h3>
+          <p>Tell us what you need and we'll respond promptly.</p>
+          <form id="quoteForm">
+            <div class="form-row">
+              <div class="field">
+                <label>First Name</label>
+                <input type="text" required>
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <input type="text" required>
+              </div>
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="email" required>
+            </div>
+            <div class="field">
+              <label>Service</label>
+              <select>
+                <option value="">Select a service</option>
+                <option>Air Freight</option>
+                <option>Ocean Freight</option>
+                <option>Ground Freight</option>
+                <option>DHL Pack & Ship</option>
+                <option>Office Services</option>
+                <option>Passport Services</option>
+                <option>DMV Services</option>
+                <option>Payment Services</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Message</label>
+              <textarea rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg form-submit">
+              Send Message
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-layout">
+      <div>
+        <a href="#" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.png" alt="Cubic Ship Logo" style="height:36px;">
+          <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
+        </a>
+        <p class="footer-brand-desc">Your trusted partner for freight forwarding, logistics, and essential services. DHL Premier Authorized Partner. Bridgeview, Illinois.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Freight</h5>
+        <a href="#freight">Air Freight</a>
+        <a href="#freight">Ocean Freight</a>
+        <a href="#freight">Ground Freight</a>
+        <a href="#freight">Pack & Ship</a>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Office</a>
+        <a href="#services">Passport</a>
+        <a href="#services">DMV</a>
+        <a href="#services">Payments</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#overview">About</a>
+        <a href="#tracking">Track Shipment</a>
+        <a href="#contact">Get a Quote</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Cubic Ship. All rights reserved.</span>
+      <span style="font-family:'Noto Naskh Arabic',serif; font-size:0.8rem;">&#1608;&#1605;&#1575; &#1578;&#1608;&#1601;&#1610;&#1602;&#1610; &#1575;&#1604;&#1575; &#1576;&#1575;&#1604;&#1604;&#1607;</span>
+    </div>
+  </footer>
+
+  <script>
+    // scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // nav scroll
+    const nav = document.getElementById('nav');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          nav.classList.toggle('scrolled', window.scrollY > 32);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // mobile toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a =>
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
+
+    // form
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.innerHTML = '<div style="text-align:center;padding:2.5rem 0"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4cba3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><h3 style="margin-top:1rem;font-family:Space Grotesk,sans-serif;font-size:1.2rem;letter-spacing:-0.3px">Message sent</h3><p style="color:var(--text-secondary);font-size:0.88rem;margin-top:0.35rem">We\'ll be in touch shortly.</p></div>';
+    });
+  </script>
+</body>
+</html>

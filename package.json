@@ -1,0 +1,9 @@
+{
+  "name": "cubicship-modern",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.106.2",
+    "@vercel/blob": "2.4.0"
+  }
+}

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHL Locations - Cubic Ship</title>
+  <meta name="description" content="Cubic Ship DHL Express Service Point locations across the United States, with managed counters, reviews, accomplishments, and a clear expansion vision.">
+  <link rel="canonical" href="https://cubicship.com/dhl-locations.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="Cubic Ship DHL Express Service Point Locations">
+  <meta property="og:description" content="15 managed DHL Express Service Point locations, customer review proof, accomplishments, and Cubic Ship's service vision.">
+  <meta property="og:url" content="https://cubicship.com/dhl-locations.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cubic Ship DHL Express Service Point Locations">
+  <meta name="twitter:description" content="Locations, reviews, accomplishments, and the vision for Cubic Ship's DHL Express Service Point service model.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --navy-mid: #132744;
+      --surface: #162a4a;
+      --orange: #f47621;
+      --orange-light: #ff8f42;
+      --green: #4cba3c;
+      --blue-accent: #3b82f6;
+      --text: #e8ecf4;
+      --text-secondary: #93a3bd;
+      --text-dim: #526587;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.16);
+      --yellow: #ffcc00;
+      --red: #d40511;
+      --glow-orange: rgba(244,118,33,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: 64px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(10,22,40,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+    .nav-logo img { height: 40px; width: auto; border-radius: 6px; }
+    .nav-wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0;
+    }
+    .c-orange { color: var(--orange); }
+    .c-green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 42px;
+      font: inherit;
+      font-weight: 800;
+      font-size: 0.86rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-light); box-shadow: 0 0 24px var(--glow-orange); }
+    .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: var(--border-hover); }
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 4.5rem);
+      overflow: hidden;
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.48;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.95) contrast(1.08);
+    }
+    .hero-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.62) 50%, rgba(10,22,40,0.98) 100%),
+        linear-gradient(90deg, rgba(10,22,40,0.96) 0%, rgba(10,22,40,0.56) 54%, rgba(10,22,40,0.82) 100%);
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: end;
+    }
+    .official-mark {
+      width: min(220px, 54vw);
+      margin-bottom: 1.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: var(--yellow);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.22);
+    }
+    .official-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--yellow);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--yellow);
+    }
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0;
+    }
+    h1 {
+      font-size: clamp(2.7rem, 6.2vw, 4.9rem);
+      line-height: 1.02;
+      margin-bottom: 1.2rem;
+    }
+    .lead {
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 1.8vw, 1.16rem);
+      max-width: 620px;
+      margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .proof-panel {
+      border: 1px solid rgba(255,204,0,0.16);
+      background: rgba(255,204,0,0.055);
+      border-radius: 18px;
+      padding: clamp(1.25rem, 3vw, 2rem);
+    }
+    .proof-panel h2 {
+      font-size: 1.35rem;
+      margin-bottom: 0.6rem;
+    }
+    .proof-panel p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.4rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .stat {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10,22,40,0.6);
+    }
+    .stat strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .stat span {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+    }
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem); }
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 3.35rem);
+      line-height: 1.08;
+      margin-top: 0.75rem;
+    }
+    .section-copy {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 620px;
+    }
+    .vision-bg {
+      background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+    .vision-card {
+      min-height: 250px;
+      padding: 1.45rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.035);
+    }
+    .vision-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      border-radius: 11px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .vision-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 0.45rem;
+    }
+    .vision-card p {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+    .accomplishments {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .accomplishment {
+      min-height: 170px;
+      padding: 1.25rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+    }
+    .accomplishment strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.9rem;
+      line-height: 1;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+    .accomplishment h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+    .accomplishment p {
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+    .service-areas {
+      margin-top: 2rem;
+      padding: 1.25rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .service-areas h3 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .service-areas p {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+    .state-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .state-list span {
+      padding: 0.38rem 0.68rem;
+      border-radius: 999px;
+      border: 1px solid rgba(76,186,60,0.14);
+      background: rgba(76,186,60,0.07);
+      color: var(--text);
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+    .locations-bg {
+      background: var(--navy);
+    }
+    .locations-tools {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .tool-pill {
+      padding: 0.38rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.035);
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .location-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-height: 260px;
+      padding: 1.25rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--navy-light);
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .location-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-hover);
+    }
+    .location-card.pending {
+      border-style: dashed;
+      background: rgba(255,255,255,0.025);
+    }
+    .location-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+    }
+    .location-card h3 {
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+    .rating-pill {
+      flex-shrink: 0;
+      padding: 0.24rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255,204,0,0.1);
+      border: 1px solid rgba(255,204,0,0.14);
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .pending .rating-pill {
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border);
+    }
+    .location-address,
+    .location-phone,
+    .review-line,
+    .review-source {
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+    .location-phone {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .location-phone[data-tel] {
+      cursor: pointer;
+      width: max-content;
+    }
+    .location-phone[data-tel]:hover { color: var(--orange-light); }
+    .review-line {
+      margin-top: auto;
+      color: var(--text);
+      font-size: 0.82rem;
+    }
+    .review-source {
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .map-action {
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      border-top: 1px solid var(--border);
+    }
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      border: 1px solid rgba(244,118,33,0.18);
+      background: rgba(244,118,33,0.06);
+      border-radius: 18px;
+    }
+    .cta-panel h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.08;
+      margin-bottom: 0.6rem;
+    }
+    .cta-panel p {
+      color: var(--text-secondary);
+      max-width: 680px;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-inner a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .footer-inner a:hover { color: var(--text); }
+    @media (max-width: 980px) {
+      .hero-grid,
+      .section-header { grid-template-columns: 1fr; }
+      .vision-grid,
+      .locations-grid { grid-template-columns: 1fr 1fr; }
+      .accomplishments { grid-template-columns: 1fr 1fr; }
+      .proof-panel { max-width: 620px; }
+    }
+    @media (max-width: 760px) {
+      .nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 0.75rem 1rem 1rem;
+        background: rgba(10,22,40,0.98);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-actions .btn { display: none; }
+      .hero { min-height: auto; padding-top: 4rem; }
+      h1 { font-size: 3rem; }
+      .hero-actions { flex-direction: column; max-width: 340px; }
+      .hero-actions .btn { width: 100%; }
+      .vision-grid,
+      .locations-grid,
+      .accomplishments { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .cta-panel { grid-template-columns: 1fr; align-items: stretch; }
+      .cta-panel .btn { width: 100%; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 380px) {
+      h1 { font-size: 2.5rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a class="active" href="dhl-locations.html">DHL Locations</a></li>
+      <li><a href="business-services.html">Business Services</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="systems.html">Systems</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="quote.html" class="btn btn-primary">Get a Quote</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80" alt="">
+      </div>
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="official-mark">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" alt="DHL logo">
+            </div>
+            <div class="eyebrow">DHL Express Service Point</div>
+            <h1>DHL Express Service Point locations, organized.</h1>
+            <p class="lead">Cubic Ship supports DHL Express Service Point locations with a repeatable service model: trained counters, clean documentation, customer follow-up, and local access to global logistics.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#locations">View Locations</a>
+              <a class="btn btn-secondary" href="#vision">Service Vision</a>
+            </div>
+          </div>
+          <aside class="proof-panel" aria-label="DHL Express Service Point proof">
+            <h2>Built beyond one counter.</h2>
+            <p>The work is to make DHL Express shipping easier to access in local communities while keeping each location consistent, accountable, and review-backed.</p>
+            <div class="stats-grid">
+              <div class="stat"><strong>15</strong><span>Managed locations</span></div>
+              <div class="stat"><strong>13</strong><span>Active review locations</span></div>
+              <div class="stat"><strong>512</strong><span>Google reviews</span></div>
+              <div class="stat"><strong>4.7</strong><span>Average rating</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision-bg" id="vision">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Cubic + DHL Vision</div>
+            <h2 class="section-title">Local counters with global capability.</h2>
+          </div>
+          <p class="section-copy">The vision is a reliable service model where customers can walk into a neighborhood counter and get professional DHL Express help, packing support, shipment prep, business services, and clear next steps without confusion.</p>
+        </div>
+        <div class="vision-grid">
+          <article class="vision-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=1200&q=80" alt="Packages being prepared for shipment">
+            <h3>Service standards</h3>
+            <p>Each counter is built around accurate processing, clear documentation, secure package handling, and timely customer communication.</p>
+          </article>
+          <article class="vision-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80" alt="Organized warehouse shelves">
+            <h3>Organized operations</h3>
+            <p>Locations are supported with repeatable workflows, staff training, review monitoring, location accountability, and cleaner handoffs.</p>
+          </article>
+          <article class="vision-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80" alt="Business team reviewing work together">
+            <h3>Community access</h3>
+            <p>The goal is to bring international shipping and practical business services closer to customers, small businesses, and local operators.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Accomplishments</div>
+            <h2 class="section-title">What the locations have built so far.</h2>
+          </div>
+          <p class="section-copy">This page gives the partnership proof its own home: locations, reviews, opening-soon counters, customer comments, and the operating direction behind the expansion.</p>
+        </div>
+        <div class="accomplishments">
+          <article class="accomplishment">
+            <strong>15</strong>
+            <h3>Locations managed</h3>
+            <p>13 active reviewed counters plus 2 opening-soon locations being prepared for launch.</p>
+          </article>
+          <article class="accomplishment">
+            <strong>1M+</strong>
+            <h3>Shipments supported</h3>
+            <p>Shipment experience across DHL Express, documents, parcels, air freight, ocean, ground, and containers.</p>
+          </article>
+          <article class="accomplishment">
+            <strong>15+</strong>
+            <h3>Years experience</h3>
+            <p>Operational experience in logistics, customer service, freight, counter services, and business support.</p>
+          </article>
+          <article class="accomplishment">
+            <strong>200+</strong>
+            <h3>Global destinations</h3>
+            <p>International shipping support for customers moving documents, packages, freight, and business forward.</p>
+          </article>
+        </div>
+        <div class="service-areas">
+          <h3>Service areas and states</h3>
+          <p>The current locations cover Midwest, Northeast, and East Coast counters, with active and opening-soon DHL Express Service Point locations.</p>
+          <div class="state-list" aria-label="DHL Express Service Point service area states">
+            <span>Michigan</span>
+            <span>Illinois</span>
+            <span>New York</span>
+            <span>New Jersey</span>
+            <span>Wisconsin</span>
+            <span>Pennsylvania</span>
+            <span>Indiana</span>
+            <span>Ohio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="locations-bg" id="locations">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Managed Locations</div>
+            <h2 class="section-title">15 DHL Express Service Point locations.</h2>
+            <div class="locations-tools">
+              <span class="tool-pill">13 active review locations</span>
+              <span class="tool-pill">2 opening soon</span>
+              <span class="tool-pill">512 Google reviews</span>
+              <span class="tool-pill">4.7 average rating</span>
+            </div>
+          </div>
+          <p class="section-copy">Tap a card to open the CubicShip page for that serviced DHL location. Each page connects the matching Google listing, phone number, request flow, and practical Cubic business services like print, pack, mailbox, notary, documents, and counter help.</p>
+        </div>
+        <div class="locations-grid">
+          <a class="location-card" href="locations/dearborn-dhl-shipping.html">
+            <div class="location-head"><h3>Dearborn, MI</h3><span class="rating-pill">4.7 · 28</span></div>
+            <p class="location-address">6317 Schaefer Rd, Dearborn, MI 48126</p>
+            <span class="location-phone" data-tel="+13132542696">(313) 254-2696</span>
+            <p class="review-line">"Fast service and affordable rates."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/oak-park-dhl-shipping.html">
+            <div class="location-head"><h3>Oak Park / West Chicago, IL</h3><span class="rating-pill">4.4 · 27</span></div>
+            <p class="location-address">6200 Roosevelt Rd, Oak Park, IL 60304</p>
+            <span class="location-phone" data-tel="+17086653590">(708) 665-3590</span>
+            <p class="review-line">"Highly recommend this location for any business or personal shipping needs!"</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/bridgeview-dhl-shipping.html">
+            <div class="location-head"><h3>Bridgeview, IL</h3><span class="rating-pill">4.0 · 50</span></div>
+            <p class="location-address">7327 W 87th St, Bridgeview, IL 60455</p>
+            <span class="location-phone" data-tel="+17084325600">(708) 432-5600</span>
+            <p class="review-line">"Fast service, friendly staff, clean and organized."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/oak-lawn-dhl-shipping.html">
+            <div class="location-head"><h3>Oak Lawn, IL</h3><span class="rating-pill">4.4 · 13</span></div>
+            <p class="location-address">9812 S Cicero Ave, Oak Lawn, IL 60453</p>
+            <span class="location-phone" data-tel="+17087417473">(708) 741-7473</span>
+            <p class="review-line">"Great customer service, also great prices for international shipping."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/buffalo-dhl-shipping.html">
+            <div class="location-head"><h3>Buffalo, NY</h3><span class="rating-pill">5.0 · 14</span></div>
+            <p class="location-address">2618 Main St, Buffalo, NY 14214</p>
+            <span class="location-phone" data-tel="+17162598115">(716) 259-8115</span>
+            <p class="review-line">"Very happy to have the DHL office so close to town."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/bethpage-dhl-shipping.html">
+            <div class="location-head"><h3>Bethpage, NY</h3><span class="rating-pill">5.0 · 9</span></div>
+            <p class="location-address">271 Broadway, Bethpage, NY 11714</p>
+            <span class="location-phone" data-tel="+15164334891">(516) 433-4891</span>
+            <p class="review-line">"The customer service is amazing and the store is clean."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/iselin-woodbridge-dhl-shipping.html">
+            <div class="location-head"><h3>Iselin / Woodbridge, NJ</h3><span class="rating-pill">5.0 · 117</span></div>
+            <p class="location-address">1214 Green St, Iselin, NJ 08830</p>
+            <span class="location-phone" data-tel="+17323794305">(732) 379-4305</span>
+            <p class="review-line">"Very good experience and staff is very polite and helpful."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/milwaukee-dhl-shipping.html">
+            <div class="location-head"><h3>Milwaukee, WI</h3><span class="rating-pill">4.9 · 16</span></div>
+            <p class="location-address">2609 W Morgan Ave, Milwaukee, WI 53221</p>
+            <span class="location-phone" data-tel="+14142520594">(414) 252-0594</span>
+            <p class="review-line">"Customer service was top-notch."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/wyncote-dhl-shipping.html">
+            <div class="location-head"><h3>Wyncote, PA</h3><span class="rating-pill">4.9 · 74</span></div>
+            <p class="location-address">1000 S Easton Rd Ste 270, Wyncote, PA 19095</p>
+            <span class="location-phone" data-tel="+12152773864">(215) 277-3864</span>
+            <p class="review-line">"Knowledge and kind staff made the experience a breeze."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/indianapolis-dhl-shipping.html">
+            <div class="location-head"><h3>Indianapolis, IN</h3><span class="rating-pill">4.6 · 116</span></div>
+            <p class="location-address">3853 Georgetown Rd, Indianapolis, IN 46254</p>
+            <span class="location-phone" data-tel="+13177569544">(317) 756-9544</span>
+            <p class="review-line">"Super helpful with my very first DHL shipping experience."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/allentown-pa-dhl-shipping.html">
+            <div class="location-head"><h3>Allentown, PA</h3><span class="rating-pill">5.0 · 6</span></div>
+            <p class="location-address">717 Linden St, Allentown, PA 18101</p>
+            <span class="location-phone" data-tel="+16107736814">(610) 773-6814</span>
+            <p class="review-line">"Good customer service."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/farmington-mi-dhl-shipping.html">
+            <div class="location-head"><h3>Farmington, MI</h3><span class="rating-pill">3.9 · 11</span></div>
+            <p class="location-address">31826 Grand River Ave, Farmington, MI 48336</p>
+            <span class="location-phone" data-tel="+12484828769">(248) 482-8769</span>
+            <p class="review-line">"Amazing service at this DHL Service Point!"</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card" href="locations/northeast-philadelphia-dhl-shipping.html">
+            <div class="location-head"><h3>Northeast Philadelphia, PA</h3><span class="rating-pill">5.0 · 31</span></div>
+            <p class="location-address">1900 Grant Ave Ste J, Philadelphia, PA 19115</p>
+            <span class="location-phone" data-tel="+12154377795">(215) 437-7795</span>
+            <p class="review-line">"The staff is super friendly, helpful, and knows exactly what they're doing."</p>
+            <span class="review-source">Google reviews</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card pending" href="locations/freeport-ny-dhl-shipping.html">
+            <div class="location-head"><h3>Freeport, NY</h3><span class="rating-pill">Opening soon</span></div>
+            <p class="location-address">134 W Sunrise Hwy, Freeport, NY 11520</p>
+            <span class="location-phone">Phone coming soon</span>
+            <p class="review-line">DHL Express Service Point opening soon. Reviews will be added once the counter is active.</p>
+            <span class="review-source">Google listing</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+          <a class="location-card pending" href="locations/cleveland-dhl-shipping.html">
+            <div class="location-head"><h3>Cleveland, OH</h3><span class="rating-pill">Opening soon</span></div>
+            <p class="location-address">11512 Clifton Blvd, Cleveland, OH 44107</p>
+            <span class="location-phone">Phone coming soon</span>
+            <p class="review-line">DHL Express Service Point opening soon. Reviews will be added once the counter is active.</p>
+            <span class="review-source">Google listing</span>
+            <span class="map-action">View location page -&gt;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <h2>One counter. Endless solutions.</h2>
+            <p>From DHL Express Service Point locations to freight, documents, storage, printing, and business services, Cubic Ship is building a cleaner way for local customers to access global logistics.</p>
+          </div>
+          <a class="btn btn-primary" href="business-services.html">View Business Services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
+      <span><a href="index.html">Home</a> · <a href="services.html">Services</a> · <a href="track.html">Track</a> · <a href="mailto:info@cubicship.com">Email</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(link =>
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
+    document.querySelectorAll('[data-tel]').forEach(phone => {
+      phone.setAttribute('role', 'link');
+      phone.setAttribute('tabindex', '0');
+      const call = event => {
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.href = `tel:${phone.dataset.tel}`;
+      };
+      phone.addEventListener('click', call);
+      phone.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') call(event);
+      });
+    });
+  </script>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

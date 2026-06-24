@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get a Quote - Cubic Ship</title>
+  <meta name="description" content="Request a Cubic Ship quote for DHL Express, parcel, air freight, ocean freight, ground freight, container, or document shipping support.">
+  <link rel="canonical" href="https://cubicship.com/quote.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="Get a Cubic Ship Quote">
+  <meta property="og:description" content="Send pickup, delivery, contact, and shipment details to the Cubic Ship team for follow-up.">
+  <meta property="og:url" content="https://cubicship.com/quote.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Get a Cubic Ship Quote">
+  <meta name="twitter:description" content="Request DHL Express, parcel, freight, container, or document shipping support from Cubic Ship.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://www.cognitoforms.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --surface: #ffffff;
+      --soft: #f6f8fb;
+      --line: #dbe3ee;
+      --orange: #f47621;
+      --green: #238636;
+      --text: #111827;
+      --muted: #5b677a;
+      --dark-text: #e8ecf4;
+      --dark-muted: #93a3bd;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fafc 0%, #eef4fb 100%);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      min-height: 64px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(255,255,255,0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+    }
+    .brand img { width: 40px; height: 40px; border-radius: 7px; object-fit: cover; }
+    .brand .orange { color: var(--orange); }
+    .brand .green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.72rem 1.2rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-secondary { background: #fff; color: var(--text); border-color: var(--line); }
+    main { padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem); }
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.45fr) minmax(0, 0.55fr);
+      gap: clamp(1rem, 3vw, 2rem);
+      align-items: start;
+    }
+    .intro {
+      background: var(--navy);
+      color: var(--dark-text);
+      border-radius: 18px;
+      padding: clamp(1.5rem, 4vw, 2.4rem);
+      min-height: 620px;
+      position: sticky;
+      top: 88px;
+      overflow: hidden;
+    }
+    .intro::after {
+      content: "";
+      position: absolute;
+      inset: auto -25% -35% -25%;
+      height: 300px;
+      background: radial-gradient(circle, rgba(244,118,33,0.18), transparent 62%);
+      pointer-events: none;
+    }
+    .kicker {
+      color: #ff9b56;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4.3rem);
+      letter-spacing: -1.8px;
+      line-height: 0.95;
+      margin-bottom: 1rem;
+    }
+    .intro p { color: var(--dark-muted); max-width: 440px; margin-bottom: 1.4rem; }
+    .proof {
+      display: grid;
+      gap: 0.7rem;
+      margin: 1.6rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .proof-item {
+      padding: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.045);
+    }
+    .proof-item strong { display: block; font-size: 0.92rem; margin-bottom: 0.2rem; }
+    .proof-item span { color: var(--dark-muted); font-size: 0.84rem; }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 24px 70px rgba(15,23,42,0.1);
+      overflow: hidden;
+    }
+    .form-head {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .form-head h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+    }
+    .form-head span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+    .form-body {
+      padding: clamp(1.2rem, 3vw, 2rem);
+      display: grid;
+      gap: 1rem;
+    }
+    .quote-checklist {
+      display: grid;
+      gap: 0.75rem;
+      list-style: none;
+    }
+    .quote-checklist li {
+      padding: 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .quote-checklist strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.94rem;
+      margin-bottom: 0.12rem;
+    }
+    .direct-quote {
+      display: grid;
+      gap: 0.75rem;
+      padding: 1.1rem;
+      border-radius: 14px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+    }
+    .direct-quote p {
+      color: #7c2d12;
+      font-size: 0.9rem;
+    }
+    .direct-quote .btn { width: 100%; }
+    .fallback {
+      padding: 1rem 1.25rem 1.25rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .fallback a { color: #c25110; font-weight: 800; }
+    footer {
+      padding: 1.5rem clamp(1rem, 4vw, 3rem) 2.5rem;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.86rem;
+    }
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      main { padding-top: 1rem; }
+      .shell { grid-template-columns: 1fr; }
+      .intro { position: relative; top: auto; min-height: auto; }
+      .contact-row .btn { width: 100%; }
+      .form-head { align-items: flex-start; flex-direction: column; }
+      .form-body { padding: 1rem; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dhl-locations.html">DHL Locations</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="systems.html">Systems</a></li>
+    </ul>
+    <a class="btn btn-primary" href="tel:+17084325600">Call</a>
+  </header>
+
+  <main>
+    <div class="shell">
+      <section class="intro">
+        <div class="kicker">Secure Quote Request</div>
+        <h1>Tell us what needs to move.</h1>
+        <p>Use this form for DHL Express, parcel, air freight, ocean freight, ground freight, containers, documents, or anything that needs counter help before it ships.</p>
+        <div class="proof">
+          <div class="proof-item">
+            <strong>What to include</strong>
+            <span>Pickup address, delivery address, phone, email, shipment notes, and any deadline details.</span>
+          </div>
+          <div class="proof-item">
+            <strong>What happens next</strong>
+            <span>The Cubic Ship team reviews the request and follows up with the right service path.</span>
+          </div>
+          <div class="proof-item">
+            <strong>Need a customer drop-off number?</strong>
+            <span>Use the customer profile if you already know the shipment details and plan to bring the box to the counter.</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <a class="btn btn-secondary" href="profile.html">Customer Profile</a>
+          <a class="btn btn-secondary" href="dhl-locations.html">Find DHL Locations</a>
+        </div>
+      </section>
+
+      <section class="form-card" aria-label="Cubic Ship quote form">
+        <div class="form-head">
+          <div>
+            <h2>Get a Quote</h2>
+            <span>Submissions route to the Cubic Ship team.</span>
+          </div>
+        </div>
+        <div class="form-body">
+          <ul class="quote-checklist">
+            <li><strong>1. Open the secure form</strong> It opens in Cognito Forms so the request is captured cleanly.</li>
+            <li><strong>2. Add shipment details</strong> Include pickup, delivery, phone, email, size, weight, contents, and deadline.</li>
+            <li><strong>3. Wait for follow-up</strong> The Cubic Ship team reviews the request and responds with next steps.</li>
+          </ul>
+          <div class="direct-quote">
+            <p>The secure quote form is hosted by Cognito Forms and opens in a new tab.</p>
+            <a class="btn btn-primary" href="https://www.cognitoforms.com/CUBICPACKANDSHIP/GetAQuote" target="_blank" rel="noopener">Open Secure Quote Form</a>
+          </div>
+        </div>
+        <p class="fallback">Prefer to talk first? Call <a href="tel:+17084325600">(708) 432-5600</a> or email <a href="mailto:info@cubicship.com">info@cubicship.com</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Cubic Home Solutions. All rights reserved.
+  </footer>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

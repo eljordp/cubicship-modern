@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipment Intake QR - Cubic Ship</title>
+  <meta name="description" content="Cubic Ship counter QR intake form for walk-in sender and receiver details.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://cubicship.com/qr-shipment.html">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #071527;
+      --navy-soft: #10233c;
+      --orange: #f47621;
+      --orange-dark: #d85f0f;
+      --green: #238636;
+      --surface: #ffffff;
+      --soft: #f5f7fb;
+      --line: #dce4ee;
+      --text: #121826;
+      --muted: #667085;
+      --danger: #b42318;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fafc 0%, #edf3f9 100%);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .topbar {
+      min-height: 68px;
+      padding: 0.85rem clamp(1rem, 4vw, 2rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(16px);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .orange { color: var(--orange); }
+    .green { color: var(--green); }
+    .secure-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 0.75rem;
+      border: 1px solid #c8d7e8;
+      border-radius: 999px;
+      color: #385169;
+      background: #f8fbff;
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      white-space: nowrap;
+    }
+    .topbar-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border: 1px solid #c8d7e8;
+      border-radius: 999px;
+      background: #f1f5fb;
+    }
+    .lang-toggle button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      min-height: 30px;
+      padding: 0 0.85rem;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #5b6b80;
+      cursor: pointer;
+      letter-spacing: 0.4px;
+    }
+    .lang-toggle button.active {
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(7,21,39,0.22);
+    }
+    main {
+      width: min(1040px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: clamp(1rem, 4vw, 2.8rem) 0 3rem;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.42fr);
+      gap: 1rem;
+      align-items: stretch;
+      margin-bottom: 1rem;
+    }
+    .hero-panel,
+    .status-panel,
+    .form-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.08);
+    }
+    .hero-panel {
+      padding: clamp(1.25rem, 4vw, 2rem);
+      background: var(--navy);
+      color: #edf4ff;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -130px;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(244,118,33,0.28);
+      border-radius: 50%;
+    }
+    .eyebrow {
+      color: #ffb172;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: 0;
+      line-height: 1.05;
+    }
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2.2rem, 8vw, 4.8rem);
+      margin-bottom: 0.9rem;
+    }
+    .hero-panel p {
+      max-width: 620px;
+      color: #b8c5d8;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .status-panel {
+      padding: 1.1rem;
+      display: grid;
+      gap: 0.8rem;
+      align-content: start;
+    }
+    .status-panel strong { display: block; font-size: 1rem; }
+    .status-panel span { display: block; color: var(--muted); font-size: 0.84rem; }
+    .step {
+      padding: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--soft);
+    }
+    .form-card {
+      padding: clamp(1rem, 3vw, 1.5rem);
+    }
+    form { display: grid; gap: 1rem; }
+    .form-section {
+      display: grid;
+      gap: 0.85rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+    .form-section h2 {
+      font-size: 1.15rem;
+      margin-bottom: 0.1rem;
+    }
+    .section-note {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 0.2rem;
+    }
+    .branch-note {
+      display: none;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid #fed7aa;
+      border-radius: 9px;
+      background: #fff7ed;
+      color: #9a3412;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+    .branch-note.open { display: block; }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      color: #44546a;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.78rem 0.85rem;
+      border: 1px solid #cfd9e6;
+      border-radius: 9px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 1rem;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 92px;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(244,118,33,0.14);
+    }
+    .field-error {
+      border-color: var(--danger) !important;
+      box-shadow: 0 0 0 3px rgba(180,35,24,0.14) !important;
+    }
+    .field-error-text {
+      color: var(--danger);
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-top: 0.35rem;
+    }
+    .hp-field {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .check-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--soft);
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .check-line input {
+      width: auto;
+      min-height: auto;
+      margin-top: 0.2rem;
+    }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.8rem 1.15rem;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-dark); }
+    .btn-secondary { background: #fff; color: var(--text); border-color: var(--line); }
+    .note {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .error { color: var(--danger); font-weight: 800; }
+    .success-box {
+      display: none;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      background: #f0fdf4;
+      color: #14532d;
+    }
+    .success-box.open { display: grid; }
+    .order-code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 0.5rem 0.7rem;
+      border-radius: 8px;
+      background: #dcfce7;
+      color: #14532d;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    footer {
+      padding: 1.5rem 1rem 2.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    @media (max-width: 840px) {
+      .topbar { align-items: flex-start; }
+      .secure-chip { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .field-grid { grid-template-columns: 1fr; }
+      .button-row .btn { width: 100%; }
+      main { width: min(100% - 1rem, 1040px); }
+      .hero-panel, .status-panel, .form-card { border-radius: 12px; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <div class="topbar-right">
+      <span class="secure-chip" data-en="Counter Intake" data-es="Registro en Mostrador">Counter Intake</span>
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+        <button type="button" id="langEn" class="active" aria-pressed="true">EN</button>
+        <button type="button" id="langEs" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-panel">
+        <div class="eyebrow" data-en="Digital Shipper's Form" data-es="Formulario Digital del Remitente">Digital Shipper's Form</div>
+        <h1 data-en="Fill this out instead of handwriting it." data-es="Complete esto en lugar de escribirlo a mano.">Fill this out instead of handwriting it.</h1>
+        <p data-en="Enter the shipper and receiver contact details while you wait at the counter. Cubic Ship staff will handle the package, value, service, and CRA label steps with you." data-es="Ingrese los datos de contacto del remitente y del destinatario mientras espera en el mostrador. El personal de Cubic Ship se encargará con usted del paquete, el valor, el servicio y la etiqueta CRA.">Enter the shipper and receiver contact details while you wait at the counter. Cubic Ship staff will handle the package, value, service, and CRA label steps with you.</p>
+      </div>
+      <aside class="status-panel" aria-label="Process steps">
+        <div class="step"><strong data-en="1. Add sender and receiver" data-es="1. Agregue remitente y destinatario">1. Add sender and receiver</strong><span data-en="Use the exact names, phone numbers, emails, and addresses." data-es="Use los nombres, teléfonos, correos y direcciones exactos.">Use the exact names, phone numbers, emails, and addresses.</span></div>
+        <div class="step"><strong data-en="2. Send once" data-es="2. Envíe una vez">2. Send once</strong><span data-en="You will receive a CubicShip counter code." data-es="Recibirá un código de mostrador de CubicShip.">You will receive a CubicShip counter code.</span></div>
+        <div class="step"><strong data-en="3. Show staff" data-es="3. Muestre al personal">3. Show staff</strong><span data-en="Staff copies the clean details and continues the shipment with you." data-es="El personal copia los datos y continúa el envío con usted.">Staff copies the clean details and continues the shipment with you.</span></div>
+      </aside>
+    </section>
+
+    <section class="form-card">
+      <form id="intakeForm" novalidate>
+        <div class="hp-field">
+          <label for="companyWebsite">Website</label>
+          <input id="companyWebsite" autocomplete="off" tabindex="-1">
+        </div>
+
+        <div class="form-section">
+          <h2 data-en="Counter location" data-es="Ubicación del mostrador">Counter location</h2>
+          <p class="section-note" data-en="Choose the Cubic Ship location helping you today." data-es="Elija la ubicación de Cubic Ship que lo atiende hoy.">Choose the Cubic Ship location helping you today.</p>
+          <p class="branch-note" id="branchNotice"></p>
+          <div class="field-grid">
+            <div class="full">
+              <label for="locationId" data-en="Location" data-es="Ubicación">Location</label>
+              <select id="locationId" required>
+                <option value="bridgeview">Cubic Ship Bridgeview</option>
+                <option value="dearborn">Dearborn, MI</option>
+                <option value="oak-park">Oak Park / West Chicago, IL</option>
+                <option value="oak-lawn">Oak Lawn, IL</option>
+                <option value="mccook">McCook Area</option>
+                <option value="buffalo">Buffalo, NY</option>
+                <option value="bethpage">Bethpage, NY</option>
+                <option value="iselin">Iselin / Woodbridge, NJ</option>
+                <option value="milwaukee">Milwaukee, WI</option>
+                <option value="wyncote">Wyncote, PA</option>
+                <option value="indianapolis">Indianapolis, IN</option>
+                <option value="allentown-pa">Allentown, PA</option>
+                <option value="farmington">Farmington, MI</option>
+                <option value="northeast-philadelphia">Northeast Philadelphia, PA</option>
+                <option value="freeport">Freeport, NY</option>
+                <option value="cleveland">Cleveland, OH</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2 data-en="From / Shipper" data-es="De / Remitente">From / Shipper</h2>
+          <p class="section-note" data-en="Matches the shipper side of the Cubic Ship paper form." data-es="Coincide con el lado del remitente del formulario de papel de Cubic Ship.">Matches the shipper side of the Cubic Ship paper form.</p>
+          <div class="field-grid">
+            <div>
+              <label for="senderCountry" data-en="Country" data-es="País">Country</label>
+              <input id="senderCountry" autocomplete="country-name" value="United States" required>
+            </div>
+            <div>
+              <label for="senderCompany" data-en="Shipper's Company" data-es="Empresa del remitente">Shipper's Company</label>
+              <input id="senderCompany" autocomplete="organization">
+            </div>
+            <div class="full">
+              <label for="senderName" data-en="Shipper's Name *" data-es="Nombre del remitente *">Shipper's Name *</label>
+              <input id="senderName" autocomplete="name" required>
+            </div>
+            <div class="full">
+              <label for="senderAddress1" data-en="Address line 1 *" data-es="Dirección línea 1 *">Address line 1 *</label>
+              <input id="senderAddress1" autocomplete="address-line1" required>
+            </div>
+            <div class="full">
+              <label for="senderAddress2" data-en="Address line 2" data-es="Dirección línea 2">Address line 2</label>
+              <input id="senderAddress2" autocomplete="address-line2">
+            </div>
+            <div>
+              <label for="senderCity" data-en="City *" data-es="Ciudad *">City *</label>
+              <input id="senderCity" autocomplete="address-level2" required>
+            </div>
+            <div>
+              <label for="senderState" data-en="State / Province" data-es="Estado / Provincia">State / Province</label>
+              <input id="senderState" autocomplete="address-level1">
+            </div>
+            <div>
+              <label for="senderPostal" data-en="ZIP Code *" data-es="Código postal *">ZIP Code *</label>
+              <input id="senderPostal" autocomplete="postal-code" required>
+            </div>
+            <div>
+              <label for="senderPhone" data-en="Phone *" data-es="Teléfono *">Phone *</label>
+              <input id="senderPhone" type="tel" inputmode="tel" autocomplete="tel" required>
+            </div>
+            <div>
+              <label for="senderEmail" data-en="Email *" data-es="Correo electrónico *">Email *</label>
+              <input id="senderEmail" type="email" autocomplete="email" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2 data-en="To / Receiver" data-es="Para / Destinatario">To / Receiver</h2>
+          <p class="section-note" data-en="Matches the receiver side of the Cubic Ship paper form." data-es="Coincide con el lado del destinatario del formulario de papel de Cubic Ship.">Matches the receiver side of the Cubic Ship paper form.</p>
+          <div class="field-grid">
+            <div>
+              <label for="receiverCountry" data-en="Country *" data-es="País *">Country *</label>
+              <input id="receiverCountry" autocomplete="off" required>
+            </div>
+            <div>
+              <label for="receiverCompany" data-en="Receiver's Company" data-es="Empresa del destinatario">Receiver's Company</label>
+              <input id="receiverCompany" autocomplete="off">
+            </div>
+            <div class="full">
+              <label for="receiverName" data-en="Receiver's Name *" data-es="Nombre del destinatario *">Receiver's Name *</label>
+              <input id="receiverName" autocomplete="off" required>
+            </div>
+            <div class="full">
+              <label for="receiverAddress1" data-en="Address line 1 *" data-es="Dirección línea 1 *">Address line 1 *</label>
+              <input id="receiverAddress1" autocomplete="off" required>
+            </div>
+            <div class="full">
+              <label for="receiverAddress2" data-en="Address line 2" data-es="Dirección línea 2">Address line 2</label>
+              <input id="receiverAddress2" autocomplete="off">
+            </div>
+            <div>
+              <label for="receiverCity" data-en="City *" data-es="Ciudad *">City *</label>
+              <input id="receiverCity" autocomplete="off" required>
+            </div>
+            <div>
+              <label for="receiverState" data-en="State / Province" data-es="Estado / Provincia">State / Province</label>
+              <input id="receiverState" autocomplete="off">
+            </div>
+            <div>
+              <label for="receiverPostal" data-en="ZIP Code *" data-es="Código postal *">ZIP Code *</label>
+              <input id="receiverPostal" autocomplete="off" required>
+            </div>
+            <div>
+              <label for="receiverPhone" data-en="Phone *" data-es="Teléfono *">Phone *</label>
+              <input id="receiverPhone" type="tel" inputmode="tel" autocomplete="off" required>
+            </div>
+            <div>
+              <label for="receiverEmail" data-en="Email *" data-es="Correo electrónico *">Email *</label>
+              <input id="receiverEmail" type="email" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+
+        <label class="check-line">
+          <input id="acknowledge" type="checkbox" required>
+          <span data-en="I confirm the sender and receiver information is accurate, and Cubic Ship staff will continue the shipment at the counter." data-es="Confirmo que la información del remitente y del destinatario es correcta, y que el personal de Cubic Ship continuará el envío en el mostrador.">I confirm the sender and receiver information is accurate, and Cubic Ship staff will continue the shipment at the counter.</span>
+        </label>
+
+        <div class="button-row">
+          <button class="btn btn-primary" type="submit" data-en="Send Sender / Receiver Info" data-es="Enviar datos de remitente / destinatario">Send Sender / Receiver Info</button>
+          <a class="btn btn-secondary" href="tel:+17084325600" data-en="Call Cubic Ship" data-es="Llamar a Cubic Ship">Call Cubic Ship</a>
+        </div>
+        <p class="note" id="formStatus" data-en="After sending, show the counter code to the Cubic Ship employee." data-es="Después de enviar, muestre el código de mostrador al empleado de Cubic Ship.">After sending, show the counter code to the Cubic Ship employee.</p>
+      </form>
+
+      <div class="success-box" id="successBox">
+        <strong data-en="Sender and receiver info sent to Cubic Ship." data-es="Datos de remitente y destinatario enviados a Cubic Ship.">Sender and receiver info sent to Cubic Ship.</strong>
+        <span data-en="Your order code:" data-es="Su código de orden:">Your order code:</span>
+        <span class="order-code" id="orderCode"></span>
+        <p data-en="Show this code to the counter team. Staff can copy the clean sender and receiver details, then continue the package, value, service, and label steps with you." data-es="Muestre este código al equipo del mostrador. El personal puede copiar los datos del remitente y del destinatario y luego continuar con los pasos de paquete, valor, servicio y etiqueta con usted.">Show this code to the counter team. Staff can copy the clean sender and receiver details, then continue the package, value, service, and label steps with you.</p>
+        <button class="btn btn-secondary" id="copyCode" type="button" data-en="Copy Order Code" data-es="Copiar código de orden">Copy Order Code</button>
+      </div>
+    </section>
+  </main>
+
+  <footer data-en="&copy; 2026 Cubic Home Solutions. All rights reserved." data-es="&copy; 2026 Cubic Home Solutions. Todos los derechos reservados.">&copy; 2026 Cubic Home Solutions. All rights reserved.</footer>
+
+  <script>
+    const form = document.getElementById("intakeForm");
+    const formStatus = document.getElementById("formStatus");
+    const successBox = document.getElementById("successBox");
+    const orderCode = document.getElementById("orderCode");
+    const copyCode = document.getElementById("copyCode");
+    const locationId = document.getElementById("locationId");
+    const branchNotice = document.getElementById("branchNotice");
+    const langEnBtn = document.getElementById("langEn");
+    const langEsBtn = document.getElementById("langEs");
+
+    const I18N = {
+      en: {
+        statusDefault: "After sending, show the counter code to the Cubic Ship employee.",
+        submitBtn: "Send Sender / Receiver Info",
+        submitting: "Submitting...",
+        sending: "Sending sender and receiver info to Cubic Ship...",
+        saved: "Saved. Show the counter code to staff.",
+        copied: "Order code copied.",
+        unexpected: "Unexpected server response.",
+        failed: "Submission failed.",
+        branchNotice: (name) => `This QR code is set for ${name}. Staff can change the location only from the portal if it was scanned at the wrong branch.`,
+        errors: {
+          senderCountry: "Shipper country is required.",
+          senderName: "Shipper name is required.",
+          senderAddress1: "Shipper address line 1 is required.",
+          senderCity: "Shipper city is required.",
+          senderPostal: "Shipper ZIP code is required.",
+          senderPhone: "Shipper phone is required.",
+          senderEmail: "Shipper email is required.",
+          receiverCountry: "Receiver country is required.",
+          receiverName: "Receiver name is required.",
+          receiverAddress1: "Receiver address line 1 is required.",
+          receiverCity: "Receiver city is required.",
+          receiverPostal: "Receiver ZIP code is required.",
+          receiverPhone: "Receiver phone is required.",
+          receiverEmail: "Receiver email is required.",
+        },
+        emailErrors: {
+          senderEmail: "Enter a valid shipper email.",
+          receiverEmail: "Enter a valid receiver email.",
+        },
+        phoneErrors: {
+          senderPhone: "Enter a valid shipper phone number.",
+          receiverPhone: "Enter a valid receiver phone number.",
+        },
+      },
+      es: {
+        statusDefault: "Después de enviar, muestre el código de mostrador al empleado de Cubic Ship.",
+        submitBtn: "Enviar datos de remitente / destinatario",
+        submitting: "Enviando...",
+        sending: "Enviando los datos del remitente y del destinatario a Cubic Ship...",
+        saved: "Guardado. Muestre el código de mostrador al personal.",
+        copied: "Código de orden copiado.",
+        unexpected: "Respuesta inesperada del servidor.",
+        failed: "El envío falló.",
+        branchNotice: (name) => `Este código QR está configurado para ${name}. El personal solo puede cambiar la ubicación desde el portal si se escaneó en la sucursal equivocada.`,
+        errors: {
+          senderCountry: "El país del remitente es obligatorio.",
+          senderName: "El nombre del remitente es obligatorio.",
+          senderAddress1: "La dirección línea 1 del remitente es obligatoria.",
+          senderCity: "La ciudad del remitente es obligatoria.",
+          senderPostal: "El código postal del remitente es obligatorio.",
+          senderPhone: "El teléfono del remitente es obligatorio.",
+          senderEmail: "El correo del remitente es obligatorio.",
+          receiverCountry: "El país del destinatario es obligatorio.",
+          receiverName: "El nombre del destinatario es obligatorio.",
+          receiverAddress1: "La dirección línea 1 del destinatario es obligatoria.",
+          receiverCity: "La ciudad del destinatario es obligatoria.",
+          receiverPostal: "El código postal del destinatario es obligatorio.",
+          receiverPhone: "El teléfono del destinatario es obligatorio.",
+          receiverEmail: "El correo del destinatario es obligatorio.",
+        },
+        emailErrors: {
+          senderEmail: "Ingrese un correo válido del remitente.",
+          receiverEmail: "Ingrese un correo válido del destinatario.",
+        },
+        phoneErrors: {
+          senderPhone: "Ingrese un teléfono válido del remitente.",
+          receiverPhone: "Ingrese un teléfono válido del destinatario.",
+        },
+      },
+    };
+
+    let lang = "en";
+    let lockedBranchName = "";
+    const L = () => I18N[lang];
+
+    function detectLang() {
+      const param = new URLSearchParams(window.location.search).get("lang");
+      if (param === "es" || param === "en") return param;
+      const saved = localStorage.getItem("cubic_lang");
+      if (saved === "es" || saved === "en") return saved;
+      return (navigator.language || "").toLowerCase().startsWith("es") ? "es" : "en";
+    }
+
+    function renderBranchNotice() {
+      if (!lockedBranchName) return;
+      branchNotice.textContent = L().branchNotice(lockedBranchName);
+      branchNotice.classList.add("open");
+    }
+
+    function applyLang(next) {
+      lang = next === "es" ? "es" : "en";
+      document.documentElement.lang = lang;
+      try { localStorage.setItem("cubic_lang", lang); } catch (e) {}
+      document.querySelectorAll("[data-en]").forEach((el) => {
+        const text = el.getAttribute("data-" + lang);
+        if (text != null) el.textContent = text;
+      });
+      langEnBtn.classList.toggle("active", lang === "en");
+      langEsBtn.classList.toggle("active", lang === "es");
+      langEnBtn.setAttribute("aria-pressed", String(lang === "en"));
+      langEsBtn.setAttribute("aria-pressed", String(lang === "es"));
+      renderBranchNotice();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn && !submitBtn.disabled) submitBtn.textContent = L().submitBtn;
+      if (!successBox.classList.contains("open") && !formStatus.classList.contains("error")) {
+        formStatus.textContent = L().statusDefault;
+      }
+    }
+
+    langEnBtn.addEventListener("click", () => applyLang("en"));
+    langEsBtn.addEventListener("click", () => applyLang("es"));
+
+    const LOCATION_ALIASES = {
+      bridgeview: "bridgeview",
+      dearborn: "dearborn",
+      oakpark: "oak-park",
+      westchicago: "oak-park",
+      oaklawn: "oak-lawn",
+      mccook: "mccook",
+      buffalo: "buffalo",
+      bethpage: "bethpage",
+      iselin: "iselin",
+      woodbridge: "iselin",
+      milwaukee: "milwaukee",
+      wyncote: "wyncote",
+      indianapolis: "indianapolis",
+      allentown: "allentown-pa",
+      allentownpa: "allentown-pa",
+      farmington: "farmington",
+      northeastphiladelphia: "northeast-philadelphia",
+      nephiladelphia: "northeast-philadelphia",
+      freeport: "freeport",
+      cleveland: "cleveland",
+    };
+
+    function setLocationFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get("location") || params.get("branch");
+      if (!requested) return;
+      const compact = requested.toLowerCase().replace(/[^a-z0-9]+/g, "");
+      const normalized = LOCATION_ALIASES[compact] || requested;
+      const option = [...locationId.options].find((item) => item.value === normalized);
+      if (!option) return;
+      locationId.value = normalized;
+      locationId.disabled = true;
+      lockedBranchName = option.textContent;
+      renderBranchNotice();
+    }
+
+    function value(id) {
+      const field = document.getElementById(id);
+      return field ? field.value.trim() : "";
+    }
+
+    function clearFieldError(id) {
+      const field = document.getElementById(id);
+      if (!field) return;
+      field.classList.remove("field-error");
+      field.setCustomValidity("");
+      const next = field.nextElementSibling;
+      if (next?.classList?.contains("field-error-text")) next.remove();
+    }
+
+    function setFieldError(id, message) {
+      const field = document.getElementById(id);
+      if (!field) return;
+      clearFieldError(id);
+      field.classList.add("field-error");
+      field.setCustomValidity(message);
+      const error = document.createElement("div");
+      error.className = "field-error-text";
+      error.textContent = message;
+      field.insertAdjacentElement("afterend", error);
+    }
+
+    function clearValidationErrors() {
+      [
+        "senderCountry",
+        "senderName",
+        "senderAddress1",
+        "senderCity",
+        "senderPostal",
+        "senderPhone",
+        "senderEmail",
+        "receiverCountry",
+        "receiverName",
+        "receiverAddress1",
+        "receiverCity",
+        "receiverPostal",
+        "receiverPhone",
+        "receiverEmail",
+      ].forEach(clearFieldError);
+      formStatus.classList.remove("error");
+    }
+
+    function hasEnoughPhoneDigits(id) {
+      return value(id).replace(/\D/g, "").length >= 7;
+    }
+
+    function validateContactField(id) {
+      const field = document.getElementById(id);
+      if (!field || !value(id)) return true;
+      if (field.type === "email" && !field.validity.valid) {
+        const message = L().emailErrors[id];
+        setFieldError(id, message);
+        formStatus.textContent = message;
+        formStatus.classList.add("error");
+        return false;
+      }
+      if (field.type === "tel" && !hasEnoughPhoneDigits(id)) {
+        const message = L().phoneErrors[id];
+        setFieldError(id, message);
+        formStatus.textContent = message;
+        formStatus.classList.add("error");
+        return false;
+      }
+      return true;
+    }
+
+    function validateBeforeSubmit() {
+      clearValidationErrors();
+      const requiredIds = [
+        "senderCountry", "senderName", "senderAddress1", "senderCity", "senderPostal", "senderPhone", "senderEmail",
+        "receiverCountry", "receiverName", "receiverAddress1", "receiverCity", "receiverPostal", "receiverPhone", "receiverEmail",
+      ];
+      const missingId = requiredIds.find((id) => !value(id));
+      if (missingId) {
+        const message = L().errors[missingId];
+        setFieldError(missingId, message);
+        formStatus.textContent = message;
+        formStatus.classList.add("error");
+        document.getElementById(missingId).reportValidity();
+        return false;
+      }
+      const invalidEmail = ["senderEmail", "receiverEmail"].find((id) => !document.getElementById(id).validity.valid);
+      if (invalidEmail) {
+        const message = L().emailErrors[invalidEmail];
+        setFieldError(invalidEmail, message);
+        formStatus.textContent = message;
+        formStatus.classList.add("error");
+        document.getElementById(invalidEmail).reportValidity();
+        return false;
+      }
+      const invalidPhone = ["senderPhone", "receiverPhone"].find((id) => !hasEnoughPhoneDigits(id));
+      if (invalidPhone) {
+        const message = L().phoneErrors[invalidPhone];
+        setFieldError(invalidPhone, message);
+        formStatus.textContent = message;
+        formStatus.classList.add("error");
+        document.getElementById(invalidPhone).reportValidity();
+        return false;
+      }
+      return form.reportValidity();
+    }
+
+    function payload() {
+      return {
+        companyWebsite: value("companyWebsite"),
+        locationId: value("locationId"),
+        senderName: value("senderName"),
+        senderCompany: value("senderCompany"),
+        senderPhone: value("senderPhone"),
+        senderEmail: value("senderEmail"),
+        senderAddress1: value("senderAddress1"),
+        senderAddress2: value("senderAddress2"),
+        senderCity: value("senderCity"),
+        senderState: value("senderState"),
+        senderPostal: value("senderPostal"),
+        senderCountry: value("senderCountry"),
+        receiverName: value("receiverName"),
+        receiverCompany: value("receiverCompany"),
+        receiverPhone: value("receiverPhone"),
+        receiverEmail: value("receiverEmail"),
+        receiverAddress1: value("receiverAddress1"),
+        receiverAddress2: value("receiverAddress2"),
+        receiverCity: value("receiverCity"),
+        receiverState: value("receiverState"),
+        receiverPostal: value("receiverPostal"),
+        receiverCountry: value("receiverCountry"),
+      };
+    }
+
+    async function submitIntake(event) {
+      event.preventDefault();
+      if (!validateBeforeSubmit()) return;
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      button.textContent = L().submitting;
+      formStatus.textContent = L().sending;
+      formStatus.classList.remove("error");
+      try {
+        const response = await fetch("/api/customer-shipments?source=qr", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload()),
+        });
+        const result = await response.json().catch(() => ({ ok: false, error: L().unexpected }));
+        if (!response.ok || result.ok === false) throw new Error(result.error || L().failed);
+        form.reset();
+        setLocationFromUrl();
+        document.getElementById("senderCountry").value = "United States";
+        orderCode.textContent = result.shipment.number;
+        successBox.classList.add("open");
+        formStatus.textContent = L().saved;
+        successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (error) {
+        formStatus.textContent = error.message;
+        formStatus.classList.add("error");
+      } finally {
+        button.disabled = false;
+        button.textContent = L().submitBtn;
+      }
+    }
+
+    copyCode.addEventListener("click", async () => {
+      if (!orderCode.textContent) return;
+      await navigator.clipboard.writeText(orderCode.textContent);
+      formStatus.textContent = L().copied;
+    });
+
+    [
+      "senderCountry",
+      "senderName",
+      "senderAddress1",
+      "senderCity",
+      "senderPostal",
+      "senderPhone",
+      "senderEmail",
+      "receiverCountry",
+      "receiverName",
+      "receiverAddress1",
+      "receiverCity",
+      "receiverPostal",
+      "receiverPhone",
+      "receiverEmail",
+    ].forEach((id) => {
+      document.getElementById(id).addEventListener("input", () => {
+        clearFieldError(id);
+        formStatus.textContent = L().statusDefault;
+        formStatus.classList.remove("error");
+      });
+    });
+
+    ["senderEmail", "receiverEmail", "senderPhone", "receiverPhone"].forEach((id) => {
+      const field = document.getElementById(id);
+      field.addEventListener("blur", () => validateContactField(id));
+      field.addEventListener("input", () => {
+        clearFieldError(id);
+        if (!value(id)) return;
+        validateContactField(id);
+      });
+    });
+
+    setLocationFromUrl();
+    applyLang(detectLang());
+    form.addEventListener("submit", submitIntake);
+  </script>
+</body>
+</html>

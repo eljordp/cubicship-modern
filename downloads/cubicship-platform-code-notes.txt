@@ -1,0 +1,72 @@
+CubicShip Platform Code Notes
+Updated: 2026-06-08
+
+Purpose
+-------
+CubicShip is being built as a business-first shipping and service-order platform. The current production site supports customer business profiles, secure service orders, counter QR shipment intake, staff queue processing, label/order PDF upload, customer label download, status updates, and basic audit-log events.
+
+Programming Languages Used
+--------------------------
+- HTML: public pages and dashboard screens.
+- CSS: page styling, responsive layouts, dashboard cards, forms, and portal views.
+- JavaScript: customer dashboard behavior, staff portal behavior, CSV export, form submission, API calls, and UI state.
+- Node.js / CommonJS JavaScript: Vercel serverless API routes.
+- SQL: Supabase-ready schema and email/auth setup notes.
+
+Current Runtime / Services
+--------------------------
+- Frontend: static HTML/CSS/JavaScript hosted on Vercel.
+- Backend: Node.js serverless functions in /api.
+- Storage: Vercel Blob for private customers, staff users, service orders, and label/order PDFs.
+- Customer auth: Supabase Auth when configured, with Vercel Blob fallback.
+- Staff auth: custom owner/staff login with signed HTTP-only cookies.
+- Email notifications: Resend-backed helper when environment variables are configured.
+- Deployment: Vercel production alias https://cubicship.com.
+
+Core Files
+----------
+- index.html: public homepage and business-first platform CTA.
+- platform.html: platform workflow, modules, and phased roadmap.
+- profile.html: Business Dashboard for customers.
+- qr-shipment.html: public counter QR intake form for sender, receiver, and shipment details.
+- qr-cubicship-intake.svg: printable QR code for the counter intake form.
+- portal.html: internal owner/staff portal and service-order queue.
+- mos.html: MOS / owner-admin portal front-door preview link.
+- employee.html: employee portal front-door preview link.
+- owner.html: owner portal front-door preview link.
+- services.html: service detail page.
+- dhl-locations.html: DHL Express Service Point locations and proof page.
+- api/customer-shipments.js: customer order creation, customer order history, authenticated customer label downloads, and public QR counter intake submissions into the private shipment queue.
+- api/shipments.js: staff/admin service-order queue, status updates, PDF upload, and authenticated staff label downloads.
+- api/_shipments.js: shared shipment/order store helpers and public order shape.
+- api/_portal-auth.js: owner/staff authentication.
+- api/_customer-auth.js: customer auth fallback.
+- api/_supabase-customer-store.js: Supabase customer auth/profile bridge.
+- api/_email.js: email notification helper.
+
+Current Platform Workflow
+-------------------------
+1. Business customer creates/logs into an account.
+2. Customer creates a secured service order from the Business Dashboard, or scans the counter QR form to submit sender/receiver shipment details without handwriting.
+3. Supported service order types: DHL Label, Printing, Mailbox, Virtual Notary, Extra Business Services, Freight/Cargo.
+4. System generates a CubicShip order code.
+5. Order is routed to the selected CubicShip/DHL location.
+6. Staff reviews the order in the internal portal.
+7. For QR intake shipments, staff can copy the clean sender/receiver/shipment block and paste it into CRA/DHL while verifying the customer details.
+8. Staff uses CRA or the appropriate outside service system when a DHL label or service document must be created.
+9. Staff updates status, tracking/confirmation number, notes, and uploads label/order PDFs when needed.
+10. Customer sees My Orders, My Labels, status, tracking, and can download uploaded PDFs for authenticated dashboard orders.
+11. Staff/customer history can be exported as CSV for Excel, including QR intake sender and receiver fields.
+
+Roadmap / Operations
+--------------------
+- CRA-assisted DHL workflow: staff creates/prints DHL labels in CRA, then CubicShip stores the service order, tracking/reference, uploaded label/receipt PDFs, status, and history.
+- Counter QR workflow: customers scan the printed QR, enter sender/receiver/package details, and staff copy-pastes verified clean fields from the portal into CRA/DHL.
+- Checkout: checkout and payment receipts when Mo finalizes the payment method.
+- SMS/OTP: account verification and high-value order security when needed.
+- Remote notary handoff: intake, appointment notes, document status, and staff follow-up.
+- PostgreSQL/Supabase expansion: stronger reporting, audit logs, roles, and dashboards.
+
+Important Note
+--------------
+The live product is workflow-first. The site should not claim automated DHL label creation. DHL labels are currently created outside CubicShip through CRA or the applicable service system, then uploaded into the portal as files for customer access and audit history.

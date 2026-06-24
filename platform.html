@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CubicShip Platform - Business Shipping Dashboard</title>
+  <meta name="description" content="CubicShip platform workflow for business customers, secure order codes, location routing, staff processing, label uploads, virtual notary requests, payments, notifications, and audit logs.">
+  <link rel="canonical" href="https://cubicship.com/platform.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="CubicShip Platform - Business Shipping Dashboard">
+  <meta property="og:description" content="A modern business-first shipping platform roadmap for customers, locations, staff, labels, service requests, notifications, and security.">
+  <meta property="og:url" content="https://cubicship.com/platform.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CubicShip Platform - Business Shipping Dashboard">
+  <meta name="twitter:description" content="Business dashboard, secure order codes, staff workflows, labels, service requests, notifications, and audit logging.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --navy-mid: #132744;
+      --orange: #f47621;
+      --orange-light: #ff8f42;
+      --green: #4cba3c;
+      --text: #e8ecf4;
+      --text-secondary: #9aa8bd;
+      --text-dim: #5d6e8b;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.16);
+      --surface: rgba(255,255,255,0.035);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: 64px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(10,22,40,0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo img { height: 40px; width: auto; border-radius: 6px; }
+    .nav-wordmark {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.3px;
+    }
+    .c-orange { color: var(--orange); }
+    .c-green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); background: rgba(255,255,255,0.06); }
+    .nav-toggle {
+      display: none;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.72rem 1.1rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .btn-primary { color: #fff; background: var(--orange); }
+    .btn-primary:hover { background: var(--orange-light); }
+    .btn-secondary { border-color: var(--border); background: rgba(255,255,255,0.04); }
+    .btn-secondary:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.07); }
+    main { padding: clamp(3rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem); }
+    .container { max-width: 1180px; margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: center;
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+    .eyebrow {
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.08;
+      letter-spacing: -0.35px;
+    }
+    h1 {
+      font-size: clamp(2.45rem, 5vw, 4.5rem);
+      letter-spacing: -1.4px;
+      margin-bottom: 1rem;
+    }
+    .lead {
+      max-width: 640px;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.25rem;
+    }
+    .dashboard-preview {
+      display: grid;
+      gap: 0.8rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+      box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+    }
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem;
+      border-radius: 13px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+    }
+    .preview-top strong { display: block; font-size: 0.92rem; }
+    .preview-top span { color: var(--text-secondary); font-size: 0.76rem; }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.28rem 0.58rem;
+      color: #fef3c7;
+      background: rgba(244,118,33,0.16);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 0.8rem;
+    }
+    .preview-card {
+      min-height: 142px;
+      padding: 1rem;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.035);
+    }
+    .preview-card h3 { font-size: 1rem; margin-bottom: 0.45rem; }
+    .preview-card p { color: var(--text-secondary); font-size: 0.8rem; }
+    .code-box {
+      margin-top: 0.85rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .qr {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, #fff 8px, transparent 8px),
+        linear-gradient(#fff 8px, transparent 8px),
+        #0a1628;
+      background-size: 18px 18px;
+      border: 5px solid #fff;
+    }
+    .code-box b { display: block; font-size: 0.88rem; }
+    .code-box span { color: var(--text-dim); font-size: 0.76rem; }
+    .timeline {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 0.85rem;
+    }
+    .timeline span {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+    }
+    .timeline b { color: var(--text); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .section-head p {
+      max-width: 600px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .flow-grid,
+    .module-grid,
+    .page-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .flow-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .module-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .page-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card {
+      min-height: 150px;
+      padding: 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .card small {
+      display: block;
+      color: var(--orange);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .card h3 { font-size: 1rem; margin-bottom: 0.42rem; }
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+    .card a {
+      display: inline-flex;
+      margin-top: 0.85rem;
+      color: var(--orange-light);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.85rem;
+    }
+    .tag-row span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    section + section { margin-top: clamp(2.5rem, 5vw, 4rem); }
+    .phase-band {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.2rem;
+      border: 1px solid rgba(244,118,33,0.2);
+      border-radius: 16px;
+      background: rgba(244,118,33,0.06);
+    }
+    .phase-band h2 { font-size: 1.35rem; margin-bottom: 0.45rem; }
+    .phase-band p { color: var(--text-secondary); font-size: 0.86rem; }
+    .phase-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+    }
+    .phase-list div {
+      padding: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(10,22,40,0.45);
+    }
+    .phase-list strong { display: block; font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .phase-list span { display: block; color: var(--text-secondary); font-size: 0.76rem; }
+    footer {
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.76rem;
+    }
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-inner a { color: var(--text-secondary); text-decoration: none; }
+    @media (max-width: 980px) {
+      .hero, .phase-band { grid-template-columns: 1fr; }
+      .flow-grid, .module-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-grid { grid-template-columns: repeat(2, 1fr); }
+      .phase-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 0.75rem 1rem 1rem;
+        background: rgba(10,22,40,0.98);
+        border-bottom: 1px solid var(--border);
+      }
+      main { padding-top: 2.2rem; }
+      h1 { font-size: 2.15rem; }
+      .preview-grid,
+      .flow-grid,
+      .module-grid,
+      .page-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-logo" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="platform.html">Platform</a></li>
+      <li><a href="profile.html">Customer Profile</a></li>
+      <li><a href="dhl-locations.html">Locations</a></li>
+      <li><a href="services.html#notary">Virtual Notary</a></li>
+      <li><a href="mos.html">Staff</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">CubicShip Platform</div>
+          <h1>Business shipping, service orders, and staff workflows in one place.</h1>
+          <p class="lead">The platform direction is simple: business customers create secure service orders, Cubic routes them to the right location, staff processes the work, and customers see status, labels, payments, and updates from their dashboard.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="profile.html?account=business">Open Customer Profile</a>
+            <a class="btn btn-secondary" href="mos.html">Staff Location Portal</a>
+            <a class="btn btn-secondary" href="downloads/cubicship-platform-code-notes.txt" download>Download Platform Notes</a>
+          </div>
+        </div>
+
+        <aside class="dashboard-preview" aria-label="CubicShip platform preview">
+          <div class="preview-top">
+            <div>
+              <strong>Business Order</strong>
+              <span>CS-260601-B84F · Bridgeview</span>
+            </div>
+            <span class="status-pill">Staff Review</span>
+          </div>
+          <div class="preview-grid">
+            <div class="preview-card">
+              <h3>Secure order code</h3>
+              <p>Customer receives a CubicShip order number and QR/code for counter handoff, label pickup, status, and audit trail.</p>
+              <div class="code-box">
+                <div class="qr" aria-hidden="true"></div>
+                <div><b>CS-260601-B84F</b><span>Linked to customer, service, location, and status history.</span></div>
+              </div>
+            </div>
+            <div class="preview-card">
+              <h3>Status</h3>
+              <p>Customer and staff see the same order state.</p>
+              <div class="timeline">
+                <span><b>Created</b> Customer</span>
+                <span><b>Routed</b> Location</span>
+                <span><b>Processing</b> Staff</span>
+                <span><b>Label ready</b> Customer</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Core Flow</div>
+            <h2>One workflow for every business service.</h2>
+          </div>
+          <p>This keeps DHL labels, printing, mailbox, virtual notary, and extra business services inside the same operational pattern.</p>
+        </div>
+        <div class="flow-grid">
+          <article class="card"><small>01</small><h3>Account</h3><p>Business customer creates a profile with company, contact, service volume, and security settings.</p></article>
+          <article class="card"><small>02</small><h3>Service</h3><p>Customer selects DHL label, printing, mailbox, virtual notary, or another business service.</p></article>
+          <article class="card"><small>03</small><h3>Order Code</h3><p>System generates a secured order number and QR/code for tracking, staff lookup, and counter handoff.</p></article>
+          <article class="card"><small>04</small><h3>Location</h3><p>Order routes to the designated CubicShip/DHL location based on customer selection or assignment.</p></article>
+          <article class="card"><small>05</small><h3>Staff Work</h3><p>Staff reviews details, creates the DHL label in the carrier system, uploads the label PDF, and updates status.</p></article>
+          <article class="card"><small>06</small><h3>Customer View</h3><p>Customer logs in to view status, download/print labels, see notes, and receive notifications.</p></article>
+          <article class="card"><small>07</small><h3>Checkout</h3><p>Payments can be collected through checkout once pricing and service rules are connected.</p></article>
+          <article class="card"><small>08</small><h3>Audit Log</h3><p>Every key action is recorded for security: customer changes, staff updates, label uploads, payments, and notifications.</p></article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Modules</div>
+            <h2>Platform modules to build in phases.</h2>
+          </div>
+          <p>The public promise should be the workflow. CRA remains the DHL label system; CubicShip stores orders, status, tracking, uploaded files, and history.</p>
+        </div>
+        <div class="module-grid">
+          <article class="card"><small>Customer</small><h3>Business Dashboard</h3><p>Orders, labels, service history, saved company profile, shipment volume, notifications, and security settings.</p><div class="tag-row"><span>Live foundation</span><span>Profile</span></div></article>
+          <article class="card"><small>Orders</small><h3>Create Service Order</h3><p>DHL labels, printing, mailbox, virtual notary, freight, and business-service intake with secured order numbers and status tracking.</p><div class="tag-row"><span>Live foundation</span><span>QR/code next</span></div></article>
+          <article class="card"><small>Labels</small><h3>My Labels</h3><p>Customer label library for uploaded PDFs, DHL tracking, download/print actions, and completed order records.</p><div class="tag-row"><span>Live foundation</span><span>PDF storage</span></div></article>
+          <article class="card"><small>Locations</small><h3>Staff Location Portal</h3><p>Location queue, assigned orders, staff notes, label upload, status changes, and customer notifications.</p><div class="tag-row"><span>Live foundation</span><span>Staff</span></div></article>
+          <article class="card"><small>Owner</small><h3>Admin Portal</h3><p>Owner visibility into locations, staff access, orders, response times, label workflow, and audit history.</p><div class="tag-row"><span>Live foundation</span><span>Owner</span></div></article>
+          <article class="card"><small>Services</small><h3>Virtual Notary Flow</h3><p>Request intake, document notes, appointment status, identity-ready checklist, and staff handoff.</p><div class="tag-row"><span>Workflow first</span><span>Staff handoff</span></div></article>
+          <article class="card"><small>Payments</small><h3>Checkout</h3><p>Secure checkout for service orders once pricing rules, counter payment policies, and receipts are finalized.</p><div class="tag-row"><span>Stripe phase</span></div></article>
+          <article class="card"><small>Security</small><h3>OTP + Audit</h3><p>Security codes, staff permissions, order history, label access controls, and notification records.</p><div class="tag-row"><span>MFA phase</span><span>Audit log</span></div></article>
+          <article class="card"><small>Notifications</small><h3>Email + SMS Updates</h3><p>Customer and staff notifications for created, routed, in review, label ready, paid, completed, and exception states.</p><div class="tag-row"><span>Email first</span><span>SMS phase</span></div></article>
+        </div>
+      </section>
+
+      <section class="phase-band">
+        <div>
+          <div class="eyebrow">Operations Roadmap</div>
+          <h2>Build the workflow around CRA and file upload.</h2>
+          <p>This avoids promising automated DHL label creation when staff already uses CRA as the label-printing system.</p>
+        </div>
+        <div class="phase-list">
+          <div><strong>Phase 1: MVP</strong><span>Business profiles, service orders, secure codes, location routing, staff updates, label PDF upload, email notifications.</span></div>
+          <div><strong>Phase 2: Commerce + Security</strong><span>Checkout, receipt flow, SMS/OTP, stronger roles, audit log, label download permissions.</span></div>
+          <div><strong>Phase 3: CRA Support + Reporting</strong><span>Better CRA handoff fields, uploaded label/receipt history, tracking/reference logs, payment reporting, and dashboard exports.</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Main Pages</div>
+            <h2>The platform navigation map.</h2>
+          </div>
+          <p>These are the pages Mo described, mapped to what CubicShip already has and what comes next.</p>
+        </div>
+        <div class="page-grid">
+          <article class="card"><small>Home</small><h3>Business-first entry</h3><p>Short SaaS-style homepage focused on business shipping and platform workflow.</p><a href="index.html">Open home</a></article>
+          <article class="card"><small>Dashboard</small><h3>Business Dashboard</h3><p>Customer profile, service orders, labels, and status foundation.</p><a href="profile.html?account=business">Open dashboard</a></article>
+          <article class="card"><small>Orders</small><h3>Create Service Order</h3><p>Customer creates a secured order code and chooses the service/location.</p><a href="profile.html?account=business">Create order</a></article>
+          <article class="card"><small>Labels</small><h3>My Labels</h3><p>Authenticated label PDF library for staff-uploaded DHL/freight labels.</p></article>
+          <article class="card"><small>Notary</small><h3>Virtual Notary</h3><p>Request flow starts as service intake and staff handoff.</p><a href="services.html#notary">View notary</a></article>
+          <article class="card"><small>Locations</small><h3>Cubic locations</h3><p>DHL location proof and routing context.</p><a href="dhl-locations.html">View locations</a></article>
+          <article class="card"><small>Security</small><h3>Security/Profile</h3><p>Customer profile now; MFA, audit log, and permissions later.</p><a href="profile.html">Open profile</a></article>
+          <article class="card"><small>Staff</small><h3>Admin + Staff Portal</h3><p>Owner and location staff links stay internal and role-based.</p><a href="mos.html">Staff portal</a></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
+      <span><a href="index.html">Home</a> · <a href="profile.html">Customer Profile</a> · <a href="mos.html">Staff</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("navToggle").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("open");
+    });
+    document.querySelectorAll("#navLinks a").forEach((link) => {
+      link.addEventListener("click", () => document.getElementById("navLinks").classList.remove("open"));
+    });
+  </script>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

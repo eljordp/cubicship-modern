@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print, Pack & Paperwork - Cubic Ship</title>
+  <meta name="description" content="Inquire about Cubic Ship print, pack, and paperwork services: labels, customs forms, copies, scans, mailers, boxes, tape, document printing, and shipping prep.">
+  <link rel="canonical" href="https://cubicship.com/print-pack.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="Print, Pack & Paperwork - Cubic Ship">
+  <meta property="og:description" content="Ask Cubic Ship about labels, documents, copies, scans, mailers, boxes, quantity, size, material, finish, and shipping prep before you come in.">
+  <meta property="og:url" content="https://cubicship.com/print-pack.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Print, Pack & Paperwork - Cubic Ship">
+  <meta name="twitter:description" content="Labels, customs forms, document printing, copies, scans, mailers, boxes, tape, and shipping prep inquiry.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --navy-mid: #132744;
+      --orange: #f47621;
+      --orange-light: #ff8f42;
+      --green: #4cba3c;
+      --text: #e8ecf4;
+      --text-secondary: #9aa9bf;
+      --text-dim: #62708a;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.15);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 64px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(10,22,40,0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+    }
+    .brand img { width: 40px; height: 40px; border-radius: 7px; object-fit: cover; }
+    .orange { color: var(--orange); }
+    .green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 7px;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .page { padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem); }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: stretch;
+      margin-bottom: 1rem;
+    }
+    .hero-copy {
+      min-height: 440px;
+      padding: clamp(1.5rem, 4vw, 2.4rem);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(244,118,33,0.09), transparent 46%),
+        var(--navy-light);
+    }
+    .kicker {
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+    }
+    h1 {
+      font-size: clamp(2.55rem, 6vw, 5rem);
+      letter-spacing: -1.8px;
+      margin-bottom: 1rem;
+    }
+    .lead {
+      color: var(--text-secondary);
+      max-width: 620px;
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-media {
+      min-height: 440px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--navy-light);
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(0.98) contrast(1.04);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.7rem 1.05rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-light); }
+    .btn-secondary { background: rgba(255,255,255,0.05); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.08); }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.2rem;
+    }
+    .quick-specs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0 2rem;
+    }
+    .spec {
+      min-height: 112px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,255,255,0.035);
+    }
+    .spec strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+    .spec span {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+    .section {
+      padding: clamp(2rem, 5vw, 3.5rem) 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+    .section-head p {
+      color: var(--text-secondary);
+      max-width: 520px;
+      font-size: 0.9rem;
+    }
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    .item-card {
+      min-height: 168px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+    }
+    .item-card b {
+      display: inline-flex;
+      margin-bottom: 0.7rem;
+      color: var(--green);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .item-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.45rem;
+    }
+    .item-card p {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .step {
+      min-height: 154px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.035);
+    }
+    .step span {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--orange);
+      font-weight: 900;
+      margin-bottom: 0.8rem;
+    }
+    .step p { color: var(--text-secondary); font-size: 0.82rem; }
+    .notice {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(244,118,33,0.18);
+      background: rgba(244,118,33,0.07);
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+    }
+    .notice strong { color: var(--text); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.4rem clamp(1rem, 4vw, 3rem);
+      color: var(--text-dim);
+      font-size: 0.76rem;
+    }
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-inner a { color: var(--text-secondary); text-decoration: none; }
+    @media (max-width: 880px) {
+      .hero, .quick-specs, .workflow { grid-template-columns: 1fr; }
+      .item-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-copy, .hero-media { min-height: auto; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .page { padding: 1.5rem 1rem; }
+      .item-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      h1 { font-size: 2.25rem; letter-spacing: -0.7px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="services.html">Services</a>
+      <a href="business-services.html">Business Services</a>
+      <a href="business-signage.html">Business Signage</a>
+      <a href="profile.html?service=printing">Start Inquiry</a>
+      <a href="track.html">Track</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="kicker">Print, Pack & Paperwork</div>
+          <h1>Get the print and shipping prep handled before the counter.</h1>
+          <p class="lead">Ask about labels, customs forms, document printing, copies, scans, mailers, boxes, tape, quantity, size, material, and finish before you come in.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="profile.html?service=printing">Start Print Inquiry</a>
+            <a class="btn btn-secondary" href="tel:+17084325600">Call Counter</a>
+            <a class="btn btn-secondary" href="services.html">All Services</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=80" alt="Printer, phone, and paperwork prepared for counter print service">
+        </div>
+      </section>
+
+      <div class="quick-specs" aria-label="Print inquiry details">
+        <div class="spec"><strong>Available item</strong><span>Label, copy, scan, form, mailer, box, tape, customs paperwork, or document print.</span></div>
+        <div class="spec"><strong>Shape and size</strong><span>Letter, legal, label size, box size, mailer size, folded documents, or custom request.</span></div>
+        <div class="spec"><strong>Quantity</strong><span>Pages, sets, labels, mailers, boxes, forms, or pieces needed before pickup.</span></div>
+        <div class="spec"><strong>Material and finish</strong><span>Paper type, color, black-and-white, matte, gloss, adhesive, or shipping-ready finish.</span></div>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Available Requests</div>
+            <h2>Common print and pack items.</h2>
+          </div>
+          <p>These are inquiry categories. Staff confirms what is available, what needs proofing, and whether pickup or shipment makes sense.</p>
+        </div>
+        <div class="item-grid">
+          <article class="item-card"><b>Labels</b><h3>Shipping labels and customs forms</h3><p>Print labels, customs pages, invoices, QR sheets, or paperwork tied to a shipment.</p></article>
+          <article class="item-card"><b>Documents</b><h3>Copies, scans, fax, and files</h3><p>Send file notes, page count, color needs, document size, and pickup timing.</p></article>
+          <article class="item-card"><b>Packing</b><h3>Mailers, boxes, tape, and prep</h3><p>Ask about available sizes, packing supplies, sealing, and shipment-ready handling.</p></article>
+          <article class="item-card"><b>Forms</b><h3>Passport, DMV, and business paperwork</h3><p>Print, organize, scan, or prep supporting documents before mailing or counter service.</p></article>
+          <article class="item-card"><b>Small Batch</b><h3>QR cards and simple inserts</h3><p>Basic cards, inserts, instruction sheets, labels, and paper pieces for local sellers.</p></article>
+          <article class="item-card"><b>Pickup</b><h3>Counter pickup or shipping handoff</h3><p>Confirm whether the finished paperwork is picked up, packed with a shipment, or mailed out.</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="kicker">How It Works</div>
+            <h2>Submit the details first.</h2>
+          </div>
+          <p>For anything custom, the counter should confirm availability and price before production.</p>
+        </div>
+        <div class="workflow">
+          <article class="step"><span>1</span><h3>Choose item</h3><p>Select print, label, copy, scan, mailer, box, paperwork, or packing support.</p></article>
+          <article class="step"><span>2</span><h3>Add specs</h3><p>Send shape, size, quantity, material, finish, deadline, and file or artwork notes.</p></article>
+          <article class="step"><span>3</span><h3>Staff confirms</h3><p>Cubic reviews availability, counter handling, timing, and price before moving forward.</p></article>
+          <article class="step"><span>4</span><h3>Pickup or ship</h3><p>Pick up at the counter or attach the finished paperwork to a shipment workflow.</p></article>
+        </div>
+        <div class="notice"><strong>Pricing note:</strong> final pricing depends on size, quantity, material, finish, file readiness, and counter handling. Use the inquiry form before treating any print request as confirmed.</div>
+        <div class="actions">
+          <a class="btn btn-primary" href="profile.html?service=printing">Start Print Inquiry</a>
+          <a class="btn btn-secondary" href="business-signage.html">Need Business Signage?</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
+      <span><a href="mailto:info@cubicship.com">info@cubicship.com</a> · <a href="services.html">Services</a></span>
+    </div>
+  </footer>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

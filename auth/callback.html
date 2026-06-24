@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Confirmed - Cubic Ship</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="/favicon-64.png">
+  <style>
+    :root {
+      --blue: #2f6fdd;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #e3e8f0;
+      --bg: #f5f7fb;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(100%, 460px);
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
+      text-align: center;
+    }
+
+    img {
+      width: 76px;
+      height: 76px;
+      border-radius: 16px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 5vw, 2.25rem);
+      line-height: 1.08;
+    }
+
+    p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      margin-top: 24px;
+      padding: 0 18px;
+      border-radius: 10px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="/logo-160.png" alt="Cubic Ship">
+    <p class="eyebrow">Customer Profile</p>
+    <h1 id="title">Email confirmed.</h1>
+    <p id="message">Your Cubic Ship account is ready. Continue to your profile and log in.</p>
+    <a id="continueLink" href="/profile.html">Continue to Profile</a>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const error = params.get("error_description") || params.get("error") || hash.get("error_description") || hash.get("error");
+    const next = params.get("next");
+    const safeNext = next && next.startsWith("/") && !next.startsWith("//") ? next : "/profile.html";
+    const link = document.getElementById("continueLink");
+    link.href = safeNext;
+
+    if (error) {
+      document.getElementById("title").textContent = "Link needs attention.";
+      document.getElementById("message").textContent = "This confirmation link could not be completed. Try logging in or request a new confirmation email.";
+      link.textContent = "Back to Profile";
+    }
+  </script>
+</body>
+</html>

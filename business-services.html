@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Shipping, Printing, Mailbox & Notary Services - Cubic Ship</title>
+  <meta name="description" content="Cubic Ship business services for local companies, online sellers, and walk-in customers: DHL Express shipping, freight, print and pack, business signage, mailbox, notary, documents, and counter support.">
+  <link rel="canonical" href="https://cubicship.com/business-services.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="Cubic Ship Business Services">
+  <meta property="og:description" content="DHL Express shipping, freight, print and pack, business signage, mailbox, notary, documents, and local counter support from Cubic Ship locations.">
+  <meta property="og:url" content="https://cubicship.com/business-services.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cubic Ship Business Services">
+  <meta name="twitter:description" content="One local counter for DHL shipping, freight, printing, mailbox, notary, documents, and business-service support.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0a1628;
+      --navy-2: #10213a;
+      --orange: #f47621;
+      --orange-2: #ff8f42;
+      --green: #4cba3c;
+      --text: #e8ecf4;
+      --muted: #9aa9bf;
+      --line: rgba(255,255,255,0.1);
+      --panel: rgba(255,255,255,0.055);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 66px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(10,22,40,0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+    }
+    .brand img { width: 40px; height: 40px; border-radius: 7px; object-fit: cover; }
+    .orange { color: var(--orange); }
+    .green { color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 0.35rem; list-style: none; }
+    .nav-links a {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      border-radius: 7px;
+      padding: 0 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: rgba(255,255,255,0.06); }
+    .page { padding: clamp(1.25rem, 3vw, 2.75rem) clamp(1rem, 4vw, 3rem); }
+    .container { width: min(1180px, 100%); margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+      gap: clamp(1.25rem, 4vw, 3rem);
+      align-items: stretch;
+    }
+    .hero-copy {
+      min-height: 460px;
+      padding: clamp(1.5rem, 4vw, 2.8rem);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(244,118,33,0.12), transparent 44%),
+        linear-gradient(180deg, var(--navy-2), var(--navy));
+    }
+    .kicker {
+      margin-bottom: 1rem;
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; line-height: 1.05; letter-spacing: 0; }
+    h1 { max-width: 720px; margin-bottom: 0.85rem; font-size: clamp(2.1rem, 4.4vw, 3.55rem); }
+    .lead { max-width: 680px; color: var(--muted); font-size: clamp(0.96rem, 1.6vw, 1.05rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.05rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.78rem 1.08rem;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-2); }
+    .btn-secondary { border-color: var(--line); background: rgba(255,255,255,0.055); color: var(--text); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.09); }
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 1.35rem;
+    }
+    .proof {
+      min-height: 96px;
+      padding: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.045);
+    }
+    .proof strong { display: block; color: #fff; font-size: 1.55rem; line-height: 1; }
+    .proof span { display: block; margin-top: 0.35rem; color: var(--muted); font-size: 0.78rem; font-weight: 700; }
+    .hero-media {
+      min-height: 460px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #091222;
+    }
+    .hero-media img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(0.95) contrast(1.06); }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin: clamp(2.6rem, 5vw, 4rem) 0 1rem;
+    }
+    .section-head h2 { max-width: 680px; font-size: clamp(2rem, 4vw, 3.5rem); }
+    .section-head p { max-width: 450px; color: var(--muted); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .service-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      text-decoration: none;
+    }
+    .service-card:hover { border-color: rgba(244,118,33,0.45); background: rgba(255,255,255,0.075); }
+    .service-card small {
+      display: inline-flex;
+      width: max-content;
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+      background: rgba(244,118,33,0.12);
+      color: #ffb179;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .service-card h3 { margin: 0.9rem 0 0.55rem; font-size: 1.35rem; }
+    .service-card p { color: var(--muted); font-size: 0.94rem; }
+    .service-card ul { margin: 0.95rem 0 0; padding-left: 1.05rem; color: var(--text); font-size: 0.88rem; }
+    .service-card li + li { margin-top: 0.25rem; }
+    .card-action { color: #ffb179; font-size: 0.86rem; font-weight: 900; }
+    .seller-band {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 1.05fr);
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: clamp(1.25rem, 4vw, 2rem);
+      border: 1px solid rgba(76,186,60,0.28);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(76,186,60,0.12), transparent 48%),
+        rgba(255,255,255,0.055);
+    }
+    .seller-band h2 { font-size: clamp(1.8rem, 4vw, 3.1rem); }
+    .seller-band p { margin-top: 0.8rem; color: var(--muted); }
+    .seller-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .seller-list span {
+      display: block;
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(10,22,40,0.5);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .seller-list b { display: block; margin-bottom: 0.2rem; color: #fff; }
+    .location-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .location-card {
+      min-height: 150px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.045);
+      text-decoration: none;
+    }
+    .location-card h3 { margin-bottom: 0.45rem; font-size: 1.05rem; }
+    .location-card p { color: var(--muted); font-size: 0.84rem; }
+    .location-card span { display: block; margin-top: 0.75rem; color: #ffb179; font-size: 0.8rem; font-weight: 900; }
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .step {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.045);
+    }
+    .step strong { color: var(--orange); font-size: 0.82rem; letter-spacing: 1px; }
+    .step h3 { margin: 0.55rem 0; font-size: 1.05rem; }
+    .step p { color: var(--muted); font-size: 0.86rem; }
+    .final-cta {
+      margin-top: 1rem;
+      padding: clamp(1.25rem, 4vw, 2rem);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(244,118,33,0.16), rgba(76,186,60,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .final-cta h2 { font-size: clamp(1.7rem, 4vw, 3rem); }
+    .final-cta p { margin-top: 0.5rem; color: var(--muted); }
+    footer {
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+    footer a { color: var(--text); text-decoration: none; font-weight: 800; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero, .seller-band { grid-template-columns: 1fr; }
+      .hero-copy, .hero-media { min-height: auto; }
+      .hero-media { aspect-ratio: 16 / 10; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 0.65rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .workflow, .location-strip { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .page { padding-top: 1.25rem; }
+      .services-grid, .seller-list, .workflow, .location-strip, .hero-proof { grid-template-columns: 1fr; }
+      .final-cta { display: block; }
+      .final-cta .actions { margin-top: 1rem; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html" aria-label="Cubic Ship home">
+      <img src="logo-160.png" alt="Cubic Ship logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a class="active" href="business-services.html">Business Services</a></li>
+      <li><a href="dhl-locations.html">DHL Locations</a></li>
+      <li><a href="services.html">All Services</a></li>
+      <li><a href="profile.html?account=business">Customer Profile</a></li>
+      <li><a href="track.html">Track</a></li>
+    </ul>
+  </header>
+
+  <main class="page">
+    <section class="container hero">
+      <div class="hero-copy">
+        <div class="kicker">Cubic Ship Business Services</div>
+        <h1>One local counter for business shipping and services.</h1>
+        <p class="lead">Cubic Ship helps local businesses, online sellers, families, and walk-in customers handle DHL Express shipping, freight, packing, documents, print jobs, mailbox needs, notary requests, and everyday business errands through one service workflow.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="profile.html?account=business">Create Business Profile</a>
+          <a class="btn btn-secondary" href="dhl-locations.html">Find a DHL Location</a>
+        </div>
+        <div class="hero-proof" aria-label="Cubic Ship proof">
+          <div class="proof"><strong>15</strong><span>Managed locations</span></div>
+          <div class="proof"><strong>512</strong><span>Google reviews</span></div>
+          <div class="proof"><strong>4.7</strong><span>Average rating</span></div>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=80" alt="Shipping and business service counter with packages">
+      </div>
+    </section>
+
+    <section class="container" id="services">
+      <div class="section-head">
+        <h2>Services built around the same customer.</h2>
+        <p>Most customers do not need one isolated product. They need the shipment, label, document, print piece, mailbox, or notary step handled correctly.</p>
+      </div>
+      <div class="services-grid">
+        <a class="service-card" href="profile.html?account=business&amp;service=dhl">
+          <div>
+            <small>DHL + Shipping</small>
+            <h3>DHL Express, parcels, and shipment help</h3>
+            <p>International documents, packages, packing questions, customs support, tracking help, and staff-assisted label workflows.</p>
+            <ul>
+              <li>DHL Express Service Point support</li>
+              <li>Documents, parcels, fragile items</li>
+              <li>Customer ticket and staff review</li>
+            </ul>
+          </div>
+          <span class="card-action">Start DHL order -&gt;</span>
+        </a>
+        <a class="service-card" href="profile.html?account=business&amp;service=freight">
+          <div>
+            <small>Freight</small>
+            <h3>Air, ocean, ground, and cargo quotes</h3>
+            <p>Freight support for customers moving boxes, equipment, pallets, containers, or larger shipments that need a human quote.</p>
+            <ul>
+              <li>Air freight</li>
+              <li>Ocean and container inquiries</li>
+              <li>Ground freight routing</li>
+            </ul>
+          </div>
+          <span class="card-action">Request freight quote -&gt;</span>
+        </a>
+        <a class="service-card" href="profile.html?account=business&amp;service=printing">
+          <div>
+            <small>Print + Pack</small>
+            <h3>Labels, documents, copies, scans, and packing</h3>
+            <p>Counter help for everyday print, paperwork, shipping labels, copies, scans, mailers, boxes, customs forms, and shipment prep.</p>
+            <ul>
+              <li>Labels and forms</li>
+              <li>Copies, scans, documents</li>
+              <li>Boxes and mailers</li>
+            </ul>
+          </div>
+          <span class="card-action">Start print inquiry -&gt;</span>
+        </a>
+        <a class="service-card" href="profile.html?account=business&amp;service=business-print">
+          <div>
+            <small>Business Print</small>
+            <h3>Stickers, signs, decals, cards, and displays</h3>
+            <p>Cubic intake for branded business print: packaging labels, logo stickers, QR decals, business cards, banners, window decals, and event displays.</p>
+            <ul>
+              <li>Choose options or bring artwork</li>
+              <li>Paid design help available</li>
+              <li>Pickup or shipping support</li>
+            </ul>
+          </div>
+          <span class="card-action">Request business print -&gt;</span>
+        </a>
+        <a class="service-card" href="profile.html?account=business&amp;service=mailbox">
+          <div>
+            <small>Mailbox</small>
+            <h3>Business mail and package support</h3>
+            <p>Mailbox inquiries, renewals, pickup questions, package holds, and business mail handling through a customer profile.</p>
+            <ul>
+              <li>Mailbox request</li>
+              <li>Package hold questions</li>
+              <li>Business mail notes</li>
+            </ul>
+          </div>
+          <span class="card-action">Start mailbox request -&gt;</span>
+        </a>
+        <a class="service-card" href="profile.html?account=business&amp;service=notary">
+          <div>
+            <small>Notary + Documents</small>
+            <h3>Virtual notary and document prep</h3>
+            <p>Notary request intake for document type, signer details, appointment timing, identity-readiness, scanning, printing, and secure handoff.</p>
+            <ul>
+              <li>Virtual notary request</li>
+              <li>Signer and appointment notes</li>
+              <li>Document prep support</li>
+            </ul>
+          </div>
+          <span class="card-action">Start notary request -&gt;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="container seller-band" id="online-sellers">
+      <div>
+        <div class="kicker">Online Sellers + Local Businesses</div>
+        <h2>Built for the person shipping from a store, garage, home office, or small warehouse.</h2>
+        <p>Create a business profile once, then use it for DHL, freight, print, packaging labels, mailbox requests, notary tasks, and other Cubic Ship services as the business grows.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="profile.html?account=business&amp;offer=online-seller">Create Business Profile</a>
+          <a class="btn btn-secondary" href="quote.html">Request a Quote</a>
+        </div>
+      </div>
+      <div class="seller-list">
+        <span><b>Etsy and Shopify sellers</b>Shipping help plus packaging labels, QR decals, and branded inserts.</span>
+        <span><b>Local service businesses</b>Print, documents, notary, mail, and shipment support from a nearby counter.</span>
+        <span><b>Import/export customers</b>DHL Express, freight, documents, tracking, and destination details reviewed by staff.</span>
+        <span><b>Event and retail teams</b>Banners, signs, decals, flyers, packaging, and shipment prep tied to one service order.</span>
+      </div>
+    </section>
+
+    <section class="container" id="locations">
+      <div class="section-head">
+        <h2>Location pages should sell Cubic Ship, not one product.</h2>
+        <p>Each branch can rank for DHL shipping, print and pack, mailbox, notary, business services, and nearby counter support.</p>
+      </div>
+      <div class="location-strip">
+        <a class="location-card" href="dhl-locations.html#locations">
+          <h3>Bridgeview, IL</h3>
+          <p>7327 W 87th St, Bridgeview, IL 60455</p>
+          <span>View location -&gt;</span>
+        </a>
+        <a class="location-card" href="dhl-locations.html#locations">
+          <h3>Oak Lawn, IL</h3>
+          <p>9812 S Cicero Ave, Oak Lawn, IL 60453</p>
+          <span>View location -&gt;</span>
+        </a>
+        <a class="location-card" href="dhl-locations.html#locations">
+          <h3>Dearborn, MI</h3>
+          <p>6317 Schaefer Rd, Dearborn, MI 48126</p>
+          <span>View location -&gt;</span>
+        </a>
+        <a class="location-card" href="dhl-locations.html#locations">
+          <h3>All Locations</h3>
+          <p>15 managed DHL Express Service Point locations, including opening-soon counters.</p>
+          <span>Open location list -&gt;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="container" id="workflow">
+      <div class="section-head">
+        <h2>Simple workflow for customers and staff.</h2>
+        <p>The public site creates demand. The profile turns that demand into a Cubic service order staff can process.</p>
+      </div>
+      <div class="workflow">
+        <div class="step"><strong>01</strong><h3>Customer finds Cubic</h3><p>DHL, shipping, print, notary, mailbox, and business-services searches land on Cubic pages.</p></div>
+        <div class="step"><strong>02</strong><h3>Customer starts profile</h3><p>They choose the service type and submit shipment, print, document, or mailbox details.</p></div>
+        <div class="step"><strong>03</strong><h3>Staff reviews order</h3><p>The selected branch verifies details, follows up, creates labels externally if needed, and uploads files/status.</p></div>
+        <div class="step"><strong>04</strong><h3>More services flow in</h3><p>Shipping customers naturally discover print, signs, packaging labels, notary, mailbox, and freight help.</p></div>
+      </div>
+      <div class="final-cta">
+        <div>
+          <h2>Make Cubic the front door.</h2>
+          <p>Push Cubic Ship first. Sticker and print work can flow through the business print service once the customer is already in the Cubic ecosystem.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="profile.html?account=business">Open Profile</a>
+          <a class="btn btn-secondary" href="services.html">All Services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>Cubic Ship business shipping, print, mailbox, notary, freight, and counter support.</span>
+      <span><a href="index.html">Home</a> · <a href="dhl-locations.html">Locations</a> · <a href="mailto:info@cubicship.com">Email</a></span>
+    </div>
+  </footer>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

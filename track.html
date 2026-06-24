@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Shipment - Cubic Ship</title>
+  <meta name="description" content="Track DHL Express, parcel, air freight, and container shipments from Cubic Ship's tracking page.">
+  <link rel="canonical" href="https://cubicship.com/track.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="Track Your Shipment - Cubic Ship">
+  <meta property="og:description" content="Open the right tracking tool for DHL Express, parcels, air waybills, and container references.">
+  <meta property="og:url" content="https://cubicship.com/track.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Track Your Shipment - Cubic Ship">
+  <meta name="twitter:description" content="Track DHL Express, parcels, air freight, and container shipments from one Cubic Ship page.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --navy-mid: #132744;
+      --orange: #f47621;
+      --orange-light: #ff8f42;
+      --green: #4cba3c;
+      --blue-accent: #3b82f6;
+      --text: #e8ecf4;
+      --text-secondary: #8899b4;
+      --text-dim: #4a5f82;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.14);
+      --glow-orange: rgba(244,118,33,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: 64px;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo img { height: 40px; width: auto; border-radius: 6px; }
+    .nav-wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.3px;
+    }
+    .c-orange { color: var(--orange); }
+    .c-green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 42px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-light); box-shadow: 0 0 24px var(--glow-orange); }
+    .btn-secondary { color: var(--text); background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.08); }
+    .page {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem);
+    }
+    .page::before {
+      content: '';
+      position: absolute;
+      width: 720px;
+      height: 720px;
+      top: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(59,130,246,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .container { position: relative; z-index: 1; max-width: 1060px; margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1.5rem;
+      color: #ffcc00;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+    .dhl-pill {
+      background: #ffcc00;
+      color: #cc0000;
+      padding: 0.18rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      font-weight: 700;
+      letter-spacing: -2.5px;
+      line-height: 0.98;
+      margin-bottom: 1.4rem;
+    }
+    .lead {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+    }
+    .track-card {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+    }
+    .track-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.35rem;
+    }
+    .track-card p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      margin-bottom: 1.25rem;
+    }
+    .field { margin-bottom: 0.85rem; }
+    .field label {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .field input, .field select {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--navy);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--glow-orange);
+    }
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      align-items: end;
+    }
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .quick-card {
+      padding: 1.25rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .quick-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.35rem;
+    }
+    .quick-card p {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .support-strip {
+      margin-top: 3rem;
+      padding: 1.25rem;
+      border-radius: 14px;
+      border: 1px solid rgba(244,118,33,0.16);
+      background: rgba(244,118,33,0.06);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+    .support-strip p { color: var(--text-secondary); font-size: 0.88rem; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+    .footer-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-inner a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .footer-inner a:hover { color: var(--text); }
+    @media (max-width: 820px) {
+      .nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 0.75rem 1rem 1rem;
+        background: rgba(10,22,40,0.98);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-actions .btn { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .quick-grid { grid-template-columns: 1fr; }
+      .support-strip { flex-direction: column; align-items: stretch; }
+      .action-row { grid-template-columns: 1fr; }
+      h1 { letter-spacing: -1.4px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="dhl-locations.html">DHL Locations</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="systems.html">Systems</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:+17084325600" class="btn btn-primary">Call</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow"><span class="dhl-pill">DHL</span> Shipment Tracking</div>
+          <h1>Track your shipment.</h1>
+          <p class="lead">Look up DHL Express packages, parcel shipments, air waybills, and container references from one Cubic Ship tracking page. If the number needs human help, send it to the counter and we will help route it.</p>
+        </div>
+
+        <form class="track-card" id="trackingForm">
+          <h2>Tracking lookup</h2>
+          <p>Choose the shipment type, enter the reference number, and open the correct tracking tool.</p>
+          <div class="field">
+            <label for="carrier">Shipment type</label>
+            <select id="carrier">
+              <option value="dhl">DHL Express</option>
+              <option value="ups">UPS</option>
+              <option value="fedex">FedEx</option>
+              <option value="usps">USPS</option>
+              <option value="air">Air freight / AWB</option>
+              <option value="container">Container shipment</option>
+            </select>
+          </div>
+          <div class="action-row">
+            <div class="field" style="margin-bottom:0;">
+              <label for="trackingNumber">Tracking or reference number</label>
+              <input id="trackingNumber" type="text" autocomplete="off" placeholder="Example: 1234567890" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Track</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="quick-grid" aria-label="Tracking support">
+        <div class="quick-card">
+          <h3>DHL Express</h3>
+          <p>Best for international documents and parcels shipped through DHL Express or handled at the Cubic Ship counter.</p>
+        </div>
+        <div class="quick-card">
+          <h3>Air freight</h3>
+          <p>Use your airline air waybill or freight reference. If you only have a quote number, contact Cubic Ship for status support.</p>
+        </div>
+        <div class="quick-card">
+          <h3>Container shipping</h3>
+          <p>Track by container number, booking number, or bill of lading when available. We can help identify the right reference.</p>
+        </div>
+      </section>
+
+      <div class="support-strip">
+        <p><strong>Need help?</strong> Bring your tracking number, receipt, or shipment photo to Cubic Ship and we will help you check the next step.</p>
+        <a href="index.html#contact" class="btn btn-secondary">Contact Cubic Ship</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
+      <span><a href="mailto:info@cubicship.com">info@cubicship.com</a> · <a href="dhl-locations.html">DHL Locations</a></span>
+    </div>
+  </footer>
+
+  <script>
+    const urls = {
+      dhl: value => `https://www.dhl.com/us-en/home/tracking/tracking-express.html?submit=1&tracking-id=${encodeURIComponent(value)}`,
+      ups: value => `https://www.ups.com/track?tracknum=${encodeURIComponent(value)}`,
+      fedex: value => `https://www.fedex.com/fedextrack/?trknbr=${encodeURIComponent(value)}`,
+      usps: value => `https://tools.usps.com/go/TrackConfirmAction?tLabels=${encodeURIComponent(value)}`,
+      air: value => `https://www.track-trace.com/aircargo#${encodeURIComponent(value)}`,
+      container: value => `https://www.track-trace.com/container#${encodeURIComponent(value)}`
+    };
+
+    document.getElementById('trackingForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const carrier = document.getElementById('carrier').value;
+      const number = document.getElementById('trackingNumber').value.trim();
+      if (!number) return;
+      window.open(urls[carrier](number), '_blank', 'noopener');
+    });
+
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(link =>
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
+  </script>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Systems - Cubic Ship</title>
+  <meta name="description" content="Cubic Ship business systems for operators: websites, AI communication, email workflows, dashboards, smart applications, employee training, and revenue systems.">
+  <link rel="canonical" href="https://cubicship.com/systems.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cubic Ship">
+  <meta property="og:title" content="Business Systems for Operators - Cubic Ship">
+  <meta property="og:description" content="Practical websites, AI communication, dashboards, training systems, and revenue workflows for local operators and service teams.">
+  <meta property="og:url" content="https://cubicship.com/systems.html">
+  <meta property="og:image" content="https://cubicship.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Business Systems for Operators - Cubic Ship">
+  <meta name="twitter:description" content="Websites, AI tools, dashboards, smart applications, employee training, and revenue systems for operators.">
+  <meta name="twitter:image" content="https://cubicship.com/og-image.png">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #0f1f38;
+      --navy-mid: #132744;
+      --orange: #f47621;
+      --orange-light: #ff8f42;
+      --green: #4cba3c;
+      --text: #e8ecf4;
+      --text-secondary: #8899b4;
+      --text-dim: #4a5f82;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.14);
+      --glow-orange: rgba(244,118,33,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: 64px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(10,22,40,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo img { height: 40px; width: auto; border-radius: 6px; }
+    .nav-wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.3px;
+    }
+    .c-orange { color: var(--orange); }
+    .c-green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: 9px;
+      border: none;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-light); box-shadow: 0 0 24px var(--glow-orange); }
+    .page { padding: clamp(3rem, 7vw, 5.5rem) clamp(1rem, 4vw, 3rem); }
+    .container { max-width: 1120px; margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: end;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .eyebrow {
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.25rem, 5.5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -1.2px;
+      margin-bottom: 1rem;
+    }
+    .lead {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 560px;
+    }
+    .proof-box {
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(76,186,60,0.16);
+      background: rgba(76,186,60,0.06);
+    }
+    .proof-box strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+    .proof-box p { color: var(--text-secondary); font-size: 0.9rem; }
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .system-card {
+      min-height: 240px;
+      padding: 1.35rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+    }
+    .system-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.55rem;
+    }
+    .system-card p {
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      margin-bottom: 1rem;
+    }
+    .system-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .system-card li {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .system-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+    .cta {
+      margin-top: 2rem;
+      padding: 1.25rem;
+      border-radius: 14px;
+      border: 1px solid rgba(244,118,33,0.16);
+      background: rgba(244,118,33,0.06);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+    .cta p { color: var(--text-secondary); font-size: 0.88rem; }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: flex-end;
+    }
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+    .btn-secondary:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.07); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-inner a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .footer-inner a:hover { color: var(--text); }
+    @media (max-width: 920px) {
+      .systems-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .hero, .systems-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 0.75rem 1rem 1rem;
+        background: rgba(10,22,40,0.98);
+        border-bottom: 1px solid var(--border);
+      }
+      .cta { flex-direction: column; align-items: stretch; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="dhl-locations.html">DHL Locations</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="profile.html?account=business">Business Dashboard</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="platform.html">Platform</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Business Systems</div>
+          <h1>Business systems for operators.</h1>
+          <p class="lead">Websites, AI communication, email workflows, owner and employee dashboards, smart applications, revenue systems, and training tools for teams that need the work to run cleaner.</p>
+        </div>
+        <div class="proof-box">
+          <strong>Built for operators, not just websites.</strong>
+          <p>The goal is practical: save time, help employees follow the process, capture leads, communicate faster, and give owners visibility into what is happening.</p>
+        </div>
+      </section>
+
+      <section class="systems-grid">
+        <article class="system-card">
+          <h2>Websites</h2>
+          <p>Modern service websites that explain what you do and convert visitors into calls, forms, bookings, or walk-ins.</p>
+          <ul>
+            <li>Service pages</li>
+            <li>Lead forms</li>
+            <li>Location pages</li>
+            <li>Review proof</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>AI Communication</h2>
+          <p>AI-assisted scripts, intake flows, and customer replies that keep communication fast and consistent.</p>
+          <ul>
+            <li>Customer intake</li>
+            <li>Quote routing</li>
+            <li>Follow-up scripts</li>
+            <li>FAQ support</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Email Systems</h2>
+          <p>Email flows that help leads, customers, and staff know what happens next without someone remembering every step.</p>
+          <ul>
+            <li>Quote follow-ups</li>
+            <li>Status updates</li>
+            <li>Reminders</li>
+            <li>Review requests</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Time-Saving Workflows</h2>
+          <p>Small automations and forms that reduce repeated typing, missed steps, and owner interruptions.</p>
+          <ul>
+            <li>Digital checklists</li>
+            <li>Smart forms</li>
+            <li>Task handoffs</li>
+            <li>Process templates</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Revenue Systems</h2>
+          <p>Systems that help capture demand, follow up on leads, sell add-on services, and build repeat business.</p>
+          <ul>
+            <li>Lead capture</li>
+            <li>Upsell prompts</li>
+            <li>Referral flows</li>
+            <li>Campaign pages</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Owner Dashboards</h2>
+          <p>Dashboards that give owners visibility into jobs, leads, revenue, team activity, and operational bottlenecks.</p>
+          <ul>
+            <li>Revenue snapshots</li>
+            <li>Task tracking</li>
+            <li>Lead pipeline</li>
+            <li>Location performance</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Employee Dashboards</h2>
+          <p>Simple views that tell employees what to do, what to collect, and what step comes next.</p>
+          <ul>
+            <li>Daily queue</li>
+            <li>Service steps</li>
+            <li>Customer notes</li>
+            <li>Training links</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Smart Applications</h2>
+          <p>Custom tools for businesses that need more than a basic website but less than a giant software project.</p>
+          <ul>
+            <li>Internal portals</li>
+            <li>Shipping tools</li>
+            <li>Training apps</li>
+            <li>Admin panels</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <h2>Employee Training</h2>
+          <p>Training systems that help new hires learn services, scripts, counter steps, and customer handling.</p>
+          <ul>
+            <li>Step-by-step lessons</li>
+            <li>Roleplay scripts</li>
+            <li>Quizzes</li>
+            <li>Manager review</li>
+          </ul>
+        </article>
+      </section>
+
+      <div class="cta">
+        <p><strong>Need a system for your business?</strong> Start with the bottleneck: calls, leads, employees, emails, dashboards, or training.</p>
+        <div class="cta-actions">
+          <a class="btn btn-secondary" href="services.html">View Services</a>
+          <a class="btn btn-primary" href="index.html#contact">Talk to Cubic</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
+      <span><a href="mailto:info@cubicship.com">info@cubicship.com</a> · <a href="index.html#contact">Contact</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(link =>
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
+  </script>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cubic Ship QR Requests</title>
+  <meta name="description" content="PIN-locked Cubic Ship QR request screen for walk-in sender and receiver intake.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #071527;
+      --orange: #f47621;
+      --green: #238636;
+      --surface: #ffffff;
+      --soft: #f5f7fb;
+      --line: #dce4ee;
+      --text: #121826;
+      --muted: #667085;
+      --danger: #b42318;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: #f4f7fb;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .topbar {
+      min-height: 68px;
+      padding: 0.85rem clamp(1rem, 4vw, 2rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .orange { color: var(--orange); }
+    .green { color: var(--green); }
+    .top-actions,
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    main {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: clamp(1rem, 4vw, 2.4rem) 0 3rem;
+    }
+    .hero,
+    .panel,
+    .intake-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+      gap: 1rem;
+      padding: clamp(1.1rem, 4vw, 1.8rem);
+      background: var(--navy);
+      color: #edf4ff;
+      margin-bottom: 1rem;
+    }
+    .eyebrow {
+      color: #ffb172;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: 0;
+      line-height: 1.05;
+    }
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      margin-bottom: 0.65rem;
+    }
+    .hero p { max-width: 720px; color: #c4d1e1; font-size: 1rem; }
+    .lock-card {
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      display: grid;
+      gap: 0.65rem;
+      align-content: start;
+    }
+    .lock-card strong { display: block; }
+    .lock-card span { display: block; color: #c4d1e1; font-size: 0.86rem; }
+    .panel {
+      padding: clamp(1rem, 3vw, 1.4rem);
+      margin-bottom: 1rem;
+    }
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.8fr) minmax(180px, 0.8fr) minmax(200px, 1fr);
+      gap: 0.75rem;
+      align-items: end;
+    }
+    label {
+      display: block;
+      color: #44546a;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.78rem 0.85rem;
+      border: 1px solid #cfd9e6;
+      border-radius: 9px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+    textarea {
+      min-height: 82px;
+      resize: vertical;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #f9a15f;
+      box-shadow: 0 0 0 4px rgba(244,118,33,0.12);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.72rem 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .btn-green { background: var(--green); border-color: var(--green); color: #fff; }
+    .btn-danger { background: #fff5f5; border-color: #fecdca; color: var(--danger); }
+    .status-line {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+    }
+    .status-line.error { color: var(--danger); font-weight: 800; }
+    .status-line.warn {
+      color: #9a3412;
+      font-weight: 800;
+    }
+    .intake-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+    .intake-card {
+      padding: 1rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .intake-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .intake-head strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+    .intake-head span,
+    .muted {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0.35rem 0.65rem;
+      border: 1px solid #d8e3ef;
+      border-radius: 999px;
+      background: #f7faff;
+      color: #40536a;
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .status-submitted { background: #fff7ed; border-color: #fed7aa; color: #9a3412; }
+    .status-in_review { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+    .status-completed { background: #ecfdf3; border-color: #bbf7d0; color: #166534; }
+    .status-issue { background: #fff5f5; border-color: #fecdca; color: #b42318; }
+    .copy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .copy-box {
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--soft);
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.9rem;
+    }
+    .copy-box strong {
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .card-actions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+    .note-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.6rem;
+      align-items: end;
+    }
+    .staff-notes {
+      padding: 0.85rem;
+      border-left: 4px solid #fed7aa;
+      background: #fff7ed;
+      color: #713f12;
+      border-radius: 9px;
+      white-space: pre-wrap;
+      font-size: 0.9rem;
+    }
+    .empty {
+      padding: 1rem;
+      border: 1px dashed #cfd9e6;
+      border-radius: 12px;
+      color: var(--muted);
+      background: #fff;
+    }
+    .hidden { display: none !important; }
+    @media (max-width: 900px) {
+      .hero,
+      .toolbar,
+      .copy-grid,
+      .note-row { grid-template-columns: 1fr; }
+      .card-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      main { width: min(100% - 1rem, 1180px); }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .top-actions, .top-actions .btn, .button-row .btn, .card-actions { width: 100%; }
+      .card-actions { grid-template-columns: 1fr; }
+      .intake-head { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="qr-codes.html">QR Codes</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">QR Requests</div>
+        <h1>QR submissions for this location.</h1>
+        <p>Customer scans the in-store QR, fills sender and receiver only, then the branch copies the clean details into CRA and finishes the shipment at the counter.</p>
+      </div>
+      <aside class="lock-card">
+        <strong id="lockedBranchName">Location locked</strong>
+        <span id="lockedBranchText">This screen only loads QR requests for the selected branch after the branch PIN is entered.</span>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <div>
+          <label for="locationId">Branch</label>
+          <select id="locationId">
+            <option value="bridgeview">Cubic Ship Bridgeview</option>
+            <option value="dearborn">Dearborn, MI</option>
+            <option value="oak-park">Oak Park / West Chicago, IL</option>
+            <option value="oak-lawn">Oak Lawn, IL</option>
+            <option value="mccook">McCook Area</option>
+            <option value="buffalo">Buffalo, NY</option>
+            <option value="bethpage">Bethpage, NY</option>
+            <option value="iselin">Iselin / Woodbridge, NJ</option>
+            <option value="milwaukee">Milwaukee, WI</option>
+            <option value="wyncote">Wyncote, PA</option>
+            <option value="indianapolis">Indianapolis, IN</option>
+            <option value="allentown-pa">Allentown, PA</option>
+            <option value="farmington">Farmington, MI</option>
+            <option value="northeast-philadelphia">Northeast Philadelphia, PA</option>
+            <option value="freeport">Freeport, NY</option>
+            <option value="cleveland">Cleveland, OH</option>
+          </select>
+        </div>
+        <div>
+          <label for="branchPin">Branch PIN</label>
+          <input id="branchPin" type="password" autocomplete="current-password" placeholder="Enter branch PIN">
+        </div>
+        <div class="button-row">
+          <button class="btn btn-primary" id="unlockBoard" type="button">View QR Requests</button>
+          <button class="btn" id="refreshBoard" type="button">Refresh</button>
+          <button class="btn" id="clearPin" type="button">Lock</button>
+        </div>
+      </div>
+      <p class="status-line" id="boardStatus">Enter the branch PIN to view this location's QR requests.</p>
+    </section>
+
+    <section class="intake-list" id="intakeList" aria-label="Branch QR intakes">
+      <div class="empty">No QR requests loaded yet.</div>
+    </section>
+  </main>
+
+  <script>
+    const locationId = document.getElementById("locationId");
+    const branchPin = document.getElementById("branchPin");
+    const unlockBoard = document.getElementById("unlockBoard");
+    const refreshBoard = document.getElementById("refreshBoard");
+    const clearPin = document.getElementById("clearPin");
+    const boardStatus = document.getElementById("boardStatus");
+    const intakeList = document.getElementById("intakeList");
+    const lockedBranchName = document.getElementById("lockedBranchName");
+    const lockedBranchText = document.getElementById("lockedBranchText");
+    const LOCATION_ALIASES = {
+      bridgeview: "bridgeview",
+      dearborn: "dearborn",
+      oakpark: "oak-park",
+      westchicago: "oak-park",
+      oaklawn: "oak-lawn",
+      mccook: "mccook",
+      buffalo: "buffalo",
+      bethpage: "bethpage",
+      iselin: "iselin",
+      woodbridge: "iselin",
+      milwaukee: "milwaukee",
+      wyncote: "wyncote",
+      indianapolis: "indianapolis",
+      allentown: "allentown-pa",
+      allentownpa: "allentown-pa",
+      farmington: "farmington",
+      northeastphiladelphia: "northeast-philadelphia",
+      nephiladelphia: "northeast-philadelphia",
+      freeport: "freeport",
+      cleveland: "cleveland",
+    };
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function selectedLocationName() {
+      return locationId.options[locationId.selectedIndex]?.textContent || "Selected branch";
+    }
+
+    function pinStorageKey() {
+      return `cubic_branch_pin_${locationId.value}`;
+    }
+
+    function setStatus(message, type = "") {
+      boardStatus.textContent = message;
+      boardStatus.className = `status-line ${type}`.trim();
+    }
+
+    function normalizeLocationFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get("location") || params.get("branch");
+      if (!requested) return;
+      const compact = requested.toLowerCase().replace(/[^a-z0-9]+/g, "");
+      const normalized = LOCATION_ALIASES[compact] || requested;
+      const option = [...locationId.options].find((item) => item.value === normalized);
+      if (!option) return;
+      locationId.value = normalized;
+      locationId.disabled = true;
+    }
+
+    function syncBranchHeader() {
+      lockedBranchName.textContent = selectedLocationName();
+      lockedBranchText.textContent = `Locked to ${selectedLocationName()}. Only QR requests submitted from this branch URL appear here.`;
+      branchPin.value = sessionStorage.getItem(pinStorageKey()) || "";
+    }
+
+    function personLines(person = {}) {
+      return [
+        `Name: ${person.name || ""}`,
+        person.company ? `Company: ${person.company}` : "",
+        `Phone: ${person.phone || ""}`,
+        `Email: ${person.email || ""}`,
+        `Address: ${person.address1 || ""}`,
+        person.address2 ? `Address 2: ${person.address2}` : "",
+        `City/State/ZIP: ${[person.city, person.state, person.postal].filter(Boolean).join(", ")}`,
+        `Country: ${person.country || ""}`,
+      ].filter(Boolean).join("\n");
+    }
+
+    function intakeCopyText(intake) {
+      return [
+        `CubicShip QR Intake: ${intake.number}`,
+        `Location: ${intake.locationName}`,
+        `Submitted: ${formatDate(intake.createdAt)}`,
+        "",
+        "SHIPPER / SENDER",
+        personLines(intake.sender || {}),
+        "",
+        "RECEIVER",
+        personLines(intake.receiver || {}),
+        "",
+        "STAFF NEXT STEP",
+        "Copy into CRA, then confirm package, dimensions, value, service, payment, and label at the counter.",
+      ].join("\n");
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    }
+
+    function statusLabel(status) {
+      const labels = {
+        submitted: "New",
+        in_review: "In CRA",
+        completed: "Completed",
+        issue: "Issue",
+        ready_for_dropoff: "Ready",
+      };
+      return labels[status] || status || "New";
+    }
+
+    async function copyText(text, label = "Copied") {
+      await navigator.clipboard.writeText(text);
+      setStatus(`${label}.`);
+    }
+
+    async function callBranchApi(payload) {
+      const pin = branchPin.value.trim();
+      if (!pin) throw new Error("Enter the branch PIN first.");
+      sessionStorage.setItem(pinStorageKey(), pin);
+      const response = await fetch("/api/customer-shipments?source=branch-intakes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          locationId: locationId.value,
+          pin,
+          ...payload,
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.error || "QR request lookup failed.");
+      return data;
+    }
+
+    function renderIntakes(intakes = []) {
+      if (!intakes.length) {
+        intakeList.innerHTML = `<div class="empty">No QR sender/receiver requests yet for ${escapeHtml(selectedLocationName())}.</div>`;
+        return;
+      }
+
+      intakeList.innerHTML = intakes.map((intake) => {
+        const sender = personLines(intake.sender || {});
+        const receiver = personLines(intake.receiver || {});
+        return `
+          <article class="intake-card" data-intake-id="${escapeHtml(intake.id)}">
+            <div class="intake-head">
+              <div>
+                <strong>${escapeHtml(intake.number)}</strong>
+                <span>${escapeHtml(intake.customerName || intake.sender?.name || "Walk-in customer")} · ${escapeHtml(intake.customerPhone || intake.sender?.phone || "")}</span>
+                <span>${escapeHtml(formatDate(intake.createdAt))} · ${escapeHtml(intake.locationName)}</span>
+              </div>
+              <span class="chip status-${escapeHtml(intake.status || "submitted")}">${escapeHtml(statusLabel(intake.status))}</span>
+            </div>
+            <div class="copy-grid">
+              <div class="copy-box"><strong>Shipper / Sender</strong>${escapeHtml(sender)}</div>
+              <div class="copy-box"><strong>Receiver</strong>${escapeHtml(receiver)}</div>
+            </div>
+            <div class="button-row">
+              <button class="btn" type="button" data-copy="sender">Copy Sender</button>
+              <button class="btn" type="button" data-copy="receiver">Copy Receiver</button>
+              <button class="btn btn-primary" type="button" data-copy="all">Copy All for CRA</button>
+            </div>
+            <div class="card-actions">
+              <button class="btn" type="button" data-action="start">Started</button>
+              <button class="btn btn-primary" type="button" data-action="copied_to_cra">Copied to CRA</button>
+              <button class="btn btn-green" type="button" data-action="complete">Completed</button>
+              <button class="btn btn-danger" type="button" data-action="issue">Issue</button>
+            </div>
+            <div class="note-row">
+              <div>
+                <label for="note-${escapeHtml(intake.id)}">Add Note After Submission</label>
+                <textarea id="note-${escapeHtml(intake.id)}" data-note placeholder="Example: receiver apartment missing, customer confirmed address, CRA copied by Hani."></textarea>
+              </div>
+              <button class="btn" type="button" data-action="note">Add Note</button>
+            </div>
+            ${intake.staffNotes ? `<div class="staff-notes">${escapeHtml(intake.staffNotes)}</div>` : ""}
+          </article>
+        `;
+      }).join("");
+    }
+
+    async function loadBoard() {
+      try {
+        setStatus("Loading branch queue...");
+        const data = await callBranchApi({ action: "list" });
+        renderIntakes(data.intakes || []);
+        const count = data.intakes?.length || 0;
+        setStatus(`${selectedLocationName()} QR requests loaded: ${count}.${data.proofPinActive ? " Temporary proof PIN is active." : ""}`, data.proofPinActive ? "warn" : "");
+      } catch (error) {
+        intakeList.innerHTML = "<div class=\"empty\">QR requests locked.</div>";
+        setStatus(error.message || "Unable to load QR requests.", "error");
+      }
+    }
+
+    async function updateIntake(card, action) {
+      const noteField = card.querySelector("[data-note]");
+      const note = noteField ? noteField.value.trim() : "";
+      try {
+        setStatus("Updating branch intake...");
+        const data = await callBranchApi({
+          action,
+          id: card.getAttribute("data-intake-id"),
+          appendStaffNote: note,
+        });
+        if (noteField) noteField.value = "";
+        renderIntakes(data.intakes || []);
+        setStatus("QR request updated.");
+      } catch (error) {
+        setStatus(error.message || "Unable to update QR request.", "error");
+      }
+    }
+
+    intakeList.addEventListener("click", async (event) => {
+      const card = event.target.closest("[data-intake-id]");
+      if (!card) return;
+      const id = card.getAttribute("data-intake-id");
+      const actionButton = event.target.closest("[data-action]");
+      const copyButton = event.target.closest("[data-copy]");
+      const intake = [...document.querySelectorAll("[data-intake-id]")].find((item) => item.getAttribute("data-intake-id") === id);
+      const latest = window.currentIntakes?.find((item) => item.id === id);
+
+      if (copyButton && latest) {
+        const mode = copyButton.getAttribute("data-copy");
+        if (mode === "sender") return copyText(personLines(latest.sender || {}), "Sender copied");
+        if (mode === "receiver") return copyText(personLines(latest.receiver || {}), "Receiver copied");
+        return copyText(intakeCopyText(latest), "CRA copy block copied");
+      }
+
+      if (actionButton) {
+        const action = actionButton.getAttribute("data-action");
+        if (action === "note") {
+          const note = card.querySelector("[data-note]")?.value.trim();
+          if (!note) return setStatus("Type a note before adding it.", "error");
+        }
+        await updateIntake(card, action);
+      }
+    });
+
+    const originalRenderIntakes = renderIntakes;
+    renderIntakes = function patchedRenderIntakes(intakes = []) {
+      window.currentIntakes = intakes;
+      originalRenderIntakes(intakes);
+    };
+
+    unlockBoard.addEventListener("click", loadBoard);
+    refreshBoard.addEventListener("click", loadBoard);
+    clearPin.addEventListener("click", () => {
+      sessionStorage.removeItem(pinStorageKey());
+      branchPin.value = "";
+      intakeList.innerHTML = "<div class=\"empty\">QR requests locked.</div>";
+      setStatus("QR requests locked.");
+    });
+    locationId.addEventListener("change", syncBranchHeader);
+    branchPin.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") loadBoard();
+    });
+
+    normalizeLocationFromUrl();
+    syncBranchHeader();
+  </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cubic Ship Location QR Codes</title>
+  <meta name="description" content="Cubic Ship branch QR codes for walk-in sender and receiver intake.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #071527;
+      --orange: #f47621;
+      --green: #238636;
+      --surface: #ffffff;
+      --soft: #f5f7fb;
+      --line: #dce4ee;
+      --text: #121826;
+      --muted: #667085;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: #f4f7fb;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .topbar {
+      min-height: 68px;
+      padding: 0.85rem clamp(1rem, 4vw, 2rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .orange { color: var(--orange); }
+    .green { color: var(--green); }
+    .top-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    main {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: clamp(1rem, 4vw, 2.4rem) 0 3rem;
+    }
+    .hero {
+      padding: clamp(1.2rem, 4vw, 2rem);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--navy);
+      color: #edf4ff;
+      margin-bottom: 1rem;
+    }
+    .eyebrow {
+      color: #ffb172;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+    h1, h2 {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: 0;
+      line-height: 1.05;
+    }
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2rem, 6vw, 4.6rem);
+      margin-bottom: 0.7rem;
+    }
+    .hero p {
+      max-width: 760px;
+      color: #c4d1e1;
+      font-size: 1rem;
+    }
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+    .qr-card {
+      display: grid;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+    }
+    .qr-card h2 { font-size: 1rem; }
+    .qr-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 0.55rem;
+    }
+    .qr-link {
+      min-height: 44px;
+      padding: 0.65rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+      color: #344054;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      word-break: break-all;
+    }
+    .button-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .note {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 1040px) {
+      .qr-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 780px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .top-actions { width: 100%; }
+      .top-actions .btn { flex: 1; }
+      .qr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .button-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      main { width: min(100% - 1rem, 1180px); }
+      .qr-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="branch-intake.html">QR Requests</a>
+      <a class="btn btn-primary" href="qr-shipment.html">Generic Form</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Branch QR Proofing</div>
+      <h1>Location QR codes.</h1>
+      <p>Each QR opens the walk-in sender and receiver intake form with that branch already selected.</p>
+    </section>
+
+    <section class="qr-grid" id="qrGrid" aria-label="Location QR codes"></section>
+    <p class="note" id="copyStatus">Use the location link or download the SVG QR for printing.</p>
+  </main>
+
+  <script>
+    const locations = [
+      ["bridgeview", "Cubic Ship Bridgeview"],
+      ["dearborn", "Dearborn, MI"],
+      ["oak-park", "Oak Park / West Chicago, IL"],
+      ["oak-lawn", "Oak Lawn, IL"],
+      ["mccook", "McCook Area"],
+      ["buffalo", "Buffalo, NY"],
+      ["bethpage", "Bethpage, NY"],
+      ["iselin", "Iselin / Woodbridge, NJ"],
+      ["milwaukee", "Milwaukee, WI"],
+      ["wyncote", "Wyncote, PA"],
+      ["indianapolis", "Indianapolis, IN"],
+      ["allentown-pa", "Allentown, PA"],
+      ["farmington", "Farmington, MI"],
+      ["northeast-philadelphia", "Northeast Philadelphia, PA"],
+      ["freeport", "Freeport, NY"],
+      ["cleveland", "Cleveland, OH"],
+    ];
+    const grid = document.getElementById("qrGrid");
+    const copyStatus = document.getElementById("copyStatus");
+
+    function escapeHtml(value) {
+      return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function formUrl(id) {
+      return `${window.location.origin}/qr-shipment.html?location=${encodeURIComponent(id)}`;
+    }
+
+    function boardUrl(id) {
+      return `${window.location.origin}/branch-intake.html?location=${encodeURIComponent(id)}`;
+    }
+
+    grid.innerHTML = locations.map(([id, name]) => {
+      const url = formUrl(id);
+      const board = boardUrl(id);
+      const qrPath = `qr-codes/${id}.svg`;
+      return `
+        <article class="qr-card">
+          <h2>${escapeHtml(name)}</h2>
+          <img src="${qrPath}" alt="${escapeHtml(name)} QR code">
+          <div class="qr-link">${escapeHtml(url)}</div>
+          <div class="button-row">
+            <a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">Open</a>
+            <a class="btn" href="${board}" target="_blank" rel="noopener">Requests</a>
+            <a class="btn" href="${qrPath}" download>Download</a>
+            <button class="btn" type="button" data-copy-link="${escapeHtml(url)}">Copy</button>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    grid.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-copy-link]");
+      if (!button) return;
+      await navigator.clipboard.writeText(button.getAttribute("data-copy-link"));
+      copyStatus.textContent = "Location form link copied.";
+    });
+  </script>
+</body>
+</html>

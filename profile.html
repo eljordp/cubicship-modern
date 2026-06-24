@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Dashboard - Cubic Ship</title>
+  <meta name="description" content="Cubic Ship business dashboard for service orders, secure order codes, label PDFs, business print and display requests, status updates, and customer profile security.">
+  <link rel="canonical" href="https://cubicship.com/profile.html">
+  <link rel="icon" href="favicon-64.png" type="image/png">
+  <link rel="stylesheet" href="chat-widget.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --text: #101827;
+      --muted: #5b677a;
+      --soft: #f5f7fb;
+      --surface: #ffffff;
+      --line: #dbe3ee;
+      --orange: #f47621;
+      --green: #238636;
+      --blue: #0f62fe;
+      --red: #b42318;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: var(--soft);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      min-height: 64px;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+    }
+    .brand img { width: 40px; height: 40px; border-radius: 7px; object-fit: cover; }
+    .brand .orange { color: var(--orange); }
+    .brand .green { color: var(--green); }
+    .nav-links {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a, .logout {
+      border: 0;
+      border-radius: 8px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 0.45rem 0.75rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .logout:hover { color: var(--text); background: #eef2f7; }
+    .logout { display: none; }
+    .logout.open { display: inline-flex; }
+    main { padding: clamp(1.25rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem); }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .auth-shell {
+      min-height: calc(100vh - 150px);
+      display: grid;
+      place-items: center;
+    }
+    .auth-shell[hidden], .app[hidden] { display: none; }
+    .panel, .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      box-shadow: 0 16px 36px rgba(15,23,42,0.06);
+    }
+    .panel {
+      width: min(100%, 900px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      overflow: hidden;
+    }
+    .intro {
+      padding: clamp(1.25rem, 4vw, 2rem);
+      background: #101827;
+      color: #fff;
+    }
+    .intro img { width: 52px; height: 52px; border-radius: 8px; margin-bottom: 1rem; }
+    .eyebrow {
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.1;
+      letter-spacing: -0.3px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.8rem; }
+    .intro p, .subtle, .note { color: var(--muted); font-size: 0.88rem; }
+    .intro p { color: #cbd5e1; }
+    .intro-offer {
+      margin-top: 1.25rem;
+      padding: 0.9rem;
+      border: 1px solid rgba(244,118,33,0.34);
+      border-radius: 11px;
+      background: rgba(244,118,33,0.11);
+    }
+    .intro-offer strong {
+      display: block;
+      color: #fff;
+      font-size: 0.98rem;
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+    .intro-offer span {
+      display: block;
+      color: #cbd5e1;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .forms { padding: clamp(1.25rem, 4vw, 2rem); }
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; }
+    .account-choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      margin-bottom: 0.25rem;
+    }
+    .account-choice label {
+      margin: 0;
+      padding: 0.7rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .account-choice input {
+      width: auto;
+      margin-right: 0.4rem;
+    }
+    .business-fields {
+      display: none;
+      grid-column: 1 / -1;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      border: 1px solid rgba(244,118,33,0.22);
+      border-radius: 11px;
+      background: #fff7ed;
+    }
+    .business-fields.open {
+      display: grid;
+    }
+    .business-note {
+      color: #9a3412;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .tab {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--muted);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .tab.active { color: #fff; background: var(--text); border-color: var(--text); }
+    form { display: grid; gap: 0.75rem; }
+    form[hidden] { display: none; }
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+      padding: 0.72rem;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(244,118,33,0.55); }
+    textarea { min-height: 112px; resize: vertical; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 0.72rem 1rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary { color: #fff; background: var(--orange); }
+    .btn-secondary { border-color: var(--line); }
+    .btn-secondary:hover { background: #f8fafc; }
+    .alert {
+      display: none;
+      border: 1px solid rgba(180,35,24,0.22);
+      border-radius: 9px;
+      background: #fff4f2;
+      color: var(--red);
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 0.72rem;
+    }
+    .alert.open { display: block; }
+    .app-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .app-head p { max-width: 600px; }
+    .offer-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(35,134,54,0.22);
+      border-radius: 12px;
+      background: #f0fdf4;
+    }
+    .offer-bar strong {
+      display: block;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.15;
+      margin-bottom: 0.25rem;
+    }
+    .offer-bar span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .business-bar {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(244,118,33,0.24);
+      border-radius: 12px;
+      background: #fff7ed;
+    }
+    .business-bar strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+    .business-bar span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .service-hint {
+      grid-column: 1 / -1;
+      padding: 0.85rem;
+      border: 1px solid rgba(15,98,254,0.18);
+      border-radius: 10px;
+      background: #eff6ff;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .service-hint strong {
+      display: block;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+    }
+    .conditional-fields {
+      display: grid;
+      grid-column: 1 / -1;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      border: 1px solid rgba(244,118,33,0.22);
+      border-radius: 11px;
+      background: #fff7ed;
+    }
+    .conditional-fields[hidden] {
+      display: none;
+    }
+    .module-nav,
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .module-nav a,
+    .stat-card {
+      display: block;
+      padding: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.04);
+    }
+    .module-nav strong,
+    .stat-card strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+    .module-nav span,
+    .stat-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+    .stat-card b {
+      display: block;
+      color: var(--orange);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .download-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .card { padding: 1.15rem; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .full { grid-column: 1 / -1; }
+    .number-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(35,134,54,0.2);
+      border-radius: 11px;
+      background: #f0fdf4;
+    }
+    .number-box.open { display: block; }
+    .ship-number {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 7vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1;
+      margin: 0.35rem 0 0.7rem;
+    }
+    .estimate-box {
+      margin-top: 0.85rem;
+      padding: 0.85rem;
+      border: 1px solid rgba(15,98,254,0.18);
+      border-radius: 10px;
+      background: #eff6ff;
+    }
+    .estimate-box strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .estimate-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+    .shipment-list {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .shipment {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      padding: 0.9rem;
+    }
+    .shipment-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+    .shipment strong { font-family: "Space Grotesk", sans-serif; font-size: 1.05rem; }
+    .status {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.55rem;
+      text-transform: uppercase;
+    }
+    .shipment p { color: var(--muted); font-size: 0.84rem; }
+    .meta { display: grid; gap: 0.2rem; }
+    .ticket-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .label-list {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .label-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+    }
+    .label-card strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .label-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .marketing {
+      margin-top: 1rem;
+    }
+    .marketing-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .marketing-head p {
+      max-width: 600px;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .service-tile {
+      display: grid;
+      gap: 0.4rem;
+      min-height: 150px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.04);
+    }
+    .service-tile:hover { border-color: rgba(244,118,33,0.38); }
+    .service-tile b {
+      color: var(--orange);
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .service-tile strong {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.02rem;
+      line-height: 1.15;
+    }
+    .service-tile span {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    footer {
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      border-top: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+    @media (max-width: 820px) {
+      .panel, .grid, .field-grid, .offer-bar { grid-template-columns: 1fr; }
+      .module-nav, .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .app-head { align-items: stretch; flex-direction: column; }
+      .nav-links a.hide-mobile { display: none; }
+      .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .marketing-head { align-items: stretch; flex-direction: column; }
+    }
+    @media (max-width: 520px) {
+      .module-nav, .stat-grid, .label-card { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="/analytics.js" defer></script>
+  <script src="/_vercel/insights/script.js" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <img src="logo-160.png" alt="Cubic Ship Logo">
+      <span><span class="orange">Cubic</span><span class="green">Ship</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="hide-mobile" href="services.html">Services</a>
+      <a href="track.html">Track</a>
+      <a href="index.html#contact">Contact</a>
+      <button class="logout" id="logoutButton" type="button">Log Out</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="auth-shell" id="authView">
+        <div class="panel">
+          <div class="intro">
+            <img src="logo-160.png" alt="Cubic Ship Logo">
+            <div class="eyebrow">Business Dashboard</div>
+            <h1>Create your shipping profile.</h1>
+            <p>Save your customer or small-business details, submit service orders, and get a CubicShip ticket before you arrive.</p>
+            <div class="intro-offer">
+              <strong>Create a profile so the counter can help you faster.</strong>
+              <span>Submit package details before you arrive and ask the team which current shipment rate fits your needs.</span>
+            </div>
+            <div class="intro-offer">
+              <strong>Built for online shops and small businesses.</strong>
+              <span>For Etsy, Shopify, eBay, Instagram, and local sellers shipping 10, 20, or 30 packages/month.</span>
+            </div>
+          </div>
+          <div class="forms">
+            <div class="tabs">
+              <button class="tab active" id="loginTab" type="button">Log In</button>
+              <button class="tab" id="registerTab" type="button">Create Login</button>
+            </div>
+            <form id="loginForm">
+              <div>
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" autocomplete="username" required>
+              </div>
+              <div>
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" type="password" autocomplete="current-password" required>
+              </div>
+              <button class="btn btn-primary" type="submit">Log In</button>
+            </form>
+            <form id="registerForm" hidden>
+              <div class="account-choice">
+                <label><input type="radio" name="accountType" value="personal" checked>Personal</label>
+                <label><input type="radio" name="accountType" value="business">Small Business</label>
+              </div>
+              <div class="field-grid">
+                <div>
+                  <label for="registerName">Name</label>
+                  <input id="registerName" autocomplete="name" required>
+                </div>
+                <div>
+                  <label for="registerPhone">Phone</label>
+                  <input id="registerPhone" autocomplete="tel">
+                </div>
+                <div>
+                  <label for="registerEmail">Email</label>
+                  <input id="registerEmail" type="email" autocomplete="email" required>
+                </div>
+                <div>
+                  <label for="registerCompany">Company</label>
+                  <input id="registerCompany" autocomplete="organization">
+                </div>
+                <div class="business-fields" id="businessFields">
+                  <p class="business-note">Small business accounts are for online vendors selling on Etsy, Shopify, eBay, Instagram, or similar channels from home, a garage, or a small workspace. Enter the signup code and expected volume so Cubic can review the best available shipping path for your business.</p>
+                  <div class="field-grid">
+                    <div>
+                      <label for="signupCode">Signup Code</label>
+                      <input id="signupCode" autocomplete="off" placeholder="Small business code">
+                    </div>
+                    <div>
+                      <label for="monthlyShipments">Monthly Shipments</label>
+                      <select id="monthlyShipments">
+                        <option value="">Choose tier</option>
+                        <option value="10">10 shipments/month</option>
+                        <option value="20">20 shipments/month</option>
+                        <option value="30">30 shipments/month</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="sellingChannels">Where You Sell Online</label>
+                      <input id="sellingChannels" placeholder="Shopify, Etsy, eBay, Instagram...">
+                    </div>
+                    <div>
+                      <label for="productTypes">Products</label>
+                      <input id="productTypes" placeholder="Clothes, parts, beauty, electronics...">
+                    </div>
+                  </div>
+                </div>
+                <div class="full">
+                  <label for="registerPassword">Password</label>
+                  <input id="registerPassword" type="password" autocomplete="new-password" minlength="8" required>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Create Login</button>
+            </form>
+            <div class="alert" id="authError"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="app" id="appView" hidden>
+        <div class="app-head">
+          <div>
+            <div class="eyebrow">Business Dashboard</div>
+            <h1 id="welcomeTitle">Create service order.</h1>
+            <p class="subtle">Create secured service orders, choose the location, track staff updates, and download labels after the counter team uploads the PDF.</p>
+          </div>
+          <a class="btn btn-secondary" href="quote.html">Need a quote?</a>
+        </div>
+
+        <div class="offer-bar">
+          <div>
+            <strong>Business dashboard: one place for service orders and labels.</strong>
+            <span>Create the order online, let staff verify/finalize the label, then download or print the uploaded PDF when it is ready.</span>
+          </div>
+          <a class="btn btn-secondary" href="services.html">See All Services</a>
+        </div>
+        <div class="business-bar" id="businessBar" hidden>
+          <strong>Online seller shipping program: business shipping support.</strong>
+          <span id="businessBarText">Your business profile is saved. Cubic can review your shipment tier and apply the best available rate for your volume.</span>
+        </div>
+
+        <nav class="module-nav" aria-label="Business dashboard modules">
+          <a href="#create-shipment"><strong>Create Service Order</strong><span>Start a secured CubicShip order.</span></a>
+          <a href="#my-orders"><strong>My Orders</strong><span>Status, tracking, and staff notes.</span></a>
+          <a href="#my-labels"><strong>My Labels</strong><span>Download staff-uploaded label PDFs.</span></a>
+          <a href="#profile-security"><strong>Profile/Security</strong><span>Account and business details.</span></a>
+        </nav>
+
+        <section class="card" id="reports" style="margin-bottom:1rem">
+          <h2>Reports & Downloads</h2>
+          <p class="note">Download your service-order history as a CSV file that opens in Excel. The platform notes file summarizes the current code, languages, and workflow.</p>
+          <div class="download-actions">
+            <button class="btn btn-primary" id="exportCustomerCsv" type="button">Download Order History CSV</button>
+            <a class="btn btn-secondary" href="downloads/cubicship-platform-code-notes.txt" download>Download Platform Notes</a>
+          </div>
+          <p class="note" id="customerExportStatus"></p>
+        </section>
+
+        <section class="stat-grid" aria-label="Dashboard summary">
+          <article class="stat-card"><b id="orderCount">0</b><strong>Total orders</strong><span>Created from this dashboard.</span></article>
+          <article class="stat-card"><b id="activeCount">0</b><strong>Active orders</strong><span>Needs attention or ready for drop-off.</span></article>
+          <article class="stat-card"><b id="labelCount">0</b><strong>Labels ready</strong><span>PDFs uploaded by staff.</span></article>
+          <article class="stat-card" id="profile-security"><b>Secure</b><strong>Order codes</strong><span>Every request gets a unique CubicShip ticket.</span></article>
+        </section>
+
+        <div class="grid">
+          <section class="card" id="create-shipment">
+            <h2>Create service order</h2>
+            <p class="note">Choose the service, enter the details, and CubicShip will generate one secured order code for staff to process.</p>
+            <form id="shipmentForm" style="margin-top:1rem">
+              <div class="field-grid">
+                <div>
+                  <label for="serviceType">Service</label>
+                  <select id="serviceType">
+                    <option>DHL Label</option>
+                    <option>Printing</option>
+                    <option>Business Print &amp; Display</option>
+                    <option>Mailbox</option>
+                    <option>Virtual Notary</option>
+                    <option>Extra Business Services</option>
+                    <option>Freight / Cargo</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="locationId" id="locationLabel">Assigned Location</label>
+                  <select id="locationId">
+                    <option value="bridgeview">Cubic Ship Bridgeview</option>
+                    <option value="oak-lawn">Oak Lawn Area</option>
+                    <option value="mccook">McCook Area</option>
+                    <option value="allentown-pa">Allentown, PA</option>
+                  </select>
+                </div>
+                <div class="service-hint" id="serviceHint">
+                  <strong>DHL Label</strong>
+                  Enter shipment details so staff can verify the information and finalize the label at the selected location.
+                </div>
+                <div class="full conditional-fields" id="printDesignFields" hidden>
+                  <p class="business-note" id="printProductNote">Print requests need item, shape, size, quantity, material, quality, and artwork details before staff can confirm availability or pricing.</p>
+                  <div class="field-grid">
+                    <div>
+                      <label for="designRoute">Design Path</label>
+                      <select id="designRoute">
+                        <option value="Pick from Cubic business print options">Pick from available options</option>
+                        <option value="Customer will provide print-ready design">I have my own design</option>
+                        <option value="Paid graphic design service requested">I need paid graphic design help</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="printProductType">Print Item</label>
+                      <select id="printProductType">
+                        <option value="">Choose item</option>
+                        <option>Shipping Labels</option>
+                        <option>Document Printing</option>
+                        <option>Copies / Scans / Fax</option>
+                        <option>Mailers / Boxes / Packing Supplies</option>
+                        <option>Custom Forms / QR Cards</option>
+                        <option>Stickers / Labels</option>
+                        <option>Business Cards</option>
+                        <option>Banner</option>
+                        <option>Business Signage</option>
+                        <option>Window Decals</option>
+                        <option>Event Display</option>
+                        <option>Flyers / Promo Cards</option>
+                        <option>Other Branded Print</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="printShape">Shape / Cut</label>
+                      <input id="printShape" placeholder="Circle, square, rectangle, die-cut, roll labels...">
+                    </div>
+                    <div>
+                      <label for="printSize">Size</label>
+                      <input id="printSize" placeholder="2 x 3 in, 3 ft x 6 ft, letter, legal...">
+                    </div>
+                    <div>
+                      <label for="printQuantity">Quantity</label>
+                      <input id="printQuantity" placeholder="50, 100, 500, 1 box, 2 banners...">
+                    </div>
+                    <div>
+                      <label for="printQuality">Material / Quality</label>
+                      <input id="printQuality" placeholder="Matte, gloss, vinyl, waterproof, economy, premium...">
+                    </div>
+                    <div>
+                      <label for="artworkSource">Artwork Link / File Notes</label>
+                      <input id="artworkSource" placeholder="Google Drive link, email sent, logo ready, needs cleanup...">
+                    </div>
+                    <div class="full">
+                      <label for="printTemplateStyle">Option / Style Preference</label>
+                      <input id="printTemplateStyle" placeholder="Starter pack, clean, bold, luxury, event booth, storefront...">
+                    </div>
+                    <div class="full">
+                      <label for="designHelpNotes">Graphic Design Notes</label>
+                      <textarea id="designHelpNotes" placeholder="Describe the logo, wording, QR code, brand colors, layout, or paid design help needed."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="full conditional-fields" id="notaryFields" hidden>
+                  <p class="business-note">Virtual notary requests need document type, signer details, preferred appointment time, and identity-readiness before staff can confirm the workflow.</p>
+                  <div class="field-grid">
+                    <div>
+                      <label for="notaryDocumentType">Document Type</label>
+                      <input id="notaryDocumentType" placeholder="Power of attorney, affidavit, title, school form...">
+                    </div>
+                    <div>
+                      <label for="notaryAppointment">Preferred Appointment</label>
+                      <input id="notaryAppointment" placeholder="Date/time or window">
+                    </div>
+                    <div>
+                      <label for="notarySignerEmail">Signer Email</label>
+                      <input id="notarySignerEmail" type="email" placeholder="signer@email.com">
+                    </div>
+                    <div>
+                      <label for="notarySignerCount">Signer Count</label>
+                      <input id="notarySignerCount" inputmode="numeric" placeholder="1">
+                    </div>
+                    <div class="full">
+                      <label for="notaryIdentityReady">ID / Identity Readiness</label>
+                      <input id="notaryIdentityReady" placeholder="Valid ID ready, need help, signer remote, witness needed...">
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label for="customerPhone">Phone</label>
+                  <input id="customerPhone" autocomplete="tel">
+                </div>
+                <div>
+                  <label for="recipientName" id="recipientLabel">Recipient / Contact</label>
+                  <input id="recipientName" placeholder="Recipient name or service contact" required>
+                </div>
+                <div>
+                  <label for="destinationCountry" id="destinationCountryLabel">Destination / Service Area</label>
+                  <input id="destinationCountry" placeholder="Country, service location, or request area" required>
+                </div>
+                <div>
+                  <label for="destinationCity" id="destinationCityLabel">City / Appointment Preference</label>
+                  <input id="destinationCity" placeholder="City, appointment window, or pickup point">
+                </div>
+                <div>
+                  <label for="destinationPostal" id="destinationPostalLabel">Postal Code / Reference</label>
+                  <input id="destinationPostal" placeholder="Postal code, mailbox, or order reference">
+                </div>
+                <div>
+                  <label for="pieces" id="piecesLabel">Items / Pieces</label>
+                  <input id="pieces" inputmode="numeric" value="1">
+                </div>
+                <div>
+                  <label for="weight" id="weightLabel">Weight / Quantity</label>
+                  <input id="weight" placeholder="Example: 12 lb">
+                </div>
+                <div>
+                  <label for="dimensions" id="dimensionsLabel">Dimensions / Document Count</label>
+                  <input id="dimensions" placeholder="Example: 12 x 10 x 8 in">
+                </div>
+                <div>
+                  <label for="declaredValue" id="declaredValueLabel">Declared Value / Budget</label>
+                  <input id="declaredValue" placeholder="Example: $120">
+                </div>
+                <div class="full">
+                  <label for="contents" id="contentsLabel">Order Details</label>
+                  <textarea id="contents" placeholder="Describe the shipment, print job, mailbox request, notary request, or business service needed." required></textarea>
+                </div>
+                <div class="full">
+                  <label for="notes" id="notesLabel">Staff Notes</label>
+                  <textarea id="notes" placeholder="Anything the counter team should know."></textarea>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Generate Secure Order</button>
+            </form>
+            <div class="number-box" id="numberBox">
+              <span class="subtle">Your CubicShip order code</span>
+              <strong class="ship-number" id="generatedNumber"></strong>
+              <div class="estimate-box">
+                <strong id="estimateLabel">Estimated price pending</strong>
+                <span id="estimateMessage">Cubic will show an estimated price here once area-based rates are connected.</span>
+              </div>
+              <button class="btn btn-secondary" id="copyNumber" type="button">Copy Order Code</button>
+            </div>
+            <p class="note" id="shipmentStatus"></p>
+          </section>
+
+          <section class="card" id="my-orders">
+            <h2>My orders</h2>
+            <p class="note">Bring the latest ticket with the matching box.</p>
+            <div class="shipment-list" id="shipmentList"></div>
+          </section>
+        </div>
+
+        <section class="card" id="my-labels" style="margin-top:1rem">
+          <h2>My Labels</h2>
+          <p class="note">When staff uploads a label PDF, it appears here for download or printing.</p>
+          <div class="label-list" id="labelList"></div>
+        </section>
+
+        <section class="marketing">
+          <div class="marketing-head">
+            <div>
+              <div class="eyebrow">More Services</div>
+              <h2>Handle the rest while you ship.</h2>
+              <p class="subtle">Cubic Ship is also a neighborhood counter for documents, travel, DMV, payment, storage, and business errands.</p>
+            </div>
+            <a class="btn btn-secondary" href="services.html">View Services</a>
+          </div>
+          <div class="service-grid">
+            <a class="service-tile" href="print-pack.html">
+              <b>Documents</b>
+              <strong>Print, pack &amp; paperwork</strong>
+              <span>Labels, customs forms, copies, scans, faxes, passport photos, mailers, boxes, and shipment prep.</span>
+            </a>
+            <a class="service-tile" href="business-signage.html">
+              <b>Promote</b>
+              <strong>Business signage &amp; displays</strong>
+              <span>Stickers, cards, banners, signage, event displays, and paid graphic design help.</span>
+            </a>
+            <a class="service-tile" href="services.html#passport">
+              <b>Travel</b>
+              <strong>Passport services</strong>
+              <span>New applications, renewals, expedited processing, and passport photos.</span>
+            </a>
+            <a class="service-tile" href="services.html#dmv">
+              <b>Vehicle</b>
+              <strong>IL DMV services</strong>
+              <span>Registration, plates, title transfers, and instant metal plates.</span>
+            </a>
+            <a class="service-tile" href="services.html#payments">
+              <b>Payments</b>
+              <strong>Bills and money orders</strong>
+              <span>Pay utilities, rent, mortgage, credit cards, and purchase money orders.</span>
+            </a>
+            <a class="service-tile" href="services.html#stasher">
+              <b>Storage</b>
+              <strong>Luggage storage</strong>
+              <span>Short-term Stasher luggage storage while you travel or run errands.</span>
+            </a>
+            <a class="service-tile" href="services.html#notary">
+              <b>Notary</b>
+              <strong>Virtual notary support</strong>
+              <span>Remote notarization guidance and identity-ready document handling.</span>
+            </a>
+            <a class="service-tile" href="services.html#freight-detail">
+              <b>Freight</b>
+              <strong>Containers and cargo</strong>
+              <span>Air, ocean, ground, oversized packages, and freight forwarding support.</span>
+            </a>
+            <a class="service-tile" href="index.html#contact">
+              <b>Help</b>
+              <strong>Ask the counter</strong>
+              <span>Bring the question, document, package, or deadline. We will point it the right way.</span>
+            </a>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 Cubic Home Solutions. All rights reserved.</footer>
+
+  <script>
+    const authView = document.getElementById("authView");
+    const appView = document.getElementById("appView");
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const authError = document.getElementById("authError");
+    const logoutButton = document.getElementById("logoutButton");
+    const shipmentForm = document.getElementById("shipmentForm");
+    const shipmentStatus = document.getElementById("shipmentStatus");
+    const shipmentList = document.getElementById("shipmentList");
+    const labelList = document.getElementById("labelList");
+    const numberBox = document.getElementById("numberBox");
+    const generatedNumber = document.getElementById("generatedNumber");
+    const estimateLabel = document.getElementById("estimateLabel");
+    const estimateMessage = document.getElementById("estimateMessage");
+    const businessFields = document.getElementById("businessFields");
+    const businessBar = document.getElementById("businessBar");
+    const businessBarText = document.getElementById("businessBarText");
+    const orderCount = document.getElementById("orderCount");
+    const activeCount = document.getElementById("activeCount");
+    const labelCount = document.getElementById("labelCount");
+    const customerExportStatus = document.getElementById("customerExportStatus");
+    const exportCustomerCsv = document.getElementById("exportCustomerCsv");
+    const serviceType = document.getElementById("serviceType");
+    const serviceHint = document.getElementById("serviceHint");
+    const printDesignFields = document.getElementById("printDesignFields");
+    const printProductNote = document.getElementById("printProductNote");
+    const notaryFields = document.getElementById("notaryFields");
+    const CUSTOMER_LOCATIONS = [
+      { id: "bridgeview", name: "Cubic Ship Bridgeview" },
+      { id: "dearborn", name: "Dearborn, MI" },
+      { id: "oak-park", name: "Oak Park / West Chicago, IL" },
+      { id: "oak-lawn", name: "Oak Lawn, IL" },
+      { id: "mccook", name: "McCook Area" },
+      { id: "buffalo", name: "Buffalo, NY" },
+      { id: "bethpage", name: "Bethpage, NY" },
+      { id: "iselin", name: "Iselin / Woodbridge, NJ" },
+      { id: "milwaukee", name: "Milwaukee, WI" },
+      { id: "wyncote", name: "Wyncote, PA" },
+      { id: "indianapolis", name: "Indianapolis, IN" },
+      { id: "allentown-pa", name: "Allentown, PA" },
+      { id: "farmington", name: "Farmington, MI" },
+      { id: "northeast-philadelphia", name: "Northeast Philadelphia, PA" },
+      { id: "freeport", name: "Freeport, NY" },
+      { id: "cleveland", name: "Cleveland, OH" },
+    ];
+    const locationId = document.getElementById("locationId");
+    if (locationId) {
+      const selectedLocation = locationId.value;
+      locationId.innerHTML = CUSTOMER_LOCATIONS.map((location) => `<option value="${location.id}">${location.name}</option>`).join("");
+      if (CUSTOMER_LOCATIONS.some((location) => location.id === selectedLocation)) locationId.value = selectedLocation;
+    }
+    const serviceCopy = {
+      "DHL Label": {
+        hint: "Enter shipment details so staff can verify the information and finalize the label at the selected location.",
+        recipient: "Recipient Name",
+        destination: "Destination Country",
+        city: "Destination City",
+        postal: "Postal Code",
+        pieces: "Pieces",
+        weight: "Weight",
+        dimensions: "Dimensions",
+        value: "Declared Value",
+        contents: "Contents",
+        contentsPlaceholder: "Describe the package contents for label review.",
+        notes: "Shipment Notes",
+      },
+      Printing: {
+        hint: "Inquire about labels, copies, scans, forms, mailers, boxes, paper size, quantity, material, finish, and counter print support before you arrive.",
+        recipient: "Contact Name",
+        destination: "Service Location",
+        city: "Pickup Time",
+        postal: "Order Reference",
+        pieces: "Quantity",
+        weight: "Size / Material",
+        dimensions: "Shape / Finish",
+        value: "Budget",
+        contents: "Print Inquiry Details",
+        contentsPlaceholder: "Tell staff what you need: labels, document printing, copies, scans, mailers, boxes, customs forms, size, quantity, material, finish, and pickup timing.",
+        notes: "Artwork / Pickup Notes",
+        printNote: "Print, Pack & Paperwork inquiries should include item, shape, size, quantity, material or quality, and whether you already have a file or need counter help.",
+      },
+      "Business Print & Display": {
+        hint: "Request stickers, business cards, banners, signage, decals, labels, event displays, or paid graphic design help through a proof-and-quote workflow.",
+        recipient: "Business / Contact Name",
+        destination: "Use Case / Service Area",
+        city: "Deadline / Event Date",
+        postal: "Reference / QR Link",
+        pieces: "Quantity",
+        weight: "Size / Material",
+        dimensions: "Finish / Display Type",
+        value: "Budget",
+        contents: "Print & Display Details",
+        contentsPlaceholder: "Tell staff what you need: stickers, cards, banner, signage, decal, event display, label, or promo material. Include wording, size, quantity, material, deadline, and where it will be used.",
+        notes: "Artwork / Design Notes",
+        printNote: "Business Print & Display requests use Cubic intake, proofing, pickup, and shipping support. Pricing may include service handling because Cubic is managing the workflow.",
+      },
+      Mailbox: {
+        hint: "Start a mailbox request, renewal, pickup question, or business mail service order.",
+        recipient: "Account / Contact Name",
+        destination: "Mailbox Location",
+        city: "Mailbox Type",
+        postal: "Mailbox Number",
+        pieces: "Mail Items",
+        weight: "Plan / Term",
+        dimensions: "ID / Document Notes",
+        value: "Budget",
+        contents: "Mailbox Request",
+        contentsPlaceholder: "Tell staff if this is a new mailbox, renewal, mail pickup, package hold, or business mail question.",
+        notes: "Mailbox Notes",
+      },
+      "Virtual Notary": {
+        hint: "Start a virtual notary request so staff can review document type, appointment needs, and identity-readiness.",
+        recipient: "Signer / Contact Name",
+        destination: "State / Jurisdiction",
+        city: "Preferred Appointment",
+        postal: "Document Reference",
+        pieces: "Signers / Documents",
+        weight: "Document Type",
+        dimensions: "Witness / ID Notes",
+        value: "Budget",
+        contents: "Notary Request",
+        contentsPlaceholder: "Describe the document, signer count, appointment timing, and any remote notary requirements.",
+        notes: "Identity / Appointment Notes",
+      },
+      "Extra Business Services": {
+        hint: "Request help with passport, DMV, payments, document prep, luggage storage, or other counter services.",
+        recipient: "Contact Name",
+        destination: "Service Category",
+        city: "Preferred Time",
+        postal: "Reference",
+        pieces: "Items / Tasks",
+        weight: "Service Detail",
+        dimensions: "Documents Needed",
+        value: "Budget",
+        contents: "Business Service Request",
+        contentsPlaceholder: "Tell staff what service you need, deadlines, documents, and any special instructions.",
+        notes: "Counter Notes",
+      },
+      "Freight / Cargo": {
+        hint: "Start a freight, cargo, air, ocean, ground, or container request for staff review.",
+        recipient: "Consignee / Contact",
+        destination: "Destination Country",
+        city: "Destination City",
+        postal: "Postal Code",
+        pieces: "Pieces / Pallets",
+        weight: "Weight",
+        dimensions: "Dimensions",
+        value: "Declared Value",
+        contents: "Cargo Details",
+        contentsPlaceholder: "Describe the freight, pallets, cartons, dimensions, weight, pickup/drop-off needs, and timeline.",
+        notes: "Freight Notes",
+      },
+    };
+    let currentCustomer = null;
+    let currentShipments = [];
+
+    async function api(path, options = {}) {
+      const response = await fetch(path, {
+        credentials: "same-origin",
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...(options.headers || {}),
+        },
+      });
+      const result = await response.json().catch(() => ({ ok: false, error: "Unexpected server response." }));
+      if (!response.ok || result.ok === false) throw new Error(result.error || "Request failed.");
+      return result;
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function showError(message) {
+      authError.textContent = message;
+      authError.classList.add("open");
+    }
+
+    function clearError() {
+      authError.textContent = "";
+      authError.classList.remove("open");
+    }
+
+    function setTab(mode) {
+      const isLogin = mode === "login";
+      loginTab.classList.toggle("active", isLogin);
+      registerTab.classList.toggle("active", !isLogin);
+      loginForm.hidden = !isLogin;
+      registerForm.hidden = isLogin;
+      clearError();
+    }
+
+    function accountType() {
+      return document.querySelector('input[name="accountType"]:checked')?.value || "personal";
+    }
+
+    function updateAccountType() {
+      const isBusiness = accountType() === "business";
+      businessFields.classList.toggle("open", isBusiness);
+      document.getElementById("registerCompany").required = isBusiness;
+      document.getElementById("signupCode").required = isBusiness;
+      document.getElementById("monthlyShipments").required = isBusiness;
+    }
+
+    function showLoggedOut() {
+      currentCustomer = null;
+      authView.hidden = false;
+      appView.hidden = true;
+      logoutButton.classList.remove("open");
+    }
+
+    async function showLoggedIn(customer) {
+      currentCustomer = customer;
+      authView.hidden = true;
+      appView.hidden = false;
+      logoutButton.classList.add("open");
+      document.getElementById("welcomeTitle").textContent = `Business dashboard, ${customer.name.split(" ")[0] || "there"}.`;
+      document.getElementById("customerPhone").value = customer.phone || "";
+      updateServiceCopy();
+      if (customer.accountType === "business" && customer.businessProfile) {
+        const tier = customer.businessProfile.monthlyShipmentLabel || "your shipment tier";
+        businessBarText.textContent = `${customer.company || "Your business"} is registered for ${tier}. Ask Cubic staff to review the best available small-business shipping path for your volume.`;
+        businessBar.hidden = false;
+      } else {
+        businessBar.hidden = true;
+      }
+      await loadShipments();
+    }
+
+    async function loadShipments() {
+      shipmentList.innerHTML = "<p class=\"note\">Loading orders...</p>";
+      try {
+        const result = await api("/api/customer-shipments", { method: "GET" });
+        currentShipments = result.shipments || [];
+        renderShipments(result.shipments || []);
+      } catch (error) {
+        currentShipments = [];
+        shipmentList.innerHTML = `<p class="note">${escapeHtml(error.message)}</p>`;
+      }
+    }
+
+    function renderShipments(shipments) {
+      if (!shipments.length) {
+        shipmentList.innerHTML = "<p class=\"note\">No service orders submitted yet.</p>";
+        renderLabels([]);
+        updateStats([]);
+        return;
+      }
+      updateStats(shipments);
+      renderLabels(shipments);
+      shipmentList.innerHTML = shipments.map((shipment) => `
+        <article class="shipment">
+          <div class="shipment-top">
+            <strong>${escapeHtml(shipment.number)}</strong>
+            <span class="status">${escapeHtml(statusLabel(shipment.status))}</span>
+          </div>
+          <div class="meta">
+            <p>Location: ${escapeHtml(shipment.locationName || "Cubic Ship")}</p>
+            <p>${escapeHtml(shipment.serviceType)} · ${escapeHtml(shipment.destinationCountry)}${shipment.destinationCity ? `, ${escapeHtml(shipment.destinationCity)}` : ""}</p>
+            <p>Contact: ${escapeHtml(shipment.recipientName)} · Items: ${escapeHtml(shipment.pieces)}</p>
+            ${shipment.estimate ? `<p>Estimate: ${escapeHtml(shipment.estimate.label || "Pending")}</p>` : ""}
+            ${shipment.payment ? `<p>Payment: ${escapeHtml(paymentLabel(shipment))}</p>` : ""}
+            ${shipment.carrierTracking ? `<p>Carrier tracking: ${escapeHtml(shipment.carrierTracking)}</p>` : ""}
+            ${shipment.virtualNotary ? `<p>Virtual notary: ${escapeHtml(notaryLabel(shipment.virtualNotary))}</p>` : ""}
+            ${shipment.printDesign ? `<p>Design path: ${escapeHtml(shipment.printDesign.designRoute || "Not provided")}${shipment.printDesign.productType ? ` · ${escapeHtml(shipment.printDesign.productType)}` : ""}</p>` : ""}
+            ${shipment.printDesign ? `<p>Print specs: ${escapeHtml([shipment.printDesign.shape, shipment.printDesign.size, shipment.printDesign.quantity, shipment.printDesign.quality].filter(Boolean).join(" · ") || "Specs pending")}</p>` : ""}
+            ${shipment.labelPdf ? `<p>Label PDF: ${escapeHtml(shipment.labelPdf.filename || "Uploaded label")} uploaded ${escapeHtml(formatDate(shipment.labelPdf.uploadedAt))}</p>` : "<p>Label PDF: waiting for staff upload.</p>"}
+            ${shipment.status === "ready_for_dropoff" ? "<p>Staff marked this order ready for the next counter step.</p>" : ""}
+          </div>
+          <div class="ticket-actions">
+            ${shipment.labelPdf ? `<a class="btn btn-primary" href="/api/customer-shipments?label=${encodeURIComponent(shipment.id)}" target="_blank" rel="noopener">Download Label</a>` : ""}
+            ${shipment.carrierTracking ? `<a class="btn btn-secondary" href="track.html?tracking=${encodeURIComponent(shipment.carrierTracking)}">Track</a>` : ""}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function updateStats(shipments) {
+      orderCount.textContent = shipments.length;
+      activeCount.textContent = shipments.filter((shipment) => ["submitted", "in_review", "payment_due", "ready_for_dropoff", "issue"].includes(shipment.status)).length;
+      labelCount.textContent = shipments.filter((shipment) => shipment.labelPdf).length;
+    }
+
+    function renderLabels(shipments) {
+      const ready = shipments.filter((shipment) => shipment.labelPdf);
+      if (!ready.length) {
+        labelList.innerHTML = "<p class=\"note\">No labels uploaded yet. For DHL/freight orders, staff will upload the PDF after verifying and finalizing the label.</p>";
+        return;
+      }
+      labelList.innerHTML = ready.map((shipment) => `
+        <article class="label-card">
+          <div>
+            <strong>${escapeHtml(shipment.number)} · ${escapeHtml(shipment.labelPdf.filename || "Label PDF")}</strong>
+            <span>${escapeHtml(shipment.serviceType)} · ${escapeHtml(shipment.destinationCountry)}${shipment.carrierTracking ? ` · Tracking ${escapeHtml(shipment.carrierTracking)}` : ""}</span>
+            <span>Uploaded ${escapeHtml(formatDate(shipment.labelPdf.uploadedAt))}</span>
+          </div>
+          <a class="btn btn-primary" href="/api/customer-shipments?label=${encodeURIComponent(shipment.id)}" target="_blank" rel="noopener">Download</a>
+        </article>
+      `).join("");
+    }
+
+    function formatDate(value) {
+      if (!value) return "recently";
+      try {
+        return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
+      } catch (error) {
+        return "recently";
+      }
+    }
+
+    function statusLabel(status) {
+      const labels = {
+        submitted: "needs attention",
+        in_review: "in review",
+        payment_due: "payment due",
+        ready_for_dropoff: "ready for drop-off",
+        dropped_off: "dropped off",
+        completed: "completed",
+        issue: "needs review",
+      };
+      return labels[status] || String(status || "").replace(/_/g, " ");
+    }
+
+    function paymentLabel(shipment) {
+      const status = shipment.payment?.status || "not_ready";
+      const labels = { not_ready: "pending staff review", due: "payment due", paid: "paid" };
+      return `${labels[status] || status}${shipment.payment?.amount ? ` · ${shipment.payment.amount}` : ""}`;
+    }
+
+    function notaryLabel(notary) {
+      const status = String(notary.status || "request_received").replace(/_/g, " ");
+      return `${status}${notary.appointmentConfirmedAt ? ` · ${notary.appointmentConfirmedAt}` : ""}${notary.identityStatus ? ` · ID: ${notary.identityStatus}` : ""}`;
+    }
+
+    function csvCell(value) {
+      return `"${String(value ?? "").replace(/"/g, '""').replace(/\r?\n/g, " ")}"`;
+    }
+
+    function downloadCsv(filename, rows) {
+      const csv = rows.map((row) => row.map(csvCell).join(",")).join("\n");
+      const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportCustomerOrders() {
+      if (!currentShipments.length) {
+        customerExportStatus.textContent = "No order history to export yet.";
+        return;
+      }
+      const rows = [[
+        "Order Code",
+        "Status",
+        "Service",
+        "Location",
+        "Contact / Recipient",
+        "Destination / Service Area",
+        "City / Appointment",
+        "Reference",
+        "Items / Pieces",
+        "Weight / Quantity",
+        "Dimensions / Document Count",
+        "Declared Value / Budget",
+        "Order Details",
+        "Notes",
+        "Tracking / Confirmation",
+        "PDF Uploaded",
+        "Payment Status",
+        "Payment Amount",
+        "Payment Method",
+        "Notary Status",
+        "Notary Appointment",
+        "Notary ID Status",
+        "Created At",
+        "Updated At",
+      ]];
+      currentShipments.forEach((shipment) => {
+        rows.push([
+          shipment.number,
+          statusLabel(shipment.status),
+          shipment.serviceType,
+          shipment.locationName,
+          shipment.recipientName,
+          shipment.destinationCountry,
+          shipment.destinationCity,
+          shipment.destinationPostal,
+          shipment.pieces,
+          shipment.weight,
+          shipment.dimensions,
+          shipment.declaredValue,
+          shipment.contents,
+          shipment.notes,
+          shipment.carrierTracking,
+          shipment.labelPdf ? shipment.labelPdf.filename || "Yes" : "No",
+          shipment.payment?.status,
+          shipment.payment?.amount,
+          shipment.payment?.method,
+          shipment.virtualNotary?.status,
+          shipment.virtualNotary?.appointmentConfirmedAt,
+          shipment.virtualNotary?.identityStatus,
+          shipment.createdAt,
+          shipment.updatedAt,
+        ]);
+      });
+      downloadCsv(`cubicship-order-history-${new Date().toISOString().slice(0, 10)}.csv`, rows);
+      customerExportStatus.textContent = "Order history CSV downloaded.";
+    }
+
+    function setLabel(id, text) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = text;
+    }
+
+    function updateServiceCopy() {
+      const selected = serviceType.value;
+      const copy = serviceCopy[selected] || serviceCopy["DHL Label"];
+      serviceHint.innerHTML = `<strong>${escapeHtml(selected)}</strong>${escapeHtml(copy.hint)}`;
+      setLabel("recipientLabel", copy.recipient);
+      setLabel("destinationCountryLabel", copy.destination);
+      setLabel("destinationCityLabel", copy.city);
+      setLabel("destinationPostalLabel", copy.postal);
+      setLabel("piecesLabel", copy.pieces);
+      setLabel("weightLabel", copy.weight);
+      setLabel("dimensionsLabel", copy.dimensions);
+      setLabel("declaredValueLabel", copy.value);
+      setLabel("contentsLabel", copy.contents);
+      setLabel("notesLabel", copy.notes);
+      document.getElementById("contents").placeholder = copy.contentsPlaceholder;
+      printDesignFields.hidden = !(selected === "Printing" || selected === "Business Print & Display");
+      printProductNote.textContent = copy.printNote || "Print requests need item, shape, size, quantity, material, quality, and artwork details before staff can confirm availability or pricing.";
+      notaryFields.hidden = selected !== "Virtual Notary";
+    }
+
+    loginTab.addEventListener("click", () => setTab("login"));
+    registerTab.addEventListener("click", () => setTab("register"));
+    exportCustomerCsv.addEventListener("click", exportCustomerOrders);
+    document.querySelectorAll('input[name="accountType"]').forEach((input) => {
+      input.addEventListener("change", updateAccountType);
+    });
+    updateAccountType();
+    serviceType.addEventListener("change", updateServiceCopy);
+    updateServiceCopy();
+
+    const profileParams = new URLSearchParams(window.location.search);
+    if (profileParams.get("account") === "business" || profileParams.get("offer") === "online-seller") {
+      document.querySelector('input[name="accountType"][value="business"]').checked = true;
+      setTab("register");
+      updateAccountType();
+      document.getElementById("sellingChannels").focus({ preventScroll: true });
+    }
+    const requestedService = String(profileParams.get("service") || profileParams.get("offer") || "").toLowerCase();
+    const serviceParamMap = {
+      dhl: "DHL Label",
+      shipment: "DHL Label",
+      shipping: "DHL Label",
+      printing: "Printing",
+      print: "Printing",
+      "print-pack": "Printing",
+      "business-print": "Business Print & Display",
+      signage: "Business Print & Display",
+      stickers: "Business Print & Display",
+      labels: "Business Print & Display",
+      mailbox: "Mailbox",
+      mail: "Mailbox",
+      notary: "Virtual Notary",
+      "virtual-notary": "Virtual Notary",
+      freight: "Freight / Cargo",
+      cargo: "Freight / Cargo",
+      "extra-services": "Extra Business Services",
+      "business-services": "Extra Business Services",
+    };
+    if (serviceParamMap[requestedService]) {
+      serviceType.value = serviceParamMap[requestedService];
+      updateServiceCopy();
+    }
+    const requestedLocation = String(profileParams.get("location") || "").toLowerCase();
+    if (requestedLocation && CUSTOMER_LOCATIONS.some((location) => location.id === requestedLocation)) {
+      locationId.value = requestedLocation;
+    }
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearError();
+      const button = loginForm.querySelector("button");
+      button.disabled = true;
+      button.textContent = "Logging in...";
+      try {
+        const result = await api("/api/customer-login", {
+          method: "POST",
+          body: JSON.stringify({
+            email: document.getElementById("loginEmail").value.trim(),
+            password: document.getElementById("loginPassword").value,
+          }),
+        });
+        loginForm.reset();
+        await showLoggedIn(result.customer);
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        button.disabled = false;
+        button.textContent = "Log In";
+      }
+    });
+
+    registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearError();
+      const button = registerForm.querySelector("button");
+      button.disabled = true;
+      button.textContent = "Creating...";
+      try {
+        const result = await api("/api/customer-register", {
+          method: "POST",
+          body: JSON.stringify({
+            name: document.getElementById("registerName").value.trim(),
+            phone: document.getElementById("registerPhone").value.trim(),
+            email: document.getElementById("registerEmail").value.trim(),
+            company: document.getElementById("registerCompany").value.trim(),
+            accountType: accountType(),
+            signupCode: document.getElementById("signupCode").value.trim(),
+            monthlyShipments: document.getElementById("monthlyShipments").value,
+            sellingChannels: document.getElementById("sellingChannels").value.trim(),
+            productTypes: document.getElementById("productTypes").value.trim(),
+            password: document.getElementById("registerPassword").value,
+          }),
+        });
+        registerForm.reset();
+        if (result.pendingConfirmation) {
+          setTab("login");
+          showError(result.message || "Check your email to confirm the account, then log in.");
+          return;
+        }
+        await showLoggedIn(result.customer);
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        button.disabled = false;
+        button.textContent = "Create Login";
+      }
+    });
+
+    shipmentForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      shipmentStatus.textContent = "Creating secure order...";
+      const button = shipmentForm.querySelector("button");
+      button.disabled = true;
+      try {
+        const result = await api("/api/customer-shipments", {
+          method: "POST",
+          body: JSON.stringify({
+            customerPhone: document.getElementById("customerPhone").value.trim(),
+            locationId: document.getElementById("locationId").value,
+            serviceType: document.getElementById("serviceType").value,
+            recipientName: document.getElementById("recipientName").value.trim(),
+            destinationCountry: document.getElementById("destinationCountry").value.trim(),
+            destinationCity: document.getElementById("destinationCity").value.trim(),
+            destinationPostal: document.getElementById("destinationPostal").value.trim(),
+            pieces: document.getElementById("pieces").value.trim(),
+            weight: document.getElementById("weight").value.trim(),
+            dimensions: document.getElementById("dimensions").value.trim(),
+            declaredValue: document.getElementById("declaredValue").value.trim(),
+            contents: document.getElementById("contents").value.trim(),
+            notes: document.getElementById("notes").value.trim(),
+            designRoute: document.getElementById("designRoute").value,
+            printProductType: document.getElementById("printProductType").value,
+            printShape: document.getElementById("printShape").value.trim(),
+            printSize: document.getElementById("printSize").value.trim(),
+            printQuantity: document.getElementById("printQuantity").value.trim(),
+            printQuality: document.getElementById("printQuality").value.trim(),
+            printTemplateStyle: document.getElementById("printTemplateStyle").value.trim(),
+            artworkSource: document.getElementById("artworkSource").value.trim(),
+            designHelpNotes: document.getElementById("designHelpNotes").value.trim(),
+            notaryDocumentType: document.getElementById("notaryDocumentType").value.trim(),
+            notaryAppointment: document.getElementById("notaryAppointment").value.trim(),
+            notarySignerEmail: document.getElementById("notarySignerEmail").value.trim(),
+            notarySignerCount: document.getElementById("notarySignerCount").value.trim(),
+            notaryIdentityReady: document.getElementById("notaryIdentityReady").value.trim(),
+          }),
+        });
+        shipmentForm.reset();
+        document.getElementById("pieces").value = "1";
+        document.getElementById("customerPhone").value = currentCustomer.phone || "";
+        updateServiceCopy();
+        generatedNumber.textContent = result.shipment.number;
+        estimateLabel.textContent = result.shipment.estimate?.label || "Estimated price pending";
+        estimateMessage.textContent = result.shipment.estimate?.message || "Cubic will show an estimated price here once rates are connected.";
+        numberBox.classList.add("open");
+        shipmentStatus.textContent = "Secure order generated. Staff can now review it in the portal.";
+        await loadShipments();
+      } catch (error) {
+        shipmentStatus.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    document.getElementById("copyNumber").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(generatedNumber.textContent);
+      shipmentStatus.textContent = "Order code copied.";
+    });
+
+    logoutButton.addEventListener("click", async () => {
+      try {
+        await api("/api/customer-logout", { method: "POST", body: "{}" });
+      } catch (error) {
+        // The local UI can still clear if the session already expired.
+      }
+      showLoggedOut();
+    });
+
+    async function boot() {
+      try {
+        const result = await api("/api/customer-me", { method: "GET" });
+        await showLoggedIn(result.customer);
+      } catch (error) {
+        showLoggedOut();
+      }
+    }
+
+    boot();
+  </script>
+  <script src="chat-widget.js" defer></script>
+</body>
+</html>

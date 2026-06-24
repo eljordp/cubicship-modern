@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /portal.html
+Disallow: /mos.html
+Disallow: /owner.html
+Disallow: /employee.html
+
+Sitemap: https://cubicship.com/sitemap.xml

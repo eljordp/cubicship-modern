@@ -1417,6 +1417,9 @@
     updateServiceCopy();
 
     const profileParams = new URLSearchParams(window.location.search);
+    if (profileParams.has("signup")) {
+      setTab("register");
+    }
     if (profileParams.get("account") === "business" || profileParams.get("offer") === "online-seller") {
       document.querySelector('input[name="accountType"][value="business"]').checked = true;
       setTab("register");

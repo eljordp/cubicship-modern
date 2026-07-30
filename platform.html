@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CubicShip Platform - Business Shipping Dashboard</title>
-  <meta name="description" content="CubicShip platform workflow for business customers, secure order codes, location routing, staff processing, label uploads, virtual notary requests, payments, notifications, and audit logs.">
+  <meta name="description" content="Use CubicShip to create business service requests, choose a DHL Express Service Point, follow status, and keep order files together.">
   <link rel="canonical" href="https://cubicship.com/platform.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cubic Ship">
   <meta property="og:title" content="CubicShip Platform - Business Shipping Dashboard">
-  <meta property="og:description" content="A modern business-first shipping platform roadmap for customers, locations, staff, labels, service requests, notifications, and security.">
+  <meta property="og:description" content="Start business shipping and counter-service requests online, then finish with real help at a CubicShip location.">
   <meta property="og:url" content="https://cubicship.com/platform.html">
   <meta property="og:image" content="https://cubicship.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CubicShip Platform - Business Shipping Dashboard">
-  <meta name="twitter:description" content="Business dashboard, secure order codes, staff workflows, labels, service requests, notifications, and audit logging.">
+  <meta name="twitter:description" content="Create service requests, choose a CubicShip location, follow status, and keep order files together.">
   <meta name="twitter:image" content="https://cubicship.com/og-image.png">
   <link rel="icon" href="favicon-64.png" type="image/png">
   <link rel="stylesheet" href="chat-widget.css">
@@ -390,7 +390,6 @@
       <li><a href="profile.html">Customer Profile</a></li>
       <li><a href="dhl-locations.html">Locations</a></li>
       <li><a href="services.html#notary">Virtual Notary</a></li>
-      <li><a href="mos.html">Staff</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -402,12 +401,11 @@
       <section class="hero">
         <div>
           <div class="eyebrow">CubicShip Platform</div>
-          <h1>Business shipping, service orders, and staff workflows in one place.</h1>
-          <p class="lead">The platform direction is simple: business customers create secure service orders, Cubic routes them to the right location, staff processes the work, and customers see status, labels, payments, and updates from their dashboard.</p>
+          <h1>Start online. Finish with real counter help.</h1>
+          <p class="lead">Create a business service request, choose a CubicShip location, and keep the order number, files, and updates together from first details through counter completion.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="profile.html?account=business">Open Customer Profile</a>
-            <a class="btn btn-secondary" href="mos.html">Staff Location Portal</a>
-            <a class="btn btn-secondary" href="downloads/cubicship-platform-code-notes.txt" download>Download Platform Notes</a>
+            <a class="btn btn-primary" href="profile.html?account=business">Start a Service Request</a>
+            <a class="btn btn-secondary" href="dhl-locations.html">Find a Service Point</a>
           </div>
         </div>
 
@@ -417,25 +415,25 @@
               <strong>Business Order</strong>
               <span>CS-260601-B84F · Bridgeview</span>
             </div>
-            <span class="status-pill">Staff Review</span>
+            <span class="status-pill">Counter Review</span>
           </div>
           <div class="preview-grid">
             <div class="preview-card">
-              <h3>Secure order code</h3>
-              <p>Customer receives a CubicShip order number and QR/code for counter handoff, label pickup, status, and audit trail.</p>
+              <h3>Your order number</h3>
+              <p>Use one CubicShip reference for counter handoff, uploaded files, shipment details, and service updates.</p>
               <div class="code-box">
                 <div class="qr" aria-hidden="true"></div>
-                <div><b>CS-260601-B84F</b><span>Linked to customer, service, location, and status history.</span></div>
+                <div><b>CS-260601-B84F</b><span>Linked to your profile, selected service point, and order history.</span></div>
               </div>
             </div>
             <div class="preview-card">
               <h3>Status</h3>
-              <p>Customer and staff see the same order state.</p>
+              <p>Follow the request from online intake through counter completion.</p>
               <div class="timeline">
                 <span><b>Created</b> Customer</span>
                 <span><b>Routed</b> Location</span>
-                <span><b>Processing</b> Staff</span>
-                <span><b>Label ready</b> Customer</span>
+                <span><b>In review</b> Counter</span>
+                <span><b>Ready</b> Customer</span>
               </div>
             </div>
           </div>
@@ -446,19 +444,19 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">Core Flow</div>
-            <h2>One workflow for every business service.</h2>
+            <h2>A clear path from request to counter.</h2>
           </div>
-          <p>This keeps DHL labels, printing, mailbox, virtual notary, and extra business services inside the same operational pattern.</p>
+          <p>Use the same customer profile for DHL Express, freight, printing, mailbox, notary, and other counter services.</p>
         </div>
         <div class="flow-grid">
-          <article class="card"><small>01</small><h3>Account</h3><p>Business customer creates a profile with company, contact, service volume, and security settings.</p></article>
-          <article class="card"><small>02</small><h3>Service</h3><p>Customer selects DHL label, printing, mailbox, virtual notary, or another business service.</p></article>
-          <article class="card"><small>03</small><h3>Order Code</h3><p>System generates a secured order number and QR/code for tracking, staff lookup, and counter handoff.</p></article>
-          <article class="card"><small>04</small><h3>Location</h3><p>Order routes to the designated CubicShip/DHL location based on customer selection or assignment.</p></article>
-          <article class="card"><small>05</small><h3>Staff Work</h3><p>Staff reviews details, creates the DHL label in the carrier system, uploads the label PDF, and updates status.</p></article>
-          <article class="card"><small>06</small><h3>Customer View</h3><p>Customer logs in to view status, download/print labels, see notes, and receive notifications.</p></article>
-          <article class="card"><small>07</small><h3>Checkout</h3><p>Payments can be collected through checkout once pricing and service rules are connected.</p></article>
-          <article class="card"><small>08</small><h3>Audit Log</h3><p>Every key action is recorded for security: customer changes, staff updates, label uploads, payments, and notifications.</p></article>
+          <article class="card"><small>01</small><h3>Create Profile</h3><p>Save your business, contact details, selling channels, and expected shipping volume once.</p></article>
+          <article class="card"><small>02</small><h3>Choose Service</h3><p>Select DHL Express, freight, printing, mailbox, notary, or another business service.</p></article>
+          <article class="card"><small>03</small><h3>Add Details</h3><p>Share the shipment or service information the counter needs before you arrive.</p></article>
+          <article class="card"><small>04</small><h3>Select Location</h3><p>Choose the CubicShip DHL Express Service Point that will help complete the request.</p></article>
+          <article class="card"><small>05</small><h3>Get a Reference</h3><p>Keep one order number for counter handoff, files, updates, and follow-up.</p></article>
+          <article class="card"><small>06</small><h3>Counter Review</h3><p>A real person checks the details, confirms next steps, and helps finish the service.</p></article>
+          <article class="card"><small>07</small><h3>View Files</h3><p>Return to your profile for uploaded labels, receipts, and order history.</p></article>
+          <article class="card"><small>08</small><h3>Track or Contact</h3><p>Use carrier tracking or contact the selected counter when you need help.</p></article>
         </div>
       </section>
 
@@ -466,33 +464,20 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">Modules</div>
-            <h2>Platform modules to build in phases.</h2>
+            <h2>Everything customers need in one place.</h2>
           </div>
-          <p>The public promise should be the workflow. CRA remains the DHL label system; CubicShip stores orders, status, tracking, uploaded files, and history.</p>
+          <p>The website organizes the request and handoff. CubicShip counter teams provide the human review and carrier-service support.</p>
         </div>
         <div class="module-grid">
-          <article class="card"><small>Customer</small><h3>Business Dashboard</h3><p>Orders, labels, service history, saved company profile, shipment volume, notifications, and security settings.</p><div class="tag-row"><span>Live foundation</span><span>Profile</span></div></article>
-          <article class="card"><small>Orders</small><h3>Create Service Order</h3><p>DHL labels, printing, mailbox, virtual notary, freight, and business-service intake with secured order numbers and status tracking.</p><div class="tag-row"><span>Live foundation</span><span>QR/code next</span></div></article>
-          <article class="card"><small>Labels</small><h3>My Labels</h3><p>Customer label library for uploaded PDFs, DHL tracking, download/print actions, and completed order records.</p><div class="tag-row"><span>Live foundation</span><span>PDF storage</span></div></article>
-          <article class="card"><small>Locations</small><h3>Staff Location Portal</h3><p>Location queue, assigned orders, staff notes, label upload, status changes, and customer notifications.</p><div class="tag-row"><span>Live foundation</span><span>Staff</span></div></article>
-          <article class="card"><small>Owner</small><h3>Admin Portal</h3><p>Owner visibility into locations, staff access, orders, response times, label workflow, and audit history.</p><div class="tag-row"><span>Live foundation</span><span>Owner</span></div></article>
-          <article class="card"><small>Services</small><h3>Virtual Notary Flow</h3><p>Request intake, document notes, appointment status, identity-ready checklist, and staff handoff.</p><div class="tag-row"><span>Workflow first</span><span>Staff handoff</span></div></article>
-          <article class="card"><small>Payments</small><h3>Checkout</h3><p>Secure checkout for service orders once pricing rules, counter payment policies, and receipts are finalized.</p><div class="tag-row"><span>Stripe phase</span></div></article>
-          <article class="card"><small>Security</small><h3>OTP + Audit</h3><p>Security codes, staff permissions, order history, label access controls, and notification records.</p><div class="tag-row"><span>MFA phase</span><span>Audit log</span></div></article>
-          <article class="card"><small>Notifications</small><h3>Email + SMS Updates</h3><p>Customer and staff notifications for created, routed, in review, label ready, paid, completed, and exception states.</p><div class="tag-row"><span>Email first</span><span>SMS phase</span></div></article>
-        </div>
-      </section>
-
-      <section class="phase-band">
-        <div>
-          <div class="eyebrow">Operations Roadmap</div>
-          <h2>Build the workflow around CRA and file upload.</h2>
-          <p>This avoids promising automated DHL label creation when staff already uses CRA as the label-printing system.</p>
-        </div>
-        <div class="phase-list">
-          <div><strong>Phase 1: MVP</strong><span>Business profiles, service orders, secure codes, location routing, staff updates, label PDF upload, email notifications.</span></div>
-          <div><strong>Phase 2: Commerce + Security</strong><span>Checkout, receipt flow, SMS/OTP, stronger roles, audit log, label download permissions.</span></div>
-          <div><strong>Phase 3: CRA Support + Reporting</strong><span>Better CRA handoff fields, uploaded label/receipt history, tracking/reference logs, payment reporting, and dashboard exports.</span></div>
+          <article class="card"><small>Profile</small><h3>Business Details</h3><p>Keep company, contact, selling-channel, and shipment-volume details with your account.</p><div class="tag-row"><span>Customer</span><span>Reusable</span></div></article>
+          <article class="card"><small>Orders</small><h3>Service Requests</h3><p>Start DHL, freight, printing, mailbox, notary, and other business-service requests.</p><div class="tag-row"><span>One intake</span><span>Reference</span></div></article>
+          <article class="card"><small>Files</small><h3>Order Documents</h3><p>Keep uploaded labels, receipts, and customer downloads connected to the right order.</p><div class="tag-row"><span>Organized</span><span>Download</span></div></article>
+          <article class="card"><small>Locations</small><h3>Service Point Choice</h3><p>Select a CubicShip DHL Express Service Point and see the counter contact information.</p><div class="tag-row"><span>Local help</span><span>DHL Express</span></div></article>
+          <article class="card"><small>Status</small><h3>Order History</h3><p>Return to previous requests, current progress, and the latest service notes.</p><div class="tag-row"><span>Updates</span><span>History</span></div></article>
+          <article class="card"><small>Notary</small><h3>Notary Requests</h3><p>Start with document details and let the counter confirm availability and next steps.</p><div class="tag-row"><span>Request</span><span>Counter help</span></div></article>
+          <article class="card"><small>Tracking</small><h3>Shipment Lookup</h3><p>Open carrier tracking for DHL, UPS, FedEx, USPS, or freight references.</p><div class="tag-row"><span>Carrier status</span></div></article>
+          <article class="card"><small>Support</small><h3>Human Follow-up</h3><p>Call or email the counter when a shipment or service needs personal attention.</p><div class="tag-row"><span>Real people</span></div></article>
+          <article class="card"><small>Access</small><h3>Role Separation</h3><p>Customer pages and location operations use separate access paths.</p><div class="tag-row"><span>Secure access</span></div></article>
         </div>
       </section>
 
@@ -500,19 +485,17 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">Main Pages</div>
-            <h2>The platform navigation map.</h2>
+            <h2>Choose what you need to do.</h2>
           </div>
-          <p>These are the pages Mo described, mapped to what CubicShip already has and what comes next.</p>
+          <p>Start a request, find a counter, track a shipment, or contact CubicShip for help.</p>
         </div>
         <div class="page-grid">
-          <article class="card"><small>Home</small><h3>Business-first entry</h3><p>Short SaaS-style homepage focused on business shipping and platform workflow.</p><a href="index.html">Open home</a></article>
-          <article class="card"><small>Dashboard</small><h3>Business Dashboard</h3><p>Customer profile, service orders, labels, and status foundation.</p><a href="profile.html?account=business">Open dashboard</a></article>
-          <article class="card"><small>Orders</small><h3>Create Service Order</h3><p>Customer creates a secured order code and chooses the service/location.</p><a href="profile.html?account=business">Create order</a></article>
-          <article class="card"><small>Labels</small><h3>My Labels</h3><p>Authenticated label PDF library for staff-uploaded DHL/freight labels.</p></article>
-          <article class="card"><small>Notary</small><h3>Virtual Notary</h3><p>Request flow starts as service intake and staff handoff.</p><a href="services.html#notary">View notary</a></article>
-          <article class="card"><small>Locations</small><h3>Cubic locations</h3><p>DHL location proof and routing context.</p><a href="dhl-locations.html">View locations</a></article>
-          <article class="card"><small>Security</small><h3>Security/Profile</h3><p>Customer profile now; MFA, audit log, and permissions later.</p><a href="profile.html">Open profile</a></article>
-          <article class="card"><small>Staff</small><h3>Admin + Staff Portal</h3><p>Owner and location staff links stay internal and role-based.</p><a href="mos.html">Staff portal</a></article>
+          <article class="card"><small>Account</small><h3>Customer Profile</h3><p>Create or open the profile used for business-service requests.</p><a href="profile.html?account=business">Open profile</a></article>
+          <article class="card"><small>Orders</small><h3>Create Service Request</h3><p>Share the service details and choose a CubicShip location.</p><a href="profile.html?account=business">Create request</a></article>
+          <article class="card"><small>Services</small><h3>Business Services</h3><p>Review DHL, freight, print, mailbox, notary, and seller support.</p><a href="business-services.html">View services</a></article>
+          <article class="card"><small>Locations</small><h3>DHL Service Points</h3><p>Find a CubicShip location, phone number, and Google Maps listing.</p><a href="dhl-locations.html">View locations</a></article>
+          <article class="card"><small>Tracking</small><h3>Track Shipment</h3><p>Use a DHL, UPS, FedEx, USPS, or freight reference.</p><a href="track.html">Track now</a></article>
+          <article class="card"><small>Support</small><h3>Contact CubicShip</h3><p>Call or email when a request needs counter assistance.</p><a href="index.html#contact">Get help</a></article>
         </div>
       </section>
     </div>
@@ -521,7 +504,7 @@
   <footer>
     <div class="footer-inner">
       <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
-      <span><a href="index.html">Home</a> · <a href="profile.html">Customer Profile</a> · <a href="mos.html">Staff</a></span>
+      <span><a href="index.html">Home</a> · <a href="profile.html">Customer Profile</a> · <a href="dhl-locations.html">Locations</a></span>
     </div>
   </footer>
 

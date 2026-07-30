@@ -202,17 +202,17 @@
         <div class="seller-offer-top">
           <button class="seller-offer-close" type="button" aria-label="Close online seller offer">&times;</button>
           <div class="seller-offer-kicker">Business Shipping</div>
-          <h2 id="sellerOfferTitle">Built for online shops and small businesses.</h2>
+          <h2 id="sellerOfferTitle">Ship more? Start before you arrive.</h2>
         </div>
         <div class="seller-offer-body">
-          <p>Good rates, DHL access, packing help, and exceptional counter service for sellers shipping from home, a garage, or a small workspace.</p>
+          <p>Create one profile for DHL requests, files, and counter follow-up.</p>
           <ul class="seller-offer-list">
             <li>Add where you sell and what you ship.</li>
             <li>Choose a 10, 20, or 30 shipments/month tier.</li>
             <li>Let Cubic review the best shipping path for your business.</li>
           </ul>
           <div class="seller-offer-actions">
-            <a class="primary" href="profile.html?account=business&offer=online-seller">Create Business Profile</a>
+            <a class="primary" href="profile.html?account=business&offer=online-seller">Create Profile</a>
             <a class="secondary" href="tel:+17084325600">Call Cubic Ship</a>
           </div>
           <span class="seller-offer-disclaimer">Rates vary by volume, destination, shipment type, carrier, and service availability.</span>
@@ -237,13 +237,17 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !offer.hidden) closeOffer();
     });
+    let offerReady = false;
     function revealOffer() {
-      if (window.scrollY < 260) return;
+      if (!offerReady || window.scrollY < 600) return;
       offer.hidden = false;
       window.removeEventListener("scroll", revealOffer);
     }
     window.addEventListener("scroll", revealOffer, { passive: true });
-    revealOffer();
+    window.setTimeout(() => {
+      offerReady = true;
+      revealOffer();
+    }, 6000);
   }
 
   if (document.readyState === "loading") {

@@ -216,7 +216,7 @@
   left: clamp(1rem, 3vw, 1.5rem);
   bottom: clamp(1rem, 3vw, 1.5rem);
   z-index: 10000;
-  width: min(380px, calc(100vw - 2rem));
+  width: min(340px, calc(100vw - 2rem));
   font-family: Inter, system-ui, sans-serif;
   color: #101827;
 }
@@ -233,7 +233,7 @@
 }
 .seller-offer-top {
   position: relative;
-  padding: 0.8rem 3rem 0.72rem 0.9rem;
+  padding: 0.65rem 2.7rem 0.58rem 0.8rem;
   background: linear-gradient(135deg, #fff7ed 0%, #f0fdf4 100%);
 }
 .seller-offer-close {
@@ -259,18 +259,18 @@
   text-transform: uppercase;
 }
 .seller-offer h2 {
-  max-width: 280px;
+  max-width: 260px;
   margin: 0.28rem 0 0;
   font-family: "Space Grotesk", Inter, system-ui, sans-serif;
-  font-size: 1.45rem;
-  line-height: 1;
+  font-size: 1.16rem;
+  line-height: 1.08;
   letter-spacing: 0;
 }
 .seller-offer h2 span {
   color: #f47621;
 }
 .seller-offer-body {
-  padding: 0.75rem 0.9rem 0.9rem;
+  padding: 0.62rem 0.8rem 0.75rem;
 }
 .seller-offer-body p {
   margin: 0;
@@ -355,12 +355,54 @@
     width: auto;
   }
   .seller-offer-panel {
-    border-radius: 14px;
+    border-radius: 12px;
+  }
+  .seller-offer-top {
+    padding: 0.52rem 2.35rem 0.46rem 0.7rem;
+  }
+  .seller-offer-close {
+    top: 0.45rem;
+    right: 0.45rem;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+  }
+  .seller-offer-kicker {
+    font-size: 0.58rem;
+    letter-spacing: 1.4px;
+  }
+  .seller-offer h2 {
+    max-width: none;
+    margin-top: 0.15rem;
+    font-size: 0.98rem;
+    line-height: 1.12;
+  }
+  .seller-offer-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.55rem;
+    align-items: center;
+    padding: 0.5rem 0.7rem 0.62rem;
+  }
+  .seller-offer-body p {
+    font-size: 0.68rem;
+    line-height: 1.3;
   }
   .seller-offer-list {
-    grid-template-columns: 1fr;
+    display: none;
+  }
+  .seller-offer-actions {
+    flex-wrap: nowrap;
+    gap: 0;
   }
   .seller-offer-actions a {
-    width: 100%;
+    min-height: 34px;
+    width: auto;
+    padding: 0 0.7rem;
+    white-space: nowrap;
+    font-size: 0.68rem;
+  }
+  .seller-offer-actions .secondary {
+    display: none;
   }
 }

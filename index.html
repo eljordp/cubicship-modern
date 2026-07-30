@@ -249,11 +249,11 @@
       min-height: min(70vh, 620px);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 5.6rem 2rem 2.5rem;
+      padding: 5.6rem 2rem 2.5rem clamp(8rem, 18vw, 22rem);
       position: relative;
-      text-align: center;
+      text-align: left;
       overflow: hidden;
     }
     /* atmospheric glow */
@@ -272,7 +272,7 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      opacity: 0.48;
+      opacity: 0.76;
     }
     .hero-media img {
       width: 100%;
@@ -286,8 +286,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.55) 45%, rgba(10,22,40,0.96) 100%),
-        linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.5) 50%, rgba(10,22,40,0.78) 100%);
+        linear-gradient(180deg, rgba(10,22,40,0.82) 0%, rgba(10,22,40,0.42) 45%, rgba(10,22,40,0.94) 100%),
+        linear-gradient(90deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.56) 54%, rgba(10,22,40,0.18) 100%);
     }
     .hero-globe {
       position: absolute;
@@ -303,7 +303,7 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 800px;
+      max-width: 650px;
       min-width: 0;
     }
     .hero-partner {
@@ -319,7 +319,7 @@
       color: #ffcc00;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.4rem;
       max-width: 100%;
       justify-content: center;
       flex-wrap: wrap;
@@ -344,7 +344,7 @@
     }
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.85rem, 6.2vw, 4.9rem);
+      font-size: clamp(2.8rem, 5.3vw, 4.65rem);
       font-weight: 700;
       letter-spacing: -2px;
       line-height: 0.95;
@@ -361,10 +361,10 @@
       font-size: clamp(1rem, 1.8vw, 1.15rem);
       color: rgba(232,236,244,0.88);
       max-width: 600px;
-      margin: 0 auto 1.6rem;
+      margin: 0 0 1.6rem;
       line-height: 1.55;
     }
-    .hero-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .hero-buttons { display: flex; gap: 0.75rem; justify-content: flex-start; flex-wrap: wrap; }
 
     /* animated route lines */
     .hero-routes {
@@ -1576,6 +1576,7 @@
 
     /* === RESPONSIVE === */
     @media (max-width: 960px) {
+      .hero { padding-left: clamp(2rem, 10vw, 6rem); }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .extras-layout { grid-template-columns: 1fr; }
       .reviews-top { grid-template-columns: 1fr; }
@@ -1643,6 +1644,13 @@
         min-height: auto;
         padding: 5.25rem 1rem 2.25rem;
         align-items: flex-start;
+        text-align: left;
+      }
+      .hero-media img { object-position: 62% center; }
+      .hero-media::after {
+        background:
+          linear-gradient(180deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.54) 45%, rgba(10,22,40,0.96) 100%),
+          linear-gradient(90deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.55) 66%, rgba(10,22,40,0.26) 100%);
       }
       .hero-content {
         width: 100%;
@@ -1661,7 +1669,7 @@
         line-height: 1.55;
       }
       .hero-sub { margin-bottom: 2rem; }
-      .hero-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; }
+      .hero-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 0; }
       .hero-buttons .btn { width: 100%; justify-content: center; }
       .discount-strip { padding: 1.5rem 1rem; }
       .discount-panel h2 { font-size: 1.45rem; letter-spacing: -0.4px; }
@@ -1806,7 +1814,7 @@
   <!-- HERO -->
   <section class="hero" id="overview">
     <div class="hero-media" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80" alt="">
+      <img src="assets/cubicship-dhl-service-point-hero.webp" alt="">
     </div>
     <div class="hero-routes">
       <div class="route-line"></div>
@@ -1830,17 +1838,17 @@
         <span class="hero-partner-text">DHL Express Service Point</span>
       </div>
       <h1 class="stagger-1" data-reveal>
-        Business shipping<br>
-        <span class="line2">with one secure workflow.</span>
+        Start online.<br>
+        <span class="line2">Ship with real counter help.</span>
       </h1>
-      <p class="hero-sub stagger-2" data-reveal>CubicShip helps small businesses and online shops create service orders, route work to the right location, and track labels, status, and staff updates from one dashboard.</p>
+      <p class="hero-sub stagger-2" data-reveal>Create your request before you arrive, then get hands-on help at a real CubicShip DHL Express Service Point for packing, documents, labels, and international shipping.</p>
       <div class="hero-buttons stagger-3" data-reveal>
-        <a href="business-services.html" class="btn btn-primary btn-lg">
-          Explore Business Services
+        <a href="profile.html?account=business" class="btn btn-primary btn-lg">
+          Start a Shipping Request
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
-        <a href="profile.html?account=business" class="btn btn-secondary btn-lg">
-          Open Customer Profile
+        <a href="dhl-locations.html" class="btn btn-secondary btn-lg">
+          Find a Service Point
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
       </div>
@@ -1922,7 +1930,7 @@
           <h2 class="section-heading">Global logistics,<br>local service.</h2>
           <p class="section-desc">Cubic Home Solutions / Cubic Ship brings global logistics and business services to local communities with integrity, care, and trust.</p>
           <div class="about-media">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=1200&q=80" alt="Packages moving through a logistics operation">
+            <img loading="lazy" src="assets/cubicship-scan-label-workflow.webp" alt="Parcel scanning workflow at a CubicShip DHL Express Service Point counter">
           </div>
         </div>
         <div class="about-copy" data-reveal>
@@ -2066,13 +2074,13 @@
               <strong>Business services</strong>
               <span>DHL, freight, print, mailbox, notary, signage, and seller support.</span>
             </a>
-            <a class="quick-card" href="platform.html">
-              <strong>My labels</strong>
-              <span>Planned PDF library for staff-uploaded labels and print/download access.</span>
+            <a class="quick-card" href="profile.html?account=business">
+              <strong>View order files</strong>
+              <span>Sign in to view uploaded labels, receipts, order history, and service updates.</span>
             </a>
-            <a class="quick-card" href="mos.html">
-              <strong>Staff location portal</strong>
-              <span>Internal employee path for verifying orders and finalizing labels.</span>
+            <a class="quick-card" href="dhl-locations.html">
+              <strong>Find a service point</strong>
+              <span>Choose a CubicShip DHL Express Service Point and contact the counter before arrival.</span>
             </a>
           </div>
         </article>
@@ -2088,7 +2096,7 @@
             <span><b>200+</b>Destinations</span>
           </div>
           <div class="home-actions">
-            <a class="btn btn-secondary" href="dhl-locations.html">View Locations</a>
+            <a class="btn btn-secondary" href="dhl-locations.html">See Locations &amp; Google Reviews</a>
           </div>
         </article>
 
@@ -2312,17 +2320,17 @@
       <div class="systems-panel">
         <div data-reveal>
           <div class="section-eyebrow">Platform</div>
-          <h2 class="section-heading">Business orders, labels,<br>and staff workflows.</h2>
-          <p class="section-desc">For business customers, CubicShip is moving toward one secured workflow for shipment requests, label uploads, location routing, payments, notifications, and audit history.</p>
-          <a href="platform.html" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">View Platform</a>
+          <h2 class="section-heading">Business orders, files,<br>and service updates.</h2>
+          <p class="section-desc">Use one customer profile to submit service requests, choose a CubicShip location, view uploaded files, and keep order history together.</p>
+          <a href="profile.html?account=business" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">Open Customer Profile</a>
         </div>
         <div class="systems-list">
-          <div class="system-chip"><strong>Customer Profile</strong>Profile, service orders, labels, and order history.</div>
-          <div class="system-chip"><strong>Create Service Order</strong>Secured order codes for DHL labels, printing, mailbox, notary, and business workflows.</div>
-          <div class="system-chip"><strong>Staff Portal</strong>Location queue for verifying and finalizing labels.</div>
-          <div class="system-chip"><strong>Label PDFs</strong>Staff upload and customer download workflow.</div>
-          <div class="system-chip"><strong>Checkout</strong>Future Stripe payment and receipt flow.</div>
-          <div class="system-chip"><strong>Security</strong>Future OTP, roles, permissions, and audit log.</div>
+          <div class="system-chip"><strong>Customer Profile</strong>Profile, service requests, uploaded files, and order history.</div>
+          <div class="system-chip"><strong>Create Service Order</strong>Requests for DHL, printing, mailbox, notary, and other business services.</div>
+          <div class="system-chip"><strong>Location Routing</strong>Send each request to the selected CubicShip counter.</div>
+          <div class="system-chip"><strong>Order Files</strong>Keep labels, receipts, and customer downloads with the order.</div>
+          <div class="system-chip"><strong>Status Updates</strong>See service progress and clear next steps.</div>
+          <div class="system-chip"><strong>Secure Access</strong>Customer and staff access stay separated by role.</div>
         </div>
       </div>
     </div>

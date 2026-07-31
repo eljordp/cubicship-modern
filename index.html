@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CubicShip - Business Shipping Platform</title>
-  <meta name="description" content="CubicShip is a business-first shipping and counter-services platform: DHL Express locations, freight, print and pack, mailbox, notary, business signage, service orders, labels, and status updates.">
+  <title>DHL Express Shipping &amp; Business Services | CubicShip</title>
+  <meta name="description" content="Get real counter help with DHL Express shipping, packing, documents, freight, printing, and practical business services at CubicShip locations.">
   <link rel="canonical" href="https://cubicship.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cubic Ship">
-  <meta property="og:title" content="CubicShip - Business Shipping Platform">
-  <meta property="og:description" content="DHL Express locations, freight, print and pack, mailbox, notary, business signage, service orders, labels, and status updates from one CubicShip workflow.">
+  <meta property="og:title" content="DHL Express Shipping &amp; Business Services | CubicShip">
+  <meta property="og:description" content="Real DHL Express Service Point counter help for shipping, packing, documents, freight, printing, and business services.">
   <meta property="og:url" content="https://cubicship.com/">
   <meta property="og:image" content="https://cubicship.com/og-image.png">
   <meta property="og:image:secure_url" content="https://cubicship.com/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="CubicShip business shipping platform">
+  <meta property="og:image:alt" content="CubicShip DHL Express shipping and business services">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CubicShip - Business Shipping Platform">
-  <meta name="twitter:description" content="DHL Express locations, freight, print and pack, mailbox, notary, business signage, service orders, labels, and status updates from one CubicShip workflow.">
+  <meta name="twitter:title" content="DHL Express Shipping &amp; Business Services | CubicShip">
+  <meta name="twitter:description" content="Real DHL Express Service Point counter help for shipping, packing, documents, freight, printing, and business services.">
   <meta name="twitter:image" content="https://cubicship.com/og-image.png">
   <link rel="icon" href="favicon-64.png" type="image/png">
   <link rel="stylesheet" href="chat-widget.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,7 +39,7 @@
         "logo": "https://cubicship.com/logo-160.png",
         "email": "info@cubicship.com",
         "telephone": "+1-708-432-5600",
-        "description": "Business-first shipping platform and DHL Express Service Point support for service orders, secure order codes, labels, tracking, freight, documents, business print, signage, displays, and counter workflows."
+        "description": "DHL Express Service Point shipping help, packing, freight, documents, business print, signage, and practical counter services."
       },
       {
         "@type": "LocalBusiness",
@@ -534,14 +535,8 @@
     /* === SECTIONS === */
     section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 3rem); }
     .container { max-width: 1140px; margin: 0 auto; }
-    #how-it-works,
-    .about-bg,
-    #freight,
     .extras-bg,
-    .reviews-bg,
-    .systems-bg,
-    .tracking-strip,
-    .contact-bg {
+    .systems-bg {
       display: none;
     }
 
@@ -1557,12 +1552,12 @@
     }
 
     /* === ANIMATIONS === */
-    [data-reveal] {
+    .js [data-reveal] {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
     }
-    [data-reveal].in {
+    .js [data-reveal].in {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1572,7 +1567,70 @@
     .stagger-4 { transition-delay: 0.2s; }
 
     /* hero entrance */
-    .hero [data-reveal] { transform: translateY(32px); }
+    .js .hero [data-reveal]:not(.in) { transform: translateY(32px); }
+    .steps-grid [data-reveal]:nth-child(2),
+    .freight-layout [data-reveal]:nth-child(2),
+    .locations-grid [data-reveal]:nth-child(2) { transition-delay: 0.08s; }
+    .steps-grid [data-reveal]:nth-child(3),
+    .freight-layout [data-reveal]:nth-child(3),
+    .locations-grid [data-reveal]:nth-child(3) { transition-delay: 0.16s; }
+    .steps-grid [data-reveal]:nth-child(4),
+    .freight-layout [data-reveal]:nth-child(4) { transition-delay: 0.24s; }
+    .hero-media img { animation: heroDrift 14s ease-in-out infinite alternate; }
+    .hero h1.in {
+      animation: headlineReveal 0.9s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .hero-partner.in {
+      animation: eyebrowReveal 0.75s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .section-heading,
+    .section-header h2,
+    .how-title h2 {
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    .section-heading::after,
+    .section-header h2::after,
+    .how-title h2::after {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 3px;
+      margin-top: 0.75rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange), var(--green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s 0.18s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-reveal].in .section-heading::after,
+    [data-reveal].in.section-header h2::after,
+    [data-reveal].in.how-title h2::after { transform: scaleX(1); }
+    @keyframes heroDrift {
+      from { transform: scale(1.03) translate3d(-0.4%, -0.3%, 0); }
+      to { transform: scale(1.08) translate3d(0.6%, 0.4%, 0); }
+    }
+    @keyframes headlineReveal {
+      from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(34px); }
+      to { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); }
+    }
+    @keyframes eyebrowReveal {
+      from { opacity: 0; letter-spacing: 0.18em; transform: translateY(14px); }
+      to { opacity: 1; letter-spacing: normal; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .js [data-reveal],
+      .js [data-reveal].in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+      }
+      .hero-media img { animation: none; }
+      .section-heading::after,
+      .section-header h2::after,
+      .how-title h2::after { transform: scaleX(1); transition: none; }
+    }
 
     /* === RESPONSIVE === */
     @media (max-width: 960px) {
@@ -1703,10 +1761,8 @@
       .metric-label { font-size: 0.58rem; letter-spacing: 1.8px; }
       .section-heading { font-size: 1.8rem; letter-spacing: -1px; }
       .section-desc { font-size: 0.95rem; }
-      .about-bg,
-      #freight,
       .systems-bg,
-      .tracking-strip {
+      .extras-bg {
         display: none;
       }
       .services-bg,
@@ -1792,13 +1848,11 @@
       <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="dhl-locations.html">DHL Locations</a></li>
-      <li><a href="business-services.html">Business Services</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="profile.html?account=business">Customer Profile</a></li>
+      <li><a href="#how-it-works">Shipping</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="dhl-locations.html">Locations</a></li>
       <li><a href="track.html">Track</a></li>
-      <li><a href="platform.html">Platform</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
     </ul>
     <div class="nav-actions">
       <a href="quote.html" class="btn btn-primary">
@@ -1843,7 +1897,7 @@
       </h1>
       <p class="hero-sub stagger-2" data-reveal>Create your request before you arrive, then get hands-on help at a real CubicShip DHL Express Service Point for packing, documents, labels, and international shipping.</p>
       <div class="hero-buttons stagger-3" data-reveal>
-        <a href="profile.html?account=business" class="btn btn-primary btn-lg">
+        <a href="quote.html" class="btn btn-primary btn-lg">
           Start a Shipping Request
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -1883,8 +1937,8 @@
         <span class="discount-note">Rates vary by volume, destination, shipment type, carrier, and service availability.</span>
       </div>
       <div class="discount-actions">
-        <a class="btn btn-primary btn-lg" href="profile.html?account=business&offer=online-seller">Create Business Profile</a>
-        <a class="btn btn-secondary btn-lg" href="business-services.html#online-sellers">Business Services</a>
+        <a class="btn btn-primary btn-lg" href="quote.html?service=online-seller">Request Business Shipping</a>
+        <a class="btn btn-secondary btn-lg" href="services.html">View Services</a>
       </div>
     </div>
   </section>
@@ -2062,25 +2116,25 @@
     <div class="container">
       <div class="home-board">
         <article class="home-panel" data-reveal>
-          <span class="home-kicker">Platform Flow</span>
-          <h2>One order number for every service.</h2>
-          <p>Customers submit the details online, Cubic routes the order to the right location, and staff finalize labels, service requests, and status updates.</p>
+          <span class="home-kicker">Services</span>
+          <h2>What can we help you handle?</h2>
+          <p>Start with the service you need. CubicShip will confirm the right counter, documents, timing, and next step.</p>
           <div class="quick-grid">
-            <a class="quick-card" href="profile.html?account=business">
-              <strong>Create service order</strong>
-              <span>Start a DHL label, printing, mailbox, notary, or business-service order.</span>
+            <a class="quick-card" href="quote.html?service=dhl">
+              <strong>DHL Express &amp; packing</strong>
+              <span>International shipping, labels, documents, parcels, and counter help.</span>
             </a>
-            <a class="quick-card" href="business-services.html">
-              <strong>Business services</strong>
-              <span>DHL, freight, print, mailbox, notary, signage, and seller support.</span>
+            <a class="quick-card" href="services.html#freight-detail">
+              <strong>Freight quotes</strong>
+              <span>Air, ocean, ground, container, and oversized shipment support.</span>
             </a>
-            <a class="quick-card" href="profile.html?account=business">
-              <strong>View order files</strong>
-              <span>Sign in to view uploaded labels, receipts, order history, and service updates.</span>
+            <a class="quick-card" href="print-pack.html">
+              <strong>Print, pack &amp; paperwork</strong>
+              <span>Copies, scans, packaging, documents, mailbox, and notary requests.</span>
             </a>
-            <a class="quick-card" href="dhl-locations.html">
-              <strong>Find a service point</strong>
-              <span>Choose a CubicShip DHL Express Service Point and contact the counter before arrival.</span>
+            <a class="quick-card" href="business-signage.html">
+              <strong>Business print &amp; signage</strong>
+              <span>Cards, labels, stickers, banners, decals, and event displays.</span>
             </a>
           </div>
         </article>
@@ -2127,8 +2181,8 @@
           </div>
         </div>
         <div class="home-actions">
-          <a class="btn btn-primary" href="profile.html?account=business&amp;service=business-print">Request Print Quote</a>
-          <a class="btn btn-secondary" href="business-services.html#services">View Business Services</a>
+          <a class="btn btn-primary" href="quote.html?service=business-print">Request Print Quote</a>
+          <a class="btn btn-secondary" href="services.html">View All Services</a>
         </div>
       </article>
     </div>
@@ -2314,28 +2368,6 @@
     </div>
   </section>
 
-  <!-- PLATFORM -->
-  <section class="systems-bg" id="platform">
-    <div class="container">
-      <div class="systems-panel">
-        <div data-reveal>
-          <div class="section-eyebrow">Platform</div>
-          <h2 class="section-heading">Business orders, files,<br>and service updates.</h2>
-          <p class="section-desc">Use one customer profile to submit service requests, choose a CubicShip location, view uploaded files, and keep order history together.</p>
-          <a href="profile.html?account=business" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">Open Customer Profile</a>
-        </div>
-        <div class="systems-list">
-          <div class="system-chip"><strong>Customer Profile</strong>Profile, service requests, uploaded files, and order history.</div>
-          <div class="system-chip"><strong>Create Service Order</strong>Requests for DHL, printing, mailbox, notary, and other business services.</div>
-          <div class="system-chip"><strong>Location Routing</strong>Send each request to the selected CubicShip counter.</div>
-          <div class="system-chip"><strong>Order Files</strong>Keep labels, receipts, and customer downloads with the order.</div>
-          <div class="system-chip"><strong>Status Updates</strong>See service progress and clear next steps.</div>
-          <div class="system-chip"><strong>Secure Access</strong>Customer and staff access stay separated by role.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TRACKING -->
   <section class="tracking-strip" id="tracking">
     <div class="tracking-inner" data-reveal>
@@ -2453,15 +2485,14 @@
         <h5>Explore</h5>
         <a href="dhl-locations.html">DHL Locations</a>
         <a href="#services">Services</a>
-        <a href="profile.html?account=business">Customer Profile</a>
+        <a href="profile.html">Customer Login</a>
         <a href="track.html">Track Shipment</a>
-        <a href="platform.html">Platform</a>
         <a href="quote.html">Get a Quote</a>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
         <a href="services.html#freight-detail">Freight Forwarding</a>
-        <a href="business-services.html">Business Services</a>
+        <a href="services.html">All Services</a>
         <a href="business-signage.html">Business Signage &amp; Displays</a>
         <a href="print-pack.html">Print, Pack &amp; Paperwork</a>
         <a href="services.html#passport">Passport</a>
@@ -2484,15 +2515,39 @@
 
   <script>
     // scroll reveal
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      revealItems.forEach(el => io.observe(el));
+      const revealPassedItems = () => {
+        revealItems.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 1.12 || rect.bottom < 0) {
+            el.classList.add('in');
+            io.unobserve(el);
+          }
+        });
+      };
+      let revealTicking = false;
+      window.addEventListener('scroll', () => {
+        if (revealTicking) return;
+        revealTicking = true;
+        requestAnimationFrame(() => {
+          revealPassedItems();
+          revealTicking = false;
+        });
+      }, { passive: true });
+      revealPassedItems();
+    } else {
+      revealItems.forEach(el => el.classList.add('in'));
+    }
 
     // nav scroll
     const nav = document.getElementById('nav');

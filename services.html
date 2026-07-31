@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Details - Cubic Ship</title>
-  <meta name="description" content="Cubic Ship service details for DHL shipping, freight quotes, print and pack, mailbox, passport photos, notary support, luggage storage, business signage, documents, DMV support, and payment services.">
+  <title>Shipping &amp; Business Services | CubicShip</title>
+  <meta name="description" content="Explore CubicShip DHL Express shipping, freight, print and pack, mailbox, passport photos, notary, luggage storage, business signage, DMV support, and payment services.">
   <link rel="canonical" href="https://cubicship.com/services.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cubic Ship">
@@ -399,13 +399,11 @@
       <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="dhl-locations.html">DHL Locations</a></li>
-      <li><a href="business-services.html">Business Services</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="profile.html">Profile</a></li>
+      <li><a href="index.html#how-it-works">Shipping</a></li>
+      <li><a class="active" href="services.html">Services</a></li>
+      <li><a href="dhl-locations.html">Locations</a></li>
       <li><a href="track.html">Track</a></li>
-      <li><a href="systems.html">Systems</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#about">About</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -416,11 +414,12 @@
     <div class="container">
       <section class="hero">
         <div>
-          <div class="eyebrow">Service Details</div>
-          <h1>Know what to bring before you come in.</h1>
-          <p class="lead">Each service page gives customers the basics: walk-in or appointment, what to bring, and the steps at the counter.</p>
+          <div class="eyebrow">All Services</div>
+          <h1>Shipping and business services, clearly organized.</h1>
+          <p class="lead">Choose what you need, see what to bring, and request help before visiting a CubicShip counter.</p>
         </div>
         <div class="service-nav">
+          <a href="#shipping">DHL Shipping</a>
           <a href="#print">Print, Pack</a>
           <a href="#business-print">Business Print</a>
           <a href="#passport">Passport</a>
@@ -433,6 +432,29 @@
       </section>
 
       <section class="detail-grid">
+        <article class="detail-card" id="shipping">
+          <div class="detail-meta"><span>DHL Express Service Point</span><span>Counter help</span></div>
+          <div class="detail-card-top">
+            <div class="detail-card-copy">
+              <h2>DHL Express Shipping</h2>
+              <p>International documents and parcels with real help for packing, labels, customs details, and the right service level.</p>
+            </div>
+            <div class="detail-thumb">
+              <img loading="lazy" src="assets/cubicship-scan-label-workflow.webp" alt="CubicShip counter worker scanning a parcel label">
+            </div>
+          </div>
+          <ol class="steps">
+            <li>Tell us what you are shipping, its size and weight, destination, and timing.</li>
+            <li>Bring the unpacked or packed item and any customs or recipient information.</li>
+            <li>Review the service, price, label, documents, and packaging at the counter.</li>
+            <li>Leave with a tracking number and use the tracking page for updates.</li>
+          </ol>
+          <div class="detail-actions">
+            <a class="btn btn-primary" href="quote.html?service=dhl">Start a Shipping Quote</a>
+            <a class="btn btn-secondary" href="dhl-locations.html">Find a Service Point</a>
+          </div>
+        </article>
+
         <article class="detail-card" id="print">
           <div class="detail-meta"><span>Walk-ins welcome</span><span>Shipping-ready</span></div>
           <div class="detail-card-top">
@@ -456,7 +478,7 @@
           </div>
           <div class="detail-actions">
             <a class="btn btn-primary" href="print-pack.html">View Print Pack Page</a>
-            <a class="btn btn-secondary" href="profile.html?service=printing">Start Print Inquiry</a>
+            <a class="btn btn-secondary" href="quote.html?service=printing">Start Print Inquiry</a>
             <p class="price-note">Pricing depends on size, quantity, material, finish, and counter handling.</p>
           </div>
         </article>
@@ -484,7 +506,7 @@
           </div>
           <div class="detail-actions">
             <a class="btn btn-primary" href="business-signage.html">View Signage Page</a>
-            <a class="btn btn-secondary" href="profile.html?account=business&amp;service=business-print">Request Quote</a>
+            <a class="btn btn-secondary" href="quote.html?service=business-print">Request Quote</a>
             <p class="price-note">Final price is confirmed after product, artwork, quantity, and turnaround are reviewed.</p>
           </div>
         </article>

@@ -2,8 +2,8 @@
   const faqs = [
     {
       label: "How do I start a shipment?",
-      answer: "Create a customer profile, submit the shipment details, and bring the generated Cubic Ship ticket with your box. Staff uses that ticket to match your box to the DHL tracking/label created in the carrier system. Estimated price will show once Cubic connects the area-based rate data.",
-      links: [{ label: "Open profile", href: "profile.html" }],
+      answer: "Tell us what you are shipping, where it is going, and when it needs to arrive. Cubic Ship will confirm the right counter or next step before you visit.",
+      links: [{ label: "Start a quote", href: "quote.html?service=dhl" }],
     },
     {
       label: "Can I request a service?",
@@ -28,12 +28,12 @@
     {
       label: "Do you help small businesses?",
       answer: "Yes. Cubic helps online shops, local sellers, home businesses, and small teams with DHL, packing, freight, document support, and business shipping rates based on volume, destination, service type, and carrier availability.",
-      links: [{ label: "Business profile", href: "profile.html?account=business&offer=online-seller" }],
+      links: [{ label: "Request business help", href: "quote.html?service=business" }],
     },
     {
       label: "I sell online",
-      answer: "Create a Small Business profile, tell Cubic where you sell online, and choose your expected 10, 20, or 30 shipments/month tier. The team can use that profile to review the best available shipping path for your shop.",
-      links: [{ label: "Create profile", href: "profile.html?account=business&offer=online-seller" }],
+      answer: "Tell Cubic where you sell, what you ship, and your expected monthly volume. The team can review the best available shipping path for your shop.",
+      links: [{ label: "Request seller support", href: "quote.html?service=online-seller" }],
     },
   ];
 
@@ -89,7 +89,70 @@
     `;
   }
 
+  function initSiteMotion() {
+    const path = window.location.pathname;
+    const isHome = path === "/" || path.endsWith("/index.html") || path === "";
+    if (isHome || document.documentElement.classList.contains("site-motion-ready")) return;
+
+    const selectors = [
+      "main > section",
+      ".detail-card",
+      ".service-card",
+      ".location-card",
+      ".vision-card",
+      ".quick-card",
+      ".item-card",
+      ".product-card",
+      ".accomplishment",
+      ".proof-panel",
+      ".track-card",
+      ".form-card",
+    ];
+    const items = [...new Set(document.querySelectorAll(selectors.join(",")))];
+    if (!items.length) return;
+
+    items.forEach((item, index) => {
+      item.classList.add("site-motion-item");
+      item.style.setProperty("--motion-delay", `${(index % 4) * 70}ms`);
+    });
+    document.documentElement.classList.add("site-motion-ready");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      items.forEach(item => item.classList.add("site-motion-in"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("site-motion-in");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
+    items.forEach(item => observer.observe(item));
+    const revealPassedItems = () => {
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 1.12 || rect.bottom < 0) {
+          item.classList.add("site-motion-in");
+          observer.unobserve(item);
+        }
+      });
+    };
+    let motionTicking = false;
+    window.addEventListener("scroll", () => {
+      if (motionTicking) return;
+      motionTicking = true;
+      window.requestAnimationFrame(() => {
+        revealPassedItems();
+        motionTicking = false;
+      });
+    }, { passive: true });
+    revealPassedItems();
+  }
+
   function init() {
+    initSiteMotion();
     if (document.querySelector(".chat-widget")) return;
     const root = document.createElement("div");
     root.className = "chat-widget";
@@ -205,14 +268,14 @@
           <h2 id="sellerOfferTitle">Ship more? Start before you arrive.</h2>
         </div>
         <div class="seller-offer-body">
-          <p>Create one profile for DHL requests, files, and counter follow-up.</p>
+          <p>Send your shipping details before you visit and let Cubic confirm the next step.</p>
           <ul class="seller-offer-list">
             <li>Add where you sell and what you ship.</li>
             <li>Choose a 10, 20, or 30 shipments/month tier.</li>
             <li>Let Cubic review the best shipping path for your business.</li>
           </ul>
           <div class="seller-offer-actions">
-            <a class="primary" href="profile.html?account=business&offer=online-seller">Create Profile</a>
+            <a class="primary" href="quote.html?service=online-seller">Request Support</a>
             <a class="secondary" href="tel:+17084325600">Call Cubic Ship</a>
           </div>
           <span class="seller-offer-disclaimer">Rates vary by volume, destination, shipment type, carrier, and service availability.</span>

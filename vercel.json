@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/systems.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/platform.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

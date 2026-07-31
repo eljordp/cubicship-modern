@@ -392,6 +392,46 @@
       flex-wrap: wrap;
       margin-top: 1.25rem;
     }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .location-search {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.75rem;
+      max-width: 720px;
+      margin: 0 0 0.65rem;
+    }
+    .location-search input {
+      width: 100%;
+      min-height: 50px;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font: inherit;
+    }
+    .location-search input::placeholder { color: var(--text-secondary); }
+    .location-search input:focus {
+      outline: 3px solid rgba(247,148,29,0.22);
+      border-color: var(--orange);
+    }
+    .location-search-status {
+      min-height: 1.35rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
     .tool-pill {
       padding: 0.38rem 0.72rem;
       border-radius: 999px;
@@ -567,6 +607,8 @@
       .vision-grid,
       .locations-grid,
       .accomplishments { grid-template-columns: 1fr; }
+      .location-search { grid-template-columns: 1fr; }
+      .location-search .btn { width: 100%; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .cta-panel { grid-template-columns: 1fr; align-items: stretch; }
       .cta-panel .btn { width: 100%; }
@@ -587,13 +629,11 @@
       <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a class="active" href="dhl-locations.html">DHL Locations</a></li>
-      <li><a href="business-services.html">Business Services</a></li>
+      <li><a href="index.html#how-it-works">Shipping</a></li>
       <li><a href="services.html">Services</a></li>
-      <li><a href="profile.html">Profile</a></li>
+      <li><a class="active" href="dhl-locations.html">Locations</a></li>
       <li><a href="track.html">Track</a></li>
-      <li><a href="systems.html">Systems</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#about">About</a></li>
     </ul>
     <div class="nav-actions">
       <a href="quote.html" class="btn btn-primary">Get a Quote</a>
@@ -606,7 +646,7 @@
   <main>
     <section class="hero">
       <div class="hero-media" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80" alt="">
+        <img src="assets/cubicship-dhl-service-point-hero.webp" alt="">
       </div>
       <div class="container">
         <div class="hero-grid">
@@ -615,11 +655,11 @@
               <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" alt="DHL logo">
             </div>
             <div class="eyebrow">DHL Express Service Point</div>
-            <h1>DHL Express Service Point locations, organized.</h1>
-            <p class="lead">Cubic Ship supports DHL Express Service Point locations with a repeatable service model: trained counters, clean documentation, customer follow-up, and local access to global logistics.</p>
+            <h1>Find a CubicShip DHL Express Service Point.</h1>
+            <p class="lead">Choose a neighborhood CubicShip counter for DHL Express shipping help, packing, documents, and practical business services.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#locations">View Locations</a>
-              <a class="btn btn-secondary" href="#vision">Service Vision</a>
+              <a class="btn btn-secondary" href="#vision">What to Expect</a>
             </div>
           </div>
           <aside class="proof-panel" aria-label="DHL Express Service Point proof">
@@ -640,7 +680,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="eyebrow">Cubic + DHL Vision</div>
+            <div class="eyebrow">What to Expect</div>
             <h2 class="section-title">Local counters with global capability.</h2>
           </div>
           <p class="section-copy">The vision is a reliable service model where customers can walk into a neighborhood counter and get professional DHL Express help, packing support, shipment prep, business services, and clear next steps without confusion.</p>
@@ -728,6 +768,12 @@
           </div>
           <p class="section-copy">Tap a card to open the CubicShip page for that serviced DHL location. Each page connects the matching Google listing, phone number, request flow, and practical Cubic business services like print, pack, mailbox, notary, documents, and counter help.</p>
         </div>
+        <form class="location-search" id="locationSearchForm" role="search">
+          <label class="sr-only" for="locationSearch">Search by city or state</label>
+          <input id="locationSearch" type="search" placeholder="Search by city or state" autocomplete="postal-code">
+          <button class="btn btn-primary" type="submit">Find a Location</button>
+        </form>
+        <p class="location-search-status" id="locationSearchStatus" aria-live="polite">Showing all 15 locations.</p>
         <div class="locations-grid">
           <a class="location-card" href="locations/dearborn-dhl-shipping.html">
             <div class="location-head"><h3>Dearborn, MI</h3><span class="rating-pill">4.7 · 28</span></div>
@@ -860,7 +906,7 @@
             <h2>One counter. Endless solutions.</h2>
             <p>From DHL Express Service Point locations to freight, documents, storage, printing, and business services, Cubic Ship is building a cleaner way for local customers to access global logistics.</p>
           </div>
-          <a class="btn btn-primary" href="business-services.html">View Business Services</a>
+          <a class="btn btn-primary" href="services.html">View All Services</a>
         </div>
       </div>
     </section>
@@ -893,6 +939,27 @@
         if (event.key === 'Enter' || event.key === ' ') call(event);
       });
     });
+    const locationSearchForm = document.getElementById('locationSearchForm');
+    const locationSearch = document.getElementById('locationSearch');
+    const locationCards = [...document.querySelectorAll('.location-card')];
+    const locationSearchStatus = document.getElementById('locationSearchStatus');
+    const filterLocations = () => {
+      const query = locationSearch.value.trim().toLowerCase();
+      let visible = 0;
+      locationCards.forEach(card => {
+        const matches = !query || card.textContent.toLowerCase().includes(query);
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+      locationSearchStatus.textContent = query
+        ? `${visible} location${visible === 1 ? '' : 's'} found for "${locationSearch.value.trim()}".`
+        : `Showing all ${locationCards.length} locations.`;
+    };
+    locationSearchForm.addEventListener('submit', event => {
+      event.preventDefault();
+      filterLocations();
+    });
+    locationSearch.addEventListener('input', filterLocations);
   </script>
   <script src="chat-widget.js" defer></script>
 </body>

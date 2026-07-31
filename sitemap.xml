@@ -36,16 +36,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cubicship.com/profile.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cubicship.com/platform.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://cubicship.com/track.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

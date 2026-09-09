@@ -1,0 +1,154 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CubicShip DSS — Daily Store Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--mid:#132744;--card:#16304f;--orange:#f47621;--orange2:#ff8f42;--green:#4cba3c;--red:#e5484d;--ink:#eaf1fa;--dim:#93a7c4}
+*{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.45}
+header{position:sticky;top:0;z-index:9;background:var(--navy);border-bottom:1px solid #1e3a5f;padding:12px 16px}
+h1{font-family:'Space Grotesk';font-size:19px;margin:0;letter-spacing:.2px}h1 span{color:var(--orange)}
+.sub{color:var(--dim);font-size:12.5px;margin-top:2px}
+.tabs{display:flex;gap:8px;margin-top:10px}
+.tab{flex:1;text-align:center;padding:9px 6px;border-radius:10px;background:var(--mid);color:var(--dim);font-weight:600;font-size:13.5px;cursor:pointer;border:1px solid #1e3a5f}
+.tab.on{background:var(--orange);color:#fff;border-color:var(--orange)}
+main{padding:14px 14px 90px;max-width:640px;margin:0 auto}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:var(--mid);border:1px solid #1e3a5f;border-radius:12px;padding:10px;text-align:center}
+.kpi b{font-family:'Space Grotesk';font-size:22px;display:block}.kpi span{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.kpi .ok{color:var(--green)}.kpi .bad{color:var(--red)}.kpi .amber{color:var(--orange2)}
+h2{font-family:'Space Grotesk';font-size:15px;margin:16px 0 8px;color:#cfe0f5}
+.store{display:flex;align-items:center;gap:10px;background:var(--mid);border:1px solid #1e3a5f;border-radius:12px;padding:11px 12px;margin-bottom:8px;cursor:pointer}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}.g{background:var(--green)}.r{background:var(--red)}.a{background:var(--orange2)}
+.store .nm{font-weight:600}.store .meta{font-size:12px;color:var(--dim)}
+.store .right{margin-left:auto;text-align:right;font-size:12px;color:var(--dim)}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;font-weight:600}
+.pg{background:#173c22;color:#7fdc74}.pr{background:#43181c;color:#ff9b9e}.pa{background:#4a2c10;color:#ffb877}
+.btn{display:inline-block;background:var(--orange);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;border:1px solid #2c4a73;color:#cfe0f5}
+.btn.small{padding:6px 10px;font-size:12.5px;border-radius:8px}
+.call{background:var(--green)}
+.card{background:var(--mid);border:1px solid #1e3a5f;border-radius:14px;padding:14px;margin-bottom:10px}
+.task{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #1e3a5f}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:20px;height:20px;accent-color:var(--green);margin-top:1px}
+.task .done{text-decoration:line-through;color:var(--dim)}
+.task .who{font-size:11.5px;color:var(--orange2);font-weight:600}
+input[type=text],input[type=number],select,textarea{width:100%;background:#0e2138;border:1px solid #2c4a73;border-radius:10px;color:var(--ink);padding:10px;font:inherit;margin:4px 0 10px}
+label{font-size:12.5px;color:var(--dim);font-weight:600}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.hide{display:none}
+.flow{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}
+.step{flex:none;background:var(--mid);border:1px solid #1e3a5f;border-radius:10px;padding:7px 10px;font-size:12px;color:var(--dim)}
+.step b{color:var(--ink)}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 18px;border-radius:99px;font-weight:600;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1}
+.note{font-size:12px;color:var(--dim)}
+.demo{background:#4a2c10;color:#ffb877;text-align:center;font-size:11.5px;padding:5px;letter-spacing:.4px;font-weight:600}
+</style></head><body>
+<div class="demo">DEMO — sample data, saves on this phone only. Real version gets store logins + live data.</div>
+<header>
+  <h1>Cubic<span>Ship</span> DSS</h1>
+  <div class="sub" id="dateline"></div>
+  <div class="tabs">
+    <div class="tab on" data-v="hq">HQ / Mr. M</div>
+    <div class="tab" data-v="store">Store view</div>
+    <div class="tab" data-v="how">How it runs</div>
+  </div>
+</header>
+<main>
+
+<section id="v-hq">
+  <div class="kpis">
+    <div class="kpi"><b class="ok" id="kSub">0</b><span>DSS in</span></div>
+    <div class="kpi"><b class="bad" id="kMiss">0</b><span>Missing</span></div>
+    <div class="kpi"><b class="amber" id="kTask">0</b><span>Open tasks</span></div>
+  </div>
+  <h2>⚠️ Chase first — no DSS yet today</h2>
+  <div id="missList"></div>
+  <h2>✅ Submitted today</h2>
+  <div id="subList"></div>
+</section>
+
+<section id="v-store" class="hide">
+  <div class="card">
+    <label>Your store</label>
+    <select id="storePick"></select>
+    <h2 style="margin-top:6px">Today's tasks — part of your shift</h2>
+    <div id="taskList"></div>
+    <div class="row2" style="margin-top:8px">
+      <input type="text" id="newTask" placeholder="Add a task…">
+      <input type="text" id="newWho" placeholder="Assign to (name)">
+    </div>
+    <button class="btn small ghost" onclick="addTask()">+ Add task</button>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">File today's DSS <span class="note">(60 seconds, before close)</span></h2>
+    <div class="row3">
+      <div><label>Shipments</label><input type="number" id="fShip" placeholder="0"></div>
+      <div><label>Walk-ins</label><input type="number" id="fWalk" placeholder="0"></div>
+      <div><label>Sales $</label><input type="number" id="fSales" placeholder="0"></div>
+    </div>
+    <div class="row2">
+      <div><label>Drawer counted?</label><select id="fDrawer"><option>Yes</option><option>No</option></select></div>
+      <div><label>All tasks done?</label><select id="fTasks"><option>Yes</option><option>Some open</option></select></div>
+    </div>
+    <label>Issues / needs (one line)</label>
+    <input type="text" id="fIssue" placeholder="e.g. label printer jamming, need tape stock">
+    <button class="btn" onclick="fileDSS()">Submit DSS</button>
+  </div>
+</section>
+
+<section id="v-how" class="hide">
+  <div class="flow">
+    <div class="step"><b>9:00a</b> tasks assigned per store</div>
+    <div class="step"><b>shift</b> associates check off</div>
+    <div class="step"><b>close</b> DSS filed (60 sec)</div>
+    <div class="step"><b>+1 day 10:00a</b> Mr. M chases misses</div>
+    <div class="step"><b>weekly</b> roll-up to Mo + Tamir</div>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">The rule</h2>
+    Every store files the DSS every day. Every associate gets tasks every day — it's part of the shift. One person (Mr. M) chases; Mo never has to call a store.
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">What the real version adds</h2>
+    Store logins · data saved centrally, not on one phone · auto text/email reminder at close · miss alerts to Mr. M · weekly scorecard rolled into Tamir's KPI dashboard · task templates per role.
+  </div>
+</section>
+</main>
+<div class="toast" id="toast">Saved ✓</div>
+<script>
+const STORES=["Bridgeview IL","Oak Lawn IL","Oak Park IL","Glenview IL","Freeport NY","Bethpage NY","Iselin NJ","Allentown PA","Philadelphia PA","Dearborn MI","Indianapolis IN","Cleveland OH","Milwaukee WI","Chicago 87th IL","Hayward CA"];
+const KEY="cubicship_dss_demo_v1";
+function today(){return new Date().toISOString().slice(0,10)}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){return seed()}}
+function save(d){try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}}
+function seed(){
+  const d={date:today(),sub:{},tasks:{}};
+  STORES.forEach((s,i)=>{ if(i%3!==0){d.sub[s]={t:(8+i%9)+":"+(10+i*3)%60+"0 pm".slice(0,0)||"", time:"yesterday", ship:5+i, walk:9+i, sales:400+i*55, issue:i%4===1?"Need shipping tape restock":""}; }
+    d.tasks[s]=[{t:"Count drawer + log in DSS",w:"Opener",done:i%2===0},{t:"Post one story (store promo)",w:"Associate",done:false},{t:"Call yesterday's quote follow-ups",w:"Manager",done:i%3===1}];
+  });
+  // today: only some have submitted
+  const d2={date:today(),sub:{},tasks:d.tasks};
+  STORES.forEach((s,i)=>{ if(i%3===1){ d2.sub[s]={time:(9+i%3)+":1"+i%6+" am",ship:4+i%7,walk:6+i%9,sales:350+i*40,issue:i===4?"Printer jamming again":""}; } });
+  save(d2); return d2;
+}
+let D=load(); if(D.date!==today()){D.date=today();D.sub={};save(D);}
+const $=id=>document.getElementById(id);
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");["hq","store","how"].forEach(v=>$("v-"+v).classList.toggle("hide",v!==t.dataset.v));});
+function render(){
+  $("dateline").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric"})+" · "+STORES.length+" stores";
+  const missing=STORES.filter(s=>!D.sub[s]), subbed=STORES.filter(s=>D.sub[s]);
+  $("kSub").textContent=subbed.length; $("kMiss").textContent=missing.length;
+  $("kTask").textContent=STORES.reduce((n,s)=>n+(D.tasks[s]||[]).filter(t=>!t.done).length,0);
+  $("missList").innerHTML=missing.map(s=>`<div class="store"><div class="dot r"></div><div><div class="nm">${s}</div><div class="meta">No DSS today · ${(D.tasks[s]||[]).filter(t=>!t.done).length} open tasks</div></div><div class="right"><a class="btn small call" href="tel:+17086906209">Call</a></div></div>`).join("")||'<div class="note">Everyone filed. Zero chases. 🎉</div>';
+  $("subList").innerHTML=subbed.map(s=>{const r=D.sub[s];return `<div class="store"><div class="dot g"></div><div><div class="nm">${s}</div><div class="meta">${r.ship} shipments · ${r.walk} walk-ins · $${r.sales}${r.issue?` · <span style="color:var(--orange2)">${r.issue}</span>`:""}</div></div><div class="right"><span class="pill pg">filed ${r.time||""}</span></div></div>`}).join("");
+  const s=$("storePick").value||STORES[0];
+  $("storePick").innerHTML=STORES.map(x=>`<option ${x===s?"selected":""}>${x}</option>`).join("");
+  $("taskList").innerHTML=(D.tasks[s]||[]).map((t,i)=>`<div class="task"><input type="checkbox" ${t.done?"checked":""} onchange="tog('${s.replace(/'/g,"")}',${i})"><div><div class="${t.done?'done':''}">${t.t}</div><div class="who">${t.w}</div></div></div>`).join("")||'<div class="note">No tasks yet — add the first one below.</div>';
+}
+function tog(s,i){D.tasks[s][i].done=!D.tasks[s][i].done;save(D);render();toast("Task updated")}
+function addTask(){const s=$("storePick").value,t=$("newTask").value.trim(),w=$("newWho").value.trim()||"Associate";if(!t)return;(D.tasks[s]=D.tasks[s]||[]).push({t,w,done:false});$("newTask").value="";$("newWho").value="";save(D);render();toast("Task assigned")}
+function fileDSS(){const s=$("storePick").value;D.sub[s]={time:new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}),ship:+$("fShip").value||0,walk:+$("fWalk").value||0,sales:+$("fSales").value||0,issue:$("fIssue").value.trim()};save(D);render();toast(s+" DSS filed ✓");document.querySelector('[data-v="hq"]').click()}
+function toast(m){$("toast").textContent=m;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1600)}
+$("storePick").onchange=render; render();
+</script></body></html>

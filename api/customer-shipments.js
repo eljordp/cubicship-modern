@@ -17,6 +17,7 @@ const { sendEmail } = require("./_email");
 const { findLocation } = require("./_locations");
 const supabaseCustomers = require("./_supabase-customer-store");
 const { consumeRateLimit, sendRateLimited } = require("./_rate-limit");
+const { validateOnlineIntake, onlineReceipt } = require("./_online-intake");
 
 const DEFAULT_BRANCH_PROOF_PIN = "CubicBranch2026";
 const BRANCH_ACTIONS = new Set(["list", "start", "copied_to_cra", "complete", "issue", "note"]);
@@ -243,7 +244,8 @@ function qrStaffCopyBlock(shipment) {
   return [
     qrLine("CubicShip Order", shipment.number),
     qrLine("Location", shipment.locationName),
-    qrLine("Intake Type", "Walk-in counter address intake"),
+    qrLine("Intake Type", shipment.intakeChannel === "online" ? "Online DHL request" : "Walk-in counter address intake"),
+    ...(shipment.intakeChannel === "online" ? [qrLine("Request", shipment.requestKind), qrLine("Handoff", shipment.handoff), qrLine("Packing", shipment.packing), qrLine("Type", shipment.shipmentType), qrLine("Contents", shipment.contents), qrLine("Pieces", shipment.pieces), qrLine("Weight", shipment.weight), qrLine("Size", shipment.dimensions), qrLine("Requested date", shipment.readyDate), qrLine("Notes", shipment.notes)] : []),
     "",
     "SHIPPER / SENDER",
     qrLine("Name", sender.name),
@@ -276,6 +278,14 @@ async function createQrShipment(req, res) {
     return json(res, 400, { ok: false, error: "Request could not be submitted." });
   }
 
+  const online = body.intakeChannel === "online";
+  const quoteOnly = online && body.requestKind === "quote";
+  if (online) {
+    const error = validateOnlineIntake(body);
+    if (error) return json(res, 400, { ok: false, error });
+    const rate = consumeRateLimit(req, { scope: "online-shipping", limit: 12, windowMs: 15 * 60 * 1000 });
+    if (!rate.allowed) return sendRateLimited(res, rate, "Too many requests. Please wait or call your counter.");
+  }
   const sender = qrPersonFrom(body, "sender");
   const receiver = qrPersonFrom(body, "receiver");
   const shipmentType = clean(body.shipmentType);
@@ -284,19 +294,23 @@ async function createQrShipment(req, res) {
 
   if (!sender.country) return json(res, 400, { ok: false, error: "Shipper country is required." });
   if (!sender.name) return json(res, 400, { ok: false, error: "Shipper name is required." });
-  if (!sender.address1) return json(res, 400, { ok: false, error: "Shipper street address is required." });
-  if (!sender.city) return json(res, 400, { ok: false, error: "Shipper city is required." });
+  if (!quoteOnly && !sender.address1) return json(res, 400, { ok: false, error: "Shipper street address is required." });
+  if (!quoteOnly && !sender.city) return json(res, 400, { ok: false, error: "Shipper city is required." });
   if (!sender.postal) return json(res, 400, { ok: false, error: "Shipper ZIP/postal code is required." });
   if (!sender.phone) return json(res, 400, { ok: false, error: "Shipper phone is required." });
   if (!sender.email) return json(res, 400, { ok: false, error: "Shipper email is required." });
-  if (!receiver.name) return json(res, 400, { ok: false, error: "Receiver name is required." });
+  if (!quoteOnly && !receiver.name) return json(res, 400, { ok: false, error: "Receiver name is required." });
   if (!receiver.country) return json(res, 400, { ok: false, error: "Receiver country is required." });
-  if (!receiver.address1) return json(res, 400, { ok: false, error: "Receiver street address is required." });
+  if (!quoteOnly && !receiver.address1) return json(res, 400, { ok: false, error: "Receiver street address is required." });
   if (!receiver.city) return json(res, 400, { ok: false, error: "Receiver city is required." });
-  if (!receiver.postal) return json(res, 400, { ok: false, error: "Receiver ZIP/postal code is required." });
-  if (!receiver.phone) return json(res, 400, { ok: false, error: "Receiver phone is required." });
-  if (!receiver.email) return json(res, 400, { ok: false, error: "Receiver email is required." });
+  if (!online && !receiver.postal) return json(res, 400, { ok: false, error: "Receiver ZIP/postal code is required." });
+  if (!quoteOnly && !receiver.phone) return json(res, 400, { ok: false, error: "Receiver phone is required." });
+  if (!online && !receiver.email) return json(res, 400, { ok: false, error: "Receiver email is required." });
   const shipments = await readShipments();
+  if (online) {
+    const existing = shipments.find(item => item.onlineRequestId === body.requestId && item.customerEmail === sender.email);
+    if (existing) return json(res, 200, { ok: true, shipment: onlineReceipt(existing) });
+  }
   const now = new Date().toISOString();
   const location = findLocation(body.locationId);
   const branchEmail = qrBranchEmail(location);
@@ -313,7 +327,7 @@ async function createQrShipment(req, res) {
     locationId: location.id,
     locationName: location.name,
     locationEmail: branchEmail,
-    serviceType: "Counter Address Intake",
+    serviceType: online ? (quoteOnly ? "DHL Quote Request" : "DHL Drop-off Request") : "Counter Address Intake",
     recipientName: receiver.name,
     destinationCountry: receiver.country,
     destinationCity: receiver.city,
@@ -326,7 +340,11 @@ async function createQrShipment(req, res) {
     shipmentValueProtection: clean(body.shipmentValueProtection),
     notes: clean(body.notes),
     source: "qr_counter_intake",
-    intakeChannel: "counter_qr",
+    intakeChannel: online ? "online" : "counter_qr",
+    onlineRequestId: online ? body.requestId : undefined,
+    requestKind: online ? body.requestKind : undefined,
+    handoff: online ? body.handoff : undefined,
+    packing: online ? body.packing : undefined,
     intakeSubmittedAt: now,
     sender,
     receiver,
@@ -336,10 +354,10 @@ async function createQrShipment(req, res) {
     packageDescription: clean(body.packageDescription),
     estimate: {
       status: "pending_rates",
-      label: "Counter continuation pending",
+      label: online ? "Staff confirmation pending" : "Counter continuation pending",
       amount: "",
       currency: "USD",
-      message: "Customer submitted sender and receiver details from the in-store QR code. Staff will measure the package, confirm value/service, and create the label in CRA.",
+      message: online ? "Online request received. Confirm shipment details, price, delivery estimate and pickup availability if requested before booking." : "Customer submitted sender and receiver details from the in-store QR code. Staff will measure the package, confirm value/service, and create the label in CRA.",
     },
     payment: {
       status: "not_ready",
@@ -351,7 +369,7 @@ async function createQrShipment(req, res) {
       paidBy: "",
     },
     staffWorkflow: {
-      nextAction: "Copy sender/receiver into CRA, then confirm package, value, service, and label with the walk-in customer",
+      nextAction: online ? "Review online request and contact customer to confirm price, shipment details and next steps." : "Copy sender/receiver into CRA, then confirm package, value, service, and label with the walk-in customer",
       priority: "normal",
       assignedTo: "",
       checklist: ["copy_sender_receiver", "confirm_package", "confirm_value_service", "create_label_in_cra"],
@@ -372,16 +390,18 @@ async function createQrShipment(req, res) {
         at: now,
         by: sender.email || sender.phone || "qr-counter-intake",
         action: "qr_intake_created",
-        message: "Walk-in customer submitted sender and receiver details from the QR counter form.",
+        message: online ? "Customer submitted an online DHL request for staff review." : "Walk-in customer submitted sender and receiver details from the QR counter form.",
       },
     ],
   };
 
   shipments.push(shipment);
+  // Save online requests before notifying staff. A notification failure must not lose intake.
+  if (online) await writeShipments(shipments);
   const notification = await sendEmail({
     to: branchEmail,
-    subject: `New QR request ${shipment.number} for ${location.name}`,
-    text: `A walk-in customer submitted sender and receiver details from the CubicShip QR counter form.
+    subject: `New ${online ? "online DHL" : "QR"} request ${shipment.number} for ${location.name}`,
+    text: `${online ? "A customer submitted an online DHL request. Review the requested quote, drop-off or pickup question before booking." : "A walk-in customer submitted sender and receiver details from the CubicShip QR counter form."}
 
 ${qrStaffCopyBlock(shipment)}
 
@@ -389,7 +409,7 @@ Open this branch's QR Requests screen:
 ${branchRequestLink}
 
 Branch PIN required. This request also stays visible there after the email is sent.`,
-  });
+  }).catch(error => ({ ok: false, error: "Staff notification could not be sent." }));
 
   if (notification.ok) {
     shipment.locationNotifiedAt = now;
@@ -401,6 +421,10 @@ Branch PIN required. This request also stays visible there after the email is se
     shipment.locationNotificationError = notification.error || "Notification failed.";
   }
 
+  if (online) {
+    // Do not rewrite the full store after email: another request or staff update may have arrived.
+    return json(res, 201, { ok: true, shipment: onlineReceipt(shipment) });
+  }
   await writeShipments(shipments);
   return json(res, 201, { ok: true, shipment: publicShipment(shipment), copyText: qrStaffCopyBlock(shipment) });
 }

@@ -4,233 +4,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const locationsDir = path.join(root, "locations");
 
-const locations = [
-  {
-    id: "dearborn",
-    slug: "dearborn-dhl-shipping",
-    city: "Dearborn",
-    state: "MI",
-    market: "Dearborn, MI",
-    name: "Dearborn DHL Express Service Point",
-    address: "6317 Schaefer Rd, Dearborn, MI 48126",
-    phone: "(313) 254-2696",
-    tel: "+13132542696",
-    rating: "4.7",
-    reviews: "28",
-    map: "https://maps.app.goo.gl/2FtDw5cMd6kGKomW8?g_st=a",
-    review: "Fast service and affordable rates.",
-  },
-  {
-    id: "oak-park",
-    slug: "oak-park-dhl-shipping",
-    city: "Oak Park",
-    state: "IL",
-    market: "Oak Park and West Chicago, IL",
-    name: "Oak Park DHL Express Service Point",
-    address: "6200 Roosevelt Rd, Oak Park, IL 60304",
-    phone: "(708) 665-3590",
-    tel: "+17086653590",
-    rating: "4.4",
-    reviews: "27",
-    map: "https://maps.app.goo.gl/SeGVkQijWaPfyisPA?g_st=a",
-    review: "Highly recommend this location for any business or personal shipping needs!",
-  },
-  {
-    id: "bridgeview",
-    slug: "bridgeview-dhl-shipping",
-    city: "Bridgeview",
-    state: "IL",
-    market: "Bridgeview, IL",
-    name: "Cubic Ship Bridgeview DHL Express Service Point",
-    address: "7327 W 87th St, Bridgeview, IL 60455",
-    phone: "(708) 432-5600",
-    tel: "+17084325600",
-    rating: "4.0",
-    reviews: "50",
-    map: "https://maps.app.goo.gl/8aEgsLKWCDtxUxku6?g_st=a",
-    review: "Fast service, friendly staff, clean and organized.",
-  },
-  {
-    id: "oak-lawn",
-    slug: "oak-lawn-dhl-shipping",
-    city: "Oak Lawn",
-    state: "IL",
-    market: "Oak Lawn, IL",
-    name: "Oak Lawn DHL Express Service Point",
-    address: "9812 S Cicero Ave, Oak Lawn, IL 60453",
-    phone: "(708) 741-7473",
-    tel: "+17087417473",
-    rating: "4.4",
-    reviews: "13",
-    map: "https://maps.app.goo.gl/aaFArcHWq8ZmpyvZ7?g_st=a",
-    review: "Great customer service, also great prices for international shipping.",
-  },
-  {
-    id: "buffalo",
-    slug: "buffalo-dhl-shipping",
-    city: "Buffalo",
-    state: "NY",
-    market: "Buffalo, NY",
-    name: "Buffalo DHL Express Service Point",
-    address: "2618 Main St, Buffalo, NY 14214",
-    phone: "(716) 259-8115",
-    tel: "+17162598115",
-    rating: "5.0",
-    reviews: "14",
-    map: "https://maps.app.goo.gl/utm5ADkCSDxC1ns9A?g_st=a",
-    review: "Very happy to have the DHL office so close to town.",
-  },
-  {
-    id: "bethpage",
-    slug: "bethpage-dhl-shipping",
-    city: "Bethpage",
-    state: "NY",
-    market: "Bethpage, NY",
-    name: "Bethpage DHL Express Service Point",
-    address: "271 Broadway, Bethpage, NY 11714",
-    phone: "(516) 433-4891",
-    tel: "+15164334891",
-    rating: "5.0",
-    reviews: "9",
-    map: "https://maps.app.goo.gl/6fRQJLtq1M44Aq1Z9?g_st=a",
-    review: "The customer service is amazing and the store is clean.",
-  },
-  {
-    id: "iselin",
-    slug: "iselin-woodbridge-dhl-shipping",
-    city: "Iselin",
-    state: "NJ",
-    market: "Iselin and Woodbridge, NJ",
-    name: "Iselin Woodbridge DHL Express Service Point",
-    address: "1214 Green St, Iselin, NJ 08830",
-    phone: "(732) 379-4305",
-    tel: "+17323794305",
-    rating: "5.0",
-    reviews: "117",
-    map: "https://maps.app.goo.gl/YymTgErU5fMHAWBr6?g_st=a",
-    review: "Very good experience and staff is very polite and helpful.",
-  },
-  {
-    id: "milwaukee",
-    slug: "milwaukee-dhl-shipping",
-    city: "Milwaukee",
-    state: "WI",
-    market: "Milwaukee, WI",
-    name: "Milwaukee DHL Express Service Point",
-    address: "2609 W Morgan Ave, Milwaukee, WI 53221",
-    phone: "(414) 252-0594",
-    tel: "+14142520594",
-    rating: "4.9",
-    reviews: "16",
-    map: "https://maps.app.goo.gl/VAHUdtYEytLqfWkv6?g_st=a",
-    review: "Customer service was top-notch.",
-  },
-  {
-    id: "wyncote",
-    slug: "wyncote-dhl-shipping",
-    city: "Wyncote",
-    state: "PA",
-    market: "Wyncote, PA",
-    name: "Wyncote DHL Express Service Point",
-    address: "1000 S Easton Rd Ste 270, Wyncote, PA 19095",
-    phone: "(215) 277-3864",
-    tel: "+12152773864",
-    rating: "4.9",
-    reviews: "74",
-    map: "https://maps.app.goo.gl/gG6AtunP1mbG2RBH7?g_st=a",
-    review: "Knowledge and kind staff made the experience a breeze.",
-  },
-  {
-    id: "indianapolis",
-    slug: "indianapolis-dhl-shipping",
-    city: "Indianapolis",
-    state: "IN",
-    market: "Indianapolis, IN",
-    name: "Indianapolis DHL Express Service Point",
-    address: "3853 Georgetown Rd, Indianapolis, IN 46254",
-    phone: "(317) 756-9544",
-    tel: "+13177569544",
-    rating: "4.6",
-    reviews: "116",
-    map: "https://maps.app.goo.gl/qMjYzf4sV1stV4wSA?g_st=a",
-    review: "Super helpful with my very first DHL shipping experience.",
-  },
-  {
-    id: "allentown-pa",
-    slug: "allentown-pa-dhl-shipping",
-    city: "Allentown",
-    state: "PA",
-    market: "Allentown, PA",
-    name: "Allentown DHL Express Service Point",
-    address: "717 Linden St, Allentown, PA 18101",
-    phone: "(610) 773-6814",
-    tel: "+16107736814",
-    rating: "5.0",
-    reviews: "6",
-    map: "https://maps.app.goo.gl/WPtKNLxMjuMFSWas9?g_st=a",
-    review: "Good customer service.",
-  },
-  {
-    id: "farmington",
-    slug: "farmington-mi-dhl-shipping",
-    city: "Farmington",
-    state: "MI",
-    market: "Farmington, MI",
-    name: "Farmington DHL Express Service Point",
-    address: "31826 Grand River Ave, Farmington, MI 48336",
-    phone: "(248) 482-8769",
-    tel: "+12484828769",
-    rating: "3.9",
-    reviews: "11",
-    map: "https://maps.app.goo.gl/9WiHRL9JZHvgFJFo6?g_st=a",
-    review: "Amazing service at this DHL Service Point!",
-  },
-  {
-    id: "northeast-philadelphia",
-    slug: "northeast-philadelphia-dhl-shipping",
-    city: "Philadelphia",
-    state: "PA",
-    market: "Northeast Philadelphia, PA",
-    name: "Northeast Philadelphia DHL Express Service Point",
-    address: "1900 Grant Ave Ste J, Philadelphia, PA 19115",
-    phone: "(215) 437-7795",
-    tel: "+12154377795",
-    rating: "5.0",
-    reviews: "31",
-    map: "https://maps.app.goo.gl/M631Tj7AB8fijLe19?g_st=a",
-    review: "The staff is super friendly, helpful, and knows exactly what they're doing.",
-  },
-  {
-    id: "freeport",
-    slug: "freeport-ny-dhl-shipping",
-    city: "Freeport",
-    state: "NY",
-    market: "Freeport, NY",
-    name: "Freeport DHL Express Service Point",
-    address: "134 W Sunrise Hwy, Freeport, NY 11520",
-    phone: "Phone coming soon",
-    rating: "Opening soon",
-    reviews: "",
-    map: "https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&utm_campaign=ac-im",
-    review: "DHL Express Service Point opening soon. Reviews will be added once the counter is active.",
-    openingSoon: true,
-  },
-  {
-    id: "cleveland",
-    slug: "cleveland-dhl-shipping",
-    city: "Cleveland",
-    state: "OH",
-    market: "Cleveland, OH",
-    name: "Cleveland DHL Express Service Point",
-    address: "11512 Clifton Blvd, Cleveland, OH 44107",
-    phone: "Phone coming soon",
-    rating: "Opening soon",
-    reviews: "",
-    map: "https://maps.app.goo.gl/uEoXVEGgoJAzPP376?g_st=i&utm_campaign=ac-im",
-    review: "DHL Express Service Point opening soon. Reviews will be added once the counter is active.",
-    openingSoon: true,
-  },
-];
+const locations = require("../assets/locations.json");
 
 function esc(value) {
   return String(value || "")
@@ -269,6 +43,8 @@ function pageFor(location) {
     ],
   };
 
+  const requestHref = location.openingSoon ? "../dhl-locations.html" : `../ship.html?location=${encodeURIComponent(location.id)}`;
+  const requestLabel = location.openingSoon ? "Find an open counter" : "Start DHL request";
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -328,6 +104,7 @@ function pageFor(location) {
     .route-steps div { border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:18px; background:rgba(255,255,255,.06); }
     .route-steps b { color:#ffb36f; display:block; margin-bottom:8px; }
     footer { padding:32px 6vw; background:#06101f; color:#aab6c8; text-align:center; }
+    @media (max-width:480px) { .nav { padding:14px; gap:12px; flex-wrap:wrap; } .brand { font-size:20px; } .btn { padding:0 14px; } .hero-inner { min-width:0; } h1 { overflow-wrap:anywhere; } }
     @media (max-width:850px) {
       .nav { align-items:flex-start; }
       .nav-links { display:none; }
@@ -345,17 +122,17 @@ function pageFor(location) {
       <a href="../services.html">Services</a>
       <a href="../track.html">Track</a>
     </div>
-    <a class="btn btn-primary" href="../profile.html?account=business&service=dhl&location=${location.id}">Start request</a>
+    <a class="btn btn-primary" href="${requestHref}">${requestLabel}</a>
   </nav>
 
   <header class="hero">
     <div class="hero-inner">
       <div>
         <div class="eyebrow">CubicShip serviced DHL location</div>
-        <h1>${esc(location.market)} DHL shipping and business counter services.</h1>
-        <p class="lead">Start a DHL shipment request, prepare business printing, or get counter-service help through CubicShip, then route the work to the serviced ${esc(location.market)} location.</p>
+        <h1>DHL Express shipping in ${esc(location.market)}.</h1>
+        <p class="lead">${location.openingSoon ? "This counter is opening soon. Please choose an active location for shipping today." : "Bring your documents or packages for packing, paperwork and DHL Express help. Start online without an account and show your request code at this counter."}</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="../profile.html?account=business&service=dhl&location=${location.id}">Start DHL request</a>
+          <a class="btn btn-primary" href="${requestHref}">${requestLabel}</a>
           <a class="btn btn-secondary" href="${esc(location.map)}" target="_blank" rel="noopener">Open Google listing</a>
         </div>
       </div>
@@ -371,13 +148,13 @@ function pageFor(location) {
     <section class="wrap grid">
       <article class="card">
         <h2>Services at this location.</h2>
-        <p>CubicShip is the online service layer for the branch. Customers can start the request online, then staff can verify details at the counter and continue the shipment or service workflow.</p>
+        <p>Get help preparing documents and packages for international shipping. Ask this counter to confirm availability and pricing for any additional service you need.</p>
         <div class="service-list">
           <div>DHL Express shipping assistance</div>
           <div>International documents and packages</div>
           <div>Print, pack, mailbox, and document help</div>
           <div>Business signs, labels, flyers, and counter services</div>
-          <div>Notary and extra business-service request routing</div>
+          <div>Ask about notary and other business services</div>
         </div>
       </article>
       <aside class="card">
@@ -386,20 +163,21 @@ function pageFor(location) {
           <div class="detail"><small>Address</small><b>${esc(location.address)}</b></div>
           <div class="detail"><small>Phone</small>${phoneLink}</div>
           <div class="detail"><small>Google listing</small><a href="${esc(location.map)}" target="_blank" rel="noopener">Open this location on Google Maps</a></div>
-          <div class="detail"><small>Online request</small><a href="../profile.html?account=business&service=dhl&location=${location.id}">Send details to CubicShip</a></div>
+          <div class="detail"><small>Hours and last DHL collection</small><a href="${esc(location.map)}" target="_blank" rel="noopener">Check current hours on Google Maps</a><p style="margin:10px 0 0">${location.openingSoon ? "Opening date to be confirmed. Use an active counter for current shipments." : "Call before traveling to confirm today’s hours and last collection. DHL collection may finish before the counter closes."}</p></div>
+          <div class="detail"><small>Online request</small><a href="${requestHref}">${requestLabel}</a></div>
         </div>
       </aside>
     </section>
 
     <section class="route">
       <div class="wrap">
-        <h2>How CubicShip routes the work.</h2>
-        <p>The goal is simple: less handwriting, cleaner information, and a faster handoff from customer request to branch service.</p>
+        <h2>Before you visit.</h2>
+        <p>Bring your items, the receiver’s address and contact details, and your request code if you started online. Staff will confirm what paperwork your shipment needs.</p>
         <div class="route-steps">
-          <div><b>1. Customer starts</b><span>Choose DHL, print, pack, notary, mailbox, or business services.</span></div>
-          <div><b>2. Location routes</b><span>The request carries the selected ${esc(location.market)} location.</span></div>
-          <div><b>3. Staff verifies</b><span>The counter confirms sender, receiver, service, cost, and next step.</span></div>
-          <div><b>4. Status updates</b><span>The customer and branch can keep the request history cleaner.</span></div>
+          <div><b>1. Start online</b><span>Request a quote or prepare a DHL drop-off. No account needed.</span></div>
+          <div><b>2. Save your code</b><span>Your request is sent to the counter you selected.</span></div>
+          <div><b>3. Confirm and ship</b><span>Staff checks the details, packing, price and delivery estimate before you book.</span></div>
+          <div><b>4. Track delivery</b><span>Use the carrier tracking number after your shipment is created.</span></div>
         </div>
       </div>
     </section>
@@ -424,13 +202,12 @@ function updateSitemap() {
   const baseUrls = [
     ["/", "weekly", "1.0"],
     ["/quote.html", "weekly", "0.9"],
+    ["/ship.html", "weekly", "0.9"],
     ["/dhl-locations.html", "weekly", "0.9"],
     ["/services.html", "monthly", "0.8"],
     ["/business-services.html", "weekly", "0.9"],
     ["/print-pack.html", "monthly", "0.8"],
     ["/business-signage.html", "monthly", "0.8"],
-    ["/profile.html", "monthly", "0.8"],
-    ["/platform.html", "monthly", "0.8"],
     ["/track.html", "monthly", "0.7"],
   ];
   const locationUrls = locations.map((location) => [`/locations/${location.slug}.html`, "weekly", location.openingSoon ? "0.6" : "0.85"]);

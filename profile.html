@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Dashboard - Cubic Ship</title>
+  <title>Customer Dashboard - Cubic Ship</title>
   <meta name="description" content="Cubic Ship business dashboard for service orders, secure order codes, label PDFs, business print and display requests, status updates, and customer profile security.">
   <link rel="canonical" href="https://cubicship.com/profile.html">
   <link rel="icon" href="favicon-64.png" type="image/png">
@@ -573,7 +573,7 @@
         <div class="panel">
           <div class="intro">
             <img src="logo-160.png" alt="Cubic Ship Logo">
-            <div class="eyebrow">Business Dashboard</div>
+            <div class="eyebrow">Customer Dashboard</div>
             <h1>Create your shipping profile.</h1>
             <p>Save your customer or small-business details, submit service orders, and get a CubicShip ticket before you arrive.</p>
             <div class="intro-offer">
@@ -581,8 +581,8 @@
               <span>Submit package details before you arrive and ask the team which current shipment rate fits your needs.</span>
             </div>
             <div class="intro-offer">
-              <strong>Built for online shops and small businesses.</strong>
-              <span>For Etsy, Shopify, eBay, Instagram, and local sellers shipping 10, 20, or 30 packages/month.</span>
+              <strong>Shipping once? You can start as a guest.</strong>
+              <span><a href="ship.html">Start a DHL shipment without creating an account</a>. Business accounts are also available.</span>
             </div>
           </div>
           <div class="forms">
@@ -664,7 +664,7 @@
       <section class="app" id="appView" hidden>
         <div class="app-head">
           <div>
-            <div class="eyebrow">Business Dashboard</div>
+            <div class="eyebrow">Customer Dashboard</div>
             <h1 id="welcomeTitle">Create service order.</h1>
             <p class="subtle">Create secured service orders, choose the location, track staff updates, and download labels after the counter team uploads the PDF.</p>
           </div>
@@ -1167,6 +1167,7 @@
       const isBusiness = accountType() === "business";
       businessFields.classList.toggle("open", isBusiness);
       document.getElementById("registerCompany").required = isBusiness;
+      document.getElementById("registerCompany").parentElement.hidden = !isBusiness;
       document.getElementById("signupCode").required = isBusiness;
       document.getElementById("monthlyShipments").required = isBusiness;
     }

@@ -618,6 +618,9 @@
       h1 { font-size: 2.5rem; }
       .stats-grid { grid-template-columns: 1fr; }
     }
+    [hidden] { display:none !important; }
+    #locations { padding-top:1.5rem; }
+    #locations .location-search { margin-top:0; }
   </style>
   <script src="/analytics.js" defer></script>
   <script src="/_vercel/insights/script.js" defer></script>
@@ -644,133 +647,13 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-media" aria-hidden="true">
-        <img src="assets/cubicship-dhl-service-point-hero.webp" alt="">
-      </div>
-      <div class="container">
-        <div class="hero-grid">
-          <div>
-            <div class="official-mark">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" alt="DHL logo">
-            </div>
-            <div class="eyebrow">DHL Express Service Point</div>
-            <h1>Find a CubicShip DHL Express Service Point.</h1>
-            <p class="lead">Choose a neighborhood CubicShip counter for DHL Express shipping help, packing, documents, and practical business services.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#locations">View Locations</a>
-              <a class="btn btn-secondary" href="#vision">What to Expect</a>
-            </div>
-          </div>
-          <aside class="proof-panel" aria-label="DHL Express Service Point proof">
-            <h2>Built beyond one counter.</h2>
-            <p>The work is to make DHL Express shipping easier to access in local communities while keeping each location consistent, accountable, and review-backed.</p>
-            <div class="stats-grid">
-              <div class="stat"><strong>15</strong><span>Managed locations</span></div>
-              <div class="stat"><strong>13</strong><span>Active review locations</span></div>
-              <div class="stat"><strong>512</strong><span>Google reviews</span></div>
-              <div class="stat"><strong>4.7</strong><span>Average rating</span></div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="vision-bg" id="vision">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">What to Expect</div>
-            <h2 class="section-title">Local counters with global capability.</h2>
-          </div>
-          <p class="section-copy">The vision is a reliable service model where customers can walk into a neighborhood counter and get professional DHL Express help, packing support, shipment prep, business services, and clear next steps without confusion.</p>
-        </div>
-        <div class="vision-grid">
-          <article class="vision-card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=1200&q=80" alt="Packages being prepared for shipment">
-            <h3>Service standards</h3>
-            <p>Each counter is built around accurate processing, clear documentation, secure package handling, and timely customer communication.</p>
-          </article>
-          <article class="vision-card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80" alt="Organized warehouse shelves">
-            <h3>Organized operations</h3>
-            <p>Locations are supported with repeatable workflows, staff training, review monitoring, location accountability, and cleaner handoffs.</p>
-          </article>
-          <article class="vision-card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80" alt="Business team reviewing work together">
-            <h3>Community access</h3>
-            <p>The goal is to bring international shipping and practical business services closer to customers, small businesses, and local operators.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">Accomplishments</div>
-            <h2 class="section-title">What the locations have built so far.</h2>
-          </div>
-          <p class="section-copy">This page gives the partnership proof its own home: locations, reviews, opening-soon counters, customer comments, and the operating direction behind the expansion.</p>
-        </div>
-        <div class="accomplishments">
-          <article class="accomplishment">
-            <strong>15</strong>
-            <h3>Locations managed</h3>
-            <p>13 active reviewed counters plus 2 opening-soon locations being prepared for launch.</p>
-          </article>
-          <article class="accomplishment">
-            <strong>1M+</strong>
-            <h3>Shipments supported</h3>
-            <p>Shipment experience across DHL Express, documents, parcels, air freight, ocean, ground, and containers.</p>
-          </article>
-          <article class="accomplishment">
-            <strong>15+</strong>
-            <h3>Years experience</h3>
-            <p>Operational experience in logistics, customer service, freight, counter services, and business support.</p>
-          </article>
-          <article class="accomplishment">
-            <strong>200+</strong>
-            <h3>Global destinations</h3>
-            <p>International shipping support for customers moving documents, packages, freight, and business forward.</p>
-          </article>
-        </div>
-        <div class="service-areas">
-          <h3>Service areas and states</h3>
-          <p>The current locations cover Midwest, Northeast, and East Coast counters, with active and opening-soon DHL Express Service Point locations.</p>
-          <div class="state-list" aria-label="DHL Express Service Point service area states">
-            <span>Michigan</span>
-            <span>Illinois</span>
-            <span>New York</span>
-            <span>New Jersey</span>
-            <span>Wisconsin</span>
-            <span>Pennsylvania</span>
-            <span>Indiana</span>
-            <span>Ohio</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <header class="container" style="padding:2rem 1rem 0"><div class="eyebrow">DHL Express Service Points</div><h1 style="font-size:clamp(2rem,5vw,3rem)">Find your CubicShip counter.</h1><p class="lead">Search a city, state or ZIP code. Choose a location for directions, current hours and a DHL shipping request.</p></header>
 
     <section class="locations-bg" id="locations">
       <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">Managed Locations</div>
-            <h2 class="section-title">15 DHL Express Service Point locations.</h2>
-            <div class="locations-tools">
-              <span class="tool-pill">13 active review locations</span>
-              <span class="tool-pill">2 opening soon</span>
-              <span class="tool-pill">512 Google reviews</span>
-              <span class="tool-pill">4.7 average rating</span>
-            </div>
-          </div>
-          <p class="section-copy">Tap a card to open the CubicShip page for that serviced DHL location. Each page connects the matching Google listing, phone number, request flow, and practical Cubic business services like print, pack, mailbox, notary, documents, and counter help.</p>
-        </div>
         <form class="location-search" id="locationSearchForm" role="search">
-          <label class="sr-only" for="locationSearch">Search by city or state</label>
-          <input id="locationSearch" type="search" placeholder="Search by city or state" autocomplete="postal-code">
+          <label class="sr-only" for="locationSearch">Search by city, state or ZIP</label>
+          <input id="locationSearch" type="search" placeholder="Search by city, state or ZIP" autocomplete="postal-code">
           <button class="btn btn-primary" type="submit">Find a Location</button>
         </form>
         <p class="location-search-status" id="locationSearchStatus" aria-live="polite">Showing all 15 locations.</p>
@@ -898,6 +781,84 @@
         </div>
       </div>
     </section>
+    <section class="vision-bg" id="vision">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">What to Expect</div>
+            <h2 class="section-title">Local counters with global capability.</h2>
+          </div>
+          <p class="section-copy">The vision is a reliable service model where customers can walk into a neighborhood counter and get professional DHL Express help, packing support, shipment prep, business services, and clear next steps without confusion.</p>
+        </div>
+        <div class="vision-grid">
+          <article class="vision-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=1200&q=80" alt="Packages being prepared for shipment">
+            <h3>Service standards</h3>
+            <p>Each counter is built around accurate processing, clear documentation, secure package handling, and timely customer communication.</p>
+          </article>
+          <article class="vision-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80" alt="Organized warehouse shelves">
+            <h3>Organized operations</h3>
+            <p>Locations are supported with repeatable workflows, staff training, review monitoring, location accountability, and cleaner handoffs.</p>
+          </article>
+          <article class="vision-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80" alt="Business team reviewing work together">
+            <h3>Community access</h3>
+            <p>The goal is to bring international shipping and practical business services closer to customers, small businesses, and local operators.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Accomplishments</div>
+            <h2 class="section-title">What the locations have built so far.</h2>
+          </div>
+          <p class="section-copy">This page gives the partnership proof its own home: locations, reviews, opening-soon counters, customer comments, and the operating direction behind the expansion.</p>
+        </div>
+        <div class="accomplishments">
+          <article class="accomplishment">
+            <strong>15</strong>
+            <h3>Locations managed</h3>
+            <p>13 active reviewed counters plus 2 opening-soon locations being prepared for launch.</p>
+          </article>
+          <article class="accomplishment">
+            <strong>1M+</strong>
+            <h3>Shipments supported</h3>
+            <p>Shipment experience across DHL Express, documents, parcels, air freight, ocean, ground, and containers.</p>
+          </article>
+          <article class="accomplishment">
+            <strong>15+</strong>
+            <h3>Years experience</h3>
+            <p>Operational experience in logistics, customer service, freight, counter services, and business support.</p>
+          </article>
+          <article class="accomplishment">
+            <strong>200+</strong>
+            <h3>Global destinations</h3>
+            <p>International shipping support for customers moving documents, packages, freight, and business forward.</p>
+          </article>
+        </div>
+        <div class="service-areas">
+          <h3>Service areas and states</h3>
+          <p>The current locations cover Midwest, Northeast, and East Coast counters, with active and opening-soon DHL Express Service Point locations.</p>
+          <div class="state-list" aria-label="DHL Express Service Point service area states">
+            <span>Michigan</span>
+            <span>Illinois</span>
+            <span>New York</span>
+            <span>New Jersey</span>
+            <span>Wisconsin</span>
+            <span>Pennsylvania</span>
+            <span>Indiana</span>
+            <span>Ohio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
     <section class="cta-section">
       <div class="container">
@@ -954,12 +915,15 @@
       locationSearchStatus.textContent = query
         ? `${visible} location${visible === 1 ? '' : 's'} found for "${locationSearch.value.trim()}".`
         : `Showing all ${locationCards.length} locations.`;
+      if (query && visible === 0) locationSearchStatus.textContent += " Try a nearby city or your state; ZIP search matches listed addresses, not distance.";
     };
     locationSearchForm.addEventListener('submit', event => {
       event.preventDefault();
       filterLocations();
     });
     locationSearch.addEventListener('input', filterLocations);
+    const initialQuery = new URLSearchParams(location.search).get('q');
+    if (initialQuery) { locationSearch.value = initialQuery; filterLocations(); }
   </script>
   <script src="chat-widget.js" defer></script>
 </body>

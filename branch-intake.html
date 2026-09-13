@@ -446,6 +446,7 @@
         `CubicShip QR Intake: ${intake.number}`,
         `Location: ${intake.locationName}`,
         `Submitted: ${formatDate(intake.createdAt)}`,
+        ...(intake.intakeChannel === "online" ? [`Online request: ${intake.requestKind}`, `Contents: ${intake.contents || ""}`, `Pieces: ${intake.pieces || ""}`, `Weight: ${intake.weight || "To confirm"}`, `Dimensions: ${intake.dimensions || "To confirm"}`, `Requested date: ${intake.readyDate || "To confirm"}`, intake.notes || ""] : []),
         "",
         "SHIPPER / SENDER",
         personLines(intake.sender || {}),
@@ -518,6 +519,7 @@
               </div>
               <span class="chip status-${escapeHtml(intake.status || "submitted")}">${escapeHtml(statusLabel(intake.status))}</span>
             </div>
+            ${intake.intakeChannel === "online" ? `<div class="staff-notes"><strong>Online DHL request — ${escapeHtml(intake.requestKind)}</strong><br>${escapeHtml(intake.contents)}<br>${escapeHtml(intake.pieces)} piece(s) · ${escapeHtml(intake.weight || "Weight to confirm")}<br>${escapeHtml(intake.dimensions || "Size to confirm")}<br>${escapeHtml(intake.notes)}</div>` : ""}
             <div class="copy-grid">
               <div class="copy-box"><strong>Shipper / Sender</strong>${escapeHtml(sender)}</div>
               <div class="copy-box"><strong>Receiver</strong>${escapeHtml(receiver)}</div>

@@ -57,6 +57,7 @@
     .route-steps div { border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:18px; background:rgba(255,255,255,.06); }
     .route-steps b { color:#ffb36f; display:block; margin-bottom:8px; }
     footer { padding:32px 6vw; background:#06101f; color:#aab6c8; text-align:center; }
+    @media (max-width:480px) { .nav { padding:14px; gap:12px; flex-wrap:wrap; } .brand { font-size:20px; } .btn { padding:0 14px; } .hero-inner { min-width:0; } h1 { overflow-wrap:anywhere; } }
     @media (max-width:850px) {
       .nav { align-items:flex-start; }
       .nav-links { display:none; }
@@ -69,23 +70,22 @@
   <nav class="nav">
     <a class="brand" href="../index.html" aria-label="CubicShip home"><img src="../logo.png" alt="CubicShip logo"><span>Cubic</span><span>Ship</span></a>
     <div class="nav-links">
-      <a href="../index.html#how-it-works">Shipping</a>
+      <a href="../dhl-locations.html">DHL Locations</a>
+      <a href="../business-services.html">Business Services</a>
       <a href="../services.html">Services</a>
-      <a href="../dhl-locations.html">Locations</a>
       <a href="../track.html">Track</a>
-      <a href="../index.html#about">About</a>
     </div>
-    <a class="btn btn-primary" href="../quote.html?service=dhl&location=freeport">Start request</a>
+    <a class="btn btn-primary" href="../dhl-locations.html">Find an open counter</a>
   </nav>
 
   <header class="hero">
     <div class="hero-inner">
       <div>
         <div class="eyebrow">CubicShip serviced DHL location</div>
-        <h1>Freeport, NY DHL shipping and business counter services.</h1>
-        <p class="lead">Start a DHL shipment request, prepare business printing, or get counter-service help through CubicShip, then route the work to the serviced Freeport, NY location.</p>
+        <h1>DHL Express shipping in Freeport, NY.</h1>
+        <p class="lead">This counter is opening soon. Please choose an active location for shipping today.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="../quote.html?service=dhl&location=freeport">Start DHL request</a>
+          <a class="btn btn-primary" href="../dhl-locations.html">Find an open counter</a>
           <a class="btn btn-secondary" href="https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&amp;utm_campaign=ac-im" target="_blank" rel="noopener">Open Google listing</a>
         </div>
       </div>
@@ -101,13 +101,13 @@
     <section class="wrap grid">
       <article class="card">
         <h2>Services at this location.</h2>
-        <p>CubicShip is the online service layer for the branch. Customers can start the request online, then staff can verify details at the counter and continue the shipment or service workflow.</p>
+        <p>Get help preparing documents and packages for international shipping. Ask this counter to confirm availability and pricing for any additional service you need.</p>
         <div class="service-list">
           <div>DHL Express shipping assistance</div>
           <div>International documents and packages</div>
           <div>Print, pack, mailbox, and document help</div>
           <div>Business signs, labels, flyers, and counter services</div>
-          <div>Notary and extra business-service request routing</div>
+          <div>Ask about notary and other business services</div>
         </div>
       </article>
       <aside class="card">
@@ -116,20 +116,21 @@
           <div class="detail"><small>Address</small><b>134 W Sunrise Hwy, Freeport, NY 11520</b></div>
           <div class="detail"><small>Phone</small><span>Phone coming soon</span></div>
           <div class="detail"><small>Google listing</small><a href="https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&amp;utm_campaign=ac-im" target="_blank" rel="noopener">Open this location on Google Maps</a></div>
-          <div class="detail"><small>Online request</small><a href="../quote.html?service=dhl&location=freeport">Send details to CubicShip</a></div>
+          <div class="detail"><small>Hours and last DHL collection</small><a href="https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&amp;utm_campaign=ac-im" target="_blank" rel="noopener">Check current hours on Google Maps</a><p style="margin:10px 0 0">Opening date to be confirmed. Use an active counter for current shipments.</p></div>
+          <div class="detail"><small>Online request</small><a href="../dhl-locations.html">Find an open counter</a></div>
         </div>
       </aside>
     </section>
 
     <section class="route">
       <div class="wrap">
-        <h2>How CubicShip routes the work.</h2>
-        <p>The goal is simple: less handwriting, cleaner information, and a faster handoff from customer request to branch service.</p>
+        <h2>Before you visit.</h2>
+        <p>Bring your items, the receiver’s address and contact details, and your request code if you started online. Staff will confirm what paperwork your shipment needs.</p>
         <div class="route-steps">
-          <div><b>1. Customer starts</b><span>Choose DHL, print, pack, notary, mailbox, or business services.</span></div>
-          <div><b>2. Location routes</b><span>The request carries the selected Freeport, NY location.</span></div>
-          <div><b>3. Staff verifies</b><span>The counter confirms sender, receiver, service, cost, and next step.</span></div>
-          <div><b>4. Status updates</b><span>The customer and branch can keep the request history cleaner.</span></div>
+          <div><b>1. Start online</b><span>Request a quote or prepare a DHL drop-off. No account needed.</span></div>
+          <div><b>2. Save your code</b><span>Your request is sent to the counter you selected.</span></div>
+          <div><b>3. Confirm and ship</b><span>Staff checks the details, packing, price and delivery estimate before you book.</span></div>
+          <div><b>4. Track delivery</b><span>Use the carrier tracking number after your shipment is created.</span></div>
         </div>
       </div>
     </section>

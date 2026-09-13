@@ -2,8 +2,8 @@
   const faqs = [
     {
       label: "How do I start a shipment?",
-      answer: "Tell us what you are shipping, where it is going, and when it needs to arrive. Cubic Ship will confirm the right counter or next step before you visit.",
-      links: [{ label: "Start a quote", href: "quote.html?service=dhl" }],
+      answer: "Start a DHL request as a guest. Choose your counter, request a quote or prepare a drop-off, and save your confirmation code. Staff confirms price and shipping arrangements.",
+      links: [{ label: "Start a DHL request", href: "/ship.html" }],
     },
     {
       label: "Can I request a service?",
@@ -35,6 +35,9 @@
       answer: "Tell Cubic where you sell, what you ship, and your expected monthly volume. The team can review the best available shipping path for your shop.",
       links: [{ label: "Request seller support", href: "quote.html?service=online-seller" }],
     },
+    { label: "Do I need a box or printer?", answer: "Ask your counter for packing and label help. Staff will confirm materials and any packing charges.", links: [{ label: "Find a counter", href: "/dhl-locations.html" }] },
+    { label: "Can my item go internationally?", answer: "Describe what is inside, including batteries, liquids or food. Your counter must confirm eligibility, required paperwork and destination restrictions before shipping.", links: [{ label: "Ask about my shipment", href: "/ship.html?mode=quote" }] },
+    { label: "Can I ship today?", answer: "Call your selected counter for today’s hours and last DHL collection. The last collection can be earlier than closing time.", links: [{ label: "Find my counter", href: "/dhl-locations.html" }] },
   ];
 
   function escapeHtml(value) {

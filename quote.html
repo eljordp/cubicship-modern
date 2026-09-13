@@ -269,52 +269,26 @@
   <main>
     <div class="shell">
       <section class="intro">
-        <div class="kicker">Secure Quote Request</div>
-        <h1>Tell us what needs to move.</h1>
-        <p>Use this form for DHL Express, parcel, air freight, ocean freight, ground freight, containers, documents, or anything that needs counter help before it ships.</p>
-        <div class="proof">
-          <div class="proof-item">
-            <strong>What to include</strong>
-            <span>Pickup address, delivery address, phone, email, shipment notes, and any deadline details.</span>
-          </div>
-          <div class="proof-item">
-            <strong>What happens next</strong>
-            <span>The Cubic Ship team reviews the request and follows up with the right service path.</span>
-          </div>
-          <div class="proof-item">
-            <strong>Need a customer drop-off number?</strong>
-            <span>Use the customer profile if you already know the shipment details and plan to bring the box to the counter.</span>
-          </div>
-        </div>
-        <div class="contact-row">
-          <a class="btn btn-secondary" href="dhl-locations.html">Find a Location</a>
-          <a class="btn btn-secondary" href="dhl-locations.html">Find DHL Locations</a>
-        </div>
+        <div class="kicker">Shipping quotes</div><h1>What are you sending?</h1>
+        <p>Choose DHL documents and packages, or request help with freight and other services.</p>
+        <div class="proof"><div class="proof-item"><strong>Staff-reviewed pricing</strong><span>Your counter confirms the price and delivery estimate after reviewing your details. For urgent shipments, call before visiting.</span></div><div class="proof-item"><strong>Check what is included</strong><span>Ask about transport, packing, optional protection, duties and taxes before you book.</span></div></div>
+        <div class="contact-row"><a class="btn btn-secondary" href="dhl-locations.html">Find your counter</a><a class="btn btn-secondary" href="profile.html">Customer login</a></div>
       </section>
-
-      <section class="form-card" aria-label="Cubic Ship quote form">
-        <div class="form-head">
-          <div>
-            <h2>Get a Quote</h2>
-            <span>Submissions route to the Cubic Ship team.</span>
-          </div>
-        </div>
-        <div class="form-body">
-          <ul class="quote-checklist">
-            <li><strong>1. Open the secure form</strong> It opens in Cognito Forms so the request is captured cleanly.</li>
-            <li><strong>2. Add shipment details</strong> Include pickup, delivery, phone, email, size, weight, contents, and deadline.</li>
-            <li><strong>3. Wait for follow-up</strong> The Cubic Ship team reviews the request and responds with next steps.</li>
-          </ul>
-          <div class="direct-quote">
-            <p>The secure quote form is hosted by Cognito Forms and opens in a new tab.</p>
-            <a class="btn btn-primary" href="https://www.cognitoforms.com/CUBICPACKANDSHIP/GetAQuote" target="_blank" rel="noopener">Open Secure Quote Form</a>
-          </div>
-        </div>
-        <p class="fallback">Prefer to talk first? Call <a href="tel:+17084325600">(708) 432-5600</a> or email <a href="mailto:info@cubicship.com">info@cubicship.com</a>.</p>
+      <section class="form-card" aria-label="Choose a quote type">
+        <div class="form-head"><h2>DHL Express documents or packages</h2></div><div class="form-body"><p>Tell us the destination, what’s inside and how to contact you. No account or full receiver address needed for a first quote.</p><p><a class="btn btn-primary" href="ship.html?mode=quote" id="dhlQuote">Request a DHL quote</a></p><p>Ready to bring it in? <a href="ship.html" id="dhlDropoff">Prepare your drop-off</a>.</p></div>
+        <div class="form-head"><h2>Freight or another service</h2></div><div class="form-body"><p>For air, ocean or ground freight, oversized cargo, printing or another service, use our detailed quote form.</p><a class="btn btn-secondary" href="https://www.cognitoforms.com/CUBICPACKANDSHIP/GetAQuote" target="_blank" rel="noopener">Open detailed quote form</a><p class="fallback">Opens in Cognito Forms. Staff will review the request and follow up.</p></div>
       </section>
     </div>
   </main>
-
+  <script>
+    const query = new URLSearchParams(location.search);
+    for (const id of ['dhlQuote','dhlDropoff']) {
+      const link = document.getElementById(id); const url = new URL(link.href);
+      if (query.has('location')) url.searchParams.set('location',query.get('location'));
+      link.href = url.pathname + url.search;
+    }
+    if (query.get('service') === 'dhl') location.replace(document.getElementById('dhlQuote').href);
+  </script>
   <footer>
     &copy; 2026 Cubic Home Solutions. All rights reserved.
   </footer>

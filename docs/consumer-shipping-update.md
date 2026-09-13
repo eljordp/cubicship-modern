@@ -14,3 +14,9 @@ Audience confirmed by owner: primarily individuals using DHL Express. This updat
 Validation: ten Node tests cover quote/drop-off requirements, invalid/inactive branches, invalid fields, saved receipts, branch routing, retry behavior, notification and storage failures, rate limits, and existing QR compatibility. Chrome browser tests used a local server running the real endpoint with in-memory storage and mocked email: quote-first and full drop-off both returned the correct branch code. Mobile homepage/form/location checks passed at 390px without horizontal overflow. All modified inline scripts parse; new form/quote/all 15 branch pages passed duplicate-ID and local-link checks. No real customer request or carrier booking was created during tests.
 
 The local test server and temporary editing scripts are outside the repository and are not deployed. Tests, tools, docs and environment files are excluded from deployed static files.
+
+## Homepage correction
+
+Owner rejected the homepage length and inflated 8/10 overall rating. The earlier review was a sample of public journeys, not a visual audit of every page; structural tests of branch pages did not establish full usability. Withdraw that rating.
+
+Replaced the long homepage with the existing DHL hero, three concise steps, three collapsed FAQs and compact footer. Company information moves to about.html; seven existing About navigation links now point there. Freight, print and signage remain on dedicated pages. Removed hero reveal animation so the primary text is immediately readable. Chrome verified the whole homepage at desktop and mobile sizes, FAQ quote-mode navigation, and the mobile menu’s location link. No backend change.

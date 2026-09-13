@@ -1835,6 +1835,44 @@
       .footer-layout { grid-template-columns: 1fr; }
       .metrics { justify-content: space-around; }
     }
+
+    /* Focused consumer homepage: hero, three steps, short FAQ, compact footer. */
+    .hero-media img { animation: none; }
+    .home-wrap { max-width: 1140px; margin: 0 auto; }
+    .how-bg, .home-help { padding: 2.5rem clamp(1.25rem, 4vw, 3rem); }
+    .home-wrap h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; margin-bottom: 1.5rem; }
+    .home-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .home-steps > div { display: grid; grid-template-columns: 32px 1fr; column-gap: 0.8rem; align-content: start; }
+    .home-steps .step-number { grid-row: span 2; margin: 0; }
+    .home-steps h3 { font-size: 1rem; margin: 0.1rem 0 0.3rem; }
+    .home-steps p, .home-help p { color: #abb9ce; font-size: 0.9rem; line-height: 1.6; }
+    .home-help .home-wrap { display: grid; grid-template-columns: 0.7fr 1.3fr; column-gap: 3rem; }
+    .home-help h2 { grid-row: span 3; }
+    .home-help details { border-bottom: 1px solid var(--border-hover); }
+    .home-help summary { padding: 0.85rem 0; cursor: pointer; font-size: 0.95rem; font-weight: 600; }
+    .home-help p { padding: 0 0 1rem; }
+    .home-help a { color: var(--orange-light); text-underline-offset: 3px; }
+    .home-footer { padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 2rem; }
+    .home-footer-top, .home-footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .home-footer nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+    .home-footer a { color: #abb9ce; font-size: 0.82rem; text-decoration: none; padding: 0.5rem 0; }
+    .home-footer a:hover { color: var(--orange-light); }
+    .home-footer p, .home-footer-bottom { font-size: 0.75rem; color: #abb9ce; }
+    .home-footer-bottom { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--orange-light); outline-offset: 4px; }
+    @media (max-width: 640px) {
+      .hero { padding-bottom: 2rem; }
+      .hero-partner { margin-bottom: 1.25rem; }
+      .hero-sub { margin-bottom: 1.25rem; }
+      .how-bg, .home-help { padding: 1.75rem 1.25rem; }
+      .home-wrap h2 { margin-bottom: 1.15rem; }
+      .home-steps { grid-template-columns: 1fr; gap: 1.15rem; }
+      .home-help .home-wrap { display: block; }
+      .home-footer-top { align-items: flex-start; gap: 0.75rem; }
+      .home-footer-bottom { gap: 0.25rem 1rem; }
+      .home-footer-bottom span { width: 100%; }
+      .home-footer { padding-bottom: 5rem; }
+    }
   </style>
   <script src="/analytics.js" defer></script>
   <script src="/_vercel/insights/script.js" defer></script>
@@ -1859,12 +1897,13 @@
         Get a Quote
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
   </header>
 
+  <main id="main">
   <!-- HERO -->
   <section class="hero" id="overview">
     <div class="hero-media" aria-hidden="true">
@@ -1887,16 +1926,16 @@
     </svg>
 
     <div class="hero-content">
-      <div class="hero-partner" data-reveal>
+      <div class="hero-partner">
         <span class="dhl-mark">DHL</span>
         <span class="hero-partner-text">DHL Express Service Point</span>
       </div>
-      <h1 class="stagger-1" data-reveal>
+      <h1 class="stagger-1">
         Ship internationally.<br>
         <span class="line2">With DHL Express.</span>
       </h1>
-      <p class="hero-sub stagger-2" data-reveal>Bring your documents or packages. We’ll help with packing, paperwork and shipping. Start online without an account, or find a counter near you.</p>
-      <div class="hero-buttons stagger-3" data-reveal>
+      <p class="hero-sub stagger-2">Send documents and packages with packing and paperwork help at your local counter. Start online—no account needed.</p>
+      <div class="hero-buttons stagger-3">
         <a href="ship.html" class="btn btn-primary btn-lg">
           Start a DHL Shipment
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
@@ -1908,650 +1947,42 @@
       </div>
     </div>
 
-    <div class="metrics" data-reveal>
-      <div class="metric">
-        <div class="metric-value">200+</div>
-        <div class="metric-label">Destinations</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">15+</div>
-        <div class="metric-label">Locations</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">1M+</div>
-        <div class="metric-label">Shipments</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">4.7</div>
-        <div class="metric-label">Rating</div>
-      </div>
-    </div>
   </section>
 
 
 
-  <section class="how-bg" id="how-it-works">
-    <div class="how-panel">
-      <div class="how-title" data-reveal>
-        <div class="section-eyebrow">How It Works</div>
-        <h2>Your shipment, step by step.</h2>
-        <p>Prepare online or ask for a quote first. The counter team will confirm the details before your shipment goes out.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step-card" data-reveal>
-          <span class="step-number">1</span>
-          <h3>Choose your counter</h3>
-          <p>Find a CubicShip location and check its current hours and last DHL collection.</p>
-        </div>
-        <div class="step-card" data-reveal>
-          <span class="step-number">2</span>
-          <h3>Start before arrival</h3>
-          <p>Send your shipment details as a guest and save your request code. No account needed.</p>
-        </div>
-        <div class="step-card" data-reveal>
-          <span class="step-number">3</span>
-          <h3>Drop off at counter</h3>
-          <p>Bring your items and code. Staff will confirm packing, price, delivery estimate and paperwork.</p>
-        </div>
-        <div class="step-card" data-reveal>
-          <span class="step-number">4</span>
-          <h3>Track the shipment</h3>
-          <p>Once shipped, use the carrier tracking number from your shipment receipt.</p>
-        </div>
+  <section class="how-bg" id="how-it-works" aria-labelledby="steps-title">
+    <div class="home-wrap">
+      <h2 id="steps-title">From your screen to our counter.</h2>
+      <div class="home-steps">
+        <div><span class="step-number">1</span><h3>Start online</h3><p>Choose a counter and send your shipment details. No account needed.</p></div>
+        <div><span class="step-number">2</span><h3>Bring your items</h3><p>Show your request code. We’ll help with packing and paperwork.</p></div>
+        <div><span class="step-number">3</span><h3>Confirm and ship</h3><p>Staff confirms price and delivery estimate before you pay at the counter.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-
-
-  <section id="shipping-help" style="padding:2rem 0"><div class="container"><div class="section-header"><div><div class="section-eyebrow">First time shipping?</div><h2 class="section-heading">We’ll help you get ready.</h2></div></div><div class="steps-grid"><div class="step-card"><h3>Need a price?</h3><p>Request a quote with your destination and item details. Staff confirms the final price and delivery estimate.</p><a href="ship.html?mode=quote" class="btn btn-secondary">Request a DHL quote</a></div><div class="step-card"><h3>No box or printer?</h3><p>Ask for packing and label help. Materials and any packing charges are confirmed at the counter.</p></div><div class="step-card"><h3>Shipping today?</h3><p>Check your counter’s current hours and last DHL collection before traveling.</p><a href="dhl-locations.html" class="btn btn-secondary">Find your counter</a></div><div class="step-card"><h3>Paperwork or item questions?</h3><p>See what to bring and what to ask about international shipping.</p><a href="ship.html#main" class="btn btn-secondary">Get started</a></div></div></div></section>
-  <!-- FREIGHT -->
-  <section id="freight">
-    <div class="container">
-      <div class="section-header" data-reveal>
-        <div class="section-eyebrow">Freight Services</div>
-        <h2 class="section-heading">Global shipping,<br>simplified.</h2>
-        <p class="section-desc">Whether across the country or across continents, we match every shipment to the right mode, route, and timeline.</p>
-      </div>
-      <div class="freight-layout">
-        <div class="freight-item" data-reveal>
-          <div class="freight-thumb">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1571086291540-b137111fa1c7?auto=format&fit=crop&w=900&q=80" alt="Cargo airplane prepared for air freight shipping">
-          </div>
-          <div class="freight-icon air">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 2L11 13"/>
-              <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
-            </svg>
-          </div>
-          <h3>Air Freight</h3>
-          <p>The fastest route from any US state to virtually any airport worldwide. Ideal for time-critical cargo with full tracking end to end.</p>
-          <a href="quote.html" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-        <div class="freight-item" data-reveal>
-          <div class="freight-thumb">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=900&q=80" alt="Cargo ship sailing across the ocean for freight shipping">
-          </div>
-          <div class="freight-icon ocean">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
-              <path d="M12 4v12"/>
-              <path d="M8 8l4-4 4 4"/>
-              <rect x="7" y="12" width="10" height="4" rx="1"/>
-            </svg>
-          </div>
-          <h3>Ocean Freight</h3>
-          <p>The most reliable method for international shipping. Furniture, equipment, vehicles, and high-volume cargo at competitive rates.</p>
-          <a href="quote.html" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-        <div class="freight-item" data-reveal>
-          <div class="freight-thumb">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1563380362065-5a92d7d1c3a8?auto=format&fit=crop&w=900&q=80" alt="Freight truck on a highway for ground shipping">
-          </div>
-          <div class="freight-icon ground">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="6" width="15" height="10" rx="1"/>
-              <path d="M16 10h4l3 3v3h-7V10z"/>
-              <circle cx="5.5" cy="18" r="2"/>
-              <circle cx="18.5" cy="18" r="2"/>
-            </svg>
-          </div>
-          <h3>Ground Freight</h3>
-          <p>Cost-efficient transport for large, non-time-sensitive items across the country. Full and partial load options available.</p>
-          <a href="quote.html" class="learn-link">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-        <!-- featured DHL card -->
-        <div class="freight-item featured" data-reveal>
-          <div>
-            <div class="freight-icon pack">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16Z"/>
-                <path d="M3.27 6.96L12 12.01l8.73-5.05"/>
-                <line x1="12" y1="22.08" x2="12" y2="12"/>
-              </svg>
-            </div>
-            <h3>DHL Express Service Point</h3>
-            <p>Pack, label, insure, and send DHL Express shipments at the counter. We help with documents, parcels, fragile items, oversized packages, and international shipping details.</p>
-            <a href="dhl-locations.html" class="learn-link">View DHL locations <svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-          <div class="freight-visual">
-            <div class="freight-photo">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80" alt="Warehouse shelves prepared for package movement">
-            </div>
-            <div class="dhl-badge">
-              <div class="dhl-badge-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" alt="DHL logo"></div>
-              <div class="dhl-badge-text">
-                <h4>DHL Express Service Point</h4>
-                <p>International shipping and counter support</p>
-              </div>
-            </div>
-          </div>
-          <div class="dhl-locations">
-            <div class="dhl-location">
-              <strong>Cubic Ship Bridgeview</strong>
-              <span>7327 W 87th Street, Bridgeview, IL 60455</span>
-            </div>
-            <div class="dhl-location">
-              <strong>Oak Lawn access</strong>
-              <span>DHL Express Service Point support for Oak Lawn and nearby southwest suburbs.</span>
-            </div>
-            <div class="dhl-location">
-              <strong>McCook access</strong>
-              <span>DHL Express Service Point support for McCook, Chicago, and regional shipments.</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section class="home-help" id="shipping-help" aria-labelledby="help-title">
+    <div class="home-wrap">
+      <h2 id="help-title">Before you visit</h2>
+      <details><summary>How much will it cost?</summary><p>Price depends on your destination, package size and weight. <a href="ship.html?mode=quote">Request a DHL quote</a> for staff to review. The online request does not purchase a shipping label.</p></details>
+      <details><summary>Do I need a box or a printer?</summary><p>Ask your counter for packing and label help. Staff confirms available materials and any packing charges.</p></details>
+      <details><summary>Can I ship today?</summary><p>Check your <a href="dhl-locations.html">counter’s hours and last DHL collection</a> before traveling. Sending an online request does not book a pickup.</p></details>
     </div>
   </section>
+  </main>
 
-  <!-- SERVICES -->
-  <section class="services-bg" id="services">
-    <div class="container">
-      <div class="home-board">
-        <article class="home-panel" data-reveal>
-          <span class="home-kicker">Services</span>
-          <h2>What can we help you handle?</h2>
-          <p>Start with the service you need. CubicShip will confirm the right counter, documents, timing, and next step.</p>
-          <div class="quick-grid">
-            <a class="quick-card" href="ship.html">
-              <strong>DHL Express &amp; packing</strong>
-              <span>International shipping, labels, documents, parcels, and counter help.</span>
-            </a>
-            <a class="quick-card" href="services.html#freight-detail">
-              <strong>Freight quotes</strong>
-              <span>Air, ocean, ground, container, and oversized shipment support.</span>
-            </a>
-            <a class="quick-card" href="print-pack.html">
-              <strong>Print, pack &amp; paperwork</strong>
-              <span>Copies, scans, packaging, documents, mailbox, and notary requests.</span>
-            </a>
-            <a class="quick-card" href="business-signage.html">
-              <strong>Business print &amp; signage</strong>
-              <span>Cards, labels, stickers, banners, decals, and event displays.</span>
-            </a>
-          </div>
-        </article>
-
-        <article class="home-panel" data-reveal>
-          <span class="home-kicker">Proof</span>
-          <span class="proof-number">4.7</span>
-          <h3>Great service matters.</h3>
-          <p>Real customers use Cubic-managed counters for international shipping, business errands, and reliable day-to-day support.</p>
-          <div class="mini-proof">
-            <span><b>15+</b>Locations</span>
-            <span><b>512</b>Reviews</span>
-            <span><b>200+</b>Destinations</span>
-          </div>
-          <div class="home-actions">
-            <a class="btn btn-secondary" href="dhl-locations.html">See Locations &amp; Google Reviews</a>
-          </div>
-        </article>
-
-        <article class="home-panel" id="contact" data-reveal>
-          <span class="home-kicker">Contact</span>
-          <h3>Talk to the counter.</h3>
-          <p>Tell us what you sell, where you ship, what you need printed, and how soon you need it. We will help you find the right service and price path.</p>
-          <div class="contact-stack">
-            <a href="tel:+17084325600">(708) 432-5600</a>
-            <a href="mailto:info@cubicship.com">info@cubicship.com</a>
-            <span>7327 W 87th Street, Bridgeview, IL 60455</span>
-          </div>
-          <div class="home-actions">
-            <a class="btn btn-primary" href="quote.html">Quote</a>
-            <a class="btn btn-secondary" href="track.html">Track</a>
-          </div>
-        </article>
+  <footer class="home-footer" id="contact">
+    <div class="home-wrap">
+      <div class="home-footer-top">
+        <div><a href="#overview" class="nav-logo"><span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span></a><p>Owned and operated by Cubic Home Solutions.</p></div>
+        <nav aria-label="More services"><a href="about.html">About</a><a href="services.html">All services</a><a href="services.html#freight-detail">Freight</a><a href="print-pack.html">Print &amp; pack</a><a href="business-signage.html">Business signage</a></nav>
       </div>
-      <article class="home-panel business-print-panel" data-reveal>
-        <div>
-          <span class="home-kicker">Business Print &amp; Display</span>
-          <h2>Ship it, brand it, and promote it from one counter.</h2>
-          <p>Order business cards, stickers, banners, labels and displays. Tell us what you need; the team will review your artwork and confirm price and timing.</p>
-          <div class="business-print-list" aria-label="Business print options">
-            <span><b>Pick from options</b>Choose starter packs, common sizes, materials, finishes, and display types.</span>
-            <span><b>Bring your own design</b>Send print-ready artwork, logo files, QR codes, or brand notes for review.</span>
-            <span><b>Add graphic design</b>Request paid layout, logo cleanup, sticker setup, or banner/sign design help.</span>
-          </div>
-        </div>
-        <div class="home-actions">
-          <a class="btn btn-primary" href="quote.html?service=business-print">Request Print Quote</a>
-          <a class="btn btn-secondary" href="services.html">View All Services</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- EXTRAS -->
-  <section class="discount-strip" id="shipment-discount">
-      <div class="discount-panel">
-      <div>
-        <div class="discount-kicker">Business Shipping Program</div>
-        <h2>Small businesses and online shops can get better shipping support from Cubic.</h2>
-        <p>Selling from your garage, home, or small workspace? Create a business profile, add where you sell, choose your shipment volume, and let Cubic review the best available rate and service path.</p>
-        <span class="discount-note">Rates vary by volume, destination, shipment type, carrier, and service availability.</span>
-      </div>
-      <div class="discount-actions">
-        <a class="btn btn-primary btn-lg" href="quote.html?service=online-seller">Request Business Shipping</a>
-        <a class="btn btn-secondary btn-lg" href="services.html">View Services</a>
-      </div>
-    </div>
-  </section>
-  <section class="about-bg" id="about">
-    <div class="container">
-      <div class="about-layout">
-        <div data-reveal>
-          <div class="section-eyebrow">About Us</div>
-          <h2 class="section-heading">Global logistics,<br>local service.</h2>
-          <p class="section-desc">Cubic Home Solutions / Cubic Ship brings global logistics and business services to local communities with integrity, care, and trust.</p>
-          <div class="about-media">
-            <img loading="lazy" src="assets/cubicship-scan-label-workflow.webp" alt="Parcel scanning workflow at a CubicShip DHL Express Service Point counter">
-          </div>
-        </div>
-        <div class="about-copy" data-reveal>
-          <p>We support customers, small businesses, and independent shipping locations by making professional logistics easier to access at the neighborhood level. Through our <strong>DHL Express Service Point</strong> service model, Cubic Ship locations are built to be full-service counter hubs.</p>
-          <p>They are full-service community logistics and business-service hubs for shipping, packing, printing, document support, storage, air freight, ocean freight, ground freight, and everyday business needs.</p>
-          <p>Every shipment, customer interaction, and branch responsibility matters. That is why we focus on accurate processing, clear documentation, timely follow-up, professional service, and consistent execution across every location we support.</p>
-          <p>Cubic Ship exists to bridge global logistics capability with local community service, helping people move packages, documents, freight, and business forward with confidence.</p>
-          <div class="values-grid">
-            <div class="value-card">
-              <h3>Amanah</h3>
-              <p>Trust and honest responsibility in how we serve customers, process shipments, and support each location.</p>
-            </div>
-            <div class="value-card">
-              <h3>AlQanaah</h3>
-              <p>Sustainable growth built patiently, consistently, and without shortcuts.</p>
-            </div>
-            <div class="value-card">
-              <h3>Helping Others</h3>
-              <p>Using knowledge, service, and opportunity to lift customers, associates, and communities.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="extras-bg" id="extras">
-    <div class="container">
-      <div class="extras-layout">
-        <div data-reveal>
-          <div class="section-eyebrow">Extra Services</div>
-          <h2 class="section-heading">Travel, paperwork,<br>and freight help.</h2>
-          <p class="section-desc">Cubic Ship is built like a neighborhood logistics desk: one stop for the weird, urgent, and important errands that usually send you to five different places.</p>
-          <div class="extras-note">
-            <p>Need something unusual? Bring the shipment, document, luggage, or question to the counter. If it needs a label, seal, signature, scan, route, or quote, we can usually point it in the right direction.</p>
-          </div>
-        </div>
-        <div class="extras-grid">
-          <a class="extra-card" href="services.html#stasher" data-reveal>
-            <span class="extra-kicker">Travel</span>
-            <h3>Stasher Luggage Storage</h3>
-            <p>Short-term luggage storage for travelers, students, and families moving through the area. Drop bags, run errands, and pick them up when you are ready.</p>
-          </a>
-          <a class="extra-card" href="services.html#notary" data-reveal>
-            <span class="extra-kicker">Documents</span>
-            <h3>Virtual Notary Support</h3>
-            <p>Remote online notarization guidance, identity-ready document prep, printing, scanning, and secure file handling for time-sensitive paperwork.</p>
-          </a>
-          <a class="extra-card" href="print-pack.html" data-reveal>
-            <span class="extra-kicker">Print Desk</span>
-            <h3>Print, Pack &amp; Paperwork</h3>
-            <p>Labels, forms, copies, scans, faxes, passport photos, mailers, boxes, tape, and finishing touches before your documents or packages go out.</p>
-          </a>
-          <a class="extra-card" href="services.html#freight-detail" data-reveal>
-            <span class="extra-kicker">Freight</span>
-            <h3>Containers &amp; Air Cargo</h3>
-            <p>Container shipping, air freight, oversized items, commercial cargo, and international freight quotes with practical routing help from start to finish.</p>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews-bg" id="reviews">
-    <div class="container">
-      <div class="reviews-top">
-        <div data-reveal>
-          <div class="section-eyebrow">Google Reviews</div>
-          <h2 class="section-heading">Managed locations<br>with real proof.</h2>
-          <p class="section-desc">A quick proof snapshot. The full 15-location list lives on the dedicated DHL page.</p>
-        </div>
-        <div class="review-score" data-reveal>
-          <strong>4.7</strong>
-          <span>Weighted average across 13 active locations and 512 Google reviews. 15 managed locations total, including 2 opening soon.</span>
-        </div>
-      </div>
-      <div class="locations-grid">
-        <a class="location-card" href="https://maps.app.goo.gl/2FtDw5cMd6kGKomW8?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Dearborn, MI</h3><span class="rating-pill">4.7 · 28</span></div>
-          <p class="location-address">6317 Schaefer Rd, Dearborn, MI 48126</p>
-          <p class="location-phone">(313) 254-2696</p>
-          <p class="review-line">"Fast service and affordable rates."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/SeGVkQijWaPfyisPA?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Oak Park / West Chicago, IL</h3><span class="rating-pill">4.4 · 27</span></div>
-          <p class="location-address">6200 Roosevelt Rd, Oak Park, IL 60304</p>
-          <p class="location-phone">(708) 665-3590</p>
-          <p class="review-line">"Highly recommend this location for any business or personal shipping needs!"</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/8aEgsLKWCDtxUxku6?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Bridgeview, IL</h3><span class="rating-pill">4.0 · 50</span></div>
-          <p class="location-address">7327 W 87th St, Bridgeview, IL 60455</p>
-          <p class="location-phone">(708) 432-5600</p>
-          <p class="review-line">"Fast service, friendly staff, clean and organized."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/aaFArcHWq8ZmpyvZ7?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Oak Lawn, IL</h3><span class="rating-pill">4.4 · 13</span></div>
-          <p class="location-address">9812 S Cicero Ave, Oak Lawn, IL 60453</p>
-          <p class="location-phone">(708) 741-7473</p>
-          <p class="review-line">"Great customer service, also great prices for international shipping."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/utm5ADkCSDxC1ns9A?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Buffalo, NY</h3><span class="rating-pill">5.0 · 14</span></div>
-          <p class="location-address">2618 Main St, Buffalo, NY 14214</p>
-          <p class="location-phone">(716) 259-8115</p>
-          <p class="review-line">"Very happy to have the DHL office so close to town."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/6fRQJLtq1M44Aq1Z9?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Bethpage, NY</h3><span class="rating-pill">5.0 · 9</span></div>
-          <p class="location-address">271 Broadway, Bethpage, NY 11714</p>
-          <p class="location-phone">(516) 433-4891</p>
-          <p class="review-line">"The customer service is amazing and the store is clean."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card featured-review" href="https://maps.app.goo.gl/YymTgErU5fMHAWBr6?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Iselin / Woodbridge, NJ</h3><span class="rating-pill">5.0 · 117</span></div>
-          <p class="location-address">1214 Green St, Iselin, NJ 08830</p>
-          <p class="location-phone">(732) 379-4305</p>
-          <p class="review-line">"Very good experience and staff is very polite and helpful."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/VAHUdtYEytLqfWkv6?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Milwaukee, WI</h3><span class="rating-pill">4.9 · 16</span></div>
-          <p class="location-address">2609 W Morgan Ave, Milwaukee, WI 53221</p>
-          <p class="location-phone">(414) 252-0594</p>
-          <p class="review-line">"Customer service was top-notch."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card featured-review" href="https://maps.app.goo.gl/gG6AtunP1mbG2RBH7?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Wyncote, PA</h3><span class="rating-pill">4.9 · 74</span></div>
-          <p class="location-address">1000 S Easton Rd Ste 270, Wyncote, PA 19095</p>
-          <p class="location-phone">(215) 277-3864</p>
-          <p class="review-line">"Knowledge and kind staff made the experience a breeze."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/qMjYzf4sV1stV4wSA?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Indianapolis, IN</h3><span class="rating-pill">4.6 · 116</span></div>
-          <p class="location-address">3853 Georgetown Rd, Indianapolis, IN 46254</p>
-          <p class="location-phone">(317) 756-9544</p>
-          <p class="review-line">"Super helpful with my very first DHL shipping experience."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/WPtKNLxMjuMFSWas9?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Allentown, PA</h3><span class="rating-pill">5.0 · 6</span></div>
-          <p class="location-address">717 Linden St, Allentown, PA 18101</p>
-          <p class="location-phone">(610) 773-6814</p>
-          <p class="review-line">"Good customer service."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card" href="https://maps.app.goo.gl/9WiHRL9JZHvgFJFo6?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Farmington, MI</h3><span class="rating-pill">3.9 · 11</span></div>
-          <p class="location-address">31826 Grand River Ave, Farmington, MI 48336</p>
-          <p class="location-phone">(248) 482-8769</p>
-          <p class="review-line">"Amazing service at this DHL Service Point!"</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card featured-review" href="https://maps.app.goo.gl/M631Tj7AB8fijLe19?g_st=a" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Northeast Philadelphia, PA</h3><span class="rating-pill">5.0 · 31</span></div>
-          <p class="location-address">1900 Grant Ave Ste J, Philadelphia, PA 19115</p>
-          <p class="location-phone">(215) 437-7795</p>
-          <p class="review-line">"The staff is super friendly, helpful, and knows exactly what they're doing."</p>
-          <span class="review-source">Google reviews</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card pending" href="https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&utm_campaign=ac-im" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Freeport, NY</h3><span class="rating-pill">Opening soon</span></div>
-          <p class="location-address">134 W Sunrise Hwy, Freeport, NY 11520</p>
-          <p class="location-phone">Phone coming soon</p>
-          <p class="review-line">DHL Express Service Point opening soon. Reviews will be added once the counter is active.</p>
-          <span class="review-source">Google listing</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-        <a class="location-card pending" href="https://maps.app.goo.gl/uEoXVEGgoJAzPP376?g_st=i&utm_campaign=ac-im" target="_blank" rel="noopener" data-reveal>
-          <div class="location-head"><h3>Cleveland, OH</h3><span class="rating-pill">Opening soon</span></div>
-          <p class="location-address">11512 Clifton Blvd, Cleveland, OH 44107</p>
-          <p class="location-phone">Phone coming soon</p>
-          <p class="review-line">DHL Express Service Point opening soon. Reviews will be added once the counter is active.</p>
-          <span class="review-source">Google listing</span>
-          <span class="map-action">Open on Google Maps -&gt;</span>
-        </a>
-      </div>
-      <div class="review-actions" data-reveal>
-        <a class="btn btn-primary btn-lg" href="dhl-locations.html">View all DHL locations</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRACKING -->
-  <section class="tracking-strip" id="tracking">
-    <div class="tracking-inner" data-reveal>
-      <h2>Track Your Shipment</h2>
-      <p>Use the tracking page to look up DHL, parcel, air freight, and container shipment references.</p>
-      <div class="tracking-row">
-        <a class="btn btn-primary btn-lg" href="track.html" style="margin:0 auto;">
-          Open Tracking Page
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact-bg" id="contact-details">
-    <div class="container">
-      <div class="section-header" data-reveal>
-        <div class="section-eyebrow">Contact</div>
-        <h2 class="section-heading">Let's move<br>your cargo.</h2>
-        <p class="section-desc">Start a DHL request, ask for a quote, or call your chosen counter for help with an urgent shipment.</p>
-      </div>
-      <div class="contact-layout">
-        <div class="contact-details" data-reveal>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
-            </div>
-            <div>
-              <h4>Quote Form</h4>
-              <p><a class="quote-link" href="quote.html">Open secure quote form</a></p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-              </svg>
-            </div>
-            <div>
-              <h4>Phone</h4>
-              <p><a href="tel:+17084325600">+1 (708) 432-5600</a></p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <div>
-              <h4>Address</h4>
-              <p>7327 W 87th Street, Bridgeview, IL 60455</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div>
-              <h4>Email</h4>
-              <p><a href="mailto:info@cubicship.com">info@cubicship.com</a></p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
-            <div>
-              <h4>Hours</h4>
-              <p>Mon - Sat, 9:00 AM - 6:00 PM</p>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form" data-reveal>
-          <h3>Request a Quote</h3>
-          <p>Use the secure quote form for pickup, delivery, contact, and shipment details. Submissions route to the Cubic Ship team for follow-up.</p>
-          <div class="quote-handoff">
-            <ul>
-              <li>Pickup and delivery address</li>
-              <li>Phone, email, and shipment notes</li>
-              <li>Package, freight, container, or document details</li>
-            </ul>
-            <a class="btn btn-primary btn-lg" href="quote.html">Open Quote Page</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-layout">
-      <div>
-        <a href="#" class="nav-logo" style="display:inline-flex;">
-          <img src="logo-160.png" alt="Cubic Ship Logo" style="height:36px;">
-          <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
-        </a>
-        <p class="footer-owner">Owned and operated by Cubic Home Solutions.</p>
-        <p class="footer-brand-desc">DHL Express shipping help for individuals and businesses, with local counters for packing, paperwork and everyday services.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Explore</h5>
-        <a href="dhl-locations.html">DHL Locations</a>
-        <a href="#services">Services</a>
-        <a href="profile.html">Customer Login</a>
-        <a href="track.html">Track Shipment</a>
-        <a href="quote.html">Get a Quote</a>
-      </div>
-      <div class="footer-col">
-        <h5>Services</h5>
-        <a href="services.html#freight-detail">Freight Forwarding</a>
-        <a href="services.html">All Services</a>
-        <a href="business-signage.html">Business Signage &amp; Displays</a>
-        <a href="print-pack.html">Print, Pack &amp; Paperwork</a>
-        <a href="services.html#passport">Passport</a>
-        <a href="services.html#stasher">Extra Services</a>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <a href="tel:+17084325600">(708) 432-5600</a>
-        <a href="mailto:info@cubicship.com">info@cubicship.com</a>
-        <a href="dhl-locations.html">Locations</a>
-        <a href="dhl-locations.html">Reviews</a>
-        <a href="quote.html">Get a Quote</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Cubic Home Solutions. All rights reserved.</span>
-      <span style="font-family:'Noto Naskh Arabic',serif; font-size:0.8rem;">&#1608;&#1605;&#1575; &#1578;&#1608;&#1601;&#1610;&#1602;&#1610; &#1575;&#1604;&#1575; &#1576;&#1575;&#1604;&#1604;&#1607;</span>
+      <div class="home-footer-bottom"><span>&copy; 2026 Cubic Home Solutions.</span><a href="mailto:info@cubicship.com">info@cubicship.com</a><a href="dhl-locations.html">Contact your counter</a></div>
     </div>
   </footer>
 
   <script>
-    // scroll reveal
-    const revealItems = document.querySelectorAll('[data-reveal]');
-    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-      revealItems.forEach(el => io.observe(el));
-      const revealPassedItems = () => {
-        revealItems.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 1.12 || rect.bottom < 0) {
-            el.classList.add('in');
-            io.unobserve(el);
-          }
-        });
-      };
-      let revealTicking = false;
-      window.addEventListener('scroll', () => {
-        if (revealTicking) return;
-        revealTicking = true;
-        requestAnimationFrame(() => {
-          revealPassedItems();
-          revealTicking = false;
-        });
-      }, { passive: true });
-      revealPassedItems();
-    } else {
-      revealItems.forEach(el => el.classList.add('in'));
-    }
-
     // nav scroll
     const nav = document.getElementById('nav');
     let ticking = false;
@@ -2567,10 +1998,14 @@
 
     // mobile toggle
     document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
+      const open = document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('navToggle').setAttribute('aria-expanded', String(open));
     });
     document.querySelectorAll('#navLinks a').forEach(a =>
-      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+      })
     );
   </script>
   <script src="chat-widget.js" defer></script>

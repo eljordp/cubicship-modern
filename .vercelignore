@@ -1,5 +1,4 @@
 tests/
-tools/
 docs/
 *.md
 .env*

@@ -10,5 +10,23 @@
       "destination": "/",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/customer-recovery",
+      "destination": "/api/customer-shipments?publicAction=customer-recovery"
+    },
+    {
+      "source": "/api/intake-availability",
+      "destination": "/api/customer-shipments?publicAction=intake-availability"
+    },
+    {
+      "source": "/api/request-status",
+      "destination": "/api/customer-shipments?publicAction=request-status"
+    },
+    {
+      "source": "/api/service-request",
+      "destination": "/api/customer-shipments?publicAction=service-request"
+    }
   ]
 }

@@ -1,3 +1,4 @@
+const registry = require("../assets/locations.json");
 const DEFAULT_EMAIL = "info@cubicship.com";
 
 function clean(value) {
@@ -157,31 +158,57 @@ const LOCATIONS = [
 ];
 
 function locationEmail(location) {
-  return clean(process.env[location.emailEnv]) || clean(location.branchEmail) || clean(process.env.LOCATION_NOTIFICATION_EMAIL) || clean(process.env.QUOTE_REPLY_TO) || DEFAULT_EMAIL;
+  return (
+    clean(process.env[location.emailEnv]) ||
+    clean(location.branchEmail) ||
+    clean(process.env.LOCATION_NOTIFICATION_EMAIL) ||
+    clean(process.env.QUOTE_REPLY_TO) ||
+    DEFAULT_EMAIL
+  );
 }
 
 function publicLocation(location) {
+  const listed = registry.find((item) => item.id === location.id);
+  const available = Boolean(listed && !listed.openingSoon);
   return {
     id: location.id,
     name: location.name,
-    address: location.address,
+    address: listed?.address || location.address,
     email: locationEmail(location),
     branchEmail: clean(location.branchEmail) || locationEmail(location),
     city: location.city || "",
     state: location.state || "",
-    status: location.status || "active",
+    status: listed
+      ? listed.openingSoon
+        ? "opening_soon"
+        : "active"
+      : "service_area",
+    acceptsRequests: available,
+    phone: listed?.phone || "",
+    tel: listed?.tel || "",
+    map: listed?.map || "",
     latitude: location.latitude || null,
     longitude: location.longitude || null,
     geofenceMeters: location.geofenceMeters || 250,
   };
 }
 
+function availableLocation(id) {
+  const location = LOCATIONS.find((item) => item.id === clean(id));
+  return location && publicLocation(location).acceptsRequests
+    ? publicLocation(location)
+    : null;
+}
+
 function findLocation(id) {
   const normalized = clean(id) || "bridgeview";
-  return publicLocation(LOCATIONS.find((location) => location.id === normalized) || LOCATIONS[0]);
+  return publicLocation(
+    LOCATIONS.find((location) => location.id === normalized) || LOCATIONS[0],
+  );
 }
 
 module.exports = {
+  availableLocation,
   LOCATIONS,
   findLocation,
   publicLocation,

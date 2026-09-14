@@ -1,15 +1,681 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Start a DHL Shipment | CubicShip</title><meta name="description" content="Request a DHL Express quote or prepare a counter drop-off. Choose your CubicShip location and send your shipment details without creating an account."><link rel="canonical" href="https://cubicship.com/ship.html"><link rel="icon" href="/favicon-64.png"><link rel="stylesheet" href="/shipping.css"><script src="/analytics.js" defer></script><script src="/_vercel/insights/script.js" defer></script></head><body><a class="skip-link" href="#main">Skip to content</a><header class="nav"><a class="brand" href="/"><img src="/logo-160.png" alt=""><span>Cubic</span>Ship</a><nav aria-label="Main navigation"><a href="/dhl-locations.html">Locations</a><a href="/track.html">Track</a><a href="/profile.html">Customer login</a></nav></header><main class="wrap" id="main"><div class="intro"><div class="eyebrow">DHL Express · No account needed</div><h1>Let's get your shipment started.</h1><p>Ask for a price or prepare your details before visiting. Your chosen counter will confirm the service, price and delivery estimate.</p></div><div class="layout"><section class="card" id="requestCard" aria-label="Shipping request"><ol class="steps" aria-label="Request progress"><li aria-current="step">Shipment</li><li>Contact</li><li>Review</li></ol><form id="shippingForm" novalidate>
-<div class="hp" aria-hidden="true"><label for="companyWebsite">Website</label><input id="companyWebsite" name="companyWebsite" tabindex="-1" autocomplete="off"></div>
-<section data-step="0" aria-labelledby="shipmentHeading"><h2 id="shipmentHeading" tabindex="-1">What would you like to send?</h2>
-<fieldset><legend>How can we help?</legend><div class="choices"><label class="choice"><input type="radio" name="requestKind" value="dropoff" checked>Prepare a drop-off</label><label class="choice"><input type="radio" name="requestKind" value="quote">Get a quote first</label></div></fieldset>
-<div><label for="locationId">Your CubicShip location</label><select id="locationId" name="locationId" required><option value="">Choose a location</option></select><p class="help" id="branchHelp">Choose the counter that will handle your request. <a href="/dhl-locations.html">Find a location</a>.</p></div>
-<fieldset style="margin-top:22px"><legend>Shipment type</legend><div class="choices"><label class="choice"><input type="radio" name="shipmentType" value="documents" required>Documents</label><label class="choice"><input type="radio" name="shipmentType" value="package" required>Package</label></div></fieldset>
-<div class="grid"><div><label for="receiverCountry">Destination country</label><input id="receiverCountry" name="receiverCountry" type="text" maxlength="160" required autocomplete="section-receiver country-name"></div><div><label for="receiverCity">Destination city</label><input id="receiverCity" name="receiverCity" type="text" maxlength="160" required autocomplete="section-receiver address-level2"></div><div><label for="receiverPostal">Destination postal code (if applicable)</label><input id="receiverPostal" name="receiverPostal" type="text" maxlength="160" autocomplete="section-receiver postal-code"></div><div><label for="senderPostal">Your ZIP / postal code</label><input id="senderPostal" name="senderPostal" type="text" maxlength="160" required autocomplete="section-sender postal-code"></div><div class="full"><label for="contents">What's inside?</label><textarea id="contents" name="contents" maxlength="1500" required placeholder="For example: signed documents, two cotton shirts, or a ceramic gift"></textarea></div><div><label for="pieces">Number of pieces</label><input id="pieces" name="pieces" type="number" maxlength="160" value="1" min="1" max="999" step="1" required></div><div><label for="readyDate">When would you like to ship? (optional)</label><input id="readyDate" name="readyDate" type="date" maxlength="160" ></div><div><label for="handoff">Getting it to us</label><select id="handoff" name="handoff"><option value="dropoff">I'll bring it to the counter</option><option value="pickup-request">Ask about pickup availability</option></select></div><div><label for="packing">Packing help</label><select id="packing" name="packing"><option value="unsure">I'm not sure yet</option><option value="needed">I need packing help</option><option value="packed">It's already packed</option></select></div></div>
-<details id="sizeDetails"><summary>Add weight and size if you know them</summary><p class="help">No scale or measuring tape? Leave these blank and the counter can help. Accurate measurements are needed to confirm the price.</p><div class="grid" style="margin-top:16px"><div><label for="weight">Total weight (optional)</label><input id="weight" name="weight" type="number" maxlength="160" min="0.01" max="100000" step="any"></div><div><label for="weightUnit">Weight unit</label><select id="weightUnit" name="weightUnit"><option value="lb">Pounds (lb)</option><option value="kg">Kilograms (kg)</option></select></div><div><label for="length">Length (optional)</label><input id="length" name="length" type="number" maxlength="160" min="0.01" max="10000" step="any"></div><div><label for="width">Width (optional)</label><input id="width" name="width" type="number" maxlength="160" min="0.01" max="10000" step="any"></div><div><label for="height">Height (optional)</label><input id="height" name="height" type="number" maxlength="160" min="0.01" max="10000" step="any"></div><div><label for="sizeUnit">Size unit</label><select id="sizeUnit" name="sizeUnit"><option value="in">Inches</option><option value="cm">Centimeters</option></select></div></div><p class="help">For multiple packages, describe each package's size in the notes.</p></details>
-<div class="notice" id="handoffNotice">Final price, delivery estimate and item acceptance are confirmed by staff. This request does not purchase a label or schedule a pickup.</div></section>
-<section data-step="1" hidden aria-labelledby="contactHeading"><h2 id="contactHeading" tabindex="-1">How can we reach you?</h2><p class="muted" id="contactHint">Add the sender and receiver details so the counter can prepare your shipment.</p><fieldset><legend>Your contact details</legend><div class="grid"><div><label for="senderName">Your full name</label><input id="senderName" name="senderName" type="text" maxlength="160" required autocomplete="section-sender name"></div><div><label for="senderEmail">Your email</label><input id="senderEmail" name="senderEmail" type="email" maxlength="160" required autocomplete="section-sender email"></div><div><label for="senderPhone">Your phone</label><input id="senderPhone" name="senderPhone" type="tel" maxlength="160" required autocomplete="section-sender tel"></div></div></fieldset><fieldset id="senderAddressFields" data-dropoff><legend>Your return address</legend><div class="grid"><div><label for="senderCompany">Company (optional)</label><input id="senderCompany" name="senderCompany" type="text" maxlength="160" autocomplete="section-sender organization"></div><div><label for="senderAddress1">Street address</label><input id="senderAddress1" name="senderAddress1" type="text" maxlength="160" autocomplete="section-sender address-line1" data-dropoff-required></div><div><label for="senderAddress2">Apartment / unit (optional)</label><input id="senderAddress2" name="senderAddress2" type="text" maxlength="160" autocomplete="section-sender address-line2"></div><div><label for="senderCity">City</label><input id="senderCity" name="senderCity" type="text" maxlength="160" autocomplete="section-sender address-level2" data-dropoff-required></div><div><label for="senderState">State / province</label><input id="senderState" name="senderState" type="text" maxlength="160" autocomplete="section-sender address-level1"></div><div><label for="senderCountry">Country</label><input id="senderCountry" name="senderCountry" type="text" maxlength="160" value="United States" autocomplete="section-sender country-name" required></div></div></fieldset><fieldset data-dropoff><legend>Receiver details</legend><div class="grid"><div><label for="receiverName">Full name</label><input id="receiverName" name="receiverName" type="text" maxlength="160" autocomplete="section-receiver name" data-dropoff-required></div><div><label for="receiverCompany">Company (optional)</label><input id="receiverCompany" name="receiverCompany" type="text" maxlength="160" autocomplete="section-receiver organization"></div><div><label for="receiverAddress1">Street address</label><input id="receiverAddress1" name="receiverAddress1" type="text" maxlength="160" autocomplete="section-receiver address-line1" data-dropoff-required></div><div><label for="receiverAddress2">Apartment / unit (optional)</label><input id="receiverAddress2" name="receiverAddress2" type="text" maxlength="160" autocomplete="section-receiver address-line2"></div><div><label for="receiverState">State / province (if applicable)</label><input id="receiverState" name="receiverState" type="text" maxlength="160" ></div><div><label for="receiverPhone">Receiver phone</label><input id="receiverPhone" name="receiverPhone" type="tel" maxlength="160" autocomplete="section-receiver tel" data-dropoff-required></div><div><label for="receiverEmail">Receiver email (optional)</label><input id="receiverEmail" name="receiverEmail" type="email" maxlength="160" autocomplete="section-receiver email"></div></div></fieldset><div><label for="notes">Anything else we should know? (optional)</label><textarea id="notes" name="notes" maxlength="2000" placeholder="Arrival deadline, different package sizes, questions, or pickup address if different"></textarea></div><p class="help">Your details go to CubicShip to handle this request. No account is created.</p></section>
-<section data-step="2" hidden aria-labelledby="reviewHeading"><h2 id="reviewHeading" tabindex="-1">Check your request.</h2><div class="review" id="review"></div><div class="notice">Staff will review the details before confirming the price, delivery estimate and any packing, protection or destination charges. For urgent requests, call your selected counter. A request code is not a carrier tracking number.</div><label class="check"><input type="checkbox" id="acknowledge" name="acknowledge" required>I confirm these details are accurate and understand this is a request for staff review.</label></section>
-<p id="formError" class="error" role="alert" hidden></p><div class="actions"><button class="btn" id="back" type="button" hidden>Back</button><button class="btn primary" id="next" type="button">Continue</button><button class="btn primary" id="submit" type="submit" hidden>Send request</button></div></form><noscript><p>This form needs JavaScript. <a href="/dhl-locations.html">Find and call a counter</a> for help.</p></noscript></section>
-<section class="card" id="receipt" hidden tabindex="-1" aria-labelledby="receiptHeading"><div class="eyebrow">Request received</div><h2 id="receiptHeading">Your details are with CubicShip.</h2><p>Your request code</p><p class="code" id="requestCode"></p><h3 id="receiptBranch"></h3><p id="receiptAddress"></p><p id="receiptNext"></p><p class="notice">This is a request confirmation, not a paid shipping label, confirmed pickup or carrier tracking number.</p><div class="receipt-actions"><button class="btn primary" id="printReceipt" type="button">Print / save confirmation</button><button class="btn" id="copyReceipt" type="button">Copy code</button></div><p id="copyStatus" role="status"></p><p><a id="receiptCall" href="tel:+17084325600">Call your counter</a> · <a id="receiptMap" href="/dhl-locations.html" target="_blank" rel="noopener">Directions and hours</a></p><a href="/ship.html">Start another request</a></section>
-<aside class="card side" aria-label="Your counter"><h3>Your selected counter</h3><strong id="sideName">Choose a location</strong><p id="sideAddress">Your request will go to the location you select.</p><a id="sideCall" hidden>Call this counter</a><a id="sideMap" hidden target="_blank" rel="noopener">Directions and current hours</a><p>Last DHL collection can be earlier than closing time. Call the counter to confirm today's cutoff.</p><hr><h3>What happens next?</h3><p>For a drop-off, save your request code and show it with your items at the counter. For a quote or pickup question, staff must confirm the details first.</p><p>Prefer an account? <a href="/profile.html">Customer login</a></p></aside></div>
-<section class="faq"><h2>Before you ship</h2><details><summary>Do I need a box or a printer?</summary><p>You can ask the counter for packing and label help. Tell us if the item is unpacked; staff will confirm materials and any packing charges.</p></details><details><summary>Can I send this item internationally?</summary><p>Describe the contents accurately, including any batteries, liquids or food. Acceptance depends on the item and destination. The counter must confirm eligibility before shipping.</p></details><details><summary>What should I bring?</summary><p>Bring your items, your request code, the receiver's full address and contact details, and details of the contents and value. Ask the counter which identification and customs documents your shipment needs.</p></details><details><summary>Does the quote include duties and protection?</summary><p>Ask staff to confirm transport, packing, optional shipment protection, and any duties or taxes separately, including who pays destination charges. Protection and claims depend on the service and applicable terms.</p></details><details><summary>Can I track my request code?</summary><p>Your CubicShip code identifies this request. Once staff creates the shipment, use the carrier tracking number on the <a href="/track.html">tracking page</a>. Contact your counter about a request that has not shipped.</p></details></section></main><footer>© 2026 Cubic Home Solutions · <a href="/dhl-locations.html">Contact a counter</a></footer><script src="/shipping.js" defer></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Start a DHL Shipment | CubicShip</title>
+    <meta
+      name="description"
+      content="Request a DHL Express quote or prepare a counter drop-off. Choose your CubicShip location and send your shipment details without creating an account."
+    />
+    <link rel="canonical" href="https://cubicship.com/ship.html" />
+    <link rel="icon" href="/favicon-64.png" />
+    <link rel="stylesheet" href="/shipping.css" />
+    <script src="/analytics.js" defer></script>
+    <script src="/_vercel/insights/script.js" defer></script>
+    <link rel="stylesheet" href="/site.css" />
+    <script src="/site.js" defer></script>
+  </head>
+  <body>
+
+    <a class="cs-skip" href="#main">Skip to content</a><header class="cs-header"><a class="cs-brand" href="/"><img src="/logo-160.png" width="36" height="36" alt="">Cubic<span>Ship</span></a><button class="cs-toggle" type="button" aria-expanded="false" aria-controls="cs-navigation">Menu</button><nav id="cs-navigation" class="cs-navigation" aria-label="Main navigation"><a href="/ship.html">Ship</a><a href="/services.html">Services</a><a href="/dhl-locations.html">Locations</a><a href="/track.html">Track</a><a href="/profile.html">Account</a></nav></header>
+    <main class="wrap" id="main">
+      <div class="intro">
+        <div class="language-choice" aria-label="Language">
+          <button type="button" data-language="en" aria-pressed="true">
+            English
+          </button>
+          <button type="button" data-language="es" aria-pressed="false">
+            Español
+          </button>
+        </div>
+        <div class="eyebrow">DHL Express · No account needed</div>
+        <h1>Let's get your shipment started.</h1>
+        <p>
+          Ask for a price or prepare your details before visiting. Your chosen
+          counter will confirm the service, price and delivery estimate.
+        </p>
+      </div>
+      <div class="layout">
+        <section class="card" id="requestCard" aria-label="Shipping request">
+          <ol class="steps" aria-label="Request progress">
+            <li aria-current="step">Shipment</li>
+            <li>Contact</li>
+            <li>Review</li>
+          </ol>
+          <form id="shippingForm" novalidate>
+            <div class="hp" aria-hidden="true">
+              <label for="companyWebsite">Website</label
+              ><input
+                id="companyWebsite"
+                name="companyWebsite"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+            <section data-step="0" aria-labelledby="shipmentHeading">
+              <h2 id="shipmentHeading" tabindex="-1">
+                What would you like to send?
+              </h2>
+              <fieldset>
+                <legend>How can we help?</legend>
+                <div class="choices">
+                  <label class="choice"
+                    ><input
+                      type="radio"
+                      name="requestKind"
+                      value="dropoff"
+                      checked
+                    />Prepare a drop-off</label
+                  ><label class="choice"
+                    ><input type="radio" name="requestKind" value="quote" />Get
+                    a quote first</label
+                  >
+                </div>
+              </fieldset>
+              <div>
+                <label for="locationId">Your CubicShip location</label
+                ><select id="locationId" name="locationId" required>
+                  <option value="">Choose a location</option>
+                </select>
+                <p class="help" id="branchHelp">
+                  Choose the counter that will handle your request.
+                  <a href="/dhl-locations.html">Find a location</a>.
+                </p>
+              </div>
+              <fieldset style="margin-top: 22px">
+                <legend>Shipment type</legend>
+                <div class="choices">
+                  <label class="choice"
+                    ><input
+                      type="radio"
+                      name="shipmentType"
+                      value="documents"
+                      required
+                    />Documents</label
+                  ><label class="choice"
+                    ><input
+                      type="radio"
+                      name="shipmentType"
+                      value="package"
+                      required
+                    />Package</label
+                  >
+                </div>
+              </fieldset>
+              <div class="grid">
+                <div>
+                  <label for="receiverCountry">Destination country</label
+                  ><input
+                    id="receiverCountry"
+                    list="countryOptions"
+                    name="receiverCountry"
+                    type="text"
+                    maxlength="160"
+                    required
+                    autocomplete="section-receiver country-name"
+                  />
+                </div>
+                <div>
+                  <label for="receiverCity">Destination city</label
+                  ><input
+                    id="receiverCity"
+                    name="receiverCity"
+                    type="text"
+                    maxlength="160"
+                    required
+                    autocomplete="section-receiver address-level2"
+                  />
+                </div>
+                <div>
+                  <label for="receiverPostal"
+                    >Destination postal code (if applicable)</label
+                  ><input
+                    id="receiverPostal"
+                    name="receiverPostal"
+                    type="text"
+                    maxlength="160"
+                    autocomplete="section-receiver postal-code"
+                  />
+                </div>
+                <div>
+                  <label for="senderPostal">Your ZIP / postal code</label
+                  ><input
+                    id="senderPostal"
+                    name="senderPostal"
+                    type="text"
+                    maxlength="160"
+                    required
+                    autocomplete="section-sender postal-code"
+                  />
+                </div>
+                <div class="full">
+                  <label for="contents">What's inside?</label
+                  ><textarea
+                    id="contents"
+                    name="contents"
+                    maxlength="1500"
+                    required
+                    placeholder="For example: signed documents, two cotton shirts, or a ceramic gift"
+                  ></textarea>
+                </div>
+                <div>
+                  <label for="pieces">Number of pieces</label
+                  ><input
+                    id="pieces"
+                    name="pieces"
+                    type="number"
+                    maxlength="160"
+                    value="1"
+                    min="1"
+                    max="999"
+                    step="1"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="readyDate"
+                    >When would you like to ship? (optional)</label
+                  ><input
+                    id="readyDate"
+                    name="readyDate"
+                    type="date"
+                    maxlength="160"
+                  />
+                </div>
+                <div>
+                  <label for="handoff">Getting it to us</label
+                  ><select id="handoff" name="handoff">
+                    <option value="dropoff">
+                      I'll bring it to the counter
+                    </option>
+                    <option value="pickup-request">
+                      Ask about pickup availability
+                    </option>
+                  </select>
+                </div>
+                <div>
+                  <label for="packing">Packing help</label
+                  ><select id="packing" name="packing">
+                    <option value="unsure">I'm not sure yet</option>
+                    <option value="needed">I need packing help</option>
+                    <option value="packed">It's already packed</option>
+                  </select>
+                </div>
+              </div>
+              <details id="sizeDetails">
+                <summary>Add weight and size if you know them</summary>
+                <p class="help">
+                  No scale or measuring tape? Leave these blank and the counter
+                  can help. Accurate measurements are needed to confirm the
+                  price.
+                </p>
+                <div class="grid" style="margin-top: 16px">
+                  <div>
+                    <label for="weight">Total weight (optional)</label
+                    ><input
+                      id="weight"
+                      name="weight"
+                      type="number"
+                      maxlength="160"
+                      min="0.01"
+                      max="100000"
+                      step="any"
+                    />
+                  </div>
+                  <div>
+                    <label for="weightUnit">Weight unit</label
+                    ><select id="weightUnit" name="weightUnit">
+                      <option value="lb">Pounds (lb)</option>
+                      <option value="kg">Kilograms (kg)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="length">Length (optional)</label
+                    ><input
+                      id="length"
+                      name="length"
+                      type="number"
+                      maxlength="160"
+                      min="0.01"
+                      max="10000"
+                      step="any"
+                    />
+                  </div>
+                  <div>
+                    <label for="width">Width (optional)</label
+                    ><input
+                      id="width"
+                      name="width"
+                      type="number"
+                      maxlength="160"
+                      min="0.01"
+                      max="10000"
+                      step="any"
+                    />
+                  </div>
+                  <div>
+                    <label for="height">Height (optional)</label
+                    ><input
+                      id="height"
+                      name="height"
+                      type="number"
+                      maxlength="160"
+                      min="0.01"
+                      max="10000"
+                      step="any"
+                    />
+                  </div>
+                  <div>
+                    <label for="sizeUnit">Size unit</label
+                    ><select id="sizeUnit" name="sizeUnit">
+                      <option value="in">Inches</option>
+                      <option value="cm">Centimeters</option>
+                    </select>
+                  </div>
+                </div>
+                <p class="help">
+                  For multiple packages, describe each package's size in the
+                  notes.
+                </p>
+              </details>
+              <div class="notice" id="handoffNotice">
+                Final price, delivery estimate and item acceptance are confirmed
+                by staff. This request does not purchase a label or schedule a
+                pickup.
+              </div>
+            </section>
+            <section data-step="1" hidden aria-labelledby="contactHeading">
+              <h2 id="contactHeading" tabindex="-1">How can we reach you?</h2>
+              <p class="muted" id="contactHint">
+                Add the sender and receiver details so the counter can prepare
+                your shipment.
+              </p>
+              <fieldset>
+                <legend>Your contact details</legend>
+                <div class="grid">
+                  <div>
+                    <label for="senderName">Your full name</label
+                    ><input
+                      id="senderName"
+                      name="senderName"
+                      type="text"
+                      maxlength="160"
+                      required
+                      autocomplete="section-sender name"
+                    />
+                  </div>
+                  <div>
+                    <label for="senderEmail">Your email</label
+                    ><input
+                      id="senderEmail"
+                      name="senderEmail"
+                      type="email"
+                      maxlength="160"
+                      required
+                      autocomplete="section-sender email"
+                    />
+                  </div>
+                  <div>
+                    <label for="senderPhone">Your phone</label
+                    ><input
+                      id="senderPhone"
+                      name="senderPhone"
+                      type="tel"
+                      maxlength="160"
+                      required
+                      autocomplete="section-sender tel"
+                    />
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset id="senderAddressFields" data-dropoff>
+                <legend>Your return address</legend>
+                <div class="grid">
+                  <div>
+                    <label for="senderCompany">Company (optional)</label
+                    ><input
+                      id="senderCompany"
+                      name="senderCompany"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-sender organization"
+                    />
+                  </div>
+                  <div>
+                    <label for="senderAddress1">Street address</label
+                    ><input
+                      id="senderAddress1"
+                      name="senderAddress1"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-sender address-line1"
+                      data-dropoff-required
+                    />
+                  </div>
+                  <div>
+                    <label for="senderAddress2"
+                      >Apartment / unit (optional)</label
+                    ><input
+                      id="senderAddress2"
+                      name="senderAddress2"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-sender address-line2"
+                    />
+                  </div>
+                  <div>
+                    <label for="senderCity">City</label
+                    ><input
+                      id="senderCity"
+                      name="senderCity"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-sender address-level2"
+                      data-dropoff-required
+                    />
+                  </div>
+                  <div>
+                    <label for="senderState">State / province</label
+                    ><input
+                      id="senderState"
+                      name="senderState"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-sender address-level1"
+                    />
+                  </div>
+                  <div>
+                    <label for="senderCountry">Country</label
+                    ><input
+                      id="senderCountry"
+                      list="countryOptions"
+                      name="senderCountry"
+                      type="text"
+                      maxlength="160"
+                      value="United States"
+                      autocomplete="section-sender country-name"
+                      required
+                    />
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset data-dropoff>
+                <legend>Receiver details</legend>
+                <div class="grid">
+                  <div>
+                    <label for="receiverName">Full name</label
+                    ><input
+                      id="receiverName"
+                      name="receiverName"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-receiver name"
+                      data-dropoff-required
+                    />
+                  </div>
+                  <div>
+                    <label for="receiverCompany">Company (optional)</label
+                    ><input
+                      id="receiverCompany"
+                      name="receiverCompany"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-receiver organization"
+                    />
+                  </div>
+                  <div>
+                    <label for="receiverAddress1">Street address</label
+                    ><input
+                      id="receiverAddress1"
+                      name="receiverAddress1"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-receiver address-line1"
+                      data-dropoff-required
+                    />
+                  </div>
+                  <div>
+                    <label for="receiverAddress2"
+                      >Apartment / unit (optional)</label
+                    ><input
+                      id="receiverAddress2"
+                      name="receiverAddress2"
+                      type="text"
+                      maxlength="160"
+                      autocomplete="section-receiver address-line2"
+                    />
+                  </div>
+                  <div>
+                    <label for="receiverState"
+                      >State / province (if applicable)</label
+                    ><input
+                      id="receiverState"
+                      name="receiverState"
+                      type="text"
+                      maxlength="160"
+                    />
+                  </div>
+                  <div>
+                    <label for="receiverPhone">Receiver phone</label
+                    ><input
+                      id="receiverPhone"
+                      name="receiverPhone"
+                      type="tel"
+                      maxlength="160"
+                      autocomplete="section-receiver tel"
+                      data-dropoff-required
+                    />
+                  </div>
+                  <div>
+                    <label for="receiverEmail">Receiver email (optional)</label
+                    ><input
+                      id="receiverEmail"
+                      name="receiverEmail"
+                      type="email"
+                      maxlength="160"
+                      autocomplete="section-receiver email"
+                    />
+                  </div>
+                </div>
+              </fieldset>
+              <div>
+                <label for="notes"
+                  >Anything else we should know? (optional)</label
+                ><textarea
+                  id="notes"
+                  name="notes"
+                  maxlength="2000"
+                  placeholder="Arrival deadline, different package sizes, questions, or pickup address if different"
+                ></textarea>
+              </div>
+              <p class="help">
+                Your details go to CubicShip to handle this request. No account
+                is created. <a href="/privacy.html">Privacy information</a>.
+              </p>
+            </section>
+            <section data-step="2" hidden aria-labelledby="reviewHeading">
+              <h2 id="reviewHeading" tabindex="-1">Check your request.</h2>
+              <div class="review" id="review"></div>
+              <div class="notice">
+                Staff will review the details before confirming the price,
+                delivery estimate and any packing, protection or destination
+                charges. For urgent requests, call your selected counter. A
+                request code is not a carrier tracking number.
+              </div>
+              <label class="check"
+                ><input
+                  type="checkbox"
+                  id="acknowledge"
+                  name="acknowledge"
+                  required
+                />I confirm these details are accurate and understand this is a
+                request for staff review.</label
+              >
+            </section>
+            <p id="formError" class="error" role="alert" hidden></p>
+            <div class="actions">
+              <button class="btn" id="back" type="button" hidden>Back</button
+              ><button class="btn primary" id="next" type="button">
+                Continue</button
+              ><button class="btn primary" id="submit" type="submit" hidden>
+                Send request
+              </button>
+            </div>
+          </form>
+          <noscript
+            ><p>
+              This form needs JavaScript.
+              <a href="/dhl-locations.html">Find and call a counter</a> for
+              help.
+            </p></noscript
+          >
+        </section>
+        <section
+          class="card"
+          id="receipt"
+          hidden
+          tabindex="-1"
+          aria-labelledby="receiptHeading"
+        >
+          <div class="eyebrow">Request received</div>
+          <h2 id="receiptHeading">Your details are with CubicShip.</h2>
+          <p>Your request code</p>
+          <p class="code" id="requestCode"></p>
+          <h3 id="receiptBranch"></h3>
+          <p id="receiptAddress"></p>
+          <p id="receiptNext"></p>
+          <p class="notice">
+            This is a request confirmation, not a paid shipping label, confirmed
+            pickup or carrier tracking number.
+          </p>
+          <div class="receipt-actions">
+            <button class="btn primary" id="printReceipt" type="button">
+              Print / save confirmation</button
+            ><button class="btn" id="copyReceipt" type="button">
+              Copy code
+            </button>
+          </div>
+          <p id="copyStatus" role="status"></p>
+          <p>
+            <a id="receiptCall" href="tel:+17084325600">Call your counter</a> ·
+            <a
+              id="receiptMap"
+              href="/dhl-locations.html"
+              target="_blank"
+              rel="noopener"
+              >Directions and hours</a
+            >
+          </p>
+          <p>
+            <a id="receiptStatus" class="btn primary" hidden
+              >View request status</a
+            >
+          </p>
+          <a href="/ship.html">Start another request</a>
+        </section>
+        <aside class="card side" aria-label="Your counter">
+          <h3>Your selected counter</h3>
+          <strong id="sideName">Choose a location</strong>
+          <p id="sideAddress">
+            Your request will go to the location you select.
+          </p>
+          <a id="sideCall" hidden>Call this counter</a
+          ><a id="sideMap" hidden target="_blank" rel="noopener"
+            >Directions and current hours</a
+          >
+          <p>
+            Last DHL collection can be earlier than closing time. Call the
+            counter to confirm today's cutoff.
+          </p>
+          <hr />
+          <h3>What happens next?</h3>
+          <p>
+            For a drop-off, save your request code and show it with your items
+            at the counter. For a quote or pickup question, staff must confirm
+            the details first.
+          </p>
+          <p>Prefer an account? <a href="/profile.html">Customer login</a></p>
+        </aside>
+      </div>
+      <section class="faq">
+        <h2>Before you ship</h2>
+        <details>
+          <summary>Do I need a box or a printer?</summary>
+          <p>
+            You can ask the counter for packing and label help. Tell us if the
+            item is unpacked; staff will confirm materials and any packing
+            charges.
+          </p>
+        </details>
+        <details>
+          <summary>Can I send this item internationally?</summary>
+          <p>
+            Describe the contents accurately, including any batteries, liquids
+            or food. Acceptance depends on the item and destination. The counter
+            must confirm eligibility before shipping.
+          </p>
+        </details>
+        <details>
+          <summary>What should I bring?</summary>
+          <p>
+            Bring your items, your request code, the receiver's full address and
+            contact details, and details of the contents and value. Ask the
+            counter which identification and customs documents your shipment
+            needs.
+          </p>
+        </details>
+        <details>
+          <summary>Does the quote include duties and protection?</summary>
+          <p>
+            Ask staff to confirm transport, packing, optional shipment
+            protection, and any duties or taxes separately, including who pays
+            destination charges. Protection and claims depend on the service and
+            applicable terms.
+          </p>
+        </details>
+        <details>
+          <summary>Can I track my request code?</summary>
+          <p>
+            Save the private status link from your confirmation to follow your
+            request. Once staff creates the shipment, use the carrier tracking
+            number on the <a href="/track.html">tracking page</a>. Contact your
+            counter about a request that has not shipped.
+          </p>
+        </details>
+      </section>
+    </main>
+    <footer class="cs-footer"><span>© 2026 Cubic Home Solutions</span><nav aria-label="Footer"><a href="/about.html">About</a><a href="/dhl-locations.html">Contact a counter</a><a href="/request-status.html">Request status</a><a href="/privacy.html">Privacy</a><a href="/service-terms.html">Service information</a></nav></footer>
+    <datalist id="countryOptions">
+      <option value="United States"></option>
+      <option value="Canada"></option>
+      <option value="Mexico"></option>
+      <option value="United Kingdom"></option>
+      <option value="India"></option>
+      <option value="Pakistan"></option>
+      <option value="Bangladesh"></option>
+      <option value="United Arab Emirates"></option>
+      <option value="Saudi Arabia"></option>
+      <option value="Nigeria"></option>
+      <option value="Ghana"></option>
+      <option value="South Africa"></option>
+      <option value="Germany"></option>
+      <option value="France"></option>
+      <option value="Spain"></option>
+      <option value="Italy"></option>
+      <option value="Australia"></option>
+      <option value="New Zealand"></option>
+      <option value="Japan"></option>
+      <option value="China"></option>
+      <option value="Philippines"></option>
+      <option value="Brazil"></option>
+      <option value="Colombia"></option>
+      <option value="Egypt"></option>
+      <option value="Jordan"></option>
+      <option value="Lebanon"></option>
+    </datalist>
+    <script src="/shipping-i18n.js" defer></script>
+    <script src="/shipping.js" defer></script>
+    <script src="/intake-availability.js" defer></script>
+  </body>
+</html>

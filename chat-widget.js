@@ -2,42 +2,73 @@
   const faqs = [
     {
       label: "How do I start a shipment?",
-      answer: "Start a DHL request as a guest. Choose your counter, request a quote or prepare a drop-off, and save your confirmation code. Staff confirms price and shipping arrangements.",
+      answer:
+        "Start a DHL request as a guest. Choose your counter, request a quote or prepare a drop-off, and save your confirmation code. Staff confirms price and shipping arrangements.",
       links: [{ label: "Start a DHL request", href: "/ship.html" }],
     },
     {
       label: "Can I request a service?",
-      answer: "Yes. Use the service request option here for passport, DMV, printing, notary, payments, luggage storage, freight help, or another counter service.",
+      answer:
+        "Yes. Use the service request option here for passport, DMV, printing, notary, payments, luggage storage, freight help, or another counter service.",
       request: true,
     },
     {
       label: "What services do you offer?",
-      answer: "Cubic Ship handles DHL Express, domestic and international shipping, air/ocean/ground freight, passport services, office services, IL DMV services, payment services, money orders, luggage storage, virtual notary support, and document help.",
+      answer:
+        "Cubic Ship handles DHL Express, domestic and international shipping, air/ocean/ground freight, passport services, office services, IL DMV services, payment services, money orders, luggage storage, virtual notary support, and document help.",
       links: [{ label: "View services", href: "services.html" }],
     },
     {
       label: "Where are you located?",
-      answer: "Cubic Ship Bridgeview is at 7327 W 87th Street, Bridgeview, IL 60455. Call ahead if you need a specific service confirmed before coming in.",
+      answer:
+        "Cubic Ship Bridgeview is at 7327 W 87th Street, Bridgeview, IL 60455. Call ahead if you need a specific service confirmed before coming in.",
       links: [{ label: "Call now", href: "tel:+17084325600" }],
     },
     {
       label: "How do I track a shipment?",
-      answer: "Use the tracking page for DHL, UPS, FedEx, USPS, or freight references. If you only have a Cubic Ship ticket number, contact the counter team for help.",
+      answer:
+        "Use the tracking page for DHL, UPS, FedEx, USPS, or freight references. If you only have a Cubic Ship ticket number, contact the counter team for help.",
       links: [{ label: "Track shipment", href: "track.html" }],
     },
     {
       label: "Do you help small businesses?",
-      answer: "Yes. Cubic helps online shops, local sellers, home businesses, and small teams with DHL, packing, freight, document support, and business shipping rates based on volume, destination, service type, and carrier availability.",
-      links: [{ label: "Request business help", href: "quote.html?service=business" }],
+      answer:
+        "Yes. Cubic helps online shops, local sellers, home businesses, and small teams with DHL, packing, freight, document support, and business shipping rates based on volume, destination, service type, and carrier availability.",
+      links: [
+        { label: "Request business help", href: "quote.html?service=business" },
+      ],
     },
     {
       label: "I sell online",
-      answer: "Tell Cubic where you sell, what you ship, and your expected monthly volume. The team can review the best available shipping path for your shop.",
-      links: [{ label: "Request seller support", href: "quote.html?service=online-seller" }],
+      answer:
+        "Tell Cubic where you sell, what you ship, and your expected monthly volume. The team can review the best available shipping path for your shop.",
+      links: [
+        {
+          label: "Request seller support",
+          href: "quote.html?service=online-seller",
+        },
+      ],
     },
-    { label: "Do I need a box or printer?", answer: "Ask your counter for packing and label help. Staff will confirm materials and any packing charges.", links: [{ label: "Find a counter", href: "/dhl-locations.html" }] },
-    { label: "Can my item go internationally?", answer: "Describe what is inside, including batteries, liquids or food. Your counter must confirm eligibility, required paperwork and destination restrictions before shipping.", links: [{ label: "Ask about my shipment", href: "/ship.html?mode=quote" }] },
-    { label: "Can I ship today?", answer: "Call your selected counter for today’s hours and last DHL collection. The last collection can be earlier than closing time.", links: [{ label: "Find my counter", href: "/dhl-locations.html" }] },
+    {
+      label: "Do I need a box or printer?",
+      answer:
+        "Ask your counter for packing and label help. Staff will confirm materials and any packing charges.",
+      links: [{ label: "Find a counter", href: "/dhl-locations.html" }],
+    },
+    {
+      label: "Can my item go internationally?",
+      answer:
+        "Describe what is inside, including batteries, liquids or food. Your counter must confirm eligibility, required paperwork and destination restrictions before shipping.",
+      links: [
+        { label: "Ask about my shipment", href: "/ship.html?mode=quote" },
+      ],
+    },
+    {
+      label: "Can I ship today?",
+      answer:
+        "Call your selected counter for today’s hours and last DHL collection. The last collection can be earlier than closing time.",
+      links: [{ label: "Find my counter", href: "/dhl-locations.html" }],
+    },
   ];
 
   function escapeHtml(value) {
@@ -95,7 +126,11 @@
   function initSiteMotion() {
     const path = window.location.pathname;
     const isHome = path === "/" || path.endsWith("/index.html") || path === "";
-    if (isHome || document.documentElement.classList.contains("site-motion-ready")) return;
+    if (
+      isHome ||
+      document.documentElement.classList.contains("site-motion-ready")
+    )
+      return;
 
     const selectors = [
       "main > section",
@@ -120,21 +155,27 @@
     });
     document.documentElement.classList.add("site-motion-ready");
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-      items.forEach(item => item.classList.add("site-motion-in"));
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      items.forEach((item) => item.classList.add("site-motion-in"));
       return;
     }
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("site-motion-in");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
-    items.forEach(item => observer.observe(item));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("site-motion-in");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+    );
+    items.forEach((item) => observer.observe(item));
     const revealPassedItems = () => {
-      items.forEach(item => {
+      items.forEach((item) => {
         const rect = item.getBoundingClientRect();
         if (rect.top < window.innerHeight * 1.12 || rect.bottom < 0) {
           item.classList.add("site-motion-in");
@@ -143,14 +184,18 @@
       });
     };
     let motionTicking = false;
-    window.addEventListener("scroll", () => {
-      if (motionTicking) return;
-      motionTicking = true;
-      window.requestAnimationFrame(() => {
-        revealPassedItems();
-        motionTicking = false;
-      });
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (motionTicking) return;
+        motionTicking = true;
+        window.requestAnimationFrame(() => {
+          revealPassedItems();
+          motionTicking = false;
+        });
+      },
+      { passive: true },
+    );
     revealPassedItems();
   }
 
@@ -202,7 +247,10 @@
     function showFaq(index) {
       const faq = faqs[index];
       if (!faq) return;
-      body.insertAdjacentHTML("beforeend", message(escapeHtml(faq.label), "user"));
+      body.insertAdjacentHTML(
+        "beforeend",
+        message(escapeHtml(faq.label), "user"),
+      );
       body.insertAdjacentHTML("beforeend", message(escapeHtml(faq.answer)));
       if (faq.request) {
         body.insertAdjacentHTML("beforeend", serviceForm());
@@ -213,7 +261,9 @@
       body.scrollTop = body.scrollHeight;
     }
 
-    toggle.addEventListener("click", () => setOpen(!root.classList.contains("open")));
+    toggle.addEventListener("click", () =>
+      setOpen(!root.classList.contains("open")),
+    );
     close.addEventListener("click", () => setOpen(false));
 
     body.addEventListener("click", (event) => {
@@ -226,25 +276,22 @@
     body.addEventListener("submit", (event) => {
       if (event.target.id !== "chatServiceForm") return;
       event.preventDefault();
-      const name = root.querySelector("#chatName").value.trim();
-      const contact = root.querySelector("#chatContact").value.trim();
       const service = root.querySelector("#chatService").value;
       const details = root.querySelector("#chatDetails").value.trim();
-      const subject = encodeURIComponent(`Cubic Ship service request - ${service}`);
-      const text = [
-        "Service request from cubicship.com",
-        "",
-        `Name: ${name}`,
-        `Phone or email: ${contact}`,
-        `Service: ${service}`,
-        "",
-        "Details:",
-        details,
-      ].join("\n");
-      window.location.href = `mailto:info@cubicship.com?subject=${subject}&body=${encodeURIComponent(text)}`;
-      event.target.remove();
-      body.insertAdjacentHTML("beforeend", message("Service request draft opened. Send the email, or call the counter if this is urgent."));
-      body.insertAdjacentHTML("beforeend", linkButtons([{ label: "Call Cubic Ship", href: "tel:+17084325600" }, { label: "Email", href: "mailto:info@cubicship.com" }]));
+      try {
+        sessionStorage.setItem(
+          "cubicServiceDraft",
+          JSON.stringify({
+            name: root.querySelector("#chatName").value.trim(),
+            contact: root.querySelector("#chatContact").value.trim(),
+            details,
+          }),
+        );
+      } catch {}
+      window.location.href = /DHL|shipping/i.test(service)
+        ? "/ship.html?mode=quote"
+        : "/service-request.html?service=" +
+          (/print|sign/i.test(service) ? "printing" : "other");
       resetOptions();
     });
   }
@@ -254,7 +301,8 @@
     const isHome = path === "/" || path.endsWith("/index.html") || path === "";
     let offerClosed = false;
     try {
-      offerClosed = window.sessionStorage?.getItem("cubicSellerOfferClosed") === "1";
+      offerClosed =
+        window.sessionStorage?.getItem("cubicSellerOfferClosed") === "1";
     } catch (error) {
       offerClosed = false;
     }
@@ -296,7 +344,9 @@
       }
     }
 
-    offer.querySelector(".seller-offer-close").addEventListener("click", closeOffer);
+    offer
+      .querySelector(".seller-offer-close")
+      .addEventListener("click", closeOffer);
     offer.addEventListener("click", (event) => {
       if (event.target === offer) closeOffer();
     });

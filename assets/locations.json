@@ -12,7 +12,14 @@
     "rating": "4.7",
     "reviews": "28",
     "map": "https://maps.app.goo.gl/2FtDw5cMd6kGKomW8?g_st=a",
-    "review": "Fast service and affordable rates."
+    "review": "Fast service and affordable rates.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/2FtDw5cMd6kGKomW8?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–7 PM",
+      "Sat–Sun: 10 AM–6 PM"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "oak-park",
@@ -27,7 +34,15 @@
     "rating": "4.4",
     "reviews": "27",
     "map": "https://maps.app.goo.gl/SeGVkQijWaPfyisPA?g_st=a",
-    "review": "Highly recommend this location for any business or personal shipping needs!"
+    "review": "Highly recommend this location for any business or personal shipping needs!",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/SeGVkQijWaPfyisPA?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–6 PM",
+      "Sat: 10 AM–4 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/Chicago"
   },
   {
     "id": "bridgeview",
@@ -42,7 +57,15 @@
     "rating": "4.0",
     "reviews": "50",
     "map": "https://maps.app.goo.gl/8aEgsLKWCDtxUxku6?g_st=a",
-    "review": "Fast service, friendly staff, clean and organized."
+    "review": "Fast service, friendly staff, clean and organized.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/8aEgsLKWCDtxUxku6?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–10 PM",
+      "Sat–Sun: 10 AM–9 PM"
+    ],
+    "timezone": "America/Chicago",
+    "hoursNote": "Store hours from the MEA Pack&Ship Google listing at this address. Confirm DHL service hours directly."
   },
   {
     "id": "oak-lawn",
@@ -57,7 +80,14 @@
     "rating": "4.4",
     "reviews": "13",
     "map": "https://maps.app.goo.gl/aaFArcHWq8ZmpyvZ7?g_st=a",
-    "review": "Great customer service, also great prices for international shipping."
+    "review": "Great customer service, also great prices for international shipping.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/aaFArcHWq8ZmpyvZ7?g_st=a",
+    "hours": [
+      "Mon–Sat: 10 AM–6 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/Chicago"
   },
   {
     "id": "buffalo",
@@ -72,7 +102,15 @@
     "rating": "5.0",
     "reviews": "14",
     "map": "https://maps.app.goo.gl/utm5ADkCSDxC1ns9A?g_st=a",
-    "review": "Very happy to have the DHL office so close to town."
+    "review": "Very happy to have the DHL office so close to town.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/utm5ADkCSDxC1ns9A?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–6 PM",
+      "Sat: 10 AM–5 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "bethpage",
@@ -87,7 +125,13 @@
     "rating": "5.0",
     "reviews": "9",
     "map": "https://maps.app.goo.gl/6fRQJLtq1M44Aq1Z9?g_st=a",
-    "review": "The customer service is amazing and the store is clean."
+    "review": "The customer service is amazing and the store is clean.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/6fRQJLtq1M44Aq1Z9?g_st=a",
+    "hours": [
+      "Mon–Sun: 10 AM–6 PM"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "iselin",
@@ -102,7 +146,15 @@
     "rating": "5.0",
     "reviews": "117",
     "map": "https://maps.app.goo.gl/YymTgErU5fMHAWBr6?g_st=a",
-    "review": "Very good experience and staff is very polite and helpful."
+    "review": "Very good experience and staff is very polite and helpful.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/YymTgErU5fMHAWBr6?g_st=a",
+    "hours": [
+      "Mon–Fri: 9:30 AM–7 PM",
+      "Sat: 10 AM–5 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "milwaukee",
@@ -117,7 +169,15 @@
     "rating": "4.9",
     "reviews": "16",
     "map": "https://maps.app.goo.gl/VAHUdtYEytLqfWkv6?g_st=a",
-    "review": "Customer service was top-notch."
+    "review": "Customer service was top-notch.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/VAHUdtYEytLqfWkv6?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–6 PM",
+      "Sat: 10 AM–5 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/Chicago"
   },
   {
     "id": "wyncote",
@@ -132,7 +192,15 @@
     "rating": "4.9",
     "reviews": "74",
     "map": "https://maps.app.goo.gl/gG6AtunP1mbG2RBH7?g_st=a",
-    "review": "Knowledge and kind staff made the experience a breeze."
+    "review": "Knowledge and kind staff made the experience a breeze.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/gG6AtunP1mbG2RBH7?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–7 PM",
+      "Sat: 10 AM–6 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "indianapolis",
@@ -147,7 +215,15 @@
     "rating": "4.6",
     "reviews": "116",
     "map": "https://maps.app.goo.gl/qMjYzf4sV1stV4wSA?g_st=a",
-    "review": "Super helpful with my very first DHL shipping experience."
+    "review": "Super helpful with my very first DHL shipping experience.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/qMjYzf4sV1stV4wSA?g_st=a",
+    "hours": [
+      "Mon–Fri: 9 AM–8 PM",
+      "Sat: 10 AM–7 PM",
+      "Sun: 10 AM–5 PM"
+    ],
+    "timezone": "America/Indiana/Indianapolis"
   },
   {
     "id": "allentown-pa",
@@ -162,7 +238,14 @@
     "rating": "5.0",
     "reviews": "6",
     "map": "https://maps.app.goo.gl/WPtKNLxMjuMFSWas9?g_st=a",
-    "review": "Good customer service."
+    "review": "Good customer service.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/WPtKNLxMjuMFSWas9?g_st=a",
+    "hours": [
+      "Mon–Fri: 10 AM–6 PM",
+      "Sat–Sun: Closed"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "farmington",
@@ -177,7 +260,13 @@
     "rating": "3.9",
     "reviews": "11",
     "map": "https://maps.app.goo.gl/9WiHRL9JZHvgFJFo6?g_st=a",
-    "review": "Amazing service at this DHL Service Point!"
+    "review": "Amazing service at this DHL Service Point!",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/9WiHRL9JZHvgFJFo6?g_st=a",
+    "hours": [
+      "Mon–Sun: 9 AM–6 PM"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "northeast-philadelphia",
@@ -192,7 +281,14 @@
     "rating": "5.0",
     "reviews": "31",
     "map": "https://maps.app.goo.gl/M631Tj7AB8fijLe19?g_st=a",
-    "review": "The staff is super friendly, helpful, and knows exactly what they're doing."
+    "review": "The staff is super friendly, helpful, and knows exactly what they're doing.",
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/M631Tj7AB8fijLe19?g_st=a",
+    "hours": [
+      "Mon–Sat: 9 AM–6 PM",
+      "Sun: Closed"
+    ],
+    "timezone": "America/New_York"
   },
   {
     "id": "freeport",
@@ -202,12 +298,24 @@
     "market": "Freeport, NY",
     "name": "Freeport DHL Express Service Point",
     "address": "134 W Sunrise Hwy, Freeport, NY 11520",
-    "phone": "Phone coming soon",
+    "phone": "(516) 517-2084",
     "rating": "Opening soon",
     "reviews": "",
     "map": "https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&utm_campaign=ac-im",
     "review": "DHL Express Service Point opening soon. Reviews will be added once the counter is active.",
-    "openingSoon": true
+    "openingSoon": true,
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&utm_campaign=ac-im",
+    "hours": [
+      "Mon–Fri: 10 AM–6 PM",
+      "Sat–Sun: Closed"
+    ],
+    "timezone": "America/New_York",
+    "availabilityLabel": "Online requests unavailable",
+    "hoursNote": "Google Maps lists these store hours. Contact the branch to confirm service; online requests are not enabled here yet.",
+    "tel": "+15165172084",
+    "phoneSource": "https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&utm_campaign=ac-im",
+    "phoneCheckedAt": "2026-09-13"
   },
   {
     "id": "cleveland",
@@ -222,6 +330,12 @@
     "reviews": "",
     "map": "https://maps.app.goo.gl/uEoXVEGgoJAzPP376?g_st=i&utm_campaign=ac-im",
     "review": "DHL Express Service Point opening soon. Reviews will be added once the counter is active.",
-    "openingSoon": true
+    "openingSoon": true,
+    "hoursCheckedAt": "2026-09-13",
+    "hoursSource": "https://maps.app.goo.gl/uEoXVEGgoJAzPP376?g_st=i&utm_campaign=ac-im",
+    "hours": [],
+    "timezone": "America/New_York",
+    "availabilityLabel": "Temporarily closed",
+    "hoursNote": "Google Maps lists this location as temporarily closed. Reopening details are not confirmed."
   }
 ]

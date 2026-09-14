@@ -26,75 +26,96 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add('js');</script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://cubicship.com/#organization",
-        "name": "Cubic Ship",
-        "legalName": "Cubic Home Solutions",
-        "url": "https://cubicship.com/",
-        "logo": "https://cubicship.com/logo-160.png",
-        "email": "info@cubicship.com",
-        "telephone": "+1-708-432-5600",
-        "description": "DHL Express Service Point shipping help, packing, freight, documents, business print, signage, and practical counter services."
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cubicship.com/#organization",
+      "name": "Cubic Ship",
+      "legalName": "Cubic Home Solutions",
+      "url": "https://cubicship.com/",
+      "logo": "https://cubicship.com/logo-160.png",
+      "email": "info@cubicship.com",
+      "telephone": "+1-708-432-5600",
+      "description": "DHL Express Service Point shipping help, packing, freight, documents, business print, signage, and practical counter services."
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://cubicship.com/#bridgeview",
+      "name": "Cubic Ship Bridgeview",
+      "image": "https://cubicship.com/og-image.png",
+      "url": "https://cubicship.com/",
+      "telephone": "+1-708-432-5600",
+      "email": "info@cubicship.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "7327 W 87th Street",
+        "addressLocality": "Bridgeview",
+        "addressRegion": "IL",
+        "postalCode": "60455",
+        "addressCountry": "US"
       },
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://cubicship.com/#bridgeview",
-        "name": "Cubic Ship Bridgeview",
-        "image": "https://cubicship.com/og-image.png",
-        "url": "https://cubicship.com/",
-        "telephone": "+1-708-432-5600",
-        "email": "info@cubicship.com",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "7327 W 87th Street",
-          "addressLocality": "Bridgeview",
-          "addressRegion": "IL",
-          "postalCode": "60455",
-          "addressCountry": "US"
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "09:00",
-            "closes": "18:00"
+      "parentOrganization": {
+        "@id": "https://cubicship.com/#organization"
+      },
+      "areaServed": [
+        "Bridgeview",
+        "Oak Lawn",
+        "McCook",
+        "Chicago",
+        "United States"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "DHL Express Service Point shipping"
           }
-        ],
-        "parentOrganization": {
-          "@id": "https://cubicship.com/#organization"
         },
-        "areaServed": ["Bridgeview", "Oak Lawn", "McCook", "Chicago", "United States"],
-        "makesOffer": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DHL Express Service Point shipping" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Freight forwarding" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Packing and document services" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business print, stickers, signage, and event displays" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Passport, DMV, payment, notary, and luggage storage support" } }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.7",
-          "reviewCount": "512"
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Freight forwarding"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Packing and document services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business print, stickers, signage, and event displays"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Passport, DMV, payment, notary, and luggage storage support"
+          }
         }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://cubicship.com/#website",
-        "name": "Cubic Ship",
-        "url": "https://cubicship.com/",
-        "publisher": {
-          "@id": "https://cubicship.com/#organization"
-        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://cubicship.com/#website",
+      "name": "Cubic Ship",
+      "url": "https://cubicship.com/",
+      "publisher": {
+        "@id": "https://cubicship.com/#organization"
       }
-    ]
-  }
-  </script>
+    }
+  ]
+}</script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1876,32 +1897,11 @@
   </style>
   <script src="/analytics.js" defer></script>
   <script src="/_vercel/insights/script.js" defer></script>
-</head>
+<link rel="stylesheet" href="/site.css"><script src="/site.js" defer></script></head>
 <body>
 
   <!-- NAV -->
-  <header class="nav" id="nav">
-    <a href="#" class="nav-logo">
-      <img src="logo-160.png" alt="Cubic Ship Logo">
-      <span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="ship.html">Ship with DHL</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="dhl-locations.html">Locations</a></li>
-      <li><a href="track.html">Track</a></li>
-      <li><a href="profile.html">Customer login</a></li>
-    </ul>
-    <div class="nav-actions">
-      <a href="ship.html?mode=quote" class="btn btn-primary">
-        Get a Quote
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-  </header>
+  <a class="cs-skip" href="#main">Skip to content</a><header class="cs-header"><a class="cs-brand" href="/"><img src="/logo-160.png" width="36" height="36" alt="">Cubic<span>Ship</span></a><button class="cs-toggle" type="button" aria-expanded="false" aria-controls="cs-navigation">Menu</button><nav id="cs-navigation" class="cs-navigation" aria-label="Main navigation"><a href="/ship.html">Ship</a><a href="/services.html">Services</a><a href="/dhl-locations.html">Locations</a><a href="/track.html">Track</a><a href="/profile.html">Account</a></nav></header>
 
   <main id="main">
   <!-- HERO -->
@@ -1972,15 +1972,7 @@
   </section>
   </main>
 
-  <footer class="home-footer" id="contact">
-    <div class="home-wrap">
-      <div class="home-footer-top">
-        <div><a href="#overview" class="nav-logo"><span class="nav-wordmark"><span class="c-orange">Cubic</span><span class="c-green">Ship</span></span></a><p>Owned and operated by Cubic Home Solutions.</p></div>
-        <nav aria-label="More services"><a href="about.html">About</a><a href="services.html">All services</a><a href="services.html#freight-detail">Freight</a><a href="print-pack.html">Print &amp; pack</a><a href="business-signage.html">Business signage</a></nav>
-      </div>
-      <div class="home-footer-bottom"><span>&copy; 2026 Cubic Home Solutions.</span><a href="mailto:info@cubicship.com">info@cubicship.com</a><a href="dhl-locations.html">Contact your counter</a></div>
-    </div>
-  </footer>
+  <footer class="cs-footer"><span>© 2026 Cubic Home Solutions</span><nav aria-label="Footer"><a href="/about.html">About</a><a href="/dhl-locations.html">Contact a counter</a><a href="/request-status.html">Request status</a><a href="/privacy.html">Privacy</a><a href="/service-terms.html">Service information</a></nav></footer>
 
   <script>
     // nav scroll
@@ -1997,7 +1989,7 @@
     });
 
     // mobile toggle
-    document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navToggle')?.addEventListener('click', () => {
       const open = document.getElementById('navLinks').classList.toggle('open');
       document.getElementById('navToggle').setAttribute('aria-expanded', String(open));
     });

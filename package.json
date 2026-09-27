@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "node --test tests/*.test.cjs",
-    "build": "node tools/build-public.js && node tools/build-request-pages.js && node tools/build-output.js && node tools/build-i18n.js",
+    "build": "node tools/build-public.js && node tools/build-request-pages.js && node tools/build-output.js && node tools/build-i18n.js && node tools/build-share-pages.js",
     "pretest": "npm run build"
   },
   "devDependencies": {

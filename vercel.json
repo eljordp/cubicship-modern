@@ -13,6 +13,14 @@
   ],
   "rewrites": [
     {
+      "source": "/ar",
+      "destination": "/ar.html"
+    },
+    {
+      "source": "/es",
+      "destination": "/es.html"
+    },
+    {
       "source": "/api/customer-recovery",
       "destination": "/api/customer-shipments?publicAction=customer-recovery"
     },

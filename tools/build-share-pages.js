@@ -23,6 +23,12 @@ for (const language of ['ar', 'es']) {
   for (const el of document.querySelectorAll('[data-i18n-attrs]')) {
     for (const [attr, id] of Object.entries(JSON.parse(el.getAttribute('data-i18n-attrs')))) el.setAttribute(attr, catalogs[language][id]);
   }
+  for (const el of document.querySelectorAll('[data-i18n-message]')) {
+    const id = el.getAttribute('data-i18n-message');
+    const slots = Object.fromEntries([...el.querySelectorAll('[data-i18n-slot]')].map(slot => [slot.getAttribute('data-i18n-slot'), slot]));
+    el.replaceChildren(...catalogs[language][id].split(/(\{\w+\})/).filter(Boolean).map(part => slots[part.slice(1,-1)] || document.createTextNode(part)));
+    el.removeAttribute('data-i18n-text');
+  }
   document.querySelector('link[rel="canonical"]').href = url;
   document.querySelector('meta[property="og:url"]').content = url;
   const image = 'https://cubicship.com/assets/cubicship-dhl-service-point-hero.webp';

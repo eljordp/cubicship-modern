@@ -1,12 +1,32 @@
 {
   "privacy.contact": {
     "en": "Contact {email} or your selected counter to ask about your information, request a correction or discuss deletion. Include your request reference, and avoid emailing payment-card details or passwords.",
-    "es": "Contacte a {email} o a su mostrador elegido para consultar sus datos, solicitar una corrección o hablar sobre su eliminación. Incluya la referencia de su solicitud y no envíe datos de tarjetas ni contraseñas por correo.",
+    "es": "Contacte a {email} o al personal del punto de envío que eligió para consultar sus datos, pedir una corrección o hablar sobre su eliminación. Incluya su código de solicitud y no envíe datos de tarjetas de pago ni contraseñas por correo.",
     "ar": "للاستفسار عن بياناتك أو طلب تصحيحها أو مناقشة حذفها، تواصل مع فرعك أو راسلنا عبر {email}. أرفق رمز طلبك، ولا ترسل بيانات بطاقات الدفع أو كلمات المرور بالبريد الإلكتروني."
   },
   "services.other": {
     "en": "Ask about {passport}, {dmv}, {payments}, {stasher} and {notary}. Availability varies by location.",
-    "es": "Pregunte por {passport}, {dmv}, {payments}, {stasher} y {notary}. La disponibilidad varía según la ubicación.",
+    "es": "Pregunte por {passport}, {dmv}, {payments}, {stasher} y {notary}. Los servicios disponibles varían según el punto de envío.",
     "ar": "يمكنك الاستفسار عن {passport}، و{dmv}، و{payments}، و{stasher}، و{notary}. تختلف الخدمات المتاحة حسب الفرع."
+  },
+  "home.quote": {
+    "en": "Price depends on your destination, package size and weight. {quote} for staff to review. The online request does not purchase a shipping label.",
+    "es": "El precio depende del destino, el tamaño y el peso del paquete. {quote} para que el personal revise los datos. Enviar la solicitud no implica pagar el envío ni comprar una etiqueta.",
+    "ar": "يعتمد السعر على الوجهة وحجم الطرد ووزنه. {quote} ليراجع الفريق التفاصيل. تقديم الطلب لا يعني دفع رسوم الشحن أو إصدار ملصق شحن."
+  },
+  "home.today": {
+    "en": "Check your {counter} before traveling. Sending an online request does not book a pickup.",
+    "es": "Antes de ir, consulte {counter}. Enviar una solicitud en línea no programa una recolección a domicilio.",
+    "ar": "قبل زيارتك، تحقق من {counter}. تقديم الطلب عبر الموقع لا يعني حجز استلام الشحنة من عنوانك."
+  },
+  "shipping.tracking": {
+    "en": "Save the private status link from your confirmation to follow your request. Once staff creates the shipment, use the carrier tracking number on the {tracking}. Contact your counter about a request that has not shipped.",
+    "es": "Guarde el enlace privado de su confirmación para consultar la solicitud. Una vez creado el envío, use el número de la paquetería en la {tracking}. Si todavía no se ha enviado, comuníquese con el punto de envío.",
+    "ar": "احتفظ بالرابط الخاص في تأكيد طلبك لمتابعة حالته. بعد إنشاء الشحنة، استخدم رقم شركة الشحن في {tracking}. إذا لم تُرسل الشحنة بعد، تواصل مع فرعك."
+  },
+  "account.help": {
+    "en": "Choose the email you need. You can also {shipping}.",
+    "es": "Elija si necesita restablecer su contraseña o recibir otro correo de confirmación. También puede {shipping}.",
+    "ar": "اختر إعادة تعيين كلمة المرور أو إرسال رسالة تأكيد جديدة. يمكنك أيضًا {shipping}."
   }
 }

@@ -124,7 +124,7 @@ test("runtime handles blocked storage, language switching, dynamic text, and pro
   assert.equal(document.documentElement.dir, "rtl");
   assert.equal(
     document.getElementById("message").textContent,
-    "احصل على عرض سعر أولًا",
+    "اطلب عرض سعر أولًا",
   );
   assert.equal(document.getElementById("customer").textContent, "Documents");
   assert.equal(document.getElementById("field").value, "Documents");
@@ -136,7 +136,7 @@ test("runtime handles blocked storage, language switching, dynamic text, and pro
   assert.equal(document.documentElement.dir, "ltr");
   assert.equal(
     document.getElementById("message").textContent,
-    "Obtener una cotización primero",
+    "Pedir una cotización primero",
   );
   assert.equal(
     document.querySelector("a").getAttribute("href"),
@@ -270,5 +270,28 @@ test('pretranslated share pages switch back to English without leaving translate
       }
     }
     assert.equal(document.querySelector('meta[property="og:title"]').content,'DHL Express Shipping & Business Services | CubicShip');
+  }
+});
+
+test('whole-sentence translations preserve every embedded link through language changes', () => {
+  for (const file of ['index.html','ship.html','account-help.html','services.html','privacy.html','ar.html','es.html']) {
+    const {document,window}=parseHTML(fs.readFileSync(path.join(root,'public',file),'utf8'));
+    document.querySelector('[data-language-picker]')?.remove();
+    const links=[...document.querySelectorAll('[data-i18n-slot]')];
+    const win={document,location:new URL('https://cubicship.com/'+file),navigator:{languages:['en']},localStorage:{getItem:()=>null,setItem(){}},history:{replaceState(){}},CubicCatalog:ctx.window.CubicCatalog};
+    vm.runInNewContext(fs.readFileSync(path.join(root,'i18n.js'),'utf8'),{window:win,URL,URLSearchParams,Intl,MutationObserver:window.MutationObserver,CustomEvent:window.CustomEvent});
+    for(const language of ['es','ar','en']) {
+      win.CubicI18n.setLanguage(language);
+      for(const link of links) {
+        assert.ok(link.isConnected,file+' '+language);
+        if(link.tagName==='A') assert.ok(link.getAttribute('href'),file);
+      }
+      for(const el of document.querySelectorAll('[data-i18n-message]')) {
+        assert.ok(!/\{\w+\}/.test(el.textContent),file+' unresolved slot');
+        assert.equal(el.querySelectorAll('a').length,links.filter(link=>link.tagName==='A' && el.contains(link)).length);
+        if(language==='ar')assert.match(el.textContent,/[\u0600-\u06ff]/);
+        if(language==='es')assert.doesNotMatch(el.textContent,/[\u0600-\u06ff]/);
+      }
+    }
   }
 });

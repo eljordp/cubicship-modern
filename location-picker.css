@@ -1,0 +1,25 @@
+.nearby-field { grid-column: 1 / -1; min-width: 0; }
+.nearby-picker { margin-block: .65rem 1rem; padding: 1rem; border: 1px solid #d7dfe8; border-radius: 12px; background: #f6f8fb; color: #182335; min-width: 0; }
+.nearby-controls { display: flex; align-items: end; flex-wrap: wrap; gap: .7rem; }
+.nearby-zip { flex: 1 1 200px; min-width: 0; }
+.nearby-zip label { display: block; font-size: .9rem; margin-bottom: .3rem; }
+.nearby-zip-row { display: flex; gap: .5rem; }
+.nearby-picker input { width: 100%; min-width: 0; min-height: 44px; padding: .5rem .7rem; border: 1px solid #9baabd; border-radius: 8px; background: white; color: #182335; font: inherit; }
+.nearby-picker button { width: auto; min-height: 44px; padding: .6rem .8rem; border: 1px solid #9baabd; border-radius: 8px; background: white; color: #182335; font: inherit; font-weight: 650; line-height: 1.4; cursor: pointer; }
+.nearby-zip-row button { flex-shrink: 0; background: #0b172b; color: white; border-color: #0b172b; }
+.nearby-picker button:hover { border-color: #b85c1a; background: #fff5eb; color: #182335; }
+.nearby-picker button:disabled { opacity: .55; cursor: default; }
+.nearby-picker :focus-visible { outline: 3px solid #1964bb; outline-offset: 3px; }
+.nearby-note { font-size: .82rem; line-height: 1.6; color: #526174; margin-block: .6rem; }
+.nearby-results { display: grid; gap: .6rem; }
+.nearby-picker .nearby-card { width: 100%; display: grid; gap: .2rem; text-align: start; padding: .85rem 1rem; font-weight: 400; }
+.nearby-card strong { font-size: 1rem; }
+.nearby-card span { font-size: .85rem; overflow-wrap: anywhere; }
+.nearby-card [dir="ltr"] { text-align: start; unicode-bidi: isolate; }
+.nearby-distance { color: #526174; }
+.nearby-card .nearby-choice { color: #a8480c; font-weight: 700; margin-top: .2rem; }
+.nearby-picker .nearby-card[aria-pressed="true"] { border: 2px solid #b85c1a; background: #fff5eb; }
+.nearby-memory { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .8rem; margin-top: .6rem; }
+.nearby-memory button { border: 0; background: transparent; text-decoration: underline; padding: .3rem 0; font-size: .8rem; }
+.nearby-all { margin: .5rem 0 0; font-size: .85rem; font-weight: 650; }
+@media (max-width: 480px) { .nearby-picker { padding: .75rem; } .nearby-controls > button { width: 100%; } .nearby-zip-row button { font-size: .85rem; } }

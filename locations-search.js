@@ -156,5 +156,6 @@
     filter("");
   }
   if (typeof module !== "undefined" && module.exports) module.exports = { milesBetween, rankCounters, searchTerms, init };
+  if (typeof window !== "undefined") window.CubicLocationSearch = { milesBetween, rankCounters, validPoint };
   if (typeof document !== "undefined") init(document, window);
 })();

@@ -960,3 +960,27 @@ Your browser may ask to use your location. You can also search by ZIP code, city
 Location access was not allowed. Enter a ZIP code, city or state instead.	No se permitió el acceso a su ubicación. Busque por código postal, ciudad o estado.	لم يُسمح بالوصول إلى موقعك. أدخل الرمز البريدي أو اسم المدينة أو الولاية.
 We could not get your location. Enter a ZIP code, city or state, or try again.	No pudimos obtener su ubicación. Busque por código postal, ciudad o estado, o inténtelo de nuevo.	تعذّر تحديد موقعك. أدخل الرمز البريدي أو اسم المدينة أو الولاية، أو أعد المحاولة.
 Your device’s location is approximate; a ZIP code may give more useful results.	La ubicación de su dispositivo es aproximada. Buscar por código postal puede darle resultados más útiles.	الموقع الذي يحدده جهازك تقريبي؛ قد يمنحك البحث بالرمز البريدي نتائج أنسب.
+Your US ZIP code	Su código postal de EE. UU.	رمزك البريدي في الولايات المتحدة
+Find nearby	Buscar cerca	ابحث بالقرب مني
+Location access is optional. Your precise location stays in your browser.	Compartir su ubicación es opcional. Su ubicación precisa se usa solo en su navegador.	مشاركة موقعك اختيارية. يُستخدم موقعك الدقيق داخل متصفحك فقط.
+Forget saved ZIP	Borrar código postal guardado	احذف الرمز البريدي المحفوظ
+Save ZIP to my account	Guardar código postal en mi cuenta	احفظ الرمز البريدي في حسابي
+Save ZIP on this device	Guardar código postal en este dispositivo	احفظ الرمز البريدي على هذا الجهاز
+Or choose from all locations	O elija entre todos los puntos de envío	أو اختر من جميع الفروع
+Selected location	Punto de envío seleccionado	الفرع المختار
+Choose this location	Elegir este punto de envío	اختر هذا الفرع
+Choose a location below. You can change it anytime.	Elija un punto de envío abajo. Puede cambiarlo cuando quiera.	اختر أحد الفروع أدناه. يمكنك تغييره في أي وقت.
+Enter a five-digit US ZIP code.	Ingrese un código postal de EE. UU. de cinco dígitos.	أدخل رمزًا بريديًا أمريكيًا من خمسة أرقام.
+We could not locate that ZIP. Check it or choose from all locations.	No encontramos ese código postal. Revíselo o elija entre todos los puntos de envío.	لم نعثر على هذا الرمز البريدي. تحقّق منه أو اختر من جميع الفروع.
+Nearby locations could not load. Choose from all locations or try again.	No se pudieron cargar los puntos cercanos. Elija entre todos los puntos de envío o inténtelo de nuevo.	تعذّر تحميل الفروع القريبة. اختر من جميع الفروع أو حاول مجددًا.
+Allow location access to see nearby options, or enter your ZIP code.	Permita el acceso a su ubicación para ver puntos cercanos, o ingrese su código postal.	اسمح باستخدام موقعك لعرض الفروع القريبة، أو أدخل رمزك البريدي.
+Location access was not allowed. Enter your ZIP code or choose from all locations.	No se permitió el acceso a su ubicación. Ingrese su código postal o elija entre todos los puntos de envío.	لم يُسمح باستخدام موقعك. أدخل رمزك البريدي أو اختر من جميع الفروع.
+We could not get your location. Enter your ZIP code or try again.	No pudimos obtener su ubicación. Ingrese su código postal o inténtelo de nuevo.	تعذّر تحديد موقعك. أدخل رمزك البريدي أو حاول مجددًا.
+Using your account’s saved ZIP.	Se está usando el código postal guardado en su cuenta.	نستخدم الرمز البريدي المحفوظ في حسابك.
+Using the ZIP saved on this device.	Se está usando el código postal guardado en este dispositivo.	نستخدم الرمز البريدي المحفوظ على هذا الجهاز.
+Saved ZIP is unavailable. You can still choose a location.	No pudimos cargar su código postal guardado. Puede elegir un punto de envío.	تعذّر تحميل رمزك البريدي المحفوظ. يمكنك اختيار فرع يدويًا.
+Saved ZIP removed.	Se borró el código postal guardado.	تم حذف الرمز البريدي المحفوظ.
+ZIP saved to your account.	Se guardó el código postal en su cuenta.	تم حفظ الرمز البريدي في حسابك.
+ZIP saved on this device.	Se guardó el código postal en este dispositivo.	تم حفظ الرمز البريدي على هذا الجهاز.
+We could not save your ZIP. You can still choose a location.	No pudimos guardar su código postal. Puede elegir un punto de envío.	تعذّر حفظ رمزك البريدي. يمكنك اختيار فرع يدويًا.
+You can choose to save your ZIP code for future searches. Signed-in customers save it to their account; guests save it on this device. Use Forget saved ZIP in the location picker to remove it. Precise coordinates are never saved with this preference.	Puede guardar su código postal para futuras búsquedas. Si inició sesión, se guarda en su cuenta; si no, en este dispositivo. Use «Borrar código postal guardado» en el selector de puntos de envío para eliminarlo. Esta opción nunca guarda su ubicación precisa.	يمكنك حفظ رمزك البريدي لعمليات البحث القادمة. إذا سجّلت الدخول، يُحفظ في حسابك؛ وإلا فيُحفظ على هذا الجهاز. لحذفه، استخدم «احذف الرمز البريدي المحفوظ» عند اختيار الفرع. لا يُحفظ موقعك الدقيق مع هذا التفضيل.

@@ -691,7 +691,7 @@
     <script src="/_vercel/insights/script.js" defer></script>
     <link rel="stylesheet" href="/site.css" />
     <script src="/site.js" defer></script>
-  </head>
+  <link rel="stylesheet" href="/location-picker.css"></head>
   <body>
 
     <a class="cs-skip" href="#main">Skip to content</a><header class="cs-header"><a class="cs-brand" href="/"><img src="/logo-160.png" width="36" height="36" alt="">Cubic<span>Ship</span></a><button class="cs-toggle" type="button" aria-expanded="false" aria-controls="cs-navigation">Menu</button><nav id="cs-navigation" class="cs-navigation" aria-label="Main navigation"><a href="/ship.html">Ship</a><a href="/services.html">Services</a><a href="/dhl-locations.html">Locations</a><a href="/track.html">Track</a><a href="/profile.html">Account</a></nav></header>
@@ -1511,6 +1511,7 @@
 
       function showLoggedOut() {
         currentCustomer = null;
+        document.dispatchEvent(new CustomEvent("cubic:customerchange"));
         authView.hidden = false;
         appView.hidden = true;
         logoutButton.classList.remove("open");
@@ -1518,6 +1519,7 @@
 
       async function showLoggedIn(customer) {
         currentCustomer = customer;
+        document.dispatchEvent(new CustomEvent("cubic:customerchange"));
         authView.hidden = true;
         appView.hidden = false;
         logoutButton.classList.add("open");
@@ -1934,7 +1936,7 @@
       shipmentForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         shipmentStatus.textContent = "Creating secure order...";
-        const button = shipmentForm.querySelector("button");
+        const button = shipmentForm.querySelector('button[type="submit"]');
         button.disabled = true;
         try {
           const result = await api("/api/customer-shipments", {
@@ -2051,6 +2053,6 @@
 
       boot();
     </script>
-    <script src="chat-widget.js" defer></script>
+    <script src="/locations-search.js" defer></script><script src="/location-picker.js" defer></script><script src="chat-widget.js" defer></script>
   <script src="/intake-availability.js" defer></script></body>
 </html>

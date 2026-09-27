@@ -384,6 +384,7 @@
           "That counter is not available for online requests. Please choose another location.",
         );
       updateBranch();
+      window.CubicLocationPicker?.init(locations);
     })
     .catch(() => {
       fail(

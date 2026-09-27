@@ -106,6 +106,7 @@ function collect() {
   }
   for (const f of [
     "shipping.js",
+    "location-picker.js",
     "request-status.js",
     "service-request.js",
     "account-help.js",

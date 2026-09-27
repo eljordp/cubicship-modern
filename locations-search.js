@@ -9,10 +9,12 @@
       if (!card.hidden) count++;
     });
     document.getElementById("locationCount").textContent =
-      count + " location" + (count === 1 ? "" : "s");
+      window.CubicI18n?.t(count === 1 ? "{count} location" : "{count} locations", { count }) || String(count);
     document.getElementById("emptyLocations").hidden = count !== 0;
   }
   input.addEventListener("input", filter);
+  document.addEventListener("cubic:languagechange", filter);
+  filter();
   document.getElementById("clearLocations").addEventListener("click", () => {
     input.value = "";
     filter();

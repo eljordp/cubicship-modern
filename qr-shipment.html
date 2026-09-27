@@ -434,7 +434,7 @@
     <a class="cs-skip" href="#main">Skip to content</a><header class="cs-header"><a class="cs-brand" href="/"><img src="/logo-160.png" width="36" height="36" alt="">Cubic<span>Ship</span></a><button class="cs-toggle" type="button" aria-expanded="false" aria-controls="cs-navigation">Menu</button><nav id="cs-navigation" class="cs-navigation" aria-label="Main navigation"><a href="/ship.html">Ship</a><a href="/services.html">Services</a><a href="/dhl-locations.html">Locations</a><a href="/track.html">Track</a><a href="/profile.html">Account</a></nav></header>
 
     <main id="main">
-<div class="cs-actions" role="group" aria-label="Language"><button id="langEn" class="cs-btn" type="button">English</button><button id="langEs" class="cs-btn" type="button">Español</button></div>
+
       <section class="hero">
         <div class="hero-panel">
           <div
@@ -830,8 +830,6 @@
       const copyCode = document.getElementById("copyCode");
       const locationId = document.getElementById("locationId");
       const branchNotice = document.getElementById("branchNotice");
-      const langEnBtn = document.getElementById("langEn");
-      const langEsBtn = document.getElementById("langEs");
 
       const I18N = {
         en: {
@@ -871,97 +869,22 @@
             receiverPhone: "Enter a valid receiver phone number.",
           },
         },
-        es: {
-          statusDefault:
-            "Después de enviar, muestre el código de mostrador al empleado de Cubic Ship.",
-          submitBtn: "Enviar datos de remitente / destinatario",
-          submitting: "Enviando...",
-          sending:
-            "Enviando los datos del remitente y del destinatario a Cubic Ship...",
-          saved: "Guardado. Muestre el código de mostrador al personal.",
-          copied: "Código de orden copiado.",
-          unexpected: "Respuesta inesperada del servidor.",
-          failed: "El envío falló.",
-          branchNotice: (name) =>
-            `Este código QR está configurado para ${name}. El personal solo puede cambiar la ubicación desde el portal si se escaneó en la sucursal equivocada.`,
-          errors: {
-            senderCountry: "El país del remitente es obligatorio.",
-            senderName: "El nombre del remitente es obligatorio.",
-            senderAddress1:
-              "La dirección línea 1 del remitente es obligatoria.",
-            senderCity: "La ciudad del remitente es obligatoria.",
-            senderPostal: "El código postal del remitente es obligatorio.",
-            senderPhone: "El teléfono del remitente es obligatorio.",
-            senderEmail: "El correo del remitente es obligatorio.",
-            receiverCountry: "El país del destinatario es obligatorio.",
-            receiverName: "El nombre del destinatario es obligatorio.",
-            receiverAddress1:
-              "La dirección línea 1 del destinatario es obligatoria.",
-            receiverCity: "La ciudad del destinatario es obligatoria.",
-            receiverPostal: "El código postal del destinatario es obligatorio.",
-            receiverPhone: "El teléfono del destinatario es obligatorio.",
-            receiverEmail: "El correo del destinatario es obligatorio.",
-          },
-          emailErrors: {
-            senderEmail: "Ingrese un correo válido del remitente.",
-            receiverEmail: "Ingrese un correo válido del destinatario.",
-          },
-          phoneErrors: {
-            senderPhone: "Ingrese un teléfono válido del remitente.",
-            receiverPhone: "Ingrese un teléfono válido del destinatario.",
-          },
-        },
       };
 
-      let lang = "en";
+      const lang = "en";
       let lockedBranchName = "";
-      const L = () => I18N[lang];
-
-      function detectLang() {
-        const param = new URLSearchParams(window.location.search).get("lang");
-        if (param === "es" || param === "en") return param;
-        const saved = localStorage.getItem("cubic_lang");
-        if (saved === "es" || saved === "en") return saved;
-        return (navigator.language || "").toLowerCase().startsWith("es")
-          ? "es"
-          : "en";
-      }
+      const L = () => I18N.en;
 
       function renderBranchNotice() {
         if (!lockedBranchName) return;
-        branchNotice.textContent = L().branchNotice(lockedBranchName);
+        const source = "This QR code is set for {name}. Staff can change the location only from the portal if it was scanned at the wrong branch.";
+        window.CubicI18n?.setText(branchNotice, source, {name: lockedBranchName});
         branchNotice.classList.add("open");
       }
-
-      function applyLang(next) {
-        lang = next === "es" ? "es" : "en";
-        document.documentElement.lang = lang;
-        try {
-          localStorage.setItem("cubic_lang", lang);
-        } catch (e) {}
-        document.querySelectorAll("[data-en]").forEach((el) => {
-          const text = el.getAttribute("data-" + lang);
-          if (text != null) el.textContent = text;
-        });
-        langEnBtn.classList.toggle("active", lang === "en");
-        langEsBtn.classList.toggle("active", lang === "es");
-        langEnBtn.setAttribute("aria-pressed", String(lang === "en"));
-        langEsBtn.setAttribute("aria-pressed", String(lang === "es"));
+      document.addEventListener("cubic:languagechange", () => {
         renderBranchNotice();
-        updateQrCall();
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn && !submitBtn.disabled)
-          submitBtn.textContent = L().submitBtn;
-        if (
-          !successBox.classList.contains("open") &&
-          !formStatus.classList.contains("error")
-        ) {
-          formStatus.textContent = L().statusDefault;
-        }
-      }
-
-      langEnBtn.addEventListener("click", () => applyLang("en"));
-      langEsBtn.addEventListener("click", () => applyLang("es"));
+        for (const field of form.querySelectorAll("input")) field.setCustomValidity("");
+      });
 
       const LOCATION_ALIASES = {
         bridgeview: "bridgeview",
@@ -991,7 +914,8 @@
         const branch = qrLocations.find(x => x.id === locationId.value);
         const link = document.getElementById("qrBranchCall");
         link.href = branch?.tel ? "tel:" + branch.tel : "/dhl-locations.html";
-        link.textContent = branch?.tel ? (lang === "es" ? "Llamar " : "Call ") + branch.phone : (lang === "es" ? "Buscar un mostrador" : "Find a counter");
+        if (window.CubicI18n) window.CubicI18n.setText(link, branch?.tel ? "Call {phone}" : "Find a counter", {phone: branch?.phone});
+        else link.textContent = branch?.tel ? "Call " + branch.phone : "Find a counter";
       }
       locationId.addEventListener("change", updateQrCall);
       function setLocationFromUrl() {
@@ -1007,9 +931,7 @@
           locationId.disabled = false;
           branchNotice.classList.add("open");
           document.getElementById("branchNotice").textContent =
-            document.documentElement.lang === "es"
-              ? "Este mostrador no acepta solicitudes. Elija otro."
-              : "This counter is not accepting requests. Choose an active counter.";
+            "This counter is not accepting requests. Choose an active counter.";
           return;
         }
         locationId.value = normalized;
@@ -1037,7 +959,7 @@
         if (!field) return;
         clearFieldError(id);
         field.classList.add("field-error");
-        field.setCustomValidity(message);
+        field.setCustomValidity(window.CubicI18n?.t(message) || message);
         const error = document.createElement("div");
         error.className = "field-error-text";
         error.textContent = message;
@@ -1269,7 +1191,7 @@
           document.getElementById("branchNotice").textContent =
             "Locations unavailable. Refresh or call your counter.";
         });
-      applyLang(detectLang());
+      renderBranchNotice();
       form.addEventListener("submit", submitIntake);
     </script>
     <script src="/intake-availability.js" defer></script>

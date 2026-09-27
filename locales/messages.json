@@ -1,0 +1,12 @@
+{
+  "privacy.contact": {
+    "en": "Contact {email} or your selected counter to ask about your information, request a correction or discuss deletion. Include your request reference, and avoid emailing payment-card details or passwords.",
+    "es": "Contacte a {email} o a su mostrador elegido para consultar sus datos, solicitar una corrección o hablar sobre su eliminación. Incluya la referencia de su solicitud y no envíe datos de tarjetas ni contraseñas por correo.",
+    "ar": "للاستفسار عن بياناتك أو طلب تصحيحها أو مناقشة حذفها، تواصل مع فرعك أو راسلنا عبر {email}. أرفق رمز طلبك، ولا ترسل بيانات بطاقات الدفع أو كلمات المرور بالبريد الإلكتروني."
+  },
+  "services.other": {
+    "en": "Ask about {passport}, {dmv}, {payments}, {stasher} and {notary}. Availability varies by location.",
+    "es": "Pregunte por {passport}, {dmv}, {payments}, {stasher} y {notary}. La disponibilidad varía según la ubicación.",
+    "ar": "يمكنك الاستفسار عن {passport}، و{dmv}، و{payments}، و{stasher}، و{notary}. تختلف الخدمات المتاحة حسب الفرع."
+  }
+}

@@ -1463,6 +1463,16 @@
           .replace(/'/g, "&#039;");
       }
 
+      function displayValue(value) {
+        return '<bdi translate="no">' + escapeHtml(value) + '</bdi>';
+      }
+      document.addEventListener("cubic:languagechange", () => {
+        if (currentCustomer) { renderShipments(currentShipments); updateGreeting(); }
+      });
+      function updateGreeting() {
+        if (!currentCustomer) return;
+        window.CubicI18n?.setText(document.getElementById("welcomeTitle"), "Your requests, {name}.", {name: currentCustomer.name.split(" ")[0] || ""});
+      }
       function showError(message) {
         authError.textContent = message;
         authError.classList.add("open");
@@ -1513,13 +1523,14 @@
         logoutButton.classList.add("open");
         document.getElementById("welcomeTitle").textContent =
           `Your requests, ${customer.name.split(" ")[0] || "there"}.`;
+        updateGreeting();
         document.getElementById("customerPhone").value = customer.phone || "";
         updateServiceCopy();
         if (customer.accountType === "business" && customer.businessProfile) {
           const tier =
             customer.businessProfile.monthlyShipmentLabel ||
             "your shipment tier";
-          businessBarText.textContent = `${customer.company || "Your business"} is registered for ${tier}. Ask Cubic staff to review the best available small-business shipping path for your volume.`;
+          window.CubicI18n?.setText(businessBarText, "{company} is registered for {tier}. Ask Cubic staff to review shipping options for your volume.", {company: customer.company || window.CubicI18n.t("Your business"), tier});
           businessBar.hidden = false;
         } else {
           businessBar.hidden = true;
@@ -1556,20 +1567,20 @@
             (shipment) => `
         <article class="shipment">
           <div class="shipment-top">
-            <strong>${escapeHtml(shipment.number)}</strong>
-            <span class="status">${escapeHtml(statusLabel(shipment.status))}</span>
+            <strong>${displayValue(shipment.number)}</strong>
+            <span class="status">${displayValue(statusLabel(shipment.status))}</span>
           </div>
           <div class="meta">
-            <p>Location: ${escapeHtml(shipment.locationName || "Cubic Ship")}</p>
-            <p>${escapeHtml(shipment.serviceType)} · ${escapeHtml(shipment.destinationCountry)}${shipment.destinationCity ? `, ${escapeHtml(shipment.destinationCity)}` : ""}</p>
-            <p>Contact: ${escapeHtml(shipment.recipientName)} · Items: ${escapeHtml(shipment.pieces)}</p>
-            ${shipment.estimate ? `<p>Estimate: ${escapeHtml(shipment.estimate.label || "Pending")}</p>` : ""}
-            ${shipment.payment ? `<p>Payment: ${escapeHtml(paymentLabel(shipment))}</p>` : ""}
-            ${shipment.carrierTracking ? `<p>Carrier tracking: ${escapeHtml(shipment.carrierTracking)}</p>` : ""}
-            ${shipment.virtualNotary ? `<p>Virtual notary: ${escapeHtml(notaryLabel(shipment.virtualNotary))}</p>` : ""}
-            ${shipment.printDesign ? `<p>Design path: ${escapeHtml(shipment.printDesign.designRoute || "Not provided")}${shipment.printDesign.productType ? ` · ${escapeHtml(shipment.printDesign.productType)}` : ""}</p>` : ""}
-            ${shipment.printDesign ? `<p>Print specs: ${escapeHtml([shipment.printDesign.shape, shipment.printDesign.size, shipment.printDesign.quantity, shipment.printDesign.quality].filter(Boolean).join(" · ") || "Specs pending")}</p>` : ""}
-            ${shipment.labelPdf ? `<p>Label PDF: ${escapeHtml(shipment.labelPdf.filename || "Uploaded label")} uploaded ${escapeHtml(formatDate(shipment.labelPdf.uploadedAt))}</p>` : "<p>Label PDF: waiting for staff upload.</p>"}
+            <p>Location: ${displayValue(shipment.locationName || "Cubic Ship")}</p>
+            <p>${displayValue(window.CubicI18n?.t(shipment.serviceType) || shipment.serviceType)} · ${displayValue(shipment.destinationCountry)}${shipment.destinationCity ? `, ${displayValue(shipment.destinationCity)}` : ""}</p>
+            <p>Contact: ${displayValue(shipment.recipientName)} · Items: ${displayValue(shipment.pieces)}</p>
+            ${shipment.estimate ? `<p>Estimate: ${displayValue(window.CubicI18n?.t(shipment.estimate.label || "Pending") || shipment.estimate.label || "Pending")}</p>` : ""}
+            ${shipment.payment ? `<p>Payment: ${displayValue(paymentLabel(shipment))}</p>` : ""}
+            ${shipment.carrierTracking ? `<p>Carrier tracking: ${displayValue(shipment.carrierTracking)}</p>` : ""}
+            ${shipment.virtualNotary ? `<p>Virtual notary: ${displayValue(notaryLabel(shipment.virtualNotary))}</p>` : ""}
+            ${shipment.printDesign ? `<p>Design path: ${displayValue(shipment.printDesign.designRoute || "Not provided")}${shipment.printDesign.productType ? ` · ${displayValue(shipment.printDesign.productType)}` : ""}</p>` : ""}
+            ${shipment.printDesign ? `<p>Print specs: ${displayValue([shipment.printDesign.shape, shipment.printDesign.size, shipment.printDesign.quantity, shipment.printDesign.quality].filter(Boolean).join(" · ") || "Specs pending")}</p>` : ""}
+            ${shipment.labelPdf ? `<p>Label PDF: ${displayValue(shipment.labelPdf.filename || "Uploaded label")} uploaded ${displayValue(formatDate(shipment.labelPdf.uploadedAt))}</p>` : "<p>Label PDF: waiting for staff upload.</p>"}
             ${shipment.status === "ready_for_dropoff" ? "<p>Staff marked this order ready for the next counter step.</p>" : ""}
           </div>
           <div class="ticket-actions">
@@ -1610,9 +1621,9 @@
             (shipment) => `
         <article class="label-card">
           <div>
-            <strong>${escapeHtml(shipment.number)} · ${escapeHtml(shipment.labelPdf.filename || "Label PDF")}</strong>
-            <span>${escapeHtml(shipment.serviceType)} · ${escapeHtml(shipment.destinationCountry)}${shipment.carrierTracking ? ` · Tracking ${escapeHtml(shipment.carrierTracking)}` : ""}</span>
-            <span>Uploaded ${escapeHtml(formatDate(shipment.labelPdf.uploadedAt))}</span>
+            <strong>${displayValue(shipment.number)} · ${displayValue(shipment.labelPdf.filename || "Label PDF")}</strong>
+            <span>${displayValue(window.CubicI18n?.t(shipment.serviceType) || shipment.serviceType)} · ${displayValue(shipment.destinationCountry)}${shipment.carrierTracking ? ` · Tracking ${displayValue(shipment.carrierTracking)}` : ""}</span>
+            <span>Uploaded ${displayValue(formatDate(shipment.labelPdf.uploadedAt))}</span>
           </div>
           <a class="btn btn-primary" href="/api/customer-shipments?label=${encodeURIComponent(shipment.id)}" target="_blank" rel="noopener">Download</a>
         </article>
@@ -1624,7 +1635,7 @@
       function formatDate(value) {
         if (!value) return "recently";
         try {
-          return new Intl.DateTimeFormat("en", {
+          return new Intl.DateTimeFormat(window.CubicI18n?.language || "en", {
             month: "short",
             day: "numeric",
             hour: "numeric",
@@ -1645,7 +1656,7 @@
           completed: "completed",
           issue: "needs review",
         };
-        return labels[status] || String(status || "").replace(/_/g, " ");
+        return window.CubicI18n?.t(labels[status] || String(status || "").replace(/_/g, " ")) || labels[status] || status;
       }
 
       function paymentLabel(shipment) {
@@ -1655,7 +1666,7 @@
           due: "payment due",
           paid: "paid",
         };
-        return `${labels[status] || status}${shipment.payment?.amount ? ` · ${shipment.payment.amount}` : ""}`;
+        return `${window.CubicI18n?.t(labels[status] || status) || labels[status] || status}${shipment.payment?.amount ? ` · ${shipment.payment.amount}` : ""}`;
       }
 
       function notaryLabel(notary) {

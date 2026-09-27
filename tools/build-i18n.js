@@ -203,7 +203,7 @@ for (const file of pages) {
     label.className = "cs-language";
     label.setAttribute("translate", "no");
     label.innerHTML =
-      '<span aria-hidden="true">文 / ع</span><select aria-label="Language / Idioma / اللغة" data-language-picker><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="ar" lang="ar">العربية</option></select>';
+      '<span class="cs-language-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><select aria-label="Language / Idioma / اللغة" data-language-picker><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="ar" lang="ar">العربية</option></select>';
     target.append(label);
   }
   // Preserve identifiers and data supplied by customers or the counter.

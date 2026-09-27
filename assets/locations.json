@@ -19,7 +19,13 @@
       "Mon–Fri: 9 AM–7 PM",
       "Sat–Sun: 10 AM–6 PM"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 42.335981,
+    "lng": -83.176573,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6317+Schaefer+Rd%2C+Dearborn%2C+MI+48126&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "6317 SCHAEFER RD, DEARBORN, MI, 48126",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "oak-park",
@@ -42,7 +48,13 @@
       "Sat: 10 AM–4 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "lat": 41.865448,
+    "lng": -87.779126,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6200+Roosevelt+Rd%2C+Oak+Park%2C+IL+60304&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "6200 ROOSEVELT RD, OAK PARK, IL, 60304",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "bridgeview",
@@ -65,7 +77,13 @@
       "Sat–Sun: 10 AM–9 PM"
     ],
     "timezone": "America/Chicago",
-    "hoursNote": "Store hours from the MEA Pack&Ship Google listing at this address. Confirm DHL service hours directly."
+    "hoursNote": "Store hours from the MEA Pack&Ship Google listing at this address. Confirm DHL service hours directly.",
+    "lat": 41.733377,
+    "lng": -87.802933,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=7327+W+87th+St%2C+Bridgeview%2C+IL+60455&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "7327 W 87TH ST, BRIDGEVIEW, IL, 60455",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "oak-lawn",
@@ -87,7 +105,13 @@
       "Mon–Sat: 10 AM–6 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "lat": 41.714235,
+    "lng": -87.74066,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=9812+S+Cicero+Ave%2C+Oak+Lawn%2C+IL+60453&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "9812 S CICERO AVE, OAK LAWN, IL, 60453",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "buffalo",
@@ -110,7 +134,13 @@
       "Sat: 10 AM–5 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 42.938502,
+    "lng": -78.839976,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2618+Main+St%2C+Buffalo%2C+NY+14214&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "2618 MAIN ST, BUFFALO, NY, 14214",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "bethpage",
@@ -131,7 +161,13 @@
     "hours": [
       "Mon–Sun: 10 AM–6 PM"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 40.739858,
+    "lng": -73.479754,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=271+Broadway%2C+Bethpage%2C+NY+11714&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "271 BROADWAY, BETHPAGE, NY, 11714",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "iselin",
@@ -154,7 +190,13 @@
       "Sat: 10 AM–5 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 40.572826,
+    "lng": -74.318477,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1214+Green+St%2C+Iselin%2C+NJ+08830&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "1214 GREEN ST, ISELIN, NJ, 08830",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "milwaukee",
@@ -177,7 +219,13 @@
       "Sat: 10 AM–5 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "lat": 42.981193,
+    "lng": -87.947192,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2609+W+Morgan+Ave%2C+Milwaukee%2C+WI+53221&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "2609 W MORGAN AVE, MILWAUKEE, WI, 53221",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "wyncote",
@@ -200,7 +248,13 @@
       "Sat: 10 AM–6 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 40.084567,
+    "lng": -75.168931,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1000+S+Easton+Rd%2C+Wyncote%2C+PA+19095&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "1000 S EASTON RD, WYNCOTE, PA, 19095",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "indianapolis",
@@ -223,7 +277,13 @@
       "Sat: 10 AM–7 PM",
       "Sun: 10 AM–5 PM"
     ],
-    "timezone": "America/Indiana/Indianapolis"
+    "timezone": "America/Indiana/Indianapolis",
+    "lat": 39.825269,
+    "lng": -86.240072,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3853+Georgetown+Rd%2C+Indianapolis%2C+IN+46254&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "3853 GEORGETOWN RD, INDIANAPOLIS, IN, 46254",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "allentown-pa",
@@ -245,7 +305,13 @@
       "Mon–Fri: 10 AM–6 PM",
       "Sat–Sun: Closed"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 40.603487,
+    "lng": -75.473105,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=717+Linden+St%2C+Allentown%2C+PA+18101&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "717 W LINDEN ST, ALLENTOWN, PA, 18101",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "farmington",
@@ -266,7 +332,13 @@
     "hours": [
       "Mon–Sun: 9 AM–6 PM"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 42.458143,
+    "lng": -83.360478,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=31826+Grand+River+Ave%2C+Farmington%2C+MI+48336&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "31826 GRAND RIVER AVE, FARMINGTON, MI, 48336",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "northeast-philadelphia",
@@ -288,7 +360,13 @@
       "Mon–Sat: 9 AM–6 PM",
       "Sun: Closed"
     ],
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "lat": 40.084328,
+    "lng": -75.03545,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1900+Grant+Ave%2C+Philadelphia%2C+PA+19115&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "1900 GRANT AVE, PHILADELPHIA, PA, 19115",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "freeport",
@@ -315,7 +393,13 @@
     "hoursNote": "Google Maps lists these store hours. Contact the branch to confirm service; online requests are not enabled here yet.",
     "tel": "+15165172084",
     "phoneSource": "https://maps.app.goo.gl/ugw8zrpgX8jCii1p6?g_st=i&utm_campaign=ac-im",
-    "phoneCheckedAt": "2026-09-13"
+    "phoneCheckedAt": "2026-09-13",
+    "lat": 40.656521,
+    "lng": -73.589044,
+    "coordCheckedAt": "2026-09-27",
+    "coordSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=134+W+Sunrise+Hwy%2C+Freeport%2C+NY+11520&benchmark=Public_AR_Current&format=json",
+    "coordMatchedAddress": "134 W SUNRISE HWY, FREEPORT, NY, 11520",
+    "coordMethod": "US Census address-range interpolation; approximate"
   },
   {
     "id": "cleveland",

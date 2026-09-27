@@ -400,3 +400,7 @@
 .btn-primary { color: #142033 !important; }
 
 .auth-shell .intro a, .page a[href="/request-status.html"] { color: #a8d3ff; }
+
+/* Keep finder help clear of the search field’s focus outline. */
+#finderHelp { margin-top: 10px; }
+#finderControls .cs-actions { margin-bottom: 12px; }

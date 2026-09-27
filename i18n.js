@@ -9,8 +9,9 @@
     String(value || "")
       .toLowerCase()
       .split(/[-_]/)[0];
-  function resolveLanguage(explicit, saved, languages = []) {
-    for (const value of [explicit, saved, ...languages]) {
+  function resolveLanguage(explicit, saved, languages = [], pathname = "") {
+    const pathLanguage = pathname.match(/^\/(ar|es)(?:\.html)?\/?$/)?.[1];
+    for (const value of [explicit, pathLanguage, saved, ...languages]) {
       const lang = base(value);
       if (supported.includes(lang)) return lang;
     }
@@ -29,6 +30,7 @@
     new URLSearchParams(root.location.search).get("lang"),
     saved,
     root.navigator.languages || [root.navigator.language],
+    root.location.pathname,
   );
   const skip =
     'script,style,svg,code,pre,textarea,input,address,[translate="no"],[data-no-translate],.cs-brand,.chat-message.user';
@@ -67,12 +69,11 @@
       id =
         keyFor(current) ||
         (id &&
-        normalize(current).toLowerCase() ===
-          normalize(catalogs.en[id]).toLowerCase()
+        Object.values(catalogs).some(catalog => normalize(current).toLowerCase() === normalize(catalog[id]).toLowerCase())
           ? id
           : null);
       if (!id) return;
-      state = { id, original: current };
+      state = { id, original: catalogs.en[id] ? current.replace(current.trim(), catalogs.en[id]) : current };
     }
     const rendered =
       locale === "en"
@@ -103,7 +104,7 @@
       if (!state) {
         const id = keyFor(current) || configured[name];
         if (!id) continue;
-        state = { id, original: current };
+        state = { id, original: catalogs.en[id] ? current.replace(current.trim(), catalogs.en[id]) : current };
       }
       const rendered = locale === "en" ? state.original : message(state.id);
       state.rendered = rendered;

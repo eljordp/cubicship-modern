@@ -231,3 +231,44 @@ test("every page title and description has a catalog entry, including entity-con
   assert.equal(phone.dir, "ltr");
   assert.equal(phone.textContent, "(708) 432-5600");
 });
+
+test('language share pages expose localized metadata and an image without JavaScript', () => {
+  for (const lang of ['ar', 'es']) {
+    const {document} = parseHTML(fs.readFileSync(path.join(root, 'public', lang + '.html'), 'utf8'));
+    assert.equal(document.documentElement.lang, lang);
+    assert.equal(document.documentElement.dir, lang === 'ar' ? 'rtl' : 'ltr');
+    assert.equal(document.querySelector('meta[property="og:url"]').content, 'https://cubicship.com/' + lang);
+    assert.equal(document.querySelector('link[rel="canonical"]').href, 'https://cubicship.com/' + lang);
+    const title = document.querySelector('meta[property="og:title"]').content;
+    assert.match(title, lang === 'ar' ? /[\u0600-\u06ff]/ : /Envíos/);
+    assert.ok(document.querySelector('meta[property="og:description"]').content);
+    const image = document.querySelector('meta[property="og:image"]').content;
+    assert.ok(fs.existsSync(path.join(root, 'public', new URL(image).pathname)));
+    assert.equal(document.querySelector('meta[name="twitter:image"]').content, image);
+    assert.equal(document.querySelector('[data-language-picker] option[selected]').value, lang);
+  }
+});
+
+test('explicit share paths take precedence over saved language, but picker query can override them', () => {
+  assert.equal(resolveLanguage(null, 'en', ['en'], '/ar'), 'ar');
+  assert.equal(resolveLanguage(null, 'ar', ['ar'], '/es.html'), 'es');
+  assert.equal(resolveLanguage('en', 'ar', ['ar'], '/es'), 'en');
+  assert.equal(resolveLanguage(null, 'es', ['ar'], '/ship.html'), 'es');
+});
+
+test('pretranslated share pages switch back to English without leaving translated copy behind', () => {
+  for (const lang of ['ar', 'es']) {
+    const {document,window} = parseHTML(fs.readFileSync(path.join(root,'public',lang+'.html'),'utf8'));
+    document.querySelector('[data-language-picker]').remove();
+    const win = {document,location:new URL('https://cubicship.com/'+lang),navigator:{languages:['en']},localStorage:{getItem:()=> 'en',setItem(){}},history:{replaceState(){}},CubicCatalog:ctx.window.CubicCatalog};
+    vm.runInNewContext(fs.readFileSync(path.join(root,'i18n.js'),'utf8'),{window:win,URL,URLSearchParams,Intl,MutationObserver:window.MutationObserver,CustomEvent:window.CustomEvent});
+    assert.equal(document.documentElement.lang,lang);
+    win.CubicI18n.setLanguage('en');
+    for(const el of document.querySelectorAll('[data-i18n-text]')) {
+      for(const [index,id] of JSON.parse(el.getAttribute('data-i18n-text'))) {
+        assert.equal(el.childNodes[index].textContent.trim(),catalogs.en[id],id);
+      }
+    }
+    assert.equal(document.querySelector('meta[property="og:title"]').content,'DHL Express Shipping & Business Services | CubicShip');
+  }
+});

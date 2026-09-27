@@ -246,7 +246,7 @@ Printing	Impresión	الطباعة
 Business Print	Impresión empresarial	طباعة الأعمال
 Display	Exhibición	العرض
 Mailbox	Buzón	صندوق البريد
-Virtual Notary	Notaría virtual	التوثيق عن بُعد
+Virtual Notary	Notary Public a distancia	خدمة Notary Public عن بُعد
 Extra Business Services	Otros servicios empresariales	خدمات أعمال إضافية
 Freight / Cargo	Carga / mercancías	شحن البضائع
 Assigned Location	Punto de envío asignado	الفرع المخصص
@@ -350,7 +350,7 @@ Illinois vehicle paperwork	documentación vehicular de Illinois	معاملات �
 bill payment	pago de facturas	دفع الفواتير
 luggage storage	resguardo de equipaje	حفظ الأمتعة
 and	y	و
-notary support	asistencia notarial	المساعدة في التوثيق
+notary support	servicios de Notary Public	خدمات Notary Public
 . Availability varies by location.	. Los servicios disponibles varían según el punto de envío.	. يختلف التوفر حسب الفرع.
 Ask about a service	Consultar un servicio	استفسر عن خدمة
 Find your counter	Buscar su punto de envío	ابحث عن فرعك
@@ -733,9 +733,9 @@ Order details are required.	Los detalles de la solicitud son obligatorios.	تف�
 How do I start a shipment?	¿Cómo inicio un envío?	كيف أقدّم طلب شحن؟
 Start a DHL request as a guest. Choose your counter, request a quote or prepare a drop-off, and save your confirmation code. Staff confirms price and shipping arrangements.	Empiece sin crear una cuenta. Elija un punto de envío, pida una cotización o prepare los datos antes de llevar su paquete. Guarde su código: el personal confirmará el precio y los detalles del servicio.	قدّم طلب شحن دون إنشاء حساب. اختر فرعك، ثم اطلب عرض سعر أو أرسل بيانات شحنتك قبل الزيارة. احتفظ برمز الطلب؛ سيؤكد لك فريق الفرع السعر وترتيبات الشحن.
 Can I request a service?	¿Puedo solicitar un servicio?	هل يمكنني طلب خدمة؟
-Yes. Use the service request option here for passport, DMV, printing, notary, payments, luggage storage, freight help, or another counter service.	Sí. Use la solicitud de servicio para pasaporte, DMV, impresión, notaría, pagos, equipaje, carga u otros servicios.	نعم. استخدم خيار طلب الخدمة للجوازات أو معاملات المركبات أو الطباعة أو التوثيق أو المدفوعات أو حفظ الأمتعة أو شحن البضائع أو خدمات الفرع الأخرى.
+Yes. Use the service request option here for passport, DMV, printing, notary, payments, luggage storage, freight help, or another counter service.	Sí. Use la solicitud de servicio para pasaporte, DMV, impresión, Notary Public, pagos, equipaje, carga u otros servicios.	نعم. استخدم خيار طلب الخدمة للجوازات أو معاملات المركبات أو الطباعة أو خدمة Notary Public أو المدفوعات أو حفظ الأمتعة أو شحن البضائع أو خدمات الفرع الأخرى.
 What services do you offer?	¿Qué servicios ofrecen?	ما الخدمات التي تقدمونها؟
-Cubic Ship handles DHL Express, domestic and international shipping, air/ocean/ground freight, passport services, office services, IL DMV services, payment services, money orders, luggage storage, virtual notary support, and document help.	Cubic Ship ofrece DHL Express, envíos nacionales e internacionales, carga aérea/marítima/terrestre, pasaportes, servicios de oficina y DMV de Illinois, pagos, giros postales, resguardo de equipaje, notaría virtual y documentos.	تقدم Cubic Ship خدمات DHL Express والشحن المحلي والدولي والشحن الجوي والبحري والبري وخدمات الجوازات والمكاتب ومعاملات المركبات في إلينوي والمدفوعات والحوالات المالية وحفظ الأمتعة والتوثيق عن بُعد والمساعدة في المستندات.
+Cubic Ship handles DHL Express, domestic and international shipping, air/ocean/ground freight, passport services, office services, IL DMV services, payment services, money orders, luggage storage, virtual notary support, and document help.	Cubic Ship ofrece DHL Express, envíos nacionales e internacionales, carga aérea/marítima/terrestre, pasaportes, servicios de oficina y DMV de Illinois, pagos, giros postales, resguardo de equipaje, Notary Public a distancia y documentos.	تقدم Cubic Ship خدمات DHL Express والشحن المحلي والدولي والشحن الجوي والبحري والبري وخدمات الجوازات والمكاتب ومعاملات المركبات في إلينوي والمدفوعات والحوالات المالية وحفظ الأمتعة وخدمات Notary Public عن بُعد والمساعدة في المستندات.
 Where are you located?	¿Dónde están ubicados?	أين تقع فروعكم؟
 Cubic Ship Bridgeview is at 7327 W 87th Street, Bridgeview, IL 60455. Call ahead if you need a specific service confirmed before coming in.	Cubic Ship Bridgeview está en 7327 W 87th Street, Bridgeview, IL 60455. Llame antes para confirmar un servicio específico.	يقع Cubic Ship Bridgeview في 7327 W 87th Street, Bridgeview, IL 60455. اتصل مسبقًا لتأكيد خدمة معينة قبل زيارتك.
 How do I track a shipment?	¿Cómo rastreo un envío?	كيف أتتبع شحنة؟
@@ -773,7 +773,7 @@ Passport services	Servicios de pasaporte	خدمات جواز السفر
 Office / print / scan	Oficina / impresión / escaneo	مكتب / طباعة / مسح ضوئي
 IL DMV services	Servicios DMV de Illinois	خدمات المركبات في إلينوي
 Payments / money orders	Pagos / giros postales	المدفوعات / الحوالات المالية
-Virtual notary support	Asistencia notarial virtual	المساعدة في التوثيق عن بُعد
+Virtual notary support	Servicios de Notary Public a distancia	خدمات Notary Public عن بُعد
 Freight / container help	Ayuda de carga / contenedores	المساعدة في شحن البضائع / الحاويات
 Other counter service	Otro servicio del punto de envío	خدمة أخرى في الفرع
 Send Service Request	Enviar solicitud de servicio	إرسال طلب الخدمة
@@ -788,8 +788,8 @@ Tell staff what you need: stickers, cards, banner, signage, decal, event display
 Business Print & Display requests use Cubic intake, proofing, pickup, and shipping support. Pricing may include service handling because Cubic is managing the workflow.	Cubic recibe y revisa su solicitud de impresión, y le ayuda con la entrega en el punto de envío o el envío de su pedido. El precio puede incluir un cargo por gestionar el servicio.	تستقبل Cubic طلب الطباعة وتراجعه، وتساعدك في استلامه أو شحنه. قد يشمل السعر رسومًا لإدارة الخدمة.
 Start a mailbox request, renewal, pickup question, or business mail service order.	Pregunte por un buzón nuevo, una renovación, la entrega de su correo o un servicio de correo para su negocio.	ابدأ طلب صندوق بريد أو تجديد أو استفسار عن الاستلام أو خدمة بريد للأعمال.
 Tell staff if this is a new mailbox, renewal, mail pickup, package hold, or business mail question.	Indique si necesita abrir o renovar un buzón, pasar por su correo, guardar un paquete o consultar un servicio de correo para su negocio.	أخبر الموظف إن كان الطلب لصندوق بريد جديد أو تجديد أو استلام بريد أو الاحتفاظ بطرد أو استفسار عن بريد الأعمال.
-Start a virtual notary request so staff can review document type, appointment needs, and identity-readiness.	Solicite ayuda con un trámite notarial a distancia. El personal revisará el documento, la cita y la identificación necesaria.	قدّم طلب توثيق عن بُعد. سيراجع الفريق نوع المستند والموعد ووثائق الهوية المطلوبة.
-Describe the document, signer count, appointment timing, and any remote notary requirements.	Describa el documento, número de firmantes, horario y requisitos de notaría remota.	صف المستند وعدد الموقّعين وموعد الجلسة ومتطلبات التوثيق عن بُعد.
+Start a virtual notary request so staff can review document type, appointment needs, and identity-readiness.	Solicite el servicio de Notary Public a distancia. El personal revisará el tipo de documento, la cita y la identificación necesaria.	قدّم طلبًا لخدمة Notary Public عن بُعد. سيراجع الفريق نوع المستند والموعد ووثائق الهوية المطلوبة.
+Describe the document, signer count, appointment timing, and any remote notary requirements.	Describa el documento, el número de firmantes, el horario y los requisitos del servicio de Notary Public a distancia.	صف المستند وعدد الموقّعين وموعد الجلسة ومتطلبات خدمة Notary Public عن بُعد.
 Request help with passport, DMV, payments, document prep, luggage storage, or other counter services.	Solicite ayuda con pasaportes, DMV, pagos, documentos, equipaje u otros servicios.	اطلب المساعدة في الجوازات أو معاملات المركبات أو المدفوعات أو تجهيز الأوراق أو حفظ الأمتعة أو خدمات الفرع الأخرى.
 Tell staff what service you need, deadlines, documents, and any special instructions.	Indique servicio, plazos, documentos e instrucciones especiales.	أخبر الموظف بالخدمة المطلوبة والمواعيد النهائية والمستندات وأي تعليمات خاصة.
 Start a freight, cargo, air, ocean, ground, or container request for staff review.	Envíe una solicitud de carga aérea, marítima, terrestre o en contenedor para que el personal la revise.	قدّم طلبًا للشحن الجوي أو البحري أو البري أو شحن الحاويات ليراجعه الفريق.
@@ -831,7 +831,7 @@ State / Jurisdiction	Estado / jurisdicción	الولاية / الاختصاص ا
 Document Reference	Referencia del documento	مرجع المستند
 Signers / Documents	Firmantes / documentos	الموقّعون / المستندات
 Witness / ID Notes	Notas de testigos / identificación	ملاحظات الشهود / الهوية
-Notary Request	Solicitud notarial	طلب توثيق
+Notary Request	Solicitud de Notary Public	طلب خدمة Notary Public
 Identity / Appointment Notes	Notas de identidad / cita	ملاحظات الهوية / الموعد
 Service Category	Categoría de servicio	فئة الخدمة
 Preferred Time	Horario preferido	الوقت المفضل
@@ -853,7 +853,7 @@ Estimate:	Estimación:	السعر التقديري:
 Pending	Pendiente	قيد الانتظار
 Payment:	Pago:	الدفع:
 Carrier tracking:	Rastreo de la paquetería:	تتبع شركة الشحن:
-Virtual notary:	Notaría virtual:	التوثيق عن بُعد:
+Virtual notary:	Notary Public a distancia:	خدمة Notary Public عن بُعد:
 Design path:	Opción de diseño:	خيار التصميم:
 Print specs:	Especificaciones:	مواصفات الطباعة:
 Specs pending	Especificaciones pendientes	المواصفات قيد الانتظار
@@ -881,7 +881,7 @@ Cubic Ship staff will review the request details and confirm the next step, timi
 For example: signed documents, two cotton shirts, or a ceramic gift	Por ejemplo: documentos firmados, dos camisetas de algodón o un regalo de cerámica	مثال: مستندات موقعة أو قميصان قطنيان أو هدية خزفية
 Arrival deadline, different package sizes, questions, or pickup address if different	Fecha límite de llegada, tamaños de paquetes, preguntas o dirección de recolección si es distinta	موعد الوصول المطلوب، أو أبعاد الطرود، أو أسئلتك، أو عنوان استلام الشحنة إن كان مختلفًا
 Describe the logo, wording, QR code, brand colors, layout, or paid design help needed.	Describa el logotipo, texto, código QR, colores, composición o diseño de pago que necesita.	صف الشعار أو النص أو رمز QR أو ألوان العلامة التجارية أو التنسيق أو مساعدة التصميم المدفوعة المطلوبة.
-Describe the shipment, print job, mailbox request, notary request, or business service needed.	Describa el envío, impresión, buzón, notaría o servicio empresarial que necesita.	صف الشحنة أو مهمة الطباعة أو طلب صندوق البريد أو التوثيق أو خدمة الأعمال المطلوبة.
+Describe the shipment, print job, mailbox request, notary request, or business service needed.	Describa el envío, la impresión, el buzón, el servicio de Notary Public o el servicio empresarial que necesita.	صف الشحنة أو مهمة الطباعة أو طلب صندوق البريد أو خدمة Notary Public أو خدمة الأعمال المطلوبة.
 Anything the counter team should know.	Cualquier información que el personal deba saber.	أي معلومات ينبغي لفريق الفرع معرفتها.
 Please complete this field.	Complete este campo.	يرجى إكمال هذا الحقل.
 Please choose an option.	Elija una opción.	يرجى اختيار أحد الخيارات.

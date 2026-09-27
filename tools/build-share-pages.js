@@ -7,12 +7,28 @@ const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..', 'public');
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'locales/catalog.js'), 'utf8'), context);
-const { catalogs } = context.window.CubicCatalog;
-for (const language of ['ar', 'es']) {
+const { catalogs, languages, localeFiles } = context.window.CubicCatalog;
+// Match the browser's single text node for escaped entities such as &amp;.
+function coalesce(node) {
+  let previous;
+  for (const child of [...node.childNodes]) {
+    if (child.nodeType === 3 && previous?.nodeType === 3) {
+      previous.textContent += child.textContent;
+      child.remove();
+    } else {
+      coalesce(child);
+      previous = child;
+    }
+  }
+}
+for (const definition of languages.filter((item) => item.code !== "en")) {
+  const language = definition.code;
+  if (localeFiles[language]) catalogs[language] = JSON.parse(fs.readFileSync(path.join(root, localeFiles[language].json), "utf8"));
   const { document } = parseHTML(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
+  coalesce(document);
   const url = `https://cubicship.com/${language}`;
   document.documentElement.lang = language;
-  document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = definition.dir;
   // Preserve the original text mappings so the shared language picker keeps working.
   for (const el of document.querySelectorAll('[data-i18n-text]')) {
     for (const [index, id] of JSON.parse(el.getAttribute('data-i18n-text'))) {
@@ -36,10 +52,10 @@ for (const language of ['ar', 'es']) {
   document.querySelector('meta[property="og:image:type"]').content = 'image/webp';
   document.querySelector('meta[property="og:image:width"]').content = '1942';
   document.querySelector('meta[property="og:image:height"]').content = '810';
-  document.querySelector('meta[property="og:image:alt"]').content = language === 'ar' ? 'خدمات الشحن لدى CubicShip' : 'Servicios de envío de CubicShip';
+  document.querySelector('meta[property="og:image:alt"]').content = document.title;
   const locale = document.createElement('meta');
   locale.setAttribute('property', 'og:locale');
-  locale.content = language === 'ar' ? 'ar_US' : 'es_US';
+  locale.content = definition.og;
   document.head.append(locale);
   document.querySelectorAll('[data-language-picker] option').forEach(option => {
     option.removeAttribute('selected');
@@ -53,6 +69,11 @@ for (const language of ['ar', 'es']) {
       a.setAttribute('href', target.pathname + target.search + target.hash);
     }
   }
+  if (localeFiles[language]) {
+    const script = document.createElement("script");
+    script.src = localeFiles[language].script;
+    document.querySelector('script[src="/i18n.js"]').before(script);
+  }
   fs.writeFileSync(path.join(root, language + '.html'), document.toString());
 }
-console.log('Built Arabic and Spanish share pages with crawler-readable metadata.');
+console.log('Built ' + (languages.length - 1) + ' translated share pages with crawler-readable metadata.');

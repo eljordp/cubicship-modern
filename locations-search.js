@@ -99,7 +99,7 @@
       idle();
       message();
       filter(q);
-      if (!/^\d{5}$/.test(q)) return;
+      if (!/^\d{5}$/.test(q)) { message(count.textContent + (q ? " matching your search." : " available to browse.")); return; }
       message("Finding counters near ZIP " + q + "…");
       try {
         const points = await loadZips();
@@ -118,7 +118,7 @@
     input.addEventListener("input", search);
     get("clearLocations").addEventListener("click", () => {
       ++generation;
-      idle(); input.value = ""; message(); filter(""); input.focus();
+      idle(); input.value = ""; filter(""); message(count.textContent + " available to browse."); input.focus();
     });
     button.addEventListener("click", () => {
       const request = ++generation;

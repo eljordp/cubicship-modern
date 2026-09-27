@@ -5,7 +5,7 @@ const path = require('node:path');
 const { milesBetween, rankCounters, searchTerms, init } = require('../locations-search');
 const locations = require('../assets/locations.json');
 const zips = require('../assets/zip-centroids.json').points;
-const counters = locations.map((l, order) => ({ ...l, order, closed: l.availabilityLabel === 'Temporarily closed' }));
+const counters = locations.map((l, order) => ({ ...l, order, closed: l.closed === true }));
 
 test('distance calculation agrees with a known great-circle route and handles same/antipodal points', () => {
   assert.ok(Math.abs(milesBetween(40.7128, -74.006, 51.5074, -0.1278) - 3461) < 3);
@@ -16,6 +16,7 @@ test('ZIP centers return expected local branches and preserve leading zeros', ()
   assert.equal(rankCounters(counters, ...zips['60453'])[0].id, 'oak-lawn');
   assert.equal(rankCounters(counters, ...zips['48126'])[0].id, 'dearborn');
   assert.equal(rankCounters(counters, ...zips['08830'])[0].id, 'iselin');
+  assert.equal(rankCounters(counters, ...zips['53140'])[0].id, 'milwaukee');
 });
 test('closed and unmapped counters never become recommendations; Freeport remains ranked', () => {
   const ranked = rankCounters(counters, 41.4871, -81.7663);
@@ -55,7 +56,7 @@ class Element {
 }
 function fixture(options={}) {
   const ids=Object.fromEntries(['locationSearch','locations','nearestLocations','nearestSection','otherHeading','finderStatus','locationCount','emptyLocations','useLocation','clearLocations','finderControls'].map(id=>[id,new Element()]));
-  const cards=locations.map(l=>{const c=new Element({id:l.id,closed:String(l.availabilityLabel==='Temporarily closed'),search:[l.city,l.state,l.market,l.address].join(' ').toLowerCase(),...(l.lat===undefined?{}:{lat:String(l.lat),lng:String(l.lng)})});c.distance=new Element();ids.locations.appendChild(c);return c;});
+  const cards=locations.map(l=>{const c=new Element({id:l.id,closed:String(l.closed === true),search:[l.city,l.state,l.market,l.address].join(' ').toLowerCase(),...(l.lat===undefined?{}:{lat:String(l.lat),lng:String(l.lng)})});c.distance=new Element();ids.locations.appendChild(c);return c;});
   let geoCalls=0, geoSuccess,geoFailure,fetchCalls=0;
   const browser={ AbortController, setTimeout, clearTimeout, navigator: {geolocation:{getCurrentPosition(ok,fail){geoCalls++;geoSuccess=ok;geoFailure=fail;}}}, fetch:options.fetch|| (async()=>{fetchCalls++;return {ok:true,json:async()=>({points:zips})};})};
   init({getElementById:id=>ids[id],querySelectorAll:()=>cards},browser);

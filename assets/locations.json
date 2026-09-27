@@ -419,6 +419,7 @@
     "hoursSource": "https://maps.app.goo.gl/uEoXVEGgoJAzPP376?g_st=i&utm_campaign=ac-im",
     "hours": [],
     "timezone": "America/New_York",
+    "closed": true,
     "availabilityLabel": "Temporarily closed",
     "hoursNote": "Google Maps lists this location as temporarily closed. Reopening details are not confirmed."
   }

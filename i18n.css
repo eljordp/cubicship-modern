@@ -164,3 +164,42 @@ html[dir="rtl"] :is(.cs-notice, .notice) {
 html[dir="rtl"] .hero-buttons .btn svg {
   transform: scaleX(-1);
 }
+
+/* Arabic glyphs need more room than the compact Latin hero typography. */
+html[dir="rtl"] .hero {
+  padding-inline: clamp(1.25rem, 8vw, 9rem);
+  text-align: start;
+}
+html[dir="rtl"] .hero-content {
+  max-width: 48rem;
+}
+html[dir="rtl"] .hero h1 {
+  font-size: clamp(2rem, 4.4vw, 3.75rem);
+  line-height: 1.45;
+  letter-spacing: normal;
+  overflow-wrap: break-word;
+}
+html[dir="rtl"] .hero h1 span.line2 {
+  /* Keep cursive strokes inside the gradient's painting area. */
+  padding-block: 0.08em;
+  padding-inline: 0.08em;
+}
+html[dir="rtl"] .hero-sub {
+  max-width: 100%;
+  line-height: 1.85;
+}
+html[dir="rtl"] .hero-partner {
+  gap: 0.65rem;
+  padding: 0.45rem 0.85rem;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+html[dir="rtl"] .hero-partner-text {
+  flex: 0 1 auto;
+  width: auto;
+}
+html[dir="rtl"] .hero-partner .dhl-mark {
+  flex: 0 0 auto;
+  direction: ltr;
+  unicode-bidi: isolate;
+}

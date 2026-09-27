@@ -17,3 +17,13 @@ Keep RTL typography, phone/address isolation, and the Arabic hero's generous lin
 ## Review
 
 Check the complete guest quote/drop-off flow, confirmation and request status, location search, validation and language switching. Human terminology review is still required to substantiate a higher editorial rating; automated checks alone are not a language-quality score. Do not claim reviewer approval before it is received.
+
+## Additional languages
+
+The picker uses native names and respects the customer's explicit choice before their browser language. Shipping destination, ZIP and device coordinates must never determine the language.
+
+Use clear customer instructions and consistent shipping terminology in every locale. Preserve the difference between an estimated date and a guaranteed date, between shipment protection and insurance, and between a request reference and a carrier tracking number. Keep prices and pickup availability subject to staff confirmation. Translate the existing privacy and terms faithfully; do not introduce a policy giving one language legal precedence.
+
+Additional catalogs live in `locales/extra/{code}.json`, keyed by the same complete English message IDs as the generated catalog. `locales/languages.json` defines native names, direction, share metadata locale and loading errors. The build rejects missing/extra keys, empty strings and changed interpolation slots. It emits content-hashed catalogs loaded only when selected and a pretranslated homepage for each share URL. These checks establish coverage, not native editorial approval.
+
+Review the less familiar and specialized terms with customers or staff who speak that language. Record actual feedback instead of assigning a higher language score from test results alone.

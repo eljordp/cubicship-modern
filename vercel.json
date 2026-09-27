@@ -13,6 +13,66 @@
   ],
   "rewrites": [
     {
+      "source": "/ha",
+      "destination": "/ha.html"
+    },
+    {
+      "source": "/ig",
+      "destination": "/ig.html"
+    },
+    {
+      "source": "/yo",
+      "destination": "/yo.html"
+    },
+    {
+      "source": "/pl",
+      "destination": "/pl.html"
+    },
+    {
+      "source": "/hi",
+      "destination": "/hi.html"
+    },
+    {
+      "source": "/gu",
+      "destination": "/gu.html"
+    },
+    {
+      "source": "/ur",
+      "destination": "/ur.html"
+    },
+    {
+      "source": "/zh-Hans",
+      "destination": "/zh-Hans.html"
+    },
+    {
+      "source": "/fil",
+      "destination": "/fil.html"
+    },
+    {
+      "source": "/bn",
+      "destination": "/bn.html"
+    },
+    {
+      "source": "/my",
+      "destination": "/my.html"
+    },
+    {
+      "source": "/uk",
+      "destination": "/uk.html"
+    },
+    {
+      "source": "/vi",
+      "destination": "/vi.html"
+    },
+    {
+      "source": "/ht",
+      "destination": "/ht.html"
+    },
+    {
+      "source": "/fr",
+      "destination": "/fr.html"
+    },
+    {
       "source": "/ar",
       "destination": "/ar.html"
     },

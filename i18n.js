@@ -1,24 +1,27 @@
 (function (root) {
   "use strict";
-  const supported = ["en", "es", "ar"];
-  const normalize = (s) =>
-    String(s || "")
-      .replace(/\s+/g, " ")
-      .trim();
-  const base = (value) =>
-    String(value || "")
-      .toLowerCase()
-      .split(/[-_]/)[0];
+  const definitions = root.CubicCatalog?.languages ||
+    (typeof module === "object" && module.exports ? require("./locales/languages.json") : [{code:"en",dir:"ltr"},{code:"es",dir:"ltr"},{code:"ar",dir:"rtl"}]);
+  const supported = definitions.map((item) => item.code);
+  const normalize = (s) => String(s || "").replace(/\s+/g, " ").trim();
+  function canonicalLanguage(value) {
+    const tag = String(value || "").toLowerCase().replace(/_/g, "-");
+    if (tag === "zh" || tag.startsWith("zh-hans") || /^zh-(cn|sg)(-|$)/.test(tag)) return "zh-Hans";
+    if (tag.startsWith("zh-")) return null; // Do not equate Traditional Chinese with Simplified.
+    const base = tag.split("-")[0];
+    if (base === "tl") return "fil";
+    return supported.find((code) => code.toLowerCase() === base) || null;
+  }
   function resolveLanguage(explicit, saved, languages = [], pathname = "") {
-    const pathLanguage = pathname.match(/^\/(ar|es)(?:\.html)?\/?$/)?.[1];
+    const pathLanguage = pathname.match(/^\/([^/]+?)(?:\.html)?\/?$/)?.[1];
     for (const value of [explicit, pathLanguage, saved, ...languages]) {
-      const lang = base(value);
-      if (supported.includes(lang)) return lang;
+      const lang = canonicalLanguage(value);
+      if (lang) return lang;
     }
     return "en";
   }
   if (typeof module === "object" && module.exports)
-    module.exports = { resolveLanguage };
+    module.exports = { resolveLanguage, canonicalLanguage };
   if (!root.document || !root.CubicCatalog) return;
   const { document } = root,
     { catalogs, sourceKeys } = root.CubicCatalog;
@@ -26,12 +29,13 @@
   try {
     saved = root.localStorage.getItem("cubicship.language");
   } catch {}
-  let locale = resolveLanguage(
+  const initialLocale = resolveLanguage(
     new URLSearchParams(root.location.search).get("lang"),
     saved,
     root.navigator.languages || [root.navigator.language],
     root.location.pathname,
   );
+  let locale = catalogs[initialLocale] ? initialLocale : "en";
   const skip =
     'script,style,svg,code,pre,textarea,input,address,[translate="no"],[data-no-translate],.cs-brand,.chat-message.user';
   const textState = new WeakMap(),
@@ -163,7 +167,7 @@
   }
   function setDocumentLanguage() {
     document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = definitions.find((item) => item.code === locale)?.dir || "ltr";
   }
   function localizeLinks() {
     for (const a of document.querySelectorAll("a[href]")) {
@@ -171,7 +175,7 @@
       if (
         url.origin !== root.location.origin ||
         url.pathname.startsWith("/api/") ||
-        !/(\.html$|\/$)/.test(url.pathname)
+        !/(\.html$|\/$)/.test(url.pathname) && !supported.some((code) => url.pathname === "/" + code)
       )
         continue;
       url.searchParams.set("lang", locale);
@@ -187,11 +191,50 @@
     localizeLinks();
     observe();
   }
-  function setLanguage(value) {
-    if (!supported.includes(value)) return;
+  let languageRequest = 0;
+  const pendingCatalogs = new Map();
+  function loadCatalog(language) {
+    if (catalogs[language]) return Promise.resolve();
+    if (!pendingCatalogs.has(language)) {
+      const file = root.CubicCatalog.localeFiles?.[language]?.json;
+      if (!file) return Promise.reject(new Error("Missing locale"));
+      const controller = new root.AbortController();
+      const timeout = root.setTimeout(() => controller.abort(), 12000);
+      const promise = root.fetch(file, { signal: controller.signal })
+        .then((response) => { if (!response.ok) throw new Error("Locale request failed"); return response.json(); })
+        .then((dictionary) => {
+          const keys = Object.keys(catalogs.en);
+          if (keys.some((key) => typeof dictionary[key] !== "string" || !dictionary[key].trim())) throw new Error("Incomplete locale");
+          catalogs[language] = dictionary;
+        })
+        .finally(() => { root.clearTimeout(timeout); pendingCatalogs.delete(language); });
+      pendingCatalogs.set(language, promise);
+    }
+    return pendingCatalogs.get(language);
+  }
+  function languageStatus(language, failed = false) {
+    for (const picker of document.querySelectorAll("[data-language-picker]")) {
+      if (language && !failed) picker.setAttribute("aria-busy", "true");
+      else picker.removeAttribute("aria-busy");
+      let status = picker.parentElement.querySelector(".cs-language-status");
+      if (!status) {
+        status = document.createElement("span");
+        status.className = "cs-language-status";
+        status.setAttribute("role", "status");
+        status.setAttribute("translate", "no");
+        picker.parentElement.append(status);
+      }
+      const definition = definitions.find((item) => item.code === language);
+      status.hidden = !language;
+      status.lang = language || locale;
+      status.dir = definition?.dir || "ltr";
+      status.textContent = failed ? definition.loadError : language ? definition.name + "…" : "";
+    }
+  }
+  function commitLanguage(value, remember = true) {
     locale = value;
     try {
-      root.localStorage.setItem("cubicship.language", locale);
+      if (remember) root.localStorage.setItem("cubicship.language", locale);
     } catch {}
     const url = new URL(root.location.href);
     url.searchParams.set("lang", locale);
@@ -200,6 +243,29 @@
     document.dispatchEvent(
       new CustomEvent("cubic:languagechange", { detail: { language: locale } }),
     );
+  }
+  function setLanguage(value, remember = true) {
+    const language = canonicalLanguage(value);
+    if (!language) return Promise.resolve(false);
+    const request = ++languageRequest;
+    if (catalogs[language]) {
+      languageStatus(null);
+      commitLanguage(language, remember);
+      return Promise.resolve(true);
+    }
+    languageStatus(language);
+    return loadCatalog(language).then(() => {
+      if (request !== languageRequest) return false;
+      languageStatus(null);
+      commitLanguage(language, remember);
+      return true;
+    }).catch(() => {
+      if (request === languageRequest) {
+        languageStatus(language, true);
+        for (const picker of document.querySelectorAll("[data-language-picker]")) picker.value = locale;
+      }
+      return false;
+    });
   }
   let observer;
   function observe() {
@@ -307,6 +373,7 @@
         field.setCustomValidity(t(field.dataset.localeValidity));
     });
     apply();
+    root.CubicI18n.ready = setLanguage(initialLocale, false);
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", boot, { once: true });

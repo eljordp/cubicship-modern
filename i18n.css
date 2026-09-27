@@ -207,3 +207,41 @@ html[dir="rtl"] .hero-partner .dhl-mark {
   direction: ltr;
   unicode-bidi: isolate;
 }
+
+/* Keep loading feedback readable even when the decorative mobile icon is hidden. */
+.cs-language { position: relative; }
+.cs-language .cs-language-status { display: block; position: absolute; inset-block-start: calc(100% + .4rem); inset-inline-end: 0; width: max-content; max-width: min(18rem, 75vw); padding: .65rem .85rem; background: #fff; color: #182335; border: 1px solid #aab6c8; border-radius: 8px; z-index: 40; font-size: .85rem; white-space: normal; }
+.cs-language .cs-language-status[hidden] { display: none !important; }
+html[lang="hi"] body { font-family: "Noto Sans Devanagari", system-ui, sans-serif; }
+html[lang="gu"] body { font-family: "Noto Sans Gujarati", system-ui, sans-serif; }
+html[lang="bn"] body { font-family: "Noto Sans Bengali", system-ui, sans-serif; }
+html[lang="my"] body { font-family: "Noto Sans Myanmar", system-ui, sans-serif; }
+html[lang="ur"] body { font-family: "Noto Nastaliq Urdu", Tahoma, serif; line-height: 2.2; }
+html[lang="zh-Hans"] body { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; }
+html:is([lang="hi"], [lang="gu"], [lang="bn"], [lang="my"], [lang="ur"], [lang="zh-Hans"]) :is(h1,h2,h3,h4,button,input,select,textarea,.home-wrap h2) { font-family: inherit; letter-spacing: normal; }
+html:is([lang="hi"], [lang="gu"], [lang="bn"], [lang="my"]) :is(h1,h2,h3,h4) { line-height: 1.6; }
+html[lang="ur"] :is(h1,h2,h3,h4,.hero h1) { line-height: 2; }
+html[lang="ur"] :is(input,select,button,.btn) { line-height: 2.2; }
+html:not([lang="en"]):not([lang="es"]):not([lang="ar"]) .hero h1 { font-size: clamp(1.8rem, 4.2vw, 3.6rem); letter-spacing: normal; overflow-wrap: anywhere; }
+html:not([lang="en"]):not([lang="es"]):not([lang="ar"]) .hero h1 span.line2 { padding-block: .15em; }
+html:is([lang="pl"], [lang="uk"], [lang="vi"], [lang="ht"], [lang="fr"], [lang="fil"], [lang="zh-Hans"]) .hero h1 { line-height: 1.2; }
+html[lang="my"] :is(p,label,legend,button,select,input,.btn) { line-height: 1.8; }
+html:not([lang="en"]) :is(.cs-navigation,.cs-actions,.hero-buttons) { flex-wrap: wrap; }
+html[dir="rtl"] .steps li::before { content: counter(steps); display: inline-block; direction: ltr; unicode-bidi: isolate; margin-left: .35em; margin-right: 0; }
+
+/* Latin tone marks and script labels need the same complete glyph coverage. */
+html:is([lang="pl"], [lang="uk"], [lang="vi"], [lang="ht"], [lang="fr"], [lang="fil"], [lang="yo"], [lang="ig"], [lang="ha"]) body { font-family: "Noto Sans", system-ui, sans-serif; }
+html:is([lang="pl"], [lang="uk"], [lang="vi"], [lang="ht"], [lang="fr"], [lang="fil"], [lang="yo"], [lang="ig"], [lang="ha"]) :is(h1,h2,h3,h4,button,input,select,textarea,.home-wrap h2) { font-family: inherit; }
+html:is([lang="yo"], [lang="ig"], [lang="ha"]) .hero h1 { line-height: 1.4; }
+[data-language-picker] option { font-family: "Noto Sans", system-ui, sans-serif; }
+[data-language-picker] option[lang="hi"] { font-family: "Noto Sans Devanagari", sans-serif; }
+[data-language-picker] option[lang="gu"] { font-family: "Noto Sans Gujarati", sans-serif; }
+[data-language-picker] option[lang="bn"] { font-family: "Noto Sans Bengali", sans-serif; }
+[data-language-picker] option[lang="my"] { font-family: "Noto Sans Myanmar", sans-serif; }
+[data-language-picker] option[lang="ur"] { font-family: "Noto Nastaliq Urdu", serif; }
+[data-language-picker] option[lang="zh-Hans"] { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
+@media (max-width: 560px) {
+  .cs-language { order: 3; flex-basis: 100%; justify-content: flex-end; margin-inline-start: 0; }
+  .cs-language .cs-language-icon { display: flex; }
+  .cs-language select { max-width: 100%; min-width: 8rem; }
+}

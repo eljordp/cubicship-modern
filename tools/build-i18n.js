@@ -1,5 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const crypto = require("node:crypto");
+const languages = require("../locales/languages.json");
 const { parseHTML } = require("linkedom");
 const { root, pages, normalize, key, skip, attrs } = require("./i18n-catalog");
 const rows = fs
@@ -191,6 +193,10 @@ for (const file of pages) {
   link.rel = "stylesheet";
   link.href = "/i18n.css";
   document.head.append(link);
+  const fonts = document.createElement("link");
+  fonts.rel = "stylesheet";
+  fonts.href = "/locale-fonts.css";
+  document.head.append(fonts);
   // Synchronous locale bootstrap precedes existing inline account scripts and establishes reading direction before body layout.
   for (const src of ["/locales/catalog.js", "/i18n.js"]) {
     const script = document.createElement("script");
@@ -203,7 +209,7 @@ for (const file of pages) {
     label.className = "cs-language";
     label.setAttribute("translate", "no");
     label.innerHTML =
-      '<span class="cs-language-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><select aria-label="Language / Idioma / اللغة" data-language-picker><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="ar" lang="ar">العربية</option></select>';
+      '<span class="cs-language-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><select aria-label="Language / Idioma / اللغة" data-language-picker>' + languages.map(({code, name, dir}) => `<option value="${code}" lang="${code}" dir="${dir}">${name}</option>`).join("") + '</select>';
     target.append(label);
   }
   // Preserve identifiers and data supplied by customers or the counter.
@@ -216,10 +222,30 @@ for (const file of pages) {
   fs.writeFileSync(dest, document.toString());
 }
 fs.mkdirSync(path.join(root, "public/locales"), { recursive: true });
+const localeFiles = {};
+for (const {code} of languages) {
+  if (catalogs[code]) continue;
+  const file = path.join(root, "locales/extra", code + ".json");
+  const dictionary = JSON.parse(fs.readFileSync(file, "utf8"));
+  const expected = Object.keys(catalogs.en).sort();
+  if (JSON.stringify(Object.keys(dictionary).sort()) !== JSON.stringify(expected)) throw Error("Locale key mismatch: " + code);
+  const placeholders = (text) => (text.match(/\{\w+\}/g) || []).sort().join("|");
+  for (const id of expected) {
+    if (typeof dictionary[id] !== "string" || !dictionary[id].trim()) throw Error("Empty translation: " + code + ":" + id);
+    if (placeholders(dictionary[id]) !== placeholders(catalogs.en[id])) throw Error("Placeholder mismatch: " + code + ":" + id);
+    if (/<\/?[a-z][^>]*>/i.test(dictionary[id])) throw Error("Unexpected markup: " + code + ":" + id);
+  }
+  const data = JSON.stringify(dictionary).replace(/</g, "\\u003c");
+  const hash = crypto.createHash("sha256").update(data).digest("hex").slice(0, 12);
+  const stem = code + "." + hash;
+  localeFiles[code] = {json: "/locales/" + stem + ".json", script: "/locales/" + stem + ".js"};
+  fs.writeFileSync(path.join(root, "public", localeFiles[code].json), data);
+  fs.writeFileSync(path.join(root, "public", localeFiles[code].script), "window.CubicCatalog.catalogs[" + JSON.stringify(code) + "]=" + data + ";\n");
+}
 fs.writeFileSync(
   path.join(root, "public/locales/catalog.js"),
   "window.CubicCatalog=" +
-    JSON.stringify({ catalogs, sourceKeys }).replace(/</g, "\\u003c") +
+    JSON.stringify({ catalogs, sourceKeys, languages, localeFiles }).replace(/</g, "\\u003c") +
     ";\n",
 );
 fs.writeFileSync(
@@ -231,5 +257,5 @@ console.log(
     pages.length +
     " customer pages; " +
     rows.length +
-    " messages in English, Spanish and Arabic.",
+    " base messages in " + languages.length + " languages (additional dictionaries load on demand).",
 );

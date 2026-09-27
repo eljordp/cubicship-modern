@@ -16,9 +16,9 @@ const { catalogs, sourceKeys } = ctx.window.CubicCatalog;
 test("locale selection honors URL, saved choice, browser preferences and English fallback", () => {
   assert.equal(resolveLanguage("ar-EG", "es", ["en-US"]), "ar");
   assert.equal(resolveLanguage(null, "es-MX", ["ar"]), "es");
-  assert.equal(resolveLanguage("xx", "broken", ["fr-FR", "ar-SA", "en"]), "ar");
+  assert.equal(resolveLanguage("xx", "broken", ["de-DE", "ar-SA", "en"]), "ar");
   assert.equal(resolveLanguage(null, null, ["es-419"]), "es");
-  assert.equal(resolveLanguage(null, null, ["zh-Hant", "fr"]), "en");
+  assert.equal(resolveLanguage(null, null, ["zh-Hant", "ja"]), "en");
   assert.equal(resolveLanguage(null, null, []), "en");
 });
 test("Spanish and Arabic catalogs cover English keys with intact interpolation fields", () => {

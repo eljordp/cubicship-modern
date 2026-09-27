@@ -923,3 +923,40 @@ View your request using the private link from your confirmation.	Consulte su sol
 Reset a password or request a new confirmation email.	Restablezca su contraseña o solicite otro correo de confirmación.	أعد تعيين كلمة المرور أو اطلب رسالة تأكيد جديدة.
 Verify your account link or request a new one.	Verifique el enlace de su cuenta o solicite uno nuevo.	تحقق من رابط حسابك أو اطلب رابطًا جديدًا.
 Call {phone}	Llamar {phone}	اتصل بـ {phone}
+Find your nearest counter.	Encuentra tu mostrador más cercano.	اعثر على أقرب فرع إليك.
+Find the closest CubicShip counter, then get directions or call before you visit.	Encuentra el mostrador CubicShip más cercano y consulta cómo llegar o llama antes de ir.	اعثر على أقرب فرع لـ CubicShip، واحصل على الاتجاهات أو اتصل قبل زيارتك.
+Find your nearest CubicShip counter using your location or ZIP code, or browse by city and state.	Encuentra tu mostrador CubicShip más cercano con tu ubicación o código postal, o busca por ciudad y estado.	اعثر على أقرب فرع لـ CubicShip باستخدام موقعك أو الرمز البريدي، أو ابحث حسب المدينة والولاية.
+ZIP code, city or state	Código postal, ciudad o estado	الرمز البريدي أو المدينة أو الولاية
+For example: 60453 or Oak Lawn	Por ejemplo: 60453 u Oak Lawn	مثال: 60453 أو Oak Lawn
+ZIP codes find nearby counters. City and state searches filter the list.	El código postal muestra los mostradores cercanos. La ciudad o el estado filtran la lista.	أدخل الرمز البريدي لعرض الفروع القريبة، أو اسم المدينة أو الولاية لتصفية القائمة.
+Use my location	Usar mi ubicación	استخدم موقعي الحالي
+Show all	Mostrar todos	عرض جميع الفروع
+Your location stays in your browser.	Tu ubicación permanece en tu navegador.	يُستخدم موقعك داخل المتصفح فقط.
+Browse all counters below. Enable JavaScript to search by ZIP code or use your location.	Consulta todos los mostradores a continuación. Activa JavaScript para buscar por código postal o usar tu ubicación.	تصفّح جميع الفروع أدناه. فعّل JavaScript للبحث بالرمز البريدي أو باستخدام موقعك.
+No matching branch. Try another city or state, use your location, or choose Show all.	No hay mostradores que coincidan. Prueba otra ciudad o estado, usa tu ubicación o selecciona Mostrar todos.	لم نعثر على فرع مطابق. جرّب مدينة أو ولاية أخرى، أو استخدم موقعك، أو اختر «عرض جميع الفروع».
+Nearest counters	Mostradores más cercanos	الفروع الأقرب إليك
+Approximate straight-line distances. Call to confirm hours and last DHL collection.	Las distancias son aproximadas y en línea recta. Llama para confirmar el horario y la última recogida de DHL.	المسافات تقريبية وتُقاس بخط مستقيم. اتصل للتأكد من ساعات العمل وموعد آخر استلام لشحنات DHL.
+Other locations	Otros mostradores	فروع أخرى
+Directions	Cómo llegar	الاتجاهات
+Finding a counter	Buscar un mostrador	البحث عن فرع
+If you choose Use my location, your browser asks for permission. Your coordinates are used only in your browser to sort counters; CubicShip does not store them or send them to its servers or analytics. ZIP-code distance searches also run in your browser. Directions links open Google Maps with the counter’s address; Google’s own privacy terms apply there.	Si eliges Usar mi ubicación, tu navegador solicitará permiso. Tus coordenadas se utilizan solo en tu navegador para ordenar los mostradores; CubicShip no las almacena ni las envía a sus servidores o servicios de análisis. Las búsquedas de distancia por código postal también se realizan en tu navegador. Los enlaces de indicaciones abren Google Maps con la dirección del mostrador; allí se aplican los términos de privacidad de Google.	عند اختيار «استخدم موقعي الحالي»، يطلب المتصفح إذنك. تُستخدم إحداثيات موقعك داخل المتصفح فقط لترتيب الفروع حسب قربها منك؛ ولا تحفظها CubicShip أو ترسلها إلى خوادمها أو خدمات التحليلات. ويُحسب بُعد الفروع عن الرمز البريدي داخل المتصفح أيضًا. تفتح روابط الاتجاهات خرائط Google على عنوان الفرع، وتسري عليها شروط خصوصية Google.
+less than 0.1 mi	menos de 0.1 mi	أقل من 0.1 ميل
+about {miles} mi	aprox. {miles} mi	نحو {miles} ميل
+{count} locations matching your search.	{count} mostradores coinciden con tu búsqueda.	عدد الفروع المطابقة لبحثك: {count}.
+{count} locations available to browse.	{count} mostradores disponibles para consultar.	عدد الفروع المتاحة للتصفح: {count}.
+{distance} · straight line from ZIP {zip}’s approximate center	{distance} · en línea recta desde el centro aproximado del código postal {zip}	{distance} · بخط مستقيم من المركز التقريبي لمنطقة الرمز البريدي {zip}
+{distance} · straight line from your location	{distance} · en línea recta desde tu ubicación	{distance} · بخط مستقيم من موقعك
+{count} counters sorted by distance.	{count} mostradores ordenados por distancia.	عدد الفروع المرتبة حسب المسافة: {count}.
+The closest listed counter is {distance} away.	El mostrador más cercano de la lista está a {distance}.	يبعد أقرب فرع في القائمة عنك {distance}.
+Closest counters from ZIP {zip}’s approximate center.	Mostradores más cercanos al centro aproximado del código postal {zip}.	الفروع الأقرب إلى المركز التقريبي لمنطقة الرمز البريدي {zip}.
+Closest counters from your location.	Mostradores más cercanos a tu ubicación.	الفروع الأقرب إلى موقعك الحالي.
+Finding counters near ZIP {zip}…	Buscando mostradores cerca del código postal {zip}…	جارٍ البحث عن فروع قريبة من الرمز البريدي {zip}…
+Distance results are unavailable. Browse the locations below.	Las distancias no están disponibles. Consulta los mostradores a continuación.	تعذّر حساب المسافات. يمكنك تصفّح الفروع أدناه.
+We could not locate that ZIP area. Showing any matching addresses. Try your city or state, or Use my location.	No encontramos la zona de ese código postal. Se muestran las direcciones que coincidan. Prueba con tu ciudad o estado, o selecciona Usar mi ubicación.	لم نتمكن من تحديد منطقة هذا الرمز البريدي. نعرض أي عناوين مطابقة؛ جرّب اسم المدينة أو الولاية، أو اختر «استخدم موقعي الحالي».
+ZIP distances could not load. Showing any matching addresses. Try your city or state, or Use my location.	No se pudieron cargar las distancias por código postal. Se muestran las direcciones que coincidan. Prueba con tu ciudad o estado, o selecciona Usar mi ubicación.	تعذّر تحميل بيانات المسافات للرمز البريدي. نعرض أي عناوين مطابقة؛ جرّب اسم المدينة أو الولاية، أو اختر «استخدم موقعي الحالي».
+Location is not available in this browser. Enter a ZIP code, city or state instead.	La ubicación no está disponible en este navegador. Introduce un código postal, ciudad o estado.	لا يدعم هذا المتصفح تحديد الموقع. أدخل الرمز البريدي أو اسم المدينة أو الولاية.
+Finding your location…	Obteniendo tu ubicación…	جارٍ تحديد موقعك…
+Your browser may ask to use your location. You can also search by ZIP code, city or state.	Tu navegador puede pedir permiso para usar tu ubicación. También puedes buscar por código postal, ciudad o estado.	قد يطلب المتصفح إذنك لاستخدام موقعك. يمكنك أيضًا البحث بالرمز البريدي أو المدينة أو الولاية.
+Location access was not allowed. Enter a ZIP code, city or state instead.	No se permitió acceder a tu ubicación. Introduce un código postal, ciudad o estado.	لم يُسمح بالوصول إلى موقعك. أدخل الرمز البريدي أو اسم المدينة أو الولاية.
+We could not get your location. Enter a ZIP code, city or state, or try again.	No pudimos obtener tu ubicación. Introduce un código postal, ciudad o estado, o inténtalo de nuevo.	تعذّر تحديد موقعك. أدخل الرمز البريدي أو اسم المدينة أو الولاية، أو أعد المحاولة.
+Your device’s location is approximate; a ZIP code may give more useful results.	La ubicación de tu dispositivo es aproximada; un código postal puede ofrecer resultados más útiles.	الموقع الذي يحدده جهازك تقريبي؛ قد يمنحك البحث بالرمز البريدي نتائج أنسب.

@@ -1,0 +1,166 @@
+.cs-language {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  margin-inline-start: 0.75rem;
+  color: inherit;
+  font:
+    500 0.85rem/1.3 system-ui,
+    sans-serif;
+}
+.cs-language select {
+  width: auto;
+  max-width: 9rem;
+  min-height: 42px;
+  margin: 0;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #aab6c8;
+  border-radius: 8px;
+  background: #fff;
+  color: #0a1628;
+  font: inherit;
+  cursor: pointer;
+}
+.cs-language select:focus-visible {
+  outline: 3px solid #f47621;
+  outline-offset: 3px;
+}
+html[dir="rtl"] body {
+  font-family: Tahoma, Arial, sans-serif;
+  letter-spacing: normal;
+}
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] button,
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea {
+  font-family: inherit;
+  letter-spacing: normal;
+}
+html[dir="rtl"] .cs-brand {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+html[dir="rtl"]
+  :is(
+    label,
+    legend,
+    .cs-card,
+    .card,
+    .review-block,
+    .chat-message,
+    .form-card
+  ) {
+  text-align: start;
+}
+html[dir="rtl"]
+  :is(
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    .cs-code,
+    .ship-number,
+    address
+  ) {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+}
+html[dir="rtl"] :is(.chat-widget, .chat-launcher, .seller-offer) {
+  right: auto;
+  left: 20px;
+}
+html[dir="rtl"] .steps {
+  padding-inline-start: 0;
+}
+html[dir="rtl"] :is(.cs-kicker, .eyebrow) {
+  letter-spacing: normal;
+}
+.cs-header {
+  flex-wrap: wrap;
+}
+@media (max-width: 800px) {
+  .cs-language {
+    margin-inline-start: auto;
+  }
+  .cs-language > span {
+    display: none;
+  }
+  .cs-header .cs-navigation {
+    order: 4;
+    flex-basis: 100%;
+  }
+  .cs-language select {
+    max-width: 8rem;
+  }
+  .cs-header {
+    gap: 0.5rem;
+  }
+}
+@media print {
+  .cs-language {
+    display: none;
+  }
+}
+/* Keep floating panels inside the viewport when the reading direction reverses. */
+html[dir="rtl"] .chat-panel {
+  right: auto;
+  left: 0;
+  text-align: start;
+}
+html[dir="rtl"] .chat-widget {
+  left: clamp(1rem, 3vw, 1.5rem);
+  font-family: Tahoma, Arial, sans-serif;
+}
+html[dir="rtl"] .seller-offer {
+  left: clamp(1rem, 3vw, 1.5rem);
+  right: auto;
+}
+html[dir="rtl"] :is(.cs-notice, .notice) {
+  border-left: 0;
+  border-right: 3px solid #ce651e;
+}
+/* Off-screen honeypots must not create a horizontal scroll area in RTL. */
+.cs-hp,
+.hp,
+.hp-field {
+  position: absolute !important;
+  inset: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 560px) {
+  html[dir="rtl"] .chat-widget {
+    left: 0.75rem;
+  }
+  html[dir="rtl"] .chat-panel {
+    left: -0.25rem;
+    right: auto;
+  }
+  html[dir="rtl"] .seller-offer {
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+  }
+}
+
+/* Isolate fixed-format identifiers inside Arabic sentences. */
+.cs-phone-number {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  white-space: nowrap;
+  margin-inline-start: 0.3em;
+}
+html[dir="rtl"] .hero-buttons .btn svg {
+  transform: scaleX(-1);
+}

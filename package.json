@@ -8,6 +8,12 @@
   },
   "scripts": {
     "test": "node --test tests/*.test.cjs",
-    "build": "node tools/build-public.js && node tools/build-request-pages.js && node tools/build-output.js"
+    "build": "node tools/build-public.js && node tools/build-request-pages.js && node tools/build-output.js && node tools/build-i18n.js",
+    "pretest": "npm run build"
+  },
+  "devDependencies": {
+    "acorn": "^8.18.0",
+    "acorn-walk": "^8.3.5",
+    "linkedom": "^0.18.13"
   }
 }

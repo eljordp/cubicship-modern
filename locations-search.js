@@ -15,9 +15,7 @@
       .map((c) => ({ ...c, miles: milesBetween(lat, lng, c.lat, c.lng) }))
       .sort((a, b) => a.miles - b.miles || a.order - b.order);
   }
-  function distanceLabel(miles) {
-    return miles < 0.1 ? "less than 0.1 mi" : "about " + (miles < 10 ? miles.toFixed(1) : Math.round(miles)) + " mi";
-  }
+
   const states = { illinois: "il", michigan: "mi", "new york": "ny", pennsylvania: "pa", "new jersey": "nj", wisconsin: "wi", indiana: "in", ohio: "oh" };
   function searchTerms(query) {
     let q = query.trim().toLowerCase();
@@ -36,8 +34,20 @@
       lng: card.dataset.lng === undefined ? NaN : Number(card.dataset.lng),
     }));
     let generation = 0, zipPromise;
-    function message(text = "") { status.textContent = text; status.hidden = !text; }
-    function idle() { button.disabled = false; button.textContent = "Use my location"; }
+    const bindings = new Map();
+    const t = (source, params = {}) => browser.CubicI18n?.t(source, params) || source.replace(/\{(\w+)\}/g, (_, key) => String(params[key] ?? ""));
+    function render(node, value) {
+      const read = typeof value === "function" ? value : () => t(value);
+      bindings.set(node, read);
+      node.setAttribute?.("translate", "no");
+      node.textContent = read();
+    }
+    doc.addEventListener?.("cubic:languagechange", () => bindings.forEach((read, node) => { node.textContent = read(); }));
+    const distanceLabel = (miles) => miles < 0.1 ? t("less than 0.1 mi") : t("about {miles} mi", { miles: miles < 10 ? miles.toFixed(1) : Math.round(miles) });
+    const visibleCount = () => counters.filter(({card}) => !card.hidden).length;
+    const browseMessage = (query) => () => t(query ? "{count} locations matching your search." : "{count} locations available to browse.", { count: visibleCount() });
+    function message(text = "") { render(status, text); status.hidden = !text; }
+    function idle() { button.disabled = false; render(button, "Use my location"); }
     function restore() {
       nearest.hidden = true;
       otherHeading.hidden = true;
@@ -45,7 +55,7 @@
         list.appendChild(card);
         card.hidden = false;
         const distance = card.querySelector("[data-distance]");
-        distance.textContent = "";
+        render(distance, "");
         distance.hidden = true;
       });
     }
@@ -59,17 +69,17 @@
           : card.dataset.search.includes(term));
         if (!card.hidden) visible++;
       });
-      count.textContent = visible + " location" + (visible === 1 ? "" : "s");
+      render(count, () => t(visible === 1 ? "{count} location" : "{count} locations", { count: visible }));
       empty.hidden = visible !== 0;
     }
-    function showNearest(lat, lng, origin, extra = "") {
+    function showNearest(lat, lng, zip = null, extra = "") {
       const ranked = rankCounters(counters, lat, lng);
       if (!ranked.length) { filter(""); message("Distance results are unavailable. Browse the locations below."); return; }
       restore();
       ranked.forEach((c, i) => {
         (i < 3 ? nearestList : list).appendChild(c.card);
         const distance = c.card.querySelector("[data-distance]");
-        distance.textContent = distanceLabel(c.miles) + " · straight line " + origin;
+        render(distance, () => t(zip ? "{distance} · straight line from ZIP {zip}’s approximate center" : "{distance} · straight line from your location", { distance: distanceLabel(c.miles), ...(zip ? {zip} : {}) }));
         distance.hidden = false;
       });
       // Unranked/closed counters remain visible after the ranked locations.
@@ -78,9 +88,8 @@
       nearest.hidden = false;
       otherHeading.hidden = counters.length <= 3;
       empty.hidden = true;
-      count.textContent = ranked.length + " counters sorted by distance.";
-      const far = ranked[0].miles > 50 ? "The closest listed counter is " + distanceLabel(ranked[0].miles) + " away. " : "";
-      message(far + "Closest counters " + origin + ". " + extra);
+      render(count, () => t("{count} counters sorted by distance.", {count: ranked.length}));
+      message(() => [ranked[0].miles > 50 ? t("The closest listed counter is {distance} away.", {distance: distanceLabel(ranked[0].miles)}) : "", zip ? t("Closest counters from ZIP {zip}’s approximate center.", {zip}) : t("Closest counters from your location."), extra ? t(extra) : ""].filter(Boolean).join(" "));
     }
     function loadZips() {
       if (!zipPromise) {
@@ -99,8 +108,8 @@
       idle();
       message();
       filter(q);
-      if (!/^\d{5}$/.test(q)) { message(count.textContent + (q ? " matching your search." : " available to browse.")); return; }
-      message("Finding counters near ZIP " + q + "…");
+      if (!/^\d{5}$/.test(q)) { message(browseMessage(q)); return; }
+      message(() => t("Finding counters near ZIP {zip}…", {zip: q}));
       try {
         const points = await loadZips();
         if (request !== generation) return;
@@ -109,7 +118,7 @@
           message("We could not locate that ZIP area. Showing any matching addresses. Try your city or state, or Use my location.");
           return;
         }
-        showNearest(point[0], point[1], "from ZIP " + q + "’s approximate center");
+        showNearest(point[0], point[1], q);
       } catch (_) {
         if (request !== generation) return;
         message("ZIP distances could not load. Showing any matching addresses. Try your city or state, or Use my location.");
@@ -118,7 +127,7 @@
     input.addEventListener("input", search);
     get("clearLocations").addEventListener("click", () => {
       ++generation;
-      idle(); input.value = ""; filter(""); message(count.textContent + " available to browse."); input.focus();
+      idle(); input.value = ""; filter(""); message(browseMessage("")); input.focus();
     });
     button.addEventListener("click", () => {
       const request = ++generation;
@@ -126,7 +135,7 @@
       if (!browser.navigator.geolocation) {
         message("Location is not available in this browser. Enter a ZIP code, city or state instead."); return;
       }
-      button.disabled = true; button.textContent = "Finding your location…";
+      button.disabled = true; render(button, "Finding your location…");
       message("Your browser may ask to use your location. You can also search by ZIP code, city or state.");
       const failed = (error) => {
         if (request !== generation) return;
@@ -139,7 +148,7 @@
           const { latitude, longitude, accuracy } = position.coords;
           if (!validPoint(latitude, longitude)) { failed({}); return; }
           idle(); input.value = "";
-          showNearest(latitude, longitude, "from your location", accuracy > 5000 ? "Your device’s location is approximate; a ZIP code may give more useful results." : "");
+          showNearest(latitude, longitude, null, accuracy > 5000 ? "Your device’s location is approximate; a ZIP code may give more useful results." : "");
         }, failed, { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 });
       } catch (_) { failed({}); }
     });

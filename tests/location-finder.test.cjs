@@ -59,8 +59,10 @@ function fixture(options={}) {
   const cards=locations.map(l=>{const c=new Element({id:l.id,closed:String(l.closed === true),search:[l.city,l.state,l.market,l.address].join(' ').toLowerCase(),...(l.lat===undefined?{}:{lat:String(l.lat),lng:String(l.lng)})});c.distance=new Element();ids.locations.appendChild(c);return c;});
   let geoCalls=0, geoSuccess,geoFailure,fetchCalls=0;
   const browser={ AbortController, setTimeout, clearTimeout, navigator: {geolocation:{getCurrentPosition(ok,fail){geoCalls++;geoSuccess=ok;geoFailure=fail;}}}, fetch:options.fetch|| (async()=>{fetchCalls++;return {ok:true,json:async()=>({points:zips})};})};
-  init({getElementById:id=>ids[id],querySelectorAll:()=>cards},browser);
-  return {ids,cards,browser,get geoCalls(){return geoCalls}, get fetchCalls(){return fetchCalls},success:coords=>geoSuccess({coords}),fail:e=>geoFailure(e),search:async(value)=>{ids.locationSearch.value=value;await ids.locationSearch.fire('input');}};
+  const doc = {getElementById:id=>ids[id],querySelectorAll:()=>cards, addEventListener:(name,fn)=>{doc[name]=fn;}};
+  if(options.i18n) browser.CubicI18n=options.i18n;
+  init(doc,browser);
+  return {ids,cards,browser,changeLanguage:()=>doc["cubic:languagechange"](),get geoCalls(){return geoCalls}, get fetchCalls(){return fetchCalls},success:coords=>geoSuccess({coords}),fail:e=>geoFailure(e),search:async(value)=>{ids.locationSearch.value=value;await ids.locationSearch.fire('input');}};
 }
 test('permission is requested only on click; denial gives usable manual search', async()=>{
   const f=fixture();assert.equal(f.geoCalls,0);assert.equal(f.fetchCalls,0);
@@ -96,4 +98,22 @@ test('geolocation ranks counters locally and reports distant/approximate results
   assert.match(f.ids.finderStatus.textContent,/closest listed counter/);assert.match(f.ids.finderStatus.textContent,/approximate/);
   assert.equal(f.fetchCalls,0);assert.equal(f.ids.nearestLocations.children.length,3);
   assert.ok(!f.ids.nearestLocations.children.some(c=>c.dataset.id==='cleveland'));
+});
+
+test('switching languages preserves ranked results and input without repeating location or ZIP requests', async()=>{
+  const vm=require('node:vm'), context={window:{}};
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../public/locales/catalog.js'),'utf8'),context);
+  const {catalogs,sourceKeys}=context.window.CubicCatalog;
+  let language='en';
+  const f=fixture({i18n:{t(source,params={}){ const key=sourceKeys[source.trim().replace(/\s+/g,' ').toLowerCase()]; return (catalogs[language][key]||source).replace(/\{(\w+)\}/g,(_,k)=>params[k]); }}});
+  await f.search('60453');
+  const order=f.ids.nearestLocations.children.map(c=>c.dataset.id);
+  language='ar';f.changeLanguage();
+  assert.match(f.ids.finderStatus.textContent,/الفروع الأقرب/);
+  assert.match(f.ids.nearestLocations.children[0].distance.textContent,/ميل/);
+  assert.equal(f.ids.locationSearch.value,'60453');
+  assert.deepEqual(f.ids.nearestLocations.children.map(c=>c.dataset.id),order);
+  assert.equal(f.fetchCalls,1);assert.equal(f.geoCalls,0);
+  language='en';f.changeLanguage();
+  assert.match(f.ids.finderStatus.textContent,/Closest counters from ZIP 60453/);
 });

@@ -4,11 +4,17 @@
   const form = $("shippingForm");
   const steps = [...form.querySelectorAll("[data-step]")];
   try {
-    const draft = JSON.parse(sessionStorage.getItem("cubicServiceDraft") || "null");
+    const draft = JSON.parse(
+      sessionStorage.getItem("cubicServiceDraft") || "null",
+    );
     if (draft) {
       $("senderName").value = draft.name || "";
       $("contents").value = draft.details || "";
-      $(String(draft.contact || "").includes("@") ? "senderEmail" : "senderPhone").value = draft.contact || "";
+      $(
+        String(draft.contact || "").includes("@")
+          ? "senderEmail"
+          : "senderPhone",
+      ).value = draft.contact || "";
       sessionStorage.removeItem("cubicServiceDraft");
     }
   } catch {}
@@ -43,16 +49,37 @@
   }
   function updateBranch() {
     const branch = selectedLocation();
-    $("sideName").textContent = branch ? branch.name : "Choose a location";
-    $("sideAddress").textContent = branch
-      ? branch.address
-      : "Your request will go to the location you select.";
+    if (window.CubicI18n) {
+      window.CubicI18n.setText(
+        $("sideName"),
+        branch ? "{name}" : "Choose a location",
+        { name: branch?.name },
+      );
+      window.CubicI18n.setText(
+        $("sideAddress"),
+        branch
+          ? "{address}"
+          : "Your request will go to the location you select.",
+        { address: branch?.address },
+      );
+      $("sideName").dir = branch ? "ltr" : "auto";
+      $("sideAddress").dir = branch ? "ltr" : "auto";
+    } else {
+      $("sideName").textContent = branch ? branch.name : "Choose a location";
+      $("sideAddress").textContent = branch
+        ? branch.address
+        : "Your request will go to the location you select.";
+    }
     for (const prefix of ["side", "receipt"]) {
       $(prefix + "Call").hidden = !branch?.tel;
       $(prefix + "Map").hidden = !branch;
       if (branch) {
         $(prefix + "Call").href = "tel:" + branch.tel;
-        $(prefix + "Call").textContent = "Call " + branch.phone;
+        if (window.CubicI18n)
+          window.CubicI18n.setText($(prefix + "Call"), "Call {phone}", {
+            phone: branch.phone,
+          });
+        else $(prefix + "Call").textContent = "Call " + branch.phone;
         $(prefix + "Map").href = branch.map;
       }
     }
@@ -99,7 +126,10 @@
     block.className = "review-block";
     const edit = document.createElement("button");
     edit.type = "button";
-    edit.textContent = "Edit " + title.toLowerCase();
+    edit.textContent =
+      window.CubicI18n?.t("Edit {section}", {
+        section: window.CubicI18n.t(title),
+      }) || "Edit " + title.toLowerCase();
     edit.addEventListener("click", () => showStep(editStep));
     const heading = document.createElement("h3");
     heading.textContent = title;
@@ -108,12 +138,19 @@
       const dt = document.createElement("dt"),
         dd = document.createElement("dd");
       dt.textContent = label;
-      dd.textContent = text || "Not provided";
+      dd.textContent =
+        text || window.CubicI18n?.t("Not provided") || "Not provided";
+      dd.setAttribute("translate", "no");
+      dd.dir = "auto";
       dl.append(dt, dd);
     });
     block.append(edit, heading, dl);
     $("review").append(block);
   }
+  const tr = (s, params) => window.CubicI18n?.t(s, params) || s;
+  document.addEventListener("cubic:languagechange", () => {
+    if (step === 2) renderReview();
+  });
   function renderReview() {
     const data = buildPayload(),
       branch = selectedLocation();
@@ -121,7 +158,7 @@
     addReview(
       "Shipment",
       [
-        ["Request", isQuote() ? "Quote first" : "Prepare a drop-off"],
+        ["Request", isQuote() ? tr("Quote first") : tr("Prepare a drop-off")],
         ["Counter", branch.name + "\n" + branch.address],
         [
           "Destination",
@@ -131,34 +168,56 @@
         ],
         [
           "Contents",
-          data.shipmentType +
+          tr(data.shipmentType) +
             " · " +
-            data.pieces +
-            " piece(s)\n" +
+            tr("Pieces: {count}", { count: data.pieces }) +
+            "\n" +
             data.contents,
         ],
         [
           "Weight and size",
           [
-            data.weight || "Weight: staff to confirm",
-            data.dimensions || "Size: staff to confirm",
+            value("weight")
+              ? value("weight") + " " + tr(value("weightUnit"))
+              : tr("Weight: staff to confirm"),
+            ["length", "width", "height"]
+              .filter((k) => value(k))
+              .map(
+                (k) =>
+                  tr(k[0].toUpperCase() + k.slice(1)) +
+                  ": " +
+                  value(k) +
+                  " " +
+                  tr(value("sizeUnit")),
+              )
+              .join(window.CubicI18n?.language === "ar" ? "، " : ", ") ||
+              tr("Size: staff to confirm"),
           ].join("\n"),
         ],
         [
           "Handoff",
           data.handoff === "pickup-request"
-            ? "Ask about pickup — not booked"
-            : "Bring to counter",
+            ? tr("Ask about pickup — not booked")
+            : tr("Bring to counter"),
         ],
         [
           "Packing",
           {
-            needed: "Packing help needed",
-            packed: "Already packed",
-            unsure: "Please advise",
+            needed: tr("Packing help needed"),
+            packed: tr("Already packed"),
+            unsure: tr("Please advise"),
           }[data.packing],
         ],
-        ["Shipping date", data.readyDate || "To be confirmed"],
+        [
+          "Shipping date",
+          data.readyDate
+            ? new Intl.DateTimeFormat(window.CubicI18n?.language || "en", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }).format(new Date(data.readyDate + "T12:00:00"))
+            : tr("To be confirmed"),
+        ],
       ],
       0,
     );
@@ -202,7 +261,7 @@
             .join("\n"),
         ],
       );
-    entries.push(["Additional notes", value("notes") || "None"]);
+    entries.push(["Additional notes", value("notes") || tr("None")]);
     addReview("Contact details", entries, 1);
   }
   function showStep(next, focus = true) {

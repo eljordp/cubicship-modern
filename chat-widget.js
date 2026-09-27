@@ -249,7 +249,7 @@
       if (!faq) return;
       body.insertAdjacentHTML(
         "beforeend",
-        message(escapeHtml(faq.label), "user"),
+        message(escapeHtml(window.CubicI18n?.t(faq.label) || faq.label), "user"),
       );
       body.insertAdjacentHTML("beforeend", message(escapeHtml(faq.answer)));
       if (faq.request) {

@@ -44,9 +44,7 @@
       banner.replaceChildren();
       const message = document.createElement("p");
       message.textContent =
-        document.documentElement.lang === "es"
-          ? "Las solicitudes en línea no están disponibles temporalmente. Llame a su mostrador para iniciar un envío o una consulta."
-          : "Online requests are temporarily unavailable. Call your counter to start a shipment or service inquiry.";
+        "Online requests are temporarily unavailable. Call your counter to start a shipment or service inquiry.";
       const link = document.createElement("a");
       link.href = "/dhl-locations.html";
       link.className = "cs-btn";

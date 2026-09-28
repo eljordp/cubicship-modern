@@ -1431,7 +1431,8 @@ function applyAgentReview(agent, body, user) {
 module.exports = async function handler(req, res) {
   const user = await requireUser(req, res);
   if (!user) return;
-  const type = clean(req.query?.type);
+  const type = clean(req.query?.type || new URL(req.url, "https://cubicship.com").searchParams.get("type"));
+  if (type === "crm") return require("./_crm").staffHandler(req, res, user);
 
   if (req.method === "GET") {
     if (type === "employee-dashboard") {

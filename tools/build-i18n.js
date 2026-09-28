@@ -203,6 +203,18 @@ for (const file of pages) {
     script.src = src;
     document.head.append(script);
   }
+  // Preserve GA on public and account-order pages; exclude private status/recovery links.
+  for (const el of document.querySelectorAll('script[src="/analytics.js"],script[src="analytics.js"]')) el.remove();
+  const privatePage = ["profile.html", "request-status.html", "account-help.html", "auth/callback.html"].includes(file);
+  if (!privatePage || file === "profile.html") {
+    const analytics = document.createElement("script"); analytics.src = "/analytics.js"; analytics.defer = true; document.head.append(analytics);
+  }
+  if (!privatePage) {
+    for (const src of ["/customer-copy.js", "/customer-capture.js"]) {
+      const el = document.createElement("script"); el.src = src; el.defer = true; document.head.append(el);
+    }
+    const css = document.createElement("link"); css.rel = "stylesheet"; css.href = "/customer-capture.css"; document.head.append(css);
+  }
   const target = document.querySelector(".cs-header");
   if (target) {
     const label = document.createElement("label");

@@ -1095,7 +1095,7 @@
           <h1 id="portalHeroTitle">Role-based CubicShip command center.</h1>
           <p class="lead" id="portalHeroLead">Owner, manager, and employee accounts use the same secure portal. What appears after login depends on the role CubicShip ownership assigned to the account.</p>
           <div class="button-row">
-            <a class="btn btn-primary" href="https://www.cognitoforms.com/cubicpackandship/getaquote/0-all-entries" target="_blank" rel="noopener">Open Quote Inbox</a>
+            <a class="btn btn-primary" href="/crm.html">Open customer CRM</a>
             <a class="btn btn-secondary" href="https://www.cognitoforms.com/CUBICPACKANDSHIP/GetAQuote" target="_blank" rel="noopener">Open Public Quote Form</a>
             <a class="btn btn-secondary" href="portal.html?screen=opl#oplOperations">Open Branch OPL</a>
             <a class="btn btn-secondary" href="#reply-desk">Build Reply</a>
@@ -1109,7 +1109,7 @@
 
       <section class="grid" id="staffLaunchTools" aria-label="Staff launch tools">
         <article class="card">
-          <h2>Quote Inbox</h2>
+          <h2>Customer CRM</h2><p>Track inquiries, customers and follow-ups across the website.</p><p><a class="btn btn-primary" href="/crm.html">Open customer CRM</a></p><h3>External freight inbox</h3>
           <p>Open customer quote submissions and keep follow-up moving from the approved quote inbox.</p>
           <ul>
             <li><a href="https://www.cognitoforms.com/cubicpackandship/getaquote/0-all-entries" target="_blank" rel="noopener">Open all entries</a></li>
@@ -5730,6 +5730,7 @@ One counter. Endless solutions.`;
       window.location.href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
     });
 
+    let replyAttemptId = crypto.randomUUID();
     document.getElementById("sendPortal").addEventListener("click", async () => {
       updatePreview();
       if (!validateQuoteReplyFields()) return;
@@ -5742,13 +5743,15 @@ One counter. Endless solutions.`;
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            requestId: replyAttemptId,
             to: fields.customerEmail.value.trim(),
             subject: `Cubic Ship quote - ${fields.serviceType.value}`,
             message: preview.value,
           }),
         });
         const result = await response.json();
-        status.textContent = result.ok ? "Quote reply sent." : result.error;
+        status.textContent = result.ok ? "Quote reply accepted by the email provider and saved in the CRM." : result.error;
+        if (result.ok) replyAttemptId = crypto.randomUUID();
       } catch (error) {
         status.textContent = "Could not reach the portal email service.";
       }

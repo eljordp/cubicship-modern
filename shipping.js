@@ -108,6 +108,8 @@
       ...data,
       intakeChannel: "online",
       requestId,
+      crmLanguage: window.CubicI18n?.language || "en",
+      crmAttribution: JSON.stringify(window.CubicAnalytics?.attribution() || {}),
       senderCountry: data.senderCountry || "United States",
       weight: data.weight ? `${data.weight} ${data.weightUnit}` : "",
       dimensions: dimensions(),
@@ -266,6 +268,7 @@
   }
   function showStep(next, focus = true) {
     step = next;
+    window.CubicAnalytics?.event("shipment_step_" + (step + 1));
     fail("");
     steps.forEach((section, i) => (section.hidden = i !== step));
     document.querySelectorAll(".steps li").forEach((li, i) => {
@@ -324,6 +327,7 @@
           result.error ||
             "We could not confirm your request. Please try again or call your counter.",
         );
+      window.CubicAnalytics?.saved("shipping", requestId, branch.id);
       $("requestCode").textContent = result.shipment.number;
       if (result.shipment.statusUrl) {
         $("receiptStatus").href = result.shipment.statusUrl;
@@ -342,6 +346,7 @@
       $("receipt").focus();
       form.reset();
     } catch (error) {
+      window.CubicAnalytics?.event("form_error");
       fail(error.message);
     } finally {
       sending = false;

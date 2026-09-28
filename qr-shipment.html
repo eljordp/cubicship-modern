@@ -1069,6 +1069,7 @@
       function payload() {
         return {
           companyWebsite: value("companyWebsite"),
+          crmLanguage: document.documentElement.lang || "en",
           locationId: value("locationId"),
           senderName: value("senderName"),
           senderCompany: value("senderCompany"),
@@ -1112,6 +1113,7 @@
             .catch(() => ({ ok: false, error: L().unexpected }));
           if (!response.ok || result.ok === false)
             throw new Error(result.error || L().failed);
+          window.CubicAnalytics?.saved("counter_intake", result.shipment?.id || result.shipment?.number, document.getElementById("locationId")?.value || "");
           form.reset();
           setLocationFromUrl();
           document.getElementById("senderCountry").value = "United States";

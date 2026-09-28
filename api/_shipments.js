@@ -120,6 +120,8 @@ async function writeShipments(shipments, user = null) {
           cacheControlMaxAge: 60,
         },
       );
+      // The durable shipment write remains authoritative. CRM sync is recoverable.
+      await require("./_crm").syncChanged(merged, baseline.original);
       snapshots.set(shipments, {
         original: clone(shipments),
         current: clone(merged),

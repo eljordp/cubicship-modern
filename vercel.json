@@ -95,6 +95,22 @@
     {
       "source": "/api/service-request",
       "destination": "/api/customer-shipments?publicAction=service-request"
+    },
+    {
+      "source": "/api/crm",
+      "destination": "/api/reports?type=crm"
+    },
+    {
+      "source": "/api/crm-event",
+      "destination": "/api/customer-shipments?publicAction=crm-event"
+    },
+    {
+      "source": "/api/crm-lead",
+      "destination": "/api/customer-shipments?publicAction=crm-lead"
+    },
+    {
+      "source": "/api/crm-unsubscribe",
+      "destination": "/api/customer-shipments?publicAction=crm-unsubscribe"
     }
   ]
 }

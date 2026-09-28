@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="referrer" content="same-origin" />
+    <title>Customer CRM · CubicShip</title>
+    <link rel="stylesheet" href="/crm.css" />
+    <script src="/crm.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/portal.html"
+        ><img src="/logo-160.png" alt="" /><span>Cubic <b>Ship</b></span></a
+      ><span class="header-label">CUSTOMER CRM</span
+      ><a class="back" href="/portal.html">Back to admin ↗</a>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">EVERY REQUEST. A CLEAR NEXT STEP.</p>
+          <h1>Keep the conversation moving.</h1>
+          <p class="muted">
+            One customer history. A follow-up for every opportunity.
+          </p>
+        </div>
+        <button id="sync">Sync inquiries</button>
+      </section>
+      <p id="notice" role="status" aria-live="polite">
+        Loading your workspace…
+      </p>
+      <section id="login" hidden class="panel">
+        <h2>Sign in to continue</h2>
+        <p>Use your existing CubicShip owner or staff account.</p>
+        <form id="loginForm">
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="username"
+              required /></label
+          ><label
+            >Password<input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required /></label
+          ><button class="primary">Sign in</button>
+        </form>
+      </section>
+      <div id="app" hidden>
+        <nav class="tabs" aria-label="CRM views">
+          <button data-view="inbox" aria-current="page">Inbox</button
+          ><button data-view="today">Due soon</button
+          ><button data-view="contacts">Customers</button
+          ><button data-view="reports">Reports</button
+          ><button data-view="import">Import freight</button>
+        </nav>
+        <section id="inbox">
+          <div class="filters panel">
+            <label
+              >Search customers<input
+                id="search"
+                type="search"
+                placeholder="Name, email or phone" /></label
+            ><label
+              >Stage<select id="stage">
+                <option value="">All stages</option>
+                <option value="new">New</option>
+                <option value="contacted">Contacted</option>
+                <option value="quote_sent">Quote sent</option>
+                <option value="follow_up">Follow-up</option>
+                <option value="won">Won</option>
+                <option value="lost">Lost</option>
+              </select></label
+            ><label
+              >Location<select id="branch">
+                <option value="">All accessible locations</option>
+              </select></label
+            ><label
+              >Source<select id="source">
+                <option value="">All sources</option>
+                <option value="website_shipping">Shipping</option>
+                <option value="website_service">Services</option>
+                <option value="website_callback">Email help</option>
+                <option value="external_freight">Freight import</option>
+                <option value="staff_email">Staff email</option>
+              </select></label
+            ><label
+              >Language<select id="language">
+                <option value="">All languages</option><option value="unknown">Not recorded</option>
+              </select></label
+            >
+          </div>
+          <div class="list-heading">
+            <h2 id="listTitle">Inquiry inbox</h2>
+            <p id="count" class="muted"></p>
+          </div>
+          <div class="panel table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer / request</th>
+                  <th>Location / source</th>
+                  <th>Stage</th>
+                  <th>Owner / follow-up</th>
+                  <th>Received</th>
+                  <th><span class="sr-only">Open</span></th>
+                </tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+            <p id="empty" hidden>No inquiries match these filters.</p>
+          </div>
+          <div class="pager">
+            <button id="previous">← Previous</button><span id="pageLabel"></span
+            ><button id="next">Next →</button>
+          </div>
+        </section>
+        <section id="reports" hidden>
+          <div class="list-heading">
+            <h2>Activity & conversion</h2>
+            <button id="refreshReports">Refresh</button>
+          </div>
+          <p class="muted">
+            Last 30 days. Counts are actions, not unique people. Browser
+            activity is approximate; saved inquiries come from the server. No
+            personal fields enter analytics.
+          </p>
+          <div id="metricCards" class="stats"></div>
+          <div class="panel table-wrap">
+            <h3>By language and location</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Language</th>
+                  <th>Location</th>
+                  <th>Event</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody id="metricRows"></tbody>
+            </table>
+          </div>
+          <div class="panel table-wrap">
+            <h3>Inquiry outcomes by source, language, location and campaign</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Source · language · location · campaign</th>
+                  <th>Inquiries</th>
+                  <th>Won</th>
+                  <th>Lost</th>
+                  <th>Won value</th>
+                </tr>
+              </thead>
+              <tbody id="pipelineRows"></tbody>
+            </table>
+          </div>
+          <p id="metricNote" class="muted"></p>
+        </section>
+        <section id="import" hidden class="panel import">
+          <p class="eyebrow">EXTERNAL FREIGHT</p>
+          <h2>Bring Cognito inquiries into the CRM.</h2>
+          <p>
+            Export entries from the
+            <a
+              href="https://www.cognitoforms.com/cubicpackandship/getaquote/0-all-entries"
+              target="_blank"
+              rel="noopener"
+              >freight inbox</a
+            >, then format them using this template. This is a manual import;
+            automatic Cognito sync is not connected.
+          </p>
+          <p>
+            Keep each freight entry’s original ID. Re-importing the same ID will
+            not create another inquiry. Imports do not opt customers into
+            marketing or send emails.
+          </p>
+          <a href="/crm-import-template.csv" download>Download CSV template</a
+          ><label
+            >CSV file (maximum 100 rows)<input
+              id="importFile"
+              type="file"
+              accept=".csv,text/csv"
+          /></label>
+          <p class="muted">
+            Required columns: external_id, email, branch_id. Optional: name,
+            phone, title, details, language. Managers can import only their
+            branch.
+          </p>
+          <p id="branchCodes"></p>
+          <div id="importPreview" class="table-wrap"></div>
+          <button id="importConfirm" class="primary" disabled>
+            Import reviewed rows
+          </button>
+          <p id="importStatus" role="status"></p>
+        </section>
+      </div>
+    </main>
+    <dialog id="detail" aria-labelledby="detailTitle">
+      <div class="detail-top">
+        <div>
+          <p class="eyebrow">CUSTOMER REQUEST</p>
+          <h2 id="detailTitle"></h2>
+        </div>
+        <button id="closeDetail" aria-label="Close customer details">×</button>
+      </div>
+      <p id="detailStatus" role="status"></p>
+      <div id="detailBody"></div>
+    </dialog>
+  </body>
+</html>

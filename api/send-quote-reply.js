@@ -1,94 +1,81 @@
-const requiredFields = ["to", "subject", "message"];
-const { requireUser } = require("./_portal-auth");
-
-function json(res, status, body) {
-  res.statusCode = status;
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(body));
-}
-
-function clean(value) {
-  return String(value || "").trim();
-}
-
-function isEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
+const crypto = require("node:crypto");
+const { requireUser, json, readBody } = require("./_portal-auth");
+const { isDemoUser } = require("./_demo-data");
+const { db, checked, originAllowed, leadFor } = require("./_crm");
 module.exports = async function handler(req, res) {
-  if (req.method !== "POST") {
+  res.setHeader("Cache-Control", "no-store");
+  if (req.method !== "POST")
     return json(res, 405, { ok: false, error: "Method not allowed" });
-  }
-
   const user = await requireUser(req, res);
   if (!user) return;
-
-  let body = {};
+  if (isDemoUser(user) || !originAllowed(req))
+    return json(res, 403, {
+      ok: false,
+      error: "Use an authorized staff account on CubicShip.",
+    });
   try {
-    body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  } catch (error) {
-    return json(res, 400, { ok: false, error: "Request body must be valid JSON." });
-  }
-  const missing = requiredFields.filter((field) => !clean(body[field]));
-  if (missing.length) {
-    return json(res, 400, { ok: false, error: `Missing required fields: ${missing.join(", ")}` });
-  }
-
-  const to = clean(body.to);
-  if (!isEmail(to)) {
-    return json(res, 400, { ok: false, error: "Customer email is not valid." });
-  }
-
-  if (!process.env.RESEND_API_KEY || !process.env.QUOTE_FROM_EMAIL) {
-    return json(res, 501, {
+    const b = await readBody(req),
+      to = String(b.to || "")
+        .trim()
+        .toLowerCase();
+    if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to) ||
+      to.length > 254 ||
+      !String(b.subject || "").trim() ||
+      !String(b.message || "").trim()
+    )
+      return json(res, 400, {
+        ok: false,
+        error: "A valid customer email, subject and message are required.",
+      });
+    let query = db()
+      .from("crm_leads")
+      .select("id,contact:crm_contacts!inner(email)")
+      .eq("contact.email", to)
+      .order("created_at", { ascending: false })
+      .limit(1);
+    if (user.role !== "owner")
+      query = query.eq("branch_id", user.locationId || "__none__");
+    const rows = await checked(query);
+    let id = rows[0]?.id;
+    if (!id) {
+      const r = await checked(
+        db().rpc("crm_ingest", {
+          p: {
+            source_key:
+              "staff-email:" +
+              crypto
+                .createHash("sha256")
+                .update((user.locationId || "owner") + ":" + to)
+                .digest("hex"),
+            email: to,
+            source: "staff_email",
+            branch_id: user.locationId || "",
+            language: "en",
+            title: "Staff quote reply",
+          },
+        }),
+      );
+      id = r.id;
+    }
+    const lead = await leadFor(id, user);
+    if (!lead)
+      return json(res, 403, {
+        ok: false,
+        error: "This request belongs to another branch.",
+      });
+    const result = await require("./_crm-email")(lead, user, {
+      ...b,
+      requestId: b.requestId || crypto.randomUUID(),
+    });
+    return json(res, 200, result);
+  } catch (e) {
+    console.error("Quote reply failed", e.code || "send");
+    return json(res, 503, {
       ok: false,
-      error: "Email sending is not configured yet. Add RESEND_API_KEY and QUOTE_FROM_EMAIL in Vercel.",
+      error: e.code
+        ? "Could not save the email history. Please try again."
+        : e.message || "Email could not be sent.",
     });
   }
-
-  const from = process.env.QUOTE_FROM_EMAIL;
-  const replyTo = process.env.QUOTE_REPLY_TO || "info@cubicship.com";
-  const subject = clean(body.subject);
-  const text = clean(body.message);
-  const operatorName = clean(user.name) || "Cubic Ship";
-  const operatorEmail = clean(user.email);
-  const html = text
-    .split(/\n{2,}/)
-    .map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`)
-    .join("");
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to,
-      reply_to: replyTo,
-      subject,
-      text,
-      html: `${html}<p style="color:#64748b;font-size:12px">Sent by ${escapeHtml(operatorName)}${operatorEmail ? ` (${escapeHtml(operatorEmail)})` : ""} through the Cubic Ship operator portal.</p>`,
-    }),
-  });
-
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    return json(res, response.status, {
-      ok: false,
-      error: result.message || "Email provider rejected the request.",
-    });
-  }
-
-  return json(res, 200, { ok: true, id: result.id || null });
 };

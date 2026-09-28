@@ -1942,6 +1942,7 @@
           const result = await api("/api/customer-shipments", {
             method: "POST",
             body: JSON.stringify({
+              crmLanguage: window.CubicI18n?.language || "en",
               customerPhone: document
                 .getElementById("customerPhone")
                 .value.trim(),
@@ -2004,6 +2005,7 @@
                 .value.trim(),
             }),
           });
+          window.CubicAnalytics?.saved("account_order", result.shipment?.id || result.shipment?.number, document.getElementById("locationId").value);
           shipmentForm.reset();
           document.getElementById("pieces").value = "1";
           document.getElementById("customerPhone").value =

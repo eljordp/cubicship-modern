@@ -1,0 +1,132 @@
+.cs-help-trigger {
+  display: block;
+  margin: 18px auto;
+  padding: 12px 20px;
+  border: 1px solid #9e4a13;
+  border-radius: 999px;
+  background: #fff7ef;
+  color: #713308;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  max-width: calc(100% - 32px);
+}
+.cs-help {
+  margin: auto;
+  inset: 0;
+  box-sizing: border-box;
+  width: min(480px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  border: 1px solid #dae1ea;
+  border-radius: 20px;
+  padding: 28px;
+  color: #172338;
+  background: #fff;
+  box-shadow: 0 24px 80px #06152c55;
+  font:
+    16px/1.55 system-ui,
+    sans-serif;
+  overscroll-behavior: contain;
+  text-align: start;
+}
+.cs-help::backdrop {
+  background: #08142599;
+}
+.cs-help h2 {
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 8px 0 12px;
+  margin-inline-end: 30px;
+  letter-spacing: normal;
+}
+.cs-help p {
+  margin: 12px 0;
+}
+.cs-help-close {
+  float: inline-end;
+  min-width: 40px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf1f6;
+  color: #172338;
+  font-size: 25px;
+  cursor: pointer;
+}
+.cs-help form {
+  display: grid;
+  gap: 12px;
+}
+.cs-help form[hidden] {
+  display: none;
+}
+.cs-help label {
+  display: grid;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.cs-help input:not([type="checkbox"]),
+.cs-help select,
+.cs-help textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #a8b5c6;
+  border-radius: 9px;
+  padding: 11px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #172338;
+  background: #fff;
+}
+.cs-help input:focus-visible,
+.cs-help select:focus-visible,
+.cs-help textarea:focus-visible,
+.cs-help button:focus-visible {
+  outline: 3px solid #267bd8;
+  outline-offset: 2px;
+}
+.cs-help .cs-help-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+}
+.cs-help-check input {
+  margin-top: 5px;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  accent-color: #a64b10;
+}
+.cs-help .cs-help-small {
+  font-size: 12px;
+  color: #4c5d73;
+}
+.cs-help-submit,
+.cs-help-optout {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 9px;
+  background: #9f4306;
+  color: #fff;
+  font: 600 16px/1.4 system-ui;
+  cursor: pointer;
+}
+.cs-help button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.cs-help-result {
+  padding: 12px;
+  border-radius: 8px;
+  background: #edf5ed;
+}
+.cs-help [hidden] {
+  display: none !important;
+}

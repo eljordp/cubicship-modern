@@ -24,7 +24,7 @@ function validateOnlineIntake(body) {
     return "Confirm your request details before sending.";
   for (const [key, value] of Object.entries(body)) {
     if (typeof value !== "string") return "Request fields must be text.";
-    const limit = key === "notes" ? 3000 : key === "contents" ? 1500 : 240;
+    const limit = key === "notes" ? 3000 : key === "contents" ? 1500 : key === "crmAttribution" ? 400 : 240;
     if (value.length > limit) return "One of the request fields is too long.";
   }
   const required = [

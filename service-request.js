@@ -65,11 +65,14 @@
           body: JSON.stringify({
             ...Object.fromEntries(new FormData(form)),
             requestId,
+            crmLanguage: window.CubicI18n?.language || "en",
+            crmAttribution: JSON.stringify(window.CubicAnalytics?.attribution() || {}),
           }),
         }),
         data = await response.json();
-      if (!response.ok || !data.ok)
+      if (!response.ok || !data.ok || !data.shipment?.number)
         throw Error(data.error || "Could not confirm your request.");
+      window.CubicAnalytics?.saved("service", requestId, form.elements.locationId?.value || "");
       $("serviceCode").textContent = data.shipment.number;
       $("serviceBranch").textContent = data.shipment.locationName;
       $("serviceStatus").href = data.shipment.statusUrl;
@@ -77,6 +80,7 @@
       $("serviceReceipt").hidden = false;
       $("serviceReceipt").focus();
     } catch (error) {
+      window.CubicAnalytics?.event("form_error");
       showError(error.message);
     } finally {
       $("serviceSend").disabled = false;

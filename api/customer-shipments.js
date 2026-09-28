@@ -509,6 +509,8 @@ async function createQrShipment(req, res) {
     customerId: `qr_${Date.now().toString(36)}`,
     customerName: sender.name,
     customerEmail: sender.email || "counter-intake@cubicship.com",
+    crmLanguage: require("./_crm").language(body.crmLanguage),
+    crmAttribution: require("./_crm").attribution(body.crmAttribution),
     customerPhone: sender.phone,
     locationId: location.id,
     locationName: location.name,
@@ -672,6 +674,7 @@ module.exports = async function handler(req, res) {
   );
   // Keep public URLs stable while sharing the existing request function.
   const action = url.searchParams.get("publicAction");
+  if (["crm-event", "crm-lead", "crm-unsubscribe"].includes(action)) return require("./_crm").publicHandler(req, res, action);
   if (action === "customer-recovery") return require("./_customer-recovery")(req, res);
   if (action === "intake-availability") return require("./_intake-availability")(req, res);
   if (action === "request-status") return require("./_request-status")(req, res);
@@ -819,6 +822,8 @@ module.exports = async function handler(req, res) {
       customerId: customer.id,
       customerName: customer.name,
       customerEmail: customer.email,
+      crmLanguage: require("./_crm").language(body.crmLanguage),
+      crmAttribution: require("./_crm").attribution(body.crmAttribution),
       customerPhone: clean(body.customerPhone || customer.phone),
       locationId: location.id,
       locationName: location.name,

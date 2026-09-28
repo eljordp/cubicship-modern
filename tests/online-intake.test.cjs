@@ -39,6 +39,7 @@ function harness(options = {}) {
     res.end(JSON.stringify(data));
   };
   const mocks = {
+    "./_crm": require("../api/_crm"),
     crypto: require("crypto"),
     "./_customer-auth": {
       clean: (v) => String(v || "").trim(),

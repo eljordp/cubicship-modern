@@ -228,7 +228,7 @@
       </section>
     `;
     document.body.appendChild(root);
-    initSellerOffer();
+    // Email-help offer is shared across public pages by customer-capture.js.
 
     const toggle = root.querySelector(".chat-toggle");
     const close = root.querySelector(".chat-close");

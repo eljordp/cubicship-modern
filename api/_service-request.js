@@ -93,6 +93,8 @@ module.exports = async (req, res) => {
       customerId: "guest",
       customerName: b.name.trim(),
       customerEmail: email,
+      crmLanguage: require("./_crm").language(b.crmLanguage),
+      crmAttribution: require("./_crm").attribution(b.crmAttribution),
       customerPhone: b.phone,
       locationId: branch.id,
       locationName: branch.name,

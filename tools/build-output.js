@@ -5,11 +5,12 @@ const output = path.join(root, "public");
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output);
 for (const file of fs.readdirSync(root)) {
-  if (/\.(html|css|js|png|webp|svg|ico|xml|txt)$/.test(file) && fs.statSync(path.join(root, file)).isFile()) {
+  if (/\.(html|css|js|csv|png|webp|svg|ico|xml|txt)$/.test(file) && fs.statSync(path.join(root, file)).isFile()) {
     fs.copyFileSync(path.join(root, file), path.join(output, file));
   }
 }
 for (const folder of ["assets", "auth", "locations", "downloads", "qr-codes"]) {
   fs.cpSync(path.join(root, folder), path.join(output, folder), { recursive: true });
 }
+fs.copyFileSync(path.join(root, "locales/languages.json"), path.join(output, "assets/crm-languages.json"));
 console.log("Public site built; API source, tests, tools and secrets excluded from static output.");

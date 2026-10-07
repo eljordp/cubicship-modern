@@ -1,7 +1,7 @@
 /* Complete customer-help copy for all 18 supported languages. */
 window.CubicHelpCopy = {
   "en": [
-    "Email me about my request",
+    "Contact us",
     "Need help getting started?",
     "Leave your email and tell us what you need. Our team will follow up.",
     "Name (optional)",
@@ -9,7 +9,7 @@ window.CubicHelpCopy = {
     "How can we help? (optional)",
     "Preferred location (optional)",
     "Let the team choose",
-    "Email me",
+    "Send",
     "By sending this form, you ask CubicShip to save your details and contact you about this request.",
     "Also email me CubicShip offers and updates. Optional; unsubscribe at any time.",
     "Privacy information",
@@ -21,7 +21,7 @@ window.CubicHelpCopy = {
     "We save submitted inquiries and contact details so authorized staff can follow up. Marketing email consent is optional and separate. We count public page visits and common actions without recording form contents, precise location or private request links. Contact info@cubicship.com for corrections or deletion. Google Analytics also uses cookies and advertising identifiers to measure visits and saved requests."
   ],
   "es": [
-    "Quiero que me contacten por correo",
+    "Contáctenos",
     "¿Necesita ayuda para empezar?",
     "Déjenos su correo y cuéntenos qué necesita. Nuestro equipo se pondrá en contacto con usted.",
     "Nombre (opcional)",
@@ -29,7 +29,7 @@ window.CubicHelpCopy = {
     "¿En qué podemos ayudarle? (opcional)",
     "Punto de envío de su preferencia (opcional)",
     "Que el equipo elija",
-    "Que me contacten",
+    "Enviar",
     "Al enviar este formulario, usted solicita que CubicShip guarde sus datos y le contacte sobre esta solicitud.",
     "También quiero recibir ofertas y novedades de CubicShip por correo. Es opcional; puedo darme de baja cuando quiera.",
     "Información de privacidad",
@@ -41,7 +41,7 @@ window.CubicHelpCopy = {
     "Guardamos las solicitudes enviadas y los datos de contacto para que el personal autorizado pueda darles seguimiento. Aceptar correos promocionales es opcional y se solicita por separado. Contamos visitas y acciones comunes sin registrar el contenido de los formularios, la ubicación exacta ni los enlaces privados de solicitudes. Para corregir o eliminar sus datos, escriba a info@cubicship.com. Google Analytics también usa cookies e identificadores publicitarios para medir visitas y solicitudes guardadas."
   ],
   "ar": [
-    "تواصلوا معي عبر البريد الإلكتروني",
+    "تواصل معنا",
     "هل تحتاج إلى مساعدة للبدء؟",
     "اترك بريدك الإلكتروني وأخبرنا بما تحتاج إليه. سيتواصل معك فريقنا.",
     "الاسم (اختياري)",
@@ -49,7 +49,7 @@ window.CubicHelpCopy = {
     "كيف يمكننا مساعدتك؟ (اختياري)",
     "الفرع المفضل (اختياري)",
     "دع الفريق يختار",
-    "أرسل الطلب",
+    "إرسال",
     "بإرسال هذا النموذج، تطلب من CubicShip حفظ بياناتك والتواصل معك بشأن هذا الطلب.",
     "أرغب أيضًا في تلقي عروض وأخبار CubicShip عبر البريد الإلكتروني. هذا اختياري ويمكنني إلغاء الاشتراك في أي وقت.",
     "معلومات الخصوصية",
@@ -61,7 +61,7 @@ window.CubicHelpCopy = {
     "نحفظ الطلبات المرسلة وبيانات التواصل ليتمكن الموظفون المخوّلون من متابعتها. الموافقة على الرسائل التسويقية اختيارية ومنفصلة. نحصي زيارات الصفحات العامة والإجراءات الشائعة دون تسجيل محتوى النماذج أو الموقع الدقيق أو روابط الطلبات الخاصة. لتصحيح بياناتك أو حذفها، راسل info@cubicship.com. يستخدم Google Analytics أيضًا ملفات تعريف الارتباط ومعرّفات الإعلانات لقياس الزيارات والطلبات المحفوظة."
   ],
   "pl": [
-    "Proszę o kontakt e-mailowy",
+    "Skontaktuj się z nami",
     "Potrzebujesz pomocy?",
     "Zostaw adres e-mail i opisz, czego potrzebujesz. Nasz zespół się z Tobą skontaktuje.",
     "Imię (opcjonalnie)",
@@ -69,7 +69,7 @@ window.CubicHelpCopy = {
     "W czym możemy pomóc? (opcjonalnie)",
     "Preferowany punkt (opcjonalnie)",
     "Niech zespół wybierze",
-    "Wyślij prośbę",
+    "Wyślij",
     "Wysyłając formularz, prosisz CubicShip o zapisanie danych i kontakt w sprawie tego zgłoszenia.",
     "Chcę też otrzymywać e-mailem oferty i aktualności CubicShip. Zgoda jest dobrowolna i można ją wycofać w każdej chwili.",
     "Informacje o prywatności",
@@ -81,7 +81,7 @@ window.CubicHelpCopy = {
     "Zapisujemy przesłane zgłoszenia i dane kontaktowe, aby upoważnieni pracownicy mogli je obsłużyć. Zgoda marketingowa jest dobrowolna i odrębna. Zliczamy odwiedziny publicznych stron i typowe działania bez zapisywania treści formularzy, dokładnej lokalizacji ani prywatnych linków do zgłoszeń. W sprawie poprawienia lub usunięcia danych napisz na info@cubicship.com. Google Analytics używa również plików cookie i identyfikatorów reklamowych do pomiaru wizyt i zapisanych zapytań."
   ],
   "hi": [
-    "मेरे अनुरोध के बारे में ईमेल करें",
+    "हमसे संपर्क करें",
     "शुरू करने में मदद चाहिए?",
     "अपना ईमेल और अपनी ज़रूरत बताइए। हमारी टीम आपसे संपर्क करेगी।",
     "नाम (वैकल्पिक)",
@@ -89,7 +89,7 @@ window.CubicHelpCopy = {
     "हम कैसे मदद कर सकते हैं? (वैकल्पिक)",
     "पसंदीदा केंद्र (वैकल्पिक)",
     "टीम को चुनने दें",
-    "अनुरोध भेजें",
+    "भेजें",
     "यह फ़ॉर्म भेजकर आप CubicShip से अपनी जानकारी सहेजने और इस अनुरोध के बारे में संपर्क करने के लिए कहते हैं।",
     "मुझे CubicShip के ऑफ़र और नई जानकारी भी ईमेल करें। यह वैकल्पिक है; मैं कभी भी सदस्यता रद्द कर सकता/सकती हूँ।",
     "गोपनीयता की जानकारी",
@@ -101,7 +101,7 @@ window.CubicHelpCopy = {
     "हम भेजे गए अनुरोध और संपर्क जानकारी सहेजते हैं ताकि अधिकृत कर्मचारी आगे सहायता कर सकें। प्रचार वाले ईमेल की सहमति अलग और वैकल्पिक है। हम सार्वजनिक पेजों की विज़िट और सामान्य कार्रवाइयाँ गिनते हैं, लेकिन फ़ॉर्म की सामग्री, सटीक स्थान या निजी अनुरोध लिंक रिकॉर्ड नहीं करते। जानकारी सुधारने या हटाने के लिए info@cubicship.com पर लिखें। Google Analytics विज़िट और सहेजे गए अनुरोधों को मापने के लिए कुकीज़ और विज्ञापन पहचानकर्ताओं का भी उपयोग करता है।"
   ],
   "gu": [
-    "મારા વિનંતી વિશે ઈમેલ કરો",
+    "અમારો સંપર્ક કરો",
     "શરૂ કરવામાં મદદ જોઈએ છે?",
     "તમારું ઈમેલ અને તમને શું જોઈએ છે તે જણાવો. અમારી ટીમ તમારો સંપર્ક કરશે.",
     "નામ (વૈકલ્પિક)",
@@ -109,7 +109,7 @@ window.CubicHelpCopy = {
     "અમે કેવી રીતે મદદ કરી શકીએ? (વૈકલ્પિક)",
     "પસંદગીનું કેન્દ્ર (વૈકલ્પિક)",
     "ટીમને પસંદ કરવા દો",
-    "વિનંતી મોકલો",
+    "મોકલો",
     "આ ફોર્મ મોકલીને તમે CubicShipને તમારી વિગતો સાચવવા અને આ વિનંતી વિશે સંપર્ક કરવા કહો છો.",
     "મને CubicShipની ઑફર અને નવી માહિતી પણ ઈમેલ કરો. આ વૈકલ્પિક છે; હું ગમે ત્યારે બંધ કરી શકું છું.",
     "ગોપનીયતાની માહિતી",
@@ -121,7 +121,7 @@ window.CubicHelpCopy = {
     "અધિકૃત કર્મચારીઓ મદદ કરી શકે તે માટે અમે મોકલેલી વિનંતીઓ અને સંપર્કની વિગતો સાચવીએ છીએ. પ્રચારના ઈમેલ માટેની સંમતિ અલગ અને વૈકલ્પિક છે. અમે જાહેર પેજની મુલાકાતો અને સામાન્ય ક્રિયાઓ ગણીએ છીએ, પરંતુ ફોર્મની સામગ્રી, ચોક્કસ સ્થાન કે ખાનગી વિનંતીની લિંક્સ નોંધતા નથી. માહિતી સુધારવા કે કાઢવા info@cubicship.com પર લખો. Google Analytics મુલાકાતો અને સાચવેલી વિનંતીઓ માપવા માટે કૂકીઝ અને જાહેરાત ઓળખકર્તાઓનો પણ ઉપયોગ કરે છે."
   ],
   "ur": [
-    "میری درخواست کے بارے میں ای میل کریں",
+    "ہم سے رابطہ کریں",
     "شروع کرنے میں مدد چاہیے؟",
     "اپنا ای میل اور اپنی ضرورت بتائیں۔ ہماری ٹیم آپ سے رابطہ کرے گی۔",
     "نام (اختیاری)",
@@ -129,7 +129,7 @@ window.CubicHelpCopy = {
     "ہم کیسے مدد کر سکتے ہیں؟ (اختیاری)",
     "پسندیدہ مرکز (اختیاری)",
     "ٹیم کو انتخاب کرنے دیں",
-    "درخواست بھیجیں",
+    "بھیجیں",
     "یہ فارم بھیج کر آپ CubicShip سے اپنی معلومات محفوظ کرنے اور اس درخواست کے بارے میں رابطہ کرنے کو کہتے ہیں۔",
     "مجھے CubicShip کی پیشکشیں اور خبریں بھی ای میل کریں۔ یہ اختیاری ہے؛ میں کسی بھی وقت رکنیت ختم کر سکتا ہوں۔",
     "رازداری کی معلومات",
@@ -141,7 +141,7 @@ window.CubicHelpCopy = {
     "ہم بھیجی گئی درخواستیں اور رابطے کی معلومات محفوظ کرتے ہیں تاکہ مجاز عملہ پیروی کر سکے۔ تشہیری ای میلز کی اجازت الگ اور اختیاری ہے۔ ہم عوامی صفحات کے دورے اور عام کارروائیاں گنتے ہیں، مگر فارم کا مواد، درست مقام یا درخواست کے نجی لنکس ریکارڈ نہیں کرتے۔ معلومات کی درستگی یا حذف کرنے کے لیے info@cubicship.com پر لکھیں۔ Google Analytics وزٹس اور محفوظ شدہ درخواستوں کی پیمائش کے لیے کوکیز اور اشتہاری شناخت کنندگان بھی استعمال کرتا ہے۔"
   ],
   "zh-Hans": [
-    "请通过邮件联系我",
+    "联系我们",
     "需要帮助吗？",
     "留下您的邮箱，并告诉我们您的需求。我们的团队会与您联系。",
     "姓名（选填）",
@@ -149,7 +149,7 @@ window.CubicHelpCopy = {
     "您需要什么帮助？（选填）",
     "首选服务点（选填）",
     "由团队安排",
-    "提交请求",
+    "发送",
     "提交此表单即表示您请求 CubicShip 保存您的信息，并就此请求与您联系。",
     "我也愿意通过邮件接收 CubicShip 的优惠和最新消息。此项为可选，可随时退订。",
     "隐私说明",
@@ -161,7 +161,7 @@ window.CubicHelpCopy = {
     "我们保存已提交的请求和联系信息，供授权员工跟进。营销邮件的同意是单独且自愿的。我们统计公开页面访问和常用操作，不记录表单内容、精确位置或私人请求链接。如需更正或删除信息，请联系 info@cubicship.com。 Google Analytics 还会使用 Cookie 和广告标识符来统计访问和已保存的请求。"
   ],
   "fil": [
-    "Kontakin ako sa email",
+    "Makipag-ugnayan sa amin",
     "Kailangan ninyo ng tulong?",
     "Iwan ang inyong email at sabihin kung ano ang kailangan ninyo. Kokontakin kayo ng aming team.",
     "Pangalan (opsyonal)",
@@ -169,7 +169,7 @@ window.CubicHelpCopy = {
     "Paano namin kayo matutulungan? (opsyonal)",
     "Gustong lokasyon (opsyonal)",
     "Ang team na ang pumili",
-    "Ipadala ang kahilingan",
+    "Ipadala",
     "Sa pagpapadala ng form na ito, hinihiling ninyo sa CubicShip na itago ang inyong detalye at kontakin kayo tungkol sa kahilingang ito.",
     "Gusto ko ring makatanggap ng mga alok at balita ng CubicShip sa email. Opsyonal ito; maaari akong mag-unsubscribe anumang oras.",
     "Impormasyon sa privacy",
@@ -181,7 +181,7 @@ window.CubicHelpCopy = {
     "Itinatago namin ang mga ipinadalang kahilingan at detalye sa pakikipag-ugnayan upang makapag-follow up ang awtorisadong staff. Hiwalay at opsyonal ang pahintulot para sa marketing email. Binibilang namin ang mga pagbisita sa pampublikong pahina at karaniwang aksiyon nang hindi itinatala ang laman ng form, eksaktong lokasyon o pribadong link ng kahilingan. Para sa pagwawasto o pagbura ng datos, sumulat sa info@cubicship.com. Gumagamit din ang Google Analytics ng cookies at mga advertising identifier para sukatin ang mga pagbisita at na-save na kahilingan."
   ],
   "bn": [
-    "আমার অনুরোধ সম্পর্কে ইমেইল করুন",
+    "আমাদের সাথে যোগাযোগ করুন",
     "শুরু করতে সাহায্য লাগবে?",
     "আপনার ইমেইল দিন এবং কী প্রয়োজন জানান। আমাদের দল আপনার সঙ্গে যোগাযোগ করবে।",
     "নাম (ঐচ্ছিক)",
@@ -189,7 +189,7 @@ window.CubicHelpCopy = {
     "আমরা কীভাবে সাহায্য করতে পারি? (ঐচ্ছিক)",
     "পছন্দের কেন্দ্র (ঐচ্ছিক)",
     "দলকে বেছে নিতে দিন",
-    "অনুরোধ পাঠান",
+    "পাঠান",
     "এই ফর্ম পাঠিয়ে আপনি CubicShip-কে আপনার তথ্য সংরক্ষণ করতে এবং এই অনুরোধ সম্পর্কে যোগাযোগ করতে বলছেন।",
     "আমি CubicShip-এর অফার ও নতুন খবরও ইমেইলে পেতে চাই। এটি ঐচ্ছিক; যেকোনো সময় বন্ধ করতে পারি।",
     "গোপনীয়তার তথ্য",
@@ -201,7 +201,7 @@ window.CubicHelpCopy = {
     "অনুমোদিত কর্মীরা যোগাযোগ করতে পারেন বলে আমরা জমা দেওয়া অনুরোধ ও যোগাযোগের তথ্য সংরক্ষণ করি। প্রচারমূলক ইমেইলের সম্মতি আলাদা ও ঐচ্ছিক। আমরা ফর্মের বিষয়বস্তু, সুনির্দিষ্ট অবস্থান বা ব্যক্তিগত অনুরোধের লিংক রেকর্ড না করে সাধারণ পৃষ্ঠায় ভিজিট ও সাধারণ কাজের সংখ্যা গণনা করি। তথ্য সংশোধন বা মুছতে info@cubicship.com-এ লিখুন। Google Analytics ভিজিট এবং সংরক্ষিত অনুরোধ পরিমাপ করতে কুকি ও বিজ্ঞাপনী শনাক্তকারীও ব্যবহার করে।"
   ],
   "my": [
-    "ကျွန်ုပ်ကို အီးမေးလ်ဖြင့် ဆက်သွယ်ပါ",
+    "ကျွန်ုပ်တို့ကို ဆက်သွယ်ပါ",
     "စတင်ဖို့ အကူအညီလိုပါသလား။",
     "သင့်အီးမေးလ်နှင့် လိုအပ်ချက်ကို ပြောပြပါ။ ကျွန်ုပ်တို့အဖွဲ့က ဆက်သွယ်ပေးပါမည်။",
     "အမည် (မဖြည့်လည်းရသည်)",
@@ -209,7 +209,7 @@ window.CubicHelpCopy = {
     "ဘာကူညီပေးရမလဲ။ (မဖြည့်လည်းရသည်)",
     "နှစ်သက်ရာဆိုင် (မရွေးလည်းရသည်)",
     "အဖွဲ့ကို ရွေးချယ်ခိုင်းမည်",
-    "တောင်းဆိုချက်ပို့မည်",
+    "ပို့ရန်",
     "ဤဖောင်ကို ပို့ခြင်းဖြင့် သင့်အချက်အလက်ကို သိမ်းဆည်းပြီး ဤတောင်းဆိုချက်အကြောင်း ဆက်သွယ်ရန် CubicShip ကို တောင်းဆိုခြင်းဖြစ်သည်။",
     "CubicShip ၏ အထူးအစီအစဉ်များနှင့် သတင်းများကိုလည်း အီးမေးလ်ဖြင့် ရယူလိုသည်။ မဖြစ်မနေ မဟုတ်ပါ။ အချိန်မရွေး ပယ်ဖျက်နိုင်သည်။",
     "ကိုယ်ရေးအချက်အလက်ဆိုင်ရာ အကြောင်းအရာ",
@@ -221,7 +221,7 @@ window.CubicHelpCopy = {
     "ခွင့်ပြုထားသော ဝန်ထမ်းများ ဆက်သွယ်နိုင်ရန် ပို့ထားသော တောင်းဆိုချက်များနှင့် ဆက်သွယ်ရန်အချက်အလက်များကို သိမ်းဆည်းသည်။ ကြော်ငြာအီးမေးလ် ခွင့်ပြုချက်သည် သီးခြားဖြစ်ပြီး မဖြစ်မနေ မဟုတ်ပါ။ ဖောင်ပါအကြောင်းအရာ၊ တိကျသောတည်နေရာ သို့မဟုတ် သီးသန့်တောင်းဆိုချက်လင့်ခ်များကို မှတ်တမ်းမတင်ဘဲ အများပြည်သူစာမျက်နှာ ဝင်ကြည့်မှုနှင့် ပုံမှန်လုပ်ဆောင်မှုအရေအတွက်ကို ရေတွက်သည်။ ပြင်ဆင်ရန် သို့မဟုတ် ဖျက်ရန် info@cubicship.com သို့ ဆက်သွယ်ပါ။ Google Analytics သည် ဝင်ရောက်ကြည့်ရှုမှုများနှင့် သိမ်းဆည်းထားသော တောင်းဆိုမှုများကို တိုင်းတာရန် ကွတ်ကီးများနှင့် ကြော်ငြာဆိုင်ရာ အမှတ်အသားများကိုလည်း အသုံးပြုပါသည်။"
   ],
   "uk": [
-    "Зв’яжіться зі мною електронною поштою",
+    "Зв'яжіться з нами",
     "Потрібна допомога?",
     "Залиште свою електронну адресу й опишіть, що вам потрібно. Наша команда зв’яжеться з вами.",
     "Ім’я (необов’язково)",
@@ -229,7 +229,7 @@ window.CubicHelpCopy = {
     "Чим можемо допомогти? (необов’язково)",
     "Бажаний пункт (необов’язково)",
     "Нехай команда обере",
-    "Надіслати запит",
+    "Надіслати",
     "Надсилаючи цю форму, ви просите CubicShip зберегти ваші дані та зв’язатися з вами щодо цього запиту.",
     "Також хочу отримувати пропозиції та новини CubicShip електронною поштою. Це необов’язково; відписатися можна будь-коли.",
     "Інформація про конфіденційність",
@@ -241,7 +241,7 @@ window.CubicHelpCopy = {
     "Ми зберігаємо надіслані запити й контактні дані, щоб уповноважені працівники могли їх опрацювати. Згода на рекламні листи є окремою та добровільною. Ми підраховуємо відвідування загальнодоступних сторінок і звичайні дії без запису вмісту форм, точного місцезнаходження чи приватних посилань на запити. Для виправлення або видалення даних напишіть на info@cubicship.com. Google Analytics також використовує файли cookie та рекламні ідентифікатори для вимірювання відвідувань і збережених запитів."
   ],
   "vi": [
-    "Liên hệ với tôi qua email",
+    "Liên hệ với chúng tôi",
     "Quý khách cần hỗ trợ?",
     "Để lại email và cho chúng tôi biết nhu cầu của quý khách. Đội ngũ của chúng tôi sẽ liên hệ lại.",
     "Tên (không bắt buộc)",
@@ -249,7 +249,7 @@ window.CubicHelpCopy = {
     "Chúng tôi có thể giúp gì? (không bắt buộc)",
     "Điểm giao dịch mong muốn (không bắt buộc)",
     "Để đội ngũ lựa chọn",
-    "Gửi yêu cầu",
+    "Gửi",
     "Khi gửi biểu mẫu này, quý khách yêu cầu CubicShip lưu thông tin và liên hệ về yêu cầu này.",
     "Tôi cũng muốn nhận ưu đãi và tin mới của CubicShip qua email. Không bắt buộc; có thể hủy đăng ký bất cứ lúc nào.",
     "Thông tin quyền riêng tư",
@@ -261,7 +261,7 @@ window.CubicHelpCopy = {
     "Chúng tôi lưu yêu cầu đã gửi và thông tin liên hệ để nhân viên được ủy quyền có thể hỗ trợ tiếp. Việc đồng ý nhận email quảng cáo là riêng biệt và tự nguyện. Chúng tôi đếm lượt xem trang công khai và thao tác thông thường, không ghi lại nội dung biểu mẫu, vị trí chính xác hay liên kết yêu cầu riêng tư. Để sửa hoặc xóa dữ liệu, hãy liên hệ info@cubicship.com. Google Analytics cũng sử dụng cookie và mã nhận dạng quảng cáo để đo lường lượt truy cập và yêu cầu đã lưu."
   ],
   "ht": [
-    "Kontakte m pa imel",
+    "Kontakte nou",
     "Ou bezwen èd pou kòmanse?",
     "Kite adrès imel ou epi di nou sa ou bezwen. Ekip nou an ap kontakte w.",
     "Non (pa obligatwa)",
@@ -269,7 +269,7 @@ window.CubicHelpCopy = {
     "Ki jan nou ka ede w? (pa obligatwa)",
     "Pwen sèvis ou pito (pa obligatwa)",
     "Kite ekip la chwazi",
-    "Voye demann lan",
+    "Voye",
     "Lè ou voye fòm sa a, ou mande CubicShip pou konsève enfòmasyon ou yo epi kontakte w sou demann sa a.",
     "Mwen vle resevwa òf ak nouvèl CubicShip pa imel tou. Sa pa obligatwa; mwen ka dezabòne nenpòt ki lè.",
     "Enfòmasyon sou vi prive",
@@ -281,7 +281,7 @@ window.CubicHelpCopy = {
     "Nou konsève demann ou voye ak enfòmasyon kontak ou pou anplwaye ki gen otorizasyon ka fè swivi. Konsantman pou imel pwomosyon separe epi li pa obligatwa. Nou konte vizit paj piblik ak aksyon abityèl san nou pa anrejistre sa ki nan fòm yo, pozisyon egzak oswa lyen prive demann yo. Pou korije oswa efase enfòmasyon, ekri info@cubicship.com. Google Analytics itilize bonbon (cookies) ak idantifyan piblisite tou pou mezire vizit ak demann ki anrejistre."
   ],
   "fr": [
-    "Me contacter par e-mail",
+    "Contactez-nous",
     "Besoin d’aide pour commencer ?",
     "Laissez votre e-mail et précisez votre besoin. Notre équipe vous recontactera.",
     "Nom (facultatif)",
@@ -289,7 +289,7 @@ window.CubicHelpCopy = {
     "Comment pouvons-nous vous aider ? (facultatif)",
     "Point de service préféré (facultatif)",
     "Laisser l’équipe choisir",
-    "Envoyer ma demande",
+    "Envoyer",
     "En envoyant ce formulaire, vous demandez à CubicShip de conserver vos coordonnées et de vous contacter au sujet de cette demande.",
     "Je souhaite aussi recevoir les offres et actualités CubicShip par e-mail. Facultatif ; désabonnement possible à tout moment.",
     "Informations sur la confidentialité",
@@ -301,7 +301,7 @@ window.CubicHelpCopy = {
     "Nous conservons les demandes envoyées et les coordonnées afin que le personnel autorisé puisse assurer le suivi. Le consentement aux e-mails commerciaux est distinct et facultatif. Nous comptons les visites de pages publiques et les actions courantes sans enregistrer le contenu des formulaires, la position précise ni les liens privés des demandes. Pour rectifier ou supprimer vos données, écrivez à info@cubicship.com. Google Analytics utilise aussi des cookies et des identifiants publicitaires pour mesurer les visites et les demandes enregistrées."
   ],
   "yo": [
-    "Ẹ kàn sí mi nípasẹ̀ ímeèlì",
+    "Kàn sí wa",
     "Ṣé ẹ nílò ìrànlọ́wọ́ láti bẹ̀rẹ̀?",
     "Ẹ fi àdírẹ́sì ímeèlì yín sílẹ̀, kí ẹ sì sọ ohun tí ẹ nílò. Ẹgbẹ́ wa yóò kàn sí yín.",
     "Orúkọ (kò pọndandan)",
@@ -309,7 +309,7 @@ window.CubicHelpCopy = {
     "Báwo la ṣe lè ràn yín lọ́wọ́? (kò pọndandan)",
     "Ibi iṣẹ́ tí ẹ fẹ́ (kò pọndandan)",
     "Ẹ jẹ́ kí ẹgbẹ́ wa yan",
-    "Fi ìbéèrè ránṣẹ́",
+    "Firanṣẹ́",
     "Nígbà tí ẹ bá fi fọ́ọ̀mù yìí ránṣẹ́, ẹ ń béèrè pé kí CubicShip fi àlàyé yín pamọ́, kí ó sì kàn sí yín nípa ìbéèrè yìí.",
     "Mo tún fẹ́ gba àwọn ìpolówó àti ìròyìn CubicShip nípasẹ̀ ímeèlì. Kò pọndandan; mo lè dá a dúró nígbàkigbà.",
     "Àlàyé nípa ìpamọ́",
@@ -321,7 +321,7 @@ window.CubicHelpCopy = {
     "A ń fi àwọn ìbéèrè tí ẹ ránṣẹ́ àti àlàyé ìbánisọ̀rọ̀ pamọ́ kí àwọn òṣìṣẹ́ tí a fún ní àṣẹ lè tẹ̀lé wọn. Ìyọ̀nda fún ímeèlì ìpolówó yàtọ̀, kò sì pọndandan. A ń ka ìbẹ̀wò sí ojúewé gbogbogbò àti àwọn ìṣe tó wọ́pọ̀ láìkọ ohun inú fọ́ọ̀mù, ibi tí ẹ wà gan-an tàbí àwọn ìjápọ̀ ìbéèrè aládàáni sílẹ̀. Fún àtúnṣe tàbí pípa àlàyé rẹ́, ẹ kọ sí info@cubicship.com. Google Analytics tún ń lo cookies àti àmì ìdánimọ̀ ìpolówó láti wọn ìbẹ̀wò àti àwọn ìbéèrè tí a ti fi pamọ́."
   ],
   "ig": [
-    "Kpọtụrụ m site na imeel",
+    "Kpọtụrụ anyị",
     "Ị chọrọ enyemaka ịmalite?",
     "Hapụ adreesị imeel gị ma gwa anyị ihe ị chọrọ. Ndị otu anyị ga-akpọtụrụ gị.",
     "Aha (ọ bụghị iwu)",
@@ -329,7 +329,7 @@ window.CubicHelpCopy = {
     "Olee otu anyị ga-esi nyere gị aka? (ọ bụghị iwu)",
     "Ebe ọrụ masịrị gị (ọ bụghị iwu)",
     "Ka ndị otu họrọ",
-    "Zipu arịrịọ",
+    "Zipu",
     "Mgbe ị zipuru fọm a, ị na-arịọ CubicShip ka o chekwaa ozi gị ma kpọtụrụ gị gbasara arịrịọ a.",
     "Achọrọ m ịnata onyinye na akụkọ CubicShip site na imeel. Ọ bụghị iwu; enwere m ike ịkwụsị ya oge ọ bụla.",
     "Ozi gbasara nzuzo",
@@ -341,7 +341,7 @@ window.CubicHelpCopy = {
     "Anyị na-echekwa arịrịọ ezigara na ozi kọntaktị ka ndị ọrụ nwere ikike nwee ike iso ha. Nkwenye maka imeel mgbasa ozi dị iche, ọ bụghịkwa iwu. Anyị na-agụ nleta ibe ọha na ihe ndị a na-emekarị n’enweghị idekọ ihe dị na fọm, kpọmkwem ebe mmadụ nọ ma ọ bụ njikọ arịrịọ nkeonwe. Iji dozie ma ọ bụ hichapụ ozi, detara info@cubicship.com. Google Analytics na-ejikwa kuki na njirimara mgbasa ozi tụọ nleta na arịrịọ echekwara."
   ],
   "ha": [
-    "Ku tuntube ni ta imel",
+    "Tuntuɓe mu",
     "Kuna buƙatar taimako don farawa?",
     "Ku bar adireshin imel ɗinku ku faɗa mana abin da kuke buƙata. Ƙungiyarmu za ta tuntube ku.",
     "Suna (ba dole ba)",
@@ -349,7 +349,7 @@ window.CubicHelpCopy = {
     "Ta yaya za mu taimaka? (ba dole ba)",
     "Wurin sabis da kuka fi so (ba dole ba)",
     "A bar ƙungiyar ta zaɓa",
-    "Aika buƙata",
+    "Aika",
     "Ta aika wannan fom, kuna neman CubicShip ya adana bayananku kuma ya tuntube ku game da wannan buƙata.",
     "Ina kuma son samun tayin da labaran CubicShip ta imel. Ba dole ba ne; zan iya daina karɓa a kowane lokaci.",
     "Bayanin sirri",

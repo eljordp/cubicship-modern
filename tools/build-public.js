@@ -1,8 +1,14 @@
 const fs = require("fs"),
   path = require("path");
 const { esc, header, footer, page } = require("./site-layout");
+const smsPolicy = require("./sms-policy");
+const smsConsent = require("../assets/sms-consent.json");
 const root = path.resolve(__dirname, ".."),
-  locations = require("../assets/locations.json");
+  locations = require("../assets/locations.json"),
+  contact = require("../assets/contact.json");
+const contactIntro = contact.sms
+  ? "Text or email us, or visit your nearest counter. Our team will follow up."
+  : "Email us";
 const write = (file, text) => {
   if(file.endsWith('.html') && !text.includes('name="robots" content="noindex"') && !text.includes('rel="canonical"')) {
     const url='https://cubicship.com/'+file;
@@ -12,6 +18,7 @@ const write = (file, text) => {
   if(branch){const schema={"@context":"https://schema.org","@type":"LocalBusiness",name:branch.name,url:'https://cubicship.com/'+file,address:branch.address,telephone:branch.tel||undefined};text=text.replace('</head>','<script type="application/ld+json">'+JSON.stringify(schema)+'</script></head>');}
   fs.writeFileSync(path.join(root,file),text.replace(/[ \t]+$/gm, ""));
 };
+write("sms-copy.js", "window.CubicSmsConsent=" + JSON.stringify(smsConsent).replace(/</g, "\\u003c") + ";\n");
 const intro = (tag, title, text) =>
   `<div class="cs-intro"><div class="cs-kicker">${tag}</div><h1>${title}</h1><p class="cs-lead">${text}</p></div>`;
 const btn = (href, label, primary = false) =>
@@ -181,7 +188,20 @@ write(
       "Your information and your request.",
       "This page describes the data used by the current request service.",
     ) +
-      `<section class="cs-card cs-narrow"><h2>Information you provide</h2><p>Shipping requests collect contact details, branch selection and shipment information. Preparing a drop-off also requires sender and receiver address details. Print inquiries collect the specifications and artwork links you choose to provide.</p><h2>How it is used</h2><p>CubicShip uses these details to review your request, contact you, prepare the service and allow authorized staff at the appropriate branch to process it. Staff may need to provide relevant shipment information to the carrier to complete shipping.</p><h2>Service providers</h2><p>The website uses Vercel hosting and storage, account infrastructure where configured, and email delivery services to operate these features. Separate freight forms and carrier tracking pages are operated by the provider shown when you follow the link.</p><h2>Finding a counter</h2><p>If you choose Use my location, your browser asks for permission. Your coordinates are used only in your browser to sort counters; CubicShip does not store them or send them to its servers or analytics. ZIP-code distance searches also run in your browser. Directions links open Google Maps with the counter’s address; Google’s own privacy terms apply there.</p><p>You can choose to save your ZIP code for future searches. Signed-in customers save it to their account; guests save it on this device. Use Forget saved ZIP in the location picker to remove it. Precise coordinates are never saved with this preference.</p><h2>Accounts and request links</h2><p>Account sessions use cookies. A private request-status link grants access to that request’s status: keep it private. Website analytics may record page visits; do not put shipment or personal information into public links.</p><h2>Questions or corrections</h2><p data-i18n-message="privacy.contact">Contact <a data-i18n-slot="email" href="mailto:info@cubicship.com">info@cubicship.com</a> or your selected counter to ask about your information, request a correction or discuss deletion. Include your request reference, and avoid emailing payment-card details or passwords.</p></section>`,
+      `<section class="cs-card cs-narrow"><h2>Information you provide</h2><p>Shipping requests collect contact details, branch selection and shipment information. Preparing a drop-off also requires sender and receiver address details. Print inquiries collect the specifications and artwork links you choose to provide.</p><h2>How it is used</h2><p>CubicShip uses these details to review your request, contact you, prepare the service and allow authorized staff at the appropriate branch to process it. Staff may need to provide relevant shipment information to the carrier to complete shipping.</p><h2>Service providers</h2><p>The website uses Vercel hosting and storage, account infrastructure where configured, and email delivery services to operate these features. Separate freight forms and carrier tracking pages are operated by the provider shown when you follow the link.</p><h2>Finding a counter</h2><p>If you choose Use my location, your browser asks for permission. Your coordinates are used only in your browser to sort counters; CubicShip does not store them or send them to its servers or analytics. ZIP-code distance searches also run in your browser. Directions links open Google Maps with the counter’s address; Google’s own privacy terms apply there.</p><p>You can choose to save your ZIP code for future searches. Signed-in customers save it to their account; guests save it on this device. Use Forget saved ZIP in the location picker to remove it. Precise coordinates are never saved with this preference.</p><h2>Accounts and request links</h2><p>Account sessions use cookies. A private request-status link grants access to that request’s status: keep it private. Website analytics may record page visits; do not put shipment or personal information into public links.</p><h2>Questions or corrections</h2><p data-i18n-message="privacy.contact">Contact <a data-i18n-slot="email" href="mailto:info@cubicship.com">info@cubicship.com</a> or your selected counter to ask about your information, request a correction or discuss deletion. Include your request reference, and avoid emailing payment-card details or passwords.</p></section>` + smsPolicy.privacy(contact),
+  ),
+);
+write(
+  "contact.html",
+  page(
+    "Contact us",
+    contactIntro,
+    intro(
+      "Contact us",
+      "How can we help?",
+      contactIntro,
+    ) +
+      `<div class="cs-grid">${contact.sms ? `<section class="cs-card" id="text"><h2>Text us</h2><p><a class="cs-btn cs-primary" href="sms:${esc(contact.sms)}"><bdi class="cs-phone-number" dir="ltr" translate="no">${esc(contact.smsDisplay || contact.sms)}</bdi></a></p></section>` : ""}<section class="cs-card" id="email"><h2>Email us</h2><p><a class="cs-btn" href="mailto:${esc(contact.email)}"><bdi dir="ltr" translate="no">${esc(contact.email)}</bdi></a></p></section><section class="cs-card" id="counter"><h2>Find your counter</h2><p>${btn("/dhl-locations.html", "Find a counter")}</p></section></div><section class="cs-card cs-narrow" id="contactForm" data-contact-form><noscript><p>This form needs JavaScript.</p></noscript></section>`,
   ),
 );
 write(
@@ -194,7 +214,7 @@ write(
       "Know what your request means.",
       "Online intake starts a conversation with your counter. It does not by itself purchase or guarantee a service.",
     ) +
-      `<section class="cs-card cs-narrow"><h2>Quotes and availability</h2><p>Staff must confirm item acceptance, service availability, price and timing. A pickup inquiry is not a scheduled collection. Contact the counter for urgent deadlines and to confirm hours.</p><h2>Charges and delivery</h2><p>Before paying, confirm transport, packing, optional protection and destination duties or taxes, including who pays each charge. Delivery estimates depend on the confirmed carrier service and destination.</p><h2>Printing</h2><p>Confirm product specifications, artwork or proof, total price and turnaround before production starts.</p><h2>Changes, cancellation and claims</h2><p>Ask your counter about the conditions that apply to the selected service before purchase. For an existing order, contact the counter with your reference or carrier tracking number. Carrier terms and any agreed service conditions determine the available options.</p>${btn("/dhl-locations.html", "Contact your counter")}</section>`,
+      `<section class="cs-card cs-narrow"><h2>Quotes and availability</h2><p>Staff must confirm item acceptance, service availability, price and timing. A pickup inquiry is not a scheduled collection. Contact the counter for urgent deadlines and to confirm hours.</p><h2>Charges and delivery</h2><p>Before paying, confirm transport, packing, optional protection and destination duties or taxes, including who pays each charge. Delivery estimates depend on the confirmed carrier service and destination.</p><h2>Printing</h2><p>Confirm product specifications, artwork or proof, total price and turnaround before production starts.</p><h2>Changes, cancellation and claims</h2><p>Ask your counter about the conditions that apply to the selected service before purchase. For an existing order, contact the counter with your reference or carrier tracking number. Carrier terms and any agreed service conditions determine the available options.</p>${btn("/dhl-locations.html", "Contact your counter")}</section>` + smsPolicy.terms(contact),
   ),
 );
 // Apply the shared static shell to retained public pages; their own form logic stays intact.
@@ -240,6 +260,7 @@ const urls = [
   "/track.html",
   "/privacy.html",
   "/service-terms.html",
+  "/contact.html",
   ...locations.map((l) => "/locations/" + l.slug + ".html"),
 ];
 write(

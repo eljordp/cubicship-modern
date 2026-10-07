@@ -13,6 +13,10 @@
   ],
   "rewrites": [
     {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
       "source": "/ha",
       "destination": "/ha.html"
     },

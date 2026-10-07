@@ -21,6 +21,7 @@ const pages = [
   "404.html",
   "privacy.html",
   "service-terms.html",
+  "contact.html",
   "service-request.html",
   "request-status.html",
   "account-help.html",

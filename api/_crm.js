@@ -3,6 +3,7 @@ const { createClient } = require("@supabase/supabase-js");
 const { json, readBody, readStaffUsers, ownerUser } = require("./_portal-auth");
 const { isDemoUser } = require("./_demo-data");
 const locations = require("../assets/locations.json");
+const smsConsent = require("../assets/sms-consent.json");
 const LANGUAGES = new Set(
   require("../locales/languages.json").map((x) => x.code),
 );
@@ -42,6 +43,15 @@ const language = (v) => (LANGUAGES.has(v) ? v : "en");
 const branch = (v) => (locations.some((l) => l.id === v) ? v : "");
 const email = (v) => text(v, 254).toLowerCase();
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+function smsPhone(value) {
+  const raw = text(value, 50);
+  if (!raw || !/^\+?[\d().\s-]+$/.test(raw)) return "";
+  const digits = raw.replace(/\D/g, "");
+  if (raw.startsWith("+") && /^[1-9]\d{7,14}$/.test(digits)) return "+" + digits;
+  if (/^\d{10}$/.test(digits)) return "+1" + digits;
+  if (/^1\d{10}$/.test(digits)) return "+" + digits;
+  return "";
+}
 const uuid = (v) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
     v || "",
@@ -212,6 +222,11 @@ async function publicHandler(req, res, action) {
       });
     if (b.postal && !/^\d{5}(?:-\d{4})?$/.test(b.postal))
       return json(res, 400, { ok: false, error: "Check the ZIP code." });
+    const phone = smsPhone(b.phone), smsOptIn = b.smsConsent === true;
+    if ((b.phone && !phone) || (smsOptIn && !phone))
+      return json(res, 400, { ok: false, error: "Please enter a valid phone number." });
+    if (typeof b.smsConsent === "boolean" && b.smsConsentVersion !== smsConsent.version)
+      return json(res, 400, { ok: false, error: "Reload the contact form and review the SMS consent." });
     if (!(await limited(req, "callback", 8, 3600)))
       return json(res, 429, { ok: false, error: "Please try again later." });
     const result = await checked(
@@ -226,16 +241,40 @@ async function publicHandler(req, res, action) {
           source: "website_callback",
           email: email(b.email),
           name: text(b.name, 100),
+          phone,
           postal_code: text(b.postal, 10),
           language: language(b.language),
           branch_id: branch(b.branch),
-          title: "Email help request",
+          title: "Contact us request",
           details: text(b.details, 1500),
           attribution: attribution(b.attribution),
           marketing: b.marketing === true,
         },
       }),
     );
+    if (typeof b.smsConsent === "boolean") {
+      const locale = language(b.language);
+      const disclosure = smsConsent.copies[locale].consent;
+      // Separate SMS evidence from email marketing consent. Never confirm a
+      // submission until this record is durable; retry preserves the original.
+      await checked(
+        db().from("crm_activities").upsert({
+          lead_id: result.id,
+          event_key: "sms-consent:" + result.id,
+          kind: "consent",
+          actor: "website visitor",
+          body: smsOptIn
+            ? "SMS opt-in submitted for " + phone + ".\n\n" + disclosure
+            : "SMS opt-in was not selected. This request does not grant SMS consent.",
+          metadata: {
+            channel: "sms", opted_in: smsOptIn, phone,
+            version: smsConsent.version, language: locale,
+            disclosure, privacy_url: smsConsent.privacyUrl,
+            terms_url: smsConsent.termsUrl, phone_verified: false,
+          },
+        }, { onConflict: "event_key", ignoreDuplicates: true }),
+      );
+    }
     return json(res, 200, {
       ok: true,
       preferencesToken: tokenFor(result.contact_id),

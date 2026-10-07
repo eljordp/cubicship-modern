@@ -130,3 +130,30 @@
 .cs-help [hidden] {
   display: none !important;
 }
+a.cs-help-trigger {
+  width: fit-content;
+  text-decoration: none;
+  text-align: center;
+}
+.cs-help-inline {
+  width: auto;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.cs-help-inline h2 {
+  margin-inline-end: 0;
+}
+.cs-sms-consent {
+  padding: 14px;
+  border: 1px solid #dae1ea;
+  border-radius: 9px;
+  background: #fff;
+}
+.cs-sms-consent .cs-help-small {
+  margin: 8px 0 0;
+  margin-inline-start: 28px;
+}

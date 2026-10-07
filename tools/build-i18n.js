@@ -210,6 +210,9 @@ for (const file of pages) {
     const analytics = document.createElement("script"); analytics.src = "/analytics.js"; analytics.defer = true; document.head.append(analytics);
   }
   if (!privatePage) {
+    if (file === "contact.html") {
+      const sms = document.createElement("script"); sms.src = "/sms-copy.js"; sms.defer = true; document.head.append(sms);
+    }
     for (const src of ["/customer-copy.js", "/customer-capture.js"]) {
       const el = document.createElement("script"); el.src = src; el.defer = true; document.head.append(el);
     }

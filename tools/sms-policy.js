@@ -1,0 +1,17 @@
+const { esc } = require("./site-layout");
+const updated = "October 7, 2026";
+// Keep the supplied SMS policy language in English, marked explicitly as such,
+// while the site's existing translated service/privacy copy remains intact.
+exports.privacy = (contact) => `<section id="sms" class="cs-card cs-narrow" lang="en" dir="ltr" translate="no">
+<h2>SMS Privacy Policy</h2><p>Effective date: ${updated}</p>
+<h3>Information we collect and how we use it</h3><p>CubicShip collects the contact details you provide, including your name, email and optional phone number, your inquiry, and your SMS consent choice. We save the consent date, disclosure version and displayed language so staff can review your preferences. We use this information to respond to quote requests, provide shipping updates and assist with customer service. Website analytics and account information are described above.</p>
+<h3>Mobile information and consent</h3><p>Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
+<h3>Your choices and rights</h3><p>SMS consent is optional and is separate from email marketing consent. Providing a phone number or submitting a form without checking the SMS consent box does not opt you in to SMS. You can submit an inquiry and use our services without opting in.</p><p>Reply STOP to a CubicShip SMS to opt out at any time. Reply HELP for assistance. You may also contact <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a> to request access to, correction of, or deletion of your information, or to withdraw a communication preference.</p>
+<h3>Policy updates</h3><p>Changes to this policy will be posted here with an updated effective date. Please review this page periodically.</p><p><a href="/service-terms.html#sms">SMS Terms &amp; Conditions</a> · <a href="/contact.html">Contact us</a></p></section>`;
+exports.terms = (contact) => `<section id="sms" class="cs-card cs-narrow" lang="en" dir="ltr" translate="no">
+<h2>SMS Terms &amp; Conditions</h2><p>Effective date: ${updated}</p>
+<h3>SMS consent and message types</h3><p>If you consent to receive SMS messages from CubicShip, you may receive messages about quote requests, shipping updates and customer service follow-ups. SMS consent does not authorize promotional text messages. Phone numbers obtained through the SMS consent process will not be shared with third parties for marketing purposes.</p>
+<h3>Frequency and fees</h3><p>Message frequency will vary with your requests and service activity. Message and data rates may apply, depending on your carrier and plan.</p>
+<h3>How to opt in</h3><p>On our <a href="/contact.html">Contact us form</a>, provide your phone number and check the optional SMS consent box before submitting. The box is unchecked by default. Consent is not required to submit an inquiry or purchase services.</p>
+<h3>How to opt out or get help</h3><p>You can opt out at any time by replying STOP to a CubicShip text message. For assistance, reply HELP or contact <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a>. You can also contact us directly to request removal from the messaging list.</p>
+<p>Learn how we handle your information in our <a href="/privacy.html#sms">SMS Privacy Policy</a>.</p></section>`;

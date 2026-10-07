@@ -57,7 +57,7 @@
 .cs-navigation {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 18px;
 }
 .cs-navigation a {
   color: #fff;
@@ -321,6 +321,14 @@
 }
 .cs-page .cs-grid h2 {
   font-size: 21px;
+}
+/* Keep quote, contact and language controls usable on compact screens. */
+@media (min-width: 721px) and (max-width: 1100px) {
+  .cs-header { flex-wrap: wrap; padding: 14px 20px; gap: 12px; }
+  .cs-toggle { display: block; min-height: 44px; background: transparent; border: 1px solid #8b99aa; color: white; border-radius: 6px; padding: 8px 14px; font: inherit; }
+  .cs-navigation { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; }
+  .cs-navigation.cs-open { display: flex; }
+  .cs-navigation a { padding: 12px 0; }
 }
 @media (max-width: 720px) {
   .cs-header {

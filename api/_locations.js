@@ -148,7 +148,7 @@ const LOCATIONS = [
   {
     id: "cleveland",
     name: "Cleveland, OH",
-    address: "11512 Clifton Blvd, Cleveland, OH 44107",
+    address: "11512 Clifton Blvd, Cleveland, OH 44102",
     emailEnv: "LOCATION_EMAIL_CLEVELAND",
     branchEmail: "cleveland@cubicship.com",
     city: "Cleveland",
